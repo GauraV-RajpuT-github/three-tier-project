@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Exception Handling - Bro Mode</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        pre {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 15px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #e83e8c;
+        }
+        .output {
+            background-color: #f1f1f1;
+            border-left: 4px solid #4CAF50;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+        .tip {
+            background-color: #e6f7ff;
+            border-left: 4px solid #1890ff;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+        .warning {
+            background-color: #fff2e8;
+            border-left: 4px solid #fa541c;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Python Exception Handling - Bro Mode 😎</h1>
+
+    <h2>Exceptions Kya Hote Hai? 🤔</h2>
+    <p>Bro, exceptions matlab errors jo program run hone ke time pe aate hai! Agar inko handle nahi kiya to program crash ho jata hai. Python mein inko handle karne ka mast system hai!</p>
+    
+    <h3>Exception Handling Kyu Important Hai?</h3>
+    <ul>
+        <li>Program crash hone se bachata hai</li>
+        <li>Errors ko smooth tarike se handle karta hai</li>
+        <li>Program ko reliable banata hai</li>
+        <li>Error handling code ko normal code se alag rakhta hai</li>
+        <li>Users ko samajh mein aane wale error messages deta hai</li>
+    </ul>
+
+    <h2>Common Exceptions in Python 🚨</h2>
+    <p>Bro, Python mein bahut saare built-in exceptions hai. Yahan kuch common wale hai:</p>
+    
+    <ul>
+        <li><code>SyntaxError</code>: Jab code ka syntax galat ho</li>
+        <li><code>NameError</code>: Jab variable defined na ho</li>
+        <li><code>TypeError</code>: Jab operation galat type pe kiya jaye</li>
+        <li><code>ValueError</code>: Jab value inappropriate ho</li>
+        <li><code>IndexError</code>: Jab index range se bahar ho</li>
+        <li><code>KeyError</code>: Jab key dictionary mein na ho</li>
+        <li><code>FileNotFoundError</code>: Jab file na mile</li>
+        <li><code>ZeroDivisionError</code>: Jab zero se divide kiya jaye</li>
+        <li><code>ImportError</code>: Jab module import na ho sake</li>
+        <li><code>AttributeError</code>: Jab attribute object mein na ho</li>
+    </ul>
+
+    <h2>Basic Exception Handling 🛡️</h2>
+    <p>Bro, <code>try</code>-<code>except</code> block se exceptions handle karte hai:</p>
+    
+    <pre><code>try:
+    # Ye code exception raise kar sakta hai
+    result = 10 / 0
+except ZeroDivisionError:
+    # Exception handle karne ka code
+    print("Error: Bhai zero se divide nahi kar sakte!")
+
+# Program execution continue hota hai
+print("Program chal raha hai!")</code></pre>
+    
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Error: Bhai zero se divide nahi kar sakte!<br>
+        Program chal raha hai!</p>
+    </div>
+
+    <h2>Multiple Exceptions Handle Karna 🧩</h2>
+    <p>Bro, alag-alag exceptions ko alag-alag tarike se handle kar sakte ho:</p>
+    
+    <pre><code>try:
+    num = int(input("Koi number daal bhai: "))
+    result = 100 / num
+    print(f"Result: {result}")
+except ValueError:
+    print("Error: Bhai ye to number hi nahi hai!")
+except ZeroDivisionError:
+    print("Error: Zero se divide? Dimag theek hai?")
+
+# Ek saath multiple exceptions bhi catch kar sakte ho
+try:
+    # Kuch code jo exceptions raise kar sakta hai
+    pass
+except (ValueError, TypeError, ZeroDivisionError):
+    print("Koi to error aa gaya!")</code></pre>
+
+    <h2><code>else</code> Clause Kya Hai? 🎯</h2>
+    <p>Bro, <code>else</code> clause tab execute hota hai jab <code>try</code> block mein koi exception nahi aati:</p>
+    
+    <pre><code>try:
+    num = int(input("Koi number daal bhai: "))
+    result = 100 / num
+except ValueError:
+    print("Error: Bhai ye to number hi nahi hai!")
+except ZeroDivisionError:
+    print("Error: Zero se divide? Dimag theek hai?")
+else:
+    # Ye tab execute hota hai jab koi exception nahi aati
+    print(f"Result: {result}")
+    print("Sab kuch theek hai, koi error nahi!")</code></pre>
+
+    <h2><code>finally</code> Clause Kya Hai? 🔄</h2>
+    <p>Bro, <code>finally</code> clause hamesha execute hota hai, chahe exception aaye ya na aaye:</p>
+    
+    <pre><code>try:
+    file = open("example.txt", "r")
+    content = file.read()
+except FileNotFoundError:
+    print("Error: Bhai file to hai hi nahi!")
+finally:
+    # Ye hamesha execute hota hai, chahe exception aaye ya na aaye
+    # Cleanup operations ke liye perfect hai, jaise file close karna
+    if 'file' in locals() and not file.closed:
+        file.close()
+        print("File band kar di!")</code></pre>
+
+    <h2>Exception Information Kaise Nikale? 🔍</h2>
+    <p>Bro, exception object se uske baare mein zyada information nikal sakte ho:</p>
+    
+    <pre><code>try:
+    x = 10 / 0
+except ZeroDivisionError as e:
+    print(f"Error: {e}")
+    print(f"Error type: {type(e).__name__}")
+    
+    # Detailed debugging ke liye
+    import traceback
+    traceback.print_exc()</code></pre>
+    
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Error: division by zero<br>
+        Error type: ZeroDivisionError<br>
+        Traceback (most recent call last):<br>
+        &nbsp;&nbsp;File "&lt;stdin&gt;", line 2, in &lt;module&gt;<br>
+        ZeroDivisionError: division by zero</p>
+    </div>
+
+    <h2>Exceptions Raise Karna 🚀</h2>
+    <p>Bro, khud se bhi exceptions raise kar sakte ho <code>raise</code> statement se:</p>
+    
+    <pre><code>def validate_age(age):
+    if age < 0:
+        raise ValueError("Age negative kaise ho sakta hai bhai?")
+    if age > 120:
+        raise ValueError("Itna buddha? Immortal hai kya?")
+    return age
+
+try:
+    user_age = int(input("Apni age batao bhai: "))
+    validated_age = validate_age(user_age)
+    print(f"Tumhari age hai {validated_age}")
+except ValueError as e:
+    print(f"Error: {e}")</code></pre>
+
+    <h2>Re-raising Exceptions 🔄</h2>
+    <p>Bro, exception ko catch karke, kuch kaam karke, fir se raise kar sakte ho:</p>
+    
+    <pre><code>try:
+    # Kuch code jo exception raise kar sakta hai
+    x = 1 / 0
+except ZeroDivisionError:
+    print("Error log kar raha hun...")
+    # Exception ko fir se raise karo
+    raise</code></pre>
+
+    <h2>Custom Exceptions Banana 🛠️</h2>
+    <p>Bro, apne khud ke exceptions bhi bana sakte ho built-in <code>Exception</code> class se inherit karke:</p>
+    
+    <pre><code>class PaiseKamException(Exception):
+    """Jab withdrawal balance se zyada ho tab raise hota hai"""
+    def __init__(self, balance, amount):
+        self.balance = balance
+        self.amount = amount
+        self.deficit = amount - balance
+        message = f"₹{amount} nahi nikal sakte. Balance hai ₹{balance}, ₹{self.deficit} kam hai!"
+        super().__init__(message)
+
+class BankAccount:
+    def __init__(self, balance=0):
+        self.balance = balance
+        
+    def withdraw(self, amount):
+        if amount > self.balance:
+            raise PaiseKamException(self.balance, amount)
+        self.balance -= amount
+        return self.balance
+
+# Custom exception use karna
+try:
+    account = BankAccount(1000)
+    account.withdraw(1500)
+except PaiseKamException as e:
+    print(f"Error: {e}")
+    print(f"Bhai, ₹{e.deficit} aur chahiye transaction ke liye!")</code></pre>
+    
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Error: ₹1500 nahi nikal sakte. Balance hai ₹1000, ₹500 kam hai!<br>
+        Bhai, ₹500 aur chahiye transaction ke liye!</p>
+    </div>
+
+    <h2>Context Managers aur <code>with</code> Statement 🧰</h2>
+    <p>Bro, <code>with</code> statement se resources clean tarike se handle kar sakte ho:</p>
+    
+    <pre><code># Without context manager
+try:
+    file = open("example.txt", "r")
+    content = file.read()
+finally:
+    file.close()
+
+# With context manager
+with open("example.txt", "r") as file:
+    content = file.read()
+# File automatically close ho jati hai jab block exit hota hai</code></pre>
+
+    <h2>Custom Context Managers Banana 🏗️</h2>
+    <p>Bro, apne custom context managers bhi bana sakte ho <code>__enter__</code> aur <code>__exit__</code> methods use karke:</p>
+    
+    <pre><code>class DatabaseConnection:
+    def __init__(self, connection_string):
+        self.connection_string = connection_string
+        self.connection = None
+    
+    def __enter__(self):
+        print(f"Database se connect kar raha hun: {self.connection_string}")
+        # Real scenario mein, ye database connection establish karega
+        self.connection = "Connected"
+        return self.connection
+    
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        print("Database connection band kar raha hun")
+        # Real scenario mein, ye connection close karega
+        self.connection = None
+        # Return False to propagate exceptions, True to suppress them
+        return False
+
+# Custom context manager use karna
+try:
+    with DatabaseConnection("mysql://localhost:3306/mydb") as conn:
+        print(f"Connection status: {conn}")
+        # Error simulate karo
+        raise ValueError("Database query fail ho gaya")
+except ValueError as e:
+    print(f"Exception pakda: {e}")</code></pre>
+    
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Database se connect kar raha hun: mysql://localhost:3306/mydb<br>
+        Connection status: Connected<br>
+        Database connection band kar raha hun<br>
+        Exception pakda: Database query fail ho gaya</p>
+    </div>
+
+    <h2><code>contextlib</code> Module Kya Hai? 🧩</h2>
+    <p>Bro, Python ka <code>contextlib</code> module context managers ke liye utilities provide karta hai:</p>
+    
+    <pre><code>from contextlib import contextmanager
+
+@contextmanager
+def file_manager(filename, mode):
+    try:
+        file = open(filename, mode)
+        yield file
+    finally:
+        file.close()
+
+# Context manager use karna
+with file_manager("example.txt", "r") as file:
+    content = file.read()
+    print(content)</code></pre>
+
+    <h2>Exception Handling Best Practices 💯</h2>
+    
+    <div class="tip">
+        <h3>Kya Karna Chahiye:</h3>
+        <ul>
+            <li>Specific exceptions catch karo, generic nahi</li>
+            <li>Try block ko jitna ho sake chota rakho</li>
+            <li>Cleanup operations ke liye finally use karo</li>
+            <li>Document karo ki tumhare functions kaun se exceptions raise kar sakte hai</li>
+            <li>Domain-specific errors ke liye custom exceptions use karo</li>
+            <li>Meaningful error messages do</li>
+        </ul>
+    </div>
+    
+    <div class="warning">
+        <h3>Kya Nahi Karna Chahiye:</h3>
+        <ul>
+            <li>Bina exception type specify kiye <code>except:</code> use nahi karna chahiye (ye sab exceptions catch karega, KeyboardInterrupt bhi)</li>
+            <li>Exceptions ko properly handle kiye bina ignore nahi karna chahiye</li>
+            <li>Normal situations mein flow control ke liye exceptions use nahi karna chahiye</li>
+            <li>Aise exceptions catch nahi karne chahiye jinhe handle karna nahi aata</li>
+        </ul>
+    </div>
+
+    <h2>Debugging with <code>pdb</code> 🐞</h2>
+    <p>Bro, Python ka built-in debugger <code>pdb</code> exceptions ke saath deal karne mein useful ho sakta hai:</p>
+    
+    <pre><code>import pdb
+
+def divide(a, b):
+    try:
+        return a / b
+    except ZeroDivisionError:
+        pdb.set_trace()  # Debugger start karo
+        # Ab variables inspect kar sakte ho, functions call kar sakte ho, etc.
+        return None
+
+result = divide(10, 0)</code></pre>
+
+    <h2>Assertions Kya Hote Hai? ✅</h2>
+    <p>Bro, assertions debugging ke liye hote hai - ye ek condition test karte hai aur agar condition false hai to <code>AssertionError</code> raise karte hai:</p>
+    
+    <pre><code>def calculate_average(numbers):
+    assert len(numbers) > 0, "Empty list ka average nahi nikal sakte bhai!"
+    return sum(numbers) / len(numbers)
+
+try:
+    avg = calculate_average([])
+except AssertionError as e:
+    print(f"Error: {e}")</code></pre>
+    
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Error: Empty list ka average nahi nikal sakte bhai!</p>
+    </div>
+
+    <div class="tip">
+        <p><strong>Note:</strong> Bro, assertions ko <code>-O</code> flag se disable kiya ja sakta hai Python run karte time, isliye inhe production code mein input validation ke liye use nahi karna chahiye. Explicit checks use karo aur appropriate exceptions raise karo.</p>
+    </div>
+
+    <h2>Conclusion 🏁</h2>
+    <p>Bro, exception handling Python programming ka important part hai! Isse tumhara code robust aur reliable ban jata hai. Ab tum errors ko handle kar sakte ho like a pro! 🚀</p>
+</body>
+</html>

@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP Data Types and Variables</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #4F5B93;
+        }
+        pre {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 15px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #8892BF;
+        }
+        .output {
+            background-color: #f1f1f1;
+            border-left: 4px solid #4CAF50;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+        .tip {
+            background-color: #e6f7ff;
+            border-left: 4px solid #1890ff;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h1>PHP Data Types and Variables</h1>
+
+    <h2>Variables in PHP</h2>
+    <p>In PHP, variables are used to store data values. Unlike many other programming languages, PHP is loosely typed, which means you don't need to declare the data type of a variable when you create it.</p>
+    
+    <pre><code>&lt;?php
+// Variable declaration and assignment
+$name = "John";
+$age = 30;
+$height = 1.85;
+$isStudent = true;
+
+// Output variables
+echo "Name: " . $name . "&lt;br&gt;";
+echo "Age: " . $age . "&lt;br&gt;";
+echo "Height: " . $height . " meters&lt;br&gt;";
+echo "Is Student: " . ($isStudent ? "Yes" : "No");
+?&gt;</code></pre>
+
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Name: John<br>
+        Age: 30<br>
+        Height: 1.85 meters<br>
+        Is Student: Yes</p>
+    </div>
+
+    <h2>PHP Data Types</h2>
+    <p>PHP supports the following data types:</p>
+    
+    <table>
+        <tr>
+            <th>Data Type</th>
+            <th>Description</th>
+            <th>Example</th>
+        </tr>
+        <tr>
+            <td>String</td>
+            <td>A sequence of characters</td>
+            <td><code>$name = "John";</code></td>
+        </tr>
+        <tr>
+            <td>Integer</td>
+            <td>A non-decimal number</td>
+            <td><code>$age = 30;</code></td>
+        </tr>
+        <tr>
+            <td>Float</td>
+            <td>A decimal number</td>
+            <td><code>$height = 1.85;</code></td>
+        </tr>
+        <tr>
+            <td>Boolean</td>
+            <td>True or false</td>
+            <td><code>$isStudent = true;</code></td>
+        </tr>
+        <tr>
+            <td>Array</td>
+            <td>Stores multiple values in a single variable</td>
+            <td><code>$colors = ["red", "green", "blue"];</code></td>
+        </tr>
+        <tr>
+            <td>Object</td>
+            <td>Instances of classes</td>
+            <td><code>$person = new Person();</code></td>
+        </tr>
+        <tr>
+            <td>NULL</td>
+            <td>A variable with no value</td>
+            <td><code>$result = null;</code></td>
+        </tr>
+        <tr>
+            <td>Resource</td>
+            <td>Special variable holding a reference to an external resource</td>
+            <td><code>$file = fopen("file.txt", "r");</code></td>
+        </tr>
+    </table>
+
+    <h2>Checking Data Types</h2>
+    <p>PHP provides several functions to check the data type of a variable:</p>
+    
+    <pre><code>&lt;?php
+$name = "John";
+$age = 30;
+$height = 1.85;
+$isStudent = true;
+$colors = ["red", "green", "blue"];
+$person = null;
+
+// Check data types
+echo "Variable \$name is " . gettype($name) . "&lt;br&gt;";
+echo "Variable \$age is " . gettype($age) . "&lt;br&gt;";
+echo "Variable \$height is " . gettype($height) . "&lt;br&gt;";
+echo "Variable \$isStudent is " . gettype($isStudent) . "&lt;br&gt;";
+echo "Variable \$colors is " . gettype($colors) . "&lt;br&gt;";
+echo "Variable \$person is " . gettype($person) . "&lt;br&gt;";
+
+// Type-specific checking functions
+echo "Is \$name a string? " . (is_string($name) ? "Yes" : "No") . "&lt;br&gt;";
+echo "Is \$age an integer? " . (is_int($age) ? "Yes" : "No") . "&lt;br&gt;";
+echo "Is \$height a float? " . (is_float($height) ? "Yes" : "No") . "&lt;br&gt;";
+echo "Is \$isStudent a boolean? " . (is_bool($isStudent) ? "Yes" : "No") . "&lt;br&gt;";
+echo "Is \$colors an array? " . (is_array($colors) ? "Yes" : "No") . "&lt;br&gt;";
+echo "Is \$person null? " . (is_null($person) ? "Yes" : "No") . "&lt;br&gt;";
+?&gt;</code></pre>
+
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Variable $name is string<br>
+        Variable $age is integer<br>
+        Variable $height is double<br>
+        Variable $isStudent is boolean<br>
+        Variable $colors is array<br>
+        Variable $person is NULL<br>
+        Is $name a string? Yes<br>
+        Is $age an integer? Yes<br>
+        Is $height a float? Yes<br>
+        Is $isStudent a boolean? Yes<br>
+        Is $colors an array? Yes<br>
+        Is $person null? Yes</p>
+    </div>
+
+    <h2>Type Casting</h2>
+    <p>PHP allows you to convert a variable from one data type to another using type casting:</p>
+    
+    <pre><code>&lt;?php
+// String to integer
+$strNumber = "123";
+$intNumber = (int)$strNumber;
+echo "String \"$strNumber\" cast to integer: $intNumber&lt;br&gt;";
+
+// Integer to string
+$num = 456;
+$strNum = (string)$num;
+echo "Integer $num cast to string: \"$strNum\"&lt;br&gt;";
+
+// Float to integer (truncates the decimal part)
+$floatNum = 7.89;
+$intNum = (int)$floatNum;
+echo "Float $floatNum cast to integer: $intNum&lt;br&gt;";
+
+// Boolean to integer
+$bool = true;
+$intBool = (int)$bool;
+echo "Boolean true cast to integer: $intBool&lt;br&gt;";
+
+// String to array
+$str = "Hello";
+$arr = (array)$str;
+echo "String \"$str\" cast to array: ";
+print_r($arr);
+echo "&lt;br&gt;";
+?&gt;</code></pre>
+
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        String "123" cast to integer: 123<br>
+        Integer 456 cast to string: "456"<br>
+        Float 7.89 cast to integer: 7<br>
+        Boolean true cast to integer: 1<br>
+        String "Hello" cast to array: Array ( [0] => Hello )</p>
+    </div>
+
+    <h2>String Data Type</h2>
+    <p>A string is a sequence of characters. In PHP, strings can be created using single quotes, double quotes, or heredoc syntax:</p>
+    
+    <pre><code>&lt;?php
+// Single quotes
+$singleQuoted = 'This is a single-quoted string';
+
+// Double quotes (allows variable interpolation)
+$name = "John";
+$doubleQuoted = "Hello, $name!";
+
+// Heredoc syntax
+$heredoc = <<<EOD
+This is a heredoc string.
+It can span multiple lines
+and include $name's name.
+EOD;
+
+// Nowdoc syntax (like heredoc but without variable interpolation)
+$nowdoc = <<<'EOD'
+This is a nowdoc string.
+It can span multiple lines
+but does not process $name's name.
+EOD;
+
+echo $singleQuoted . "&lt;br&gt;";
+echo $doubleQuoted . "&lt;br&gt;";
+echo $heredoc . "&lt;br&gt;";
+echo $nowdoc . "&lt;br&gt;";
+?&gt;</code></pre>
+
+    <h3>String Functions</h3>
+    <p>PHP provides many built-in functions to manipulate strings:</p>
+    
+    <pre><code>&lt;?php
+$str = "Hello, World!";
+
+// String length
+echo "Length: " . strlen($str) . "&lt;br&gt;";
+
+// Word count
+echo "Word count: " . str_word_count($str) . "&lt;br&gt;";
+
+// Reverse a string
+echo "Reversed: " . strrev($str) . "&lt;br&gt;";
+
+// Find position of a substring
+echo "Position of 'World': " . strpos($str, "World") . "&lt;br&gt;";
+
+// Replace part of a string
+echo "Replaced: " . str_replace("World", "PHP", $str) . "&lt;br&gt;";
+
+// Convert to uppercase/lowercase
+echo "Uppercase: " . strtoupper($str) . "&lt;br&gt;";
+echo "Lowercase: " . strtolower($str) . "&lt;br&gt;";
+
+// Substring
+echo "Substring: " . substr($str, 0, 5) . "&lt;br&gt;";
+?&gt;</code></pre>
+
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Length: 13<br>
+        Word count: 2<br>
+        Reversed: !dlroW ,olleH<br>
+        Position of 'World': 7<br>
+        Replaced: Hello, PHP!<br>
+        Uppercase: HELLO, WORLD!<br>
+        Lowercase: hello, world!<br>
+        Substring: Hello</p>
+    </div>
+
+    <h2>Numeric Data Types</h2>
+    <p>PHP supports two numeric data types: integers and floating-point numbers (floats).</p>
+    
+    <h3>Integers</h3>
+    <p>An integer is a whole number without a decimal point. It can be positive, negative, or zero:</p>
+    
+    <pre><code>&lt;?php
+// Decimal (base 10)
+$decimal = 42;
+
+// Hexadecimal (base 16)
+$hex = 0x2A;  // 42 in decimal
+
+// Octal (base 8)
+$octal = 052;  // 42 in decimal
+
+// Binary (base 2)
+$binary = 0b101010;  // 42 in decimal
+
+echo "Decimal: $decimal&lt;br&gt;";
+echo "Hexadecimal: $hex&lt;br&gt;";
+echo "Octal: $octal&lt;br&gt;";
+echo "Binary: $binary&lt;br&gt;";
+
+// Integer size
+echo "Maximum integer value: " . PHP_INT_MAX . "&lt;br&gt;";
+echo "Minimum integer value: " . PHP_INT_MIN . "&lt;br&gt;";
+echo "Integer size: " . PHP_INT_SIZE . " bytes&lt;br&gt;";
+?&gt;</code></pre>
+
+    <h3>Floats</h3>
+    <p>A float (or double) is a number with a decimal point or a number in exponential form:</p>
+    
+    <pre><code>&lt;?php
+// Regular float
+$float1 = 3.14;
+
+// Scientific notation
+$float2 = 3.14e2;  // 3.14 * 10^2 = 314
+
+echo "Float 1: $float1&lt;br&gt;";
+echo "Float 2: $float2&lt;br&gt;";
+
+// Float precision issues
+$a = 0.1;
+$b = 0.2;
+$c = $a + $b;
+echo "0.1 + 0.2 = $c&lt;br&gt;";  // May not be exactly 0.3 due to floating-point precision
+
+// Comparing floats safely
+$epsilon = 0.00001;
+echo "Are 0.1 + 0.2 and 0.3 equal? " . 
+    (abs($c - 0.3) < $epsilon ? "Yes" : "No") . "&lt;br&gt;";
+?&gt;</code></pre>
+
+    <div class="tip">
+        <p><strong>Tip:</strong> Due to the way floating-point numbers are represented in binary, some decimal values cannot be represented exactly. Always use appropriate comparison methods when working with floats.</p>
+    </div>
+
+    <h2>Boolean Data Type</h2>
+    <p>A boolean represents a truth value: either true or false:</p>
+    
+    <pre><code>&lt;?php
+$isTrue = true;
+$isFalse = false;
+
+echo "Is true: " . ($isTrue ? "Yes" : "No") . "&lt;br&gt;";
+echo "Is false: " . ($isFalse ? "Yes" : "No") . "&lt;br&gt;";
+
+// Values interpreted as false
+echo "Empty string is false: " . ('' ? "No" : "Yes") . "&lt;br&gt;";
+echo "0 is false: " . (0 ? "No" : "Yes") . "&lt;br&gt;";
+echo "'0' is false: " . ('0' ? "No" : "Yes") . "&lt;br&gt;";
+echo "null is false: " . (null ? "No" : "Yes") . "&lt;br&gt;";
+echo "Empty array is false: " . ([] ? "No" : "Yes") . "&lt;br&gt;";
+
+// Values interpreted as true
+echo "Non-empty string is true: " . ('hello' ? "Yes" : "No") . "&lt;br&gt;";
+echo "Non-zero number is true: " . (42 ? "Yes" : "No") . "&lt;br&gt;";
+echo "Non-empty array is true: " . ([1, 2, 3] ? "Yes" : "No") . "&lt;br&gt;";
+?&gt;</code></pre>
+
+    <h2>NULL Data Type</h2>
+    <p>NULL represents a variable with no value:</p>
+    
+    <pre><code>&lt;?php
+$var = null;
+
+echo "Is null: " . (is_null($var) ? "Yes" : "No") . "&lt;br&gt;";
+echo "Is set: " . (isset($var) ? "Yes" : "No") . "&lt;br&gt;";
+
+// Unsetting a variable
+$name = "John";
+echo "Name before unset: " . $name . "&lt;br&gt;";
+unset($name);
+echo "Is name set after unset: " . (isset($name) ? "Yes" : "No") . "&lt;br&gt;";
+?&gt;</code></pre>
+
+    <h2>Array Data Type</h2>
+    <p>An array is a data structure that stores multiple values in a single variable. PHP supports both indexed and associative arrays:</p>
+    
+    <pre><code>&lt;?php
+// Indexed array
+$fruits = ["Apple", "Banana", "Cherry"];
+echo "First fruit: " . $fruits[0] . "&lt;br&gt;";
+echo "Second fruit: " . $fruits[1] . "&lt;br&gt;";
+echo "Third fruit: " . $fruits[2] . "&lt;br&gt;";
+
+// Associative array
+$person = [
+    "name" => "John",
+    "age" => 30,
+    "city" => "New York"
+];
+echo "Name: " . $person["name"] . "&lt;br&gt;";
+echo "Age: " . $person["age"] . "&lt;br&gt;";
+echo "City: " . $person["city"] . "&lt;br&gt;";
+
+// Multidimensional array
+$employees = [
+    ["John", "Doe", "Manager"],
+    ["Jane", "Smith", "Developer"],
+    ["Bob", "Johnson", "Designer"]
+];
+echo "First employee: " . $employees[0][0] . " " . $employees[0][1] . 
+    " (" . $employees[0][2] . ")&lt;br&gt;";
+
+// Array functions
+echo "Number of fruits: " . count($fruits) . "&lt;br&gt;";
+sort($fruits);
+echo "Sorted fruits: ";
+print_r($fruits);
+echo "&lt;br&gt;";
+
+// Check if key exists
+echo "Does 'age' key exist? " . (array_key_exists("age", $person) ? "Yes" : "No") . "&lt;br&gt;";
+
+// Check if value exists
+echo "Is 'Banana' in fruits? " . (in_array("Banana", $fruits) ? "Yes" : "No") . "&lt;br&gt;";
+?&gt;</code></pre>
+
+    <h2>Object Data Type</h2>
+    <p>Objects are instances of classes that can contain properties and methods:</p>
+    
+    <pre><code>&lt;?php
+// Define a class
+class Person {
+    // Properties
+    public $name;
+    public $age;
+    
+    // Constructor
+    function __construct($name, $age) {
+        $this->name = $name;
+        $this->age = $age;
+    }
+    
+    // Method
+    function introduce() {
+        return "Hi, I'm " . $this->name . " and I'm " . $this->age . " years old.";
+    }
+}
+
+// Create an object
+$person = new Person("John", 30);
+
+// Access properties
+echo "Name: " . $person->name . "&lt;br&gt;";
+echo "Age: " . $person->age . "&lt;br&gt;";
+
+// Call method
+echo "Introduction: " . $person->introduce() . "&lt;br&gt;";
+?&gt;</code></pre>
+
+    <h2>Variable Scope</h2>
+    <p>The scope of a variable determines where it can be accessed. PHP has three variable scopes:</p>
+    
+    <h3>Local Scope</h3>
+    <p>Variables declared within a function have local scope and can only be accessed within that function:</p>
+    
+    <pre><code>&lt;?php
+function test() {
+    $localVar = "I'm local";
+    echo "Inside function: $localVar&lt;br&gt;";
+}
+
+test();
+// This will cause an error:
+// echo "Outside function: $localVar&lt;br&gt;";
+?&gt;</code></pre>
+
+    <h3>Global Scope</h3>
+    <p>Variables declared outside a function have global scope but are not accessible inside functions by default:</p>
+    
+    <pre><code>&lt;?php
+$globalVar = "I'm global";
+
+function testGlobal() {
+    // This won't work:
+    // echo "Inside function: $globalVar&lt;br&gt;";
+    
+    // To access global variables, use the global keyword:
+    global $globalVar;
+    echo "Inside function with global keyword: $globalVar&lt;br&gt;";
+    
+    // Or use the $GLOBALS array:
+    echo "Inside function with GLOBALS array: " . $GLOBALS['globalVar'] . "&lt;br&gt;";
+}
+
+echo "Outside function: $globalVar&lt;br&gt;";
+testGlobal();
+?&gt;</code></pre>
+
+    <h3>Static Scope</h3>
+    <p>Static variables retain their value between function calls:</p>
+    
+    <pre><code>&lt;?php
+function counter() {
+    static $count = 0;
+    $count++;
+    echo "Count: $count&lt;br&gt;";
+}
+
+counter();  // Outputs: Count: 1
+counter();  // Outputs: Count: 2
+counter();  // Outputs: Count: 3
+?&gt;</code></pre>
+
+    <h2>Constants</h2>
+    <p>Constants are identifiers for simple values that cannot be changed during script execution:</p>
+    
+    <pre><code>&lt;?php
+// Define a constant
+define("PI", 3.14159);
+
+// Use the constant
+echo "Value of PI: " . PI . "&lt;br&gt;";
+
+// Another way to define constants (PHP 5.3+)
+const APP_NAME = "My PHP App";
+const APP_VERSION = "1.0.0";
+
+echo "App name: " . APP_NAME . "&lt;br&gt;";
+echo "App version: " . APP_VERSION . "&lt;br&gt;";
+
+// Predefined constants
+echo "PHP version: " . PHP_VERSION . "&lt;br&gt;";
+echo "Operating system: " . PHP_OS . "&lt;br&gt;";
+?&gt;</code></pre>
+
+    <div class="tip">
+        <p><strong>Best Practice:</strong> Use constants for values that should not change throughout your application, such as configuration settings, database connection details, or mathematical constants.</p>
+    </div>
+</body>
+</html>

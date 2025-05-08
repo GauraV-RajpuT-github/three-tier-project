@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Control Flow</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #2b5b84;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #3776ab;
+            font-size: 1.8em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        h3 {
+            color: #4a8cc2;
+            font-size: 1.4em;
+            margin-top: 25px;
+        }
+        p {
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f5f5f5;
+            padding: 3px 6px;
+            border-radius: 3px;
+            font-size: 0.9em;
+            border: 1px solid #e0e0e0;
+        }
+        pre {
+            background-color: #f8f8f8;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            padding: 15px;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        pre code {
+            background-color: transparent;
+            border: none;
+            padding: 0;
+            display: block;
+            line-height: 1.5;
+        }
+        .note {
+            background-color: #e7f3fe;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .warning {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .example {
+            background-color: #f1f8e9;
+            border-left: 4px solid #8bc34a;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .output {
+            background-color: #f0f0f0;
+            border-left: 4px solid #9e9e9e;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .flowchart {
+            display: block;
+            margin: 20px auto;
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Python Control Flow</h1>
+    
+    <p>Control flow refers to the order in which the statements in a program are executed. Python provides various control flow statements that allow you to control the flow of your program based on conditions, repeat blocks of code, and handle exceptions. This section covers the different control flow structures in Python.</p>
+
+    <h2>Conditional Statements</h2>
+    
+    <p>Conditional statements allow you to execute different blocks of code based on whether a condition is true or false.</p>
+    
+    <h3>if Statement</h3>
+    <p>The <code>if</code> statement is used to execute a block of code only if a specified condition is true.</p>
+    
+    <div class="example">
+        <h4>Example: if Statement</h4>
+        <pre><code>age = 20
+
+if age >= 18:
+    print("You are an adult.")
+    print("You can vote.")</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            You are an adult.<br>
+            You can vote.
+        </div>
+    </div>
+    
+    <h3>if-else Statement</h3>
+    <p>The <code>if-else</code> statement allows you to execute one block of code if a condition is true and another block if the condition is false.</p>
+    
+    <div class="example">
+        <h4>Example: if-else Statement</h4>
+        <pre><code>age = 15
+
+if age >= 18:
+    print("You are an adult.")
+    print("You can vote.")
+else:
+    print("You are a minor.")
+    print("You cannot vote yet.")</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            You are a minor.<br>
+            You cannot vote yet.
+        </div>
+    </div>
+    
+    <h3>if-elif-else Statement</h3>
+    <p>The <code>if-elif-else</code> statement allows you to check multiple conditions and execute different blocks of code accordingly.</p>
+    
+    <div class="example">
+        <h4>Example: if-elif-else Statement</h4>
+        <pre><code>score = 85
+
+if score >= 90:
+    grade = 'A'
+elif score >= 80:
+    grade = 'B'
+elif score >= 70:
+    grade = 'C'
+elif score >= 60:
+    grade = 'D'
+else:
+    grade = 'F'
+
+print(f"Your grade is {grade}")</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            Your grade is B
+        </div>
+    </div>
+    
+    <div class="note">
+        <strong>Note:</strong> Python uses indentation to define blocks of code. The standard indentation is 4 spaces, although any consistent indentation can be used. Be careful not to mix tabs and spaces.
+    </div>
+    
+    <h3>Nested if Statements</h3>
+    <p>You can place an <code>if</code> statement inside another <code>if</code> statement to create nested if statements.</p>
+    
+    <div class="example">
+        <h4>Example: Nested if Statements</h4>
+        <pre><code>age = 25
+has_license = True
+
+if age >= 18:
+    print("You are old enough to drive.")
+    if has_license:
+        print("You can drive legally.")
+    else:
+        print("You need to get a driver's license first.")
+else:
+    print("You are too young to drive.")</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            You are old enough to drive.<br>
+            You can drive legally.
+        </div>
+    </div>
+    
+    <h3>Conditional Expressions (Ternary Operator)</h3>
+    <p>Python provides a concise way to write conditional statements in a single line, often called the ternary operator.</p>
+    
+    <div class="example">
+        <h4>Example: Conditional Expressions</h4>
+        <pre><code>age = 20
+status = "adult" if age >= 18 else "minor"
+print(status)
+
+# Equivalent to:
+# if age >= 18:
+#     status = "adult"
+# else:
+#     status = "minor"</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            adult
+        </div>
+    </div>
+
+    <h2>Loops</h2>
+    
+    <p>Loops allow you to execute a block of code repeatedly. Python provides two main types of loops: <code>for</code> loops and <code>while</code> loops.</p>
+    
+    <h3>for Loop</h3>
+    <p>The <code>for</code> loop is used to iterate over a sequence (like a list, tuple, string, or range) and execute a block of code for each item in the sequence.</p>
+    
+    <div class="example">
+        <h4>Example: for Loop with a List</h4>
+        <pre><code>fruits = ["apple", "banana", "cherry"]
+
+for fruit in fruits:
+    print(fruit)</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            apple<br>
+            banana<br>
+            cherry
+        </div>
+    </div>
+    
+    <div class="example">
+        <h4>Example: for Loop with range()</h4>
+        <pre><code># range(5) generates numbers from 0 to 4
+for i in range(5):
+    print(i)
+
+# range(start, stop) generates numbers from start to stop-1
+for i in range(2, 6):
+    print(i)
+
+# range(start, stop, step) generates numbers from start to stop-1 with the given step
+for i in range(1, 10, 2):
+    print(i)</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            0<br>
+            1<br>
+            2<br>
+            3<br>
+            4<br>
+            2<br>
+            3<br>
+            4<br>
+            5<br>
+            1<br>
+            3<br>
+            5<br>
+            7<br>
+            9
+        </div>
+    </div>
+    
+    <h3>while Loop</h3>
+    <p>The <code>while</code> loop executes a block of code as long as a specified condition is true.</p>
+    
+    <div class="example">
+        <h4>Example: while Loop</h4>
+        <pre><code>count = 0
+
+while count < 5:
+    print(count)
+    count += 1</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            0<br>
+            1<br>
+            2<br>
+            3<br>
+            4
+        </div>
+    </div>
+    
+    <div class="warning">
+        <strong>Warning:</strong> Be careful with while loops! If the condition never becomes false, the loop will run indefinitely, creating an infinite loop. Always ensure that the condition will eventually become false.
+    </div>
+    
+    <h3>Loop Control Statements</h3>
+    <p>Python provides several statements to control the flow of loops:</p>
+    
+    <h4>break Statement</h4>
+    <p>The <code>break</code> statement terminates the loop and transfers execution to the statement immediately following the loop.</p>
+    
+    <div class="example">
+        <h4>Example: break Statement</h4>
+        <pre><code>for i in range(10):
+    if i == 5:
+        break
+    print(i)</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            0<br>
+            1<br>
+            2<br>
+            3<br>
+            4
+        </div>
+    </div>
+    
+    <h4>continue Statement</h4>
+    <p>The <code>continue</code> statement skips the rest of the code inside the loop for the current iteration and moves to the next iteration.</p>
+    
+    <div class="example">
+        <h4>Example: continue Statement</h4>
+        <pre><code>for i in range(10):
+    if i % 2 == 0:  # Skip even numbers
+        continue
+    print(i)</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            1<br>
+            3<br>
+            5<br>
+            7<br>
+            9
+        </div>
+    </div>
+    
+    <h4>else Clause in Loops</h4>
+    <p>Both <code>for</code> and <code>while</code> loops can have an optional <code>else</code> clause that is executed when the loop is exhausted (i.e., when the loop condition becomes false), but not when the loop is terminated by a <code>break</code> statement.</p>
+    
+    <div class="example">
+        <h4>Example: else Clause in for Loop</h4>
+        <pre><code># Loop completes normally, else clause is executed
+for i in range(5):
+    print(i)
+else:
+    print("Loop completed normally")
+
+# Loop is terminated by break, else clause is not executed
+for i in range(5):
+    if i == 3:
+        break
+    print(i)
+else:
+    print("This won't be printed")</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            0<br>
+            1<br>
+            2<br>
+            3<br>
+            4<br>
+            Loop completed normally<br>
+            0<br>
+            1<br>
+            2
+        </div>
+    </div>
+    
+    <h3>Nested Loops</h3>
+    <p>You can place a loop inside another loop to create nested loops. The inner loop is executed once for each iteration of the outer loop.</p>
+    
+    <div class="example">
+        <h4>Example: Nested Loops</h4>
+        <pre><code># Print a multiplication table
+for i in range(1, 4):
+    for j in range(1, 4):
+        print(f"{i} * {j} = {i * j}")
+    print("-----")</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            1 * 1 = 1<br>
+            1 * 2 = 2<br>
+            1 * 3 = 3<br>
+            -----<br>
+            2 * 1 = 2<br>
+            2 * 2 = 4<br>
+            2 * 3 = 6<br>
+            -----<br>
+            3 * 1 = 3<br>
+            3 * 2 = 6<br>
+            3 * 3 = 9<br>
+            -----
+        </div>
+    </div>
+    
+    <h3>Loop Techniques</h3>
+    <p>Python provides several built-in functions and techniques to make working with loops more efficient:</p>
+    
+    <h4>enumerate()</h4>
+    <p>The <code>enumerate()</code> function adds a counter to an iterable, returning pairs of (index, item).</p>
+    
+    <div class="example">
+        <h4>Example: enumerate()</h4>
+        <pre><code>fruits = ["apple", "banana", "cherry"]
+
+for index, fruit in enumerate(fruits):
+    print(f"{index}: {fruit}")</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            0: apple<br>
+            1: banana<br>
+            2: cherry
+        </div>
+    </div>
+    
+    <h4>zip()</h4>
+    <p>The <code>zip()</code> function combines multiple iterables into a single iterable of tuples.</p>
+    
+    <div class="example">
+        <h4>Example: zip()</h4>
+        <pre><code>names = ["Alice", "Bob", "Charlie"]
+ages = [25, 30, 35]
+
+for name, age in zip(names, ages):
+    print(f"{name} is {age} years old")</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            Alice is 25 years old<br>
+            Bob is 30 years old<br>
+            Charlie is 35 years old
+        </div>
+    </div>
+    
+    <h4>List Comprehensions</h4>
+    <p>List comprehensions provide a concise way to create lists based on existing lists or other iterables.</p>
+    
+    <div class="example">
+        <h4>Example: List Comprehensions</h4>
+        <pre><code># Create a list of squares
+squares = [x**2 for x in range(1, 6)]
+print(squares)
+
+# Create a list of even numbers
+evens = [x for x in range(10) if x % 2 == 0]
+print(evens)
+
+# Create a list of tuples
+coordinates = [(x, y) for x in range(3) for y in range(2)]
+print(coordinates)</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            [1, 4, 9, 16, 25]<br>
+            [0, 2, 4, 6, 8]<br>
+            [(0, 0), (0, 1), (1, 0), (1, 1), (2, 0), (2, 1)]
+        </div>
+    </div>
+    
+    <div class="note">
+        <strong>Note:</strong> List comprehensions are generally more concise and faster than equivalent for loops, but they can be harder to read if they become too complex. Use them judiciously.
+    </div>
+
+    <h2>Exception Handling</h2>
+    
+    <p>Exception handling allows you to gracefully handle errors that might occur during program execution.</p>
+    
+    <h3>try-except Statement</h3>
+    <p>The <code>try-except</code> statement is used to catch and handle exceptions that might be raised in a block of code.</p>
+    
+    <div class="example">
+        <h4>Example: Basic try-except</h4>
+        <pre><code>try:
+    # Code that might raise an exception
+    num = int(input("Enter a number: "))
+    result = 10 / num
+    print(f"10 / {num} = {result}")
+except:
+    # Code to handle the exception
+    print("An error occurred")</code></pre>
+    </div>
+    
+    <h3>Handling Specific Exceptions</h3>
+    <p>You can specify which exceptions to catch and handle differently.</p>
+    
+    <div class="example">
+        <h4>Example: Handling Specific Exceptions</h4>
+        <pre><code>try:
+    num = int(input("Enter a number: "))
+    result = 10 / num
+    print(f"10 / {num} = {result}")
+except ValueError:
+    print("Invalid input. Please enter a valid number.")
+except ZeroDivisionError:
+    print("Cannot divide by zero.")
+except:
+    print("An unexpected error occurred.")</code></pre>
+    </div>
+    
+    <h3>try-except-else-finally Statement</h3>
+    <p>The <code>try-except</code> statement can have optional <code>else</code> and <code>finally</code> clauses:</p>
+    <ul>
+        <li>The <code>else</code> clause is executed if no exception is raised in the <code>try</code> block.</li>
+        <li>The <code>finally</code> clause is always executed, whether an exception is raised or not.</li>
+    </ul>
+    
+    <div class="example">
+        <h4>Example: try-except-else-finally</h4>
+        <pre><code>try:
+    num = int(input("Enter a number: "))
+    result = 10 / num
+except ValueError:
+    print("Invalid input. Please enter a valid number.")
+except ZeroDivisionError:
+    print("Cannot divide by zero.")
+else:
+    # This block executes if no exception is raised
+    print(f"10 / {num} = {result}")
+finally:
+    # This block always executes
+    print("Execution completed")</code></pre>
+    </div>
+    
+    <h3>Raising Exceptions</h3>
+    <p>You can raise exceptions explicitly using the <code>raise</code> statement.</p>
+    
+    <div class="example">
+        <h4>Example: Raising Exceptions</h4>
+        <pre><code>def validate_age(age):
+    if age < 0:
+        raise ValueError("Age cannot be negative")
+    if age > 120:
+        raise ValueError("Age is too high")
+    return age
+
+try:
+    user_age = int(input("Enter your age: "))
+    validated_age = validate_age(user_age)
+    print(f"Your age is {validated_age}")
+except ValueError as e:
+    print(f"Error: {e}")</code></pre>
+    </div>
+    
+    <h3>Creating Custom Exceptions</h3>
+    <p>You can create your own exception classes by inheriting from the built-in <code>Exception</code> class or its subclasses.</p>
+    
+    <div class="example">
+        <h4>Example: Custom Exceptions</h4>
+        <pre><code>class AgeError(Exception):
+    """Exception raised for errors in the age input."""
+    pass
+
+def validate_age(age):
+    if age < 0:
+        raise AgeError("Age cannot be negative")
+    if age > 120:
+        raise AgeError("Age is too high")
+    return age
+
+try:
+    user_age = int(input("Enter your age: "))
+    validated_age = validate_age(user_age)
+    print(f"Your age is {validated_age}")
+except AgeError as e:
+    print(f"Age Error: {e}")
+except ValueError:
+    print("Invalid input. Please enter a valid number.")</code></pre>
+    </div>
+
+    <h2>Context Managers (with Statement)</h2>
+    
+    <p>The <code>with</code> statement is used to wrap the execution of a block of code with methods defined by a context manager. It simplifies exception handling by encapsulating common patterns like acquiring and releasing resources.</p>
+    
+    <div class="example">
+        <h4>Example: File Handling with Context Manager</h4>
+        <pre><code># Without context manager
+file = open("example.txt", "w")
+try:
+    file.write("Hello, World!")
+finally:
+    file.close()
+
+# With context manager
+with open("example.txt", "w") as file:
+    file.write("Hello, World!")
+# File is automatically closed when the block is exited</code></pre>
+    </div>
+    
+    <div class="note">
+        <strong>Note:</strong> The <code>with</code> statement ensures that resources are properly managed, even if an exception occurs. It's particularly useful for file operations, database connections, and network resources.
+    </div>
+
+    <h2>Conclusion</h2>
+    
+    <p>Control flow statements are essential for writing flexible and powerful Python programs. By mastering conditional statements, loops, and exception handling, you can create programs that make decisions, repeat actions, and gracefully handle errors.</p>
+    
+    <div class="note">
+        <strong>Next Steps:</strong> Now that you understand Python's control flow structures, you can move on to learning about functions, which allow you to organize your code into reusable blocks.
+    </div>
+</body>
+</html>

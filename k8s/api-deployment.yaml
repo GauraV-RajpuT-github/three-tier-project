@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: api
+  namespace: three-tier
+  labels: 
+    role: api
+    env: demo
+spec: 
+  replicas: 2
+  strategy: 
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 25%
+  selector: 
+    matchLabels:
+      role: api
+  template:
+    metadata:
+      labels:
+        role: api
+    spec:
+      imagePullSecrets:
+      - name: ecr-registry-secret  # AWS ECR secret to pull images
+      containers:
+      - name: api
+        image: 407622020962.dkr.ecr.us-east-1.amazonaws.com/backend:latest # have to Change if necessary
+        imagePullPolicy: Always
+        env:
+          - name: PORT
+            value: "5002"
+          - name: MONGODB_URI
+            value: mongodb://mongodb-svc:27017/syntaxshiksha
+          - name: GEMINI_API_KEY
+            valueFrom:
+              secretKeyRef:
+                name: gemini-secret
+                key: api-key
+        ports:
+        - containerPort: 5002
+          name: api
+        livenessProbe: 
+          httpGet:
+            path: /ok
+            port: 5002
+          initialDelaySeconds: 2
+          periodSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /ok
+            port: 5002
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          successThreshold: 1

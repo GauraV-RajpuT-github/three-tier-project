@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #FF8C00;
+            border-bottom: 2px solid #FFA500;
+            padding-bottom: 10px;
+        }
+
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        li {
+            margin: 10px 0;
+            position: relative;
+        }
+
+        li:before {
+            content: "•";
+            color: #FFA500;
+            font-weight: bold;
+            position: absolute;
+            left: -15px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Standard Template Library (STL)</h2>
+
+    <p>The Standard Template Library (STL) is a set of C++ template classes that provide common programming data structures and functions such as lists, stacks, arrays, etc. It is composed of containers, algorithms, and iterators.</p>
+
+    <h2>Containers</h2>
+    <p>Containers are objects that store data. The STL includes several types of containers:</p>
+
+    <h3>Sequence Containers</h3>
+    <ul>
+        <li><code>vector</code>: Dynamic array that can resize itself</li>
+        <li><code>list</code>: Doubly-linked list</li>
+        <li><code>deque</code>: Double-ended queue</li>
+        <li><code>array</code>: Static array (C++11)</li>
+        <li><code>forward_list</code>: Singly-linked list (C++11)</li>
+    </ul>
+
+    <h3>Associative Containers</h3>
+    <ul>
+        <li><code>set</code>: Collection of unique keys, sorted by keys</li>
+        <li><code>map</code>: Collection of key-value pairs, sorted by keys</li>
+        <li><code>multiset</code>: Collection of keys, sorted by keys (allows duplicates)</li>
+        <li><code>multimap</code>: Collection of key-value pairs, sorted by keys (allows duplicates)</li>
+    </ul>
+
+    <h3>Unordered Associative Containers (C++11)</h3>
+    <ul>
+        <li><code>unordered_set</code>: Collection of unique keys, hashed by keys</li>
+        <li><code>unordered_map</code>: Collection of key-value pairs, hashed by keys</li>
+        <li><code>unordered_multiset</code>: Collection of keys, hashed by keys (allows duplicates)</li>
+        <li><code>unordered_multimap</code>: Collection of key-value pairs, hashed by keys (allows duplicates)</li>
+    </ul>
+
+    <h3>Container Adapters</h3>
+    <ul>
+        <li><code>stack</code>: LIFO (Last-In, First-Out) data structure</li>
+        <li><code>queue</code>: FIFO (First-In, First-Out) data structure</li>
+        <li><code>priority_queue</code>: Queue with priority ordering</li>
+    </ul>
+
+    <h2>Examples of Container Usage</h2>
+
+    <h3>Vector</h3>
+    <pre><code>#include &lt;vector&gt;
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    // Create a vector
+    vector&lt;int&gt; numbers;
+
+    // Add elements
+    numbers.push_back(10);
+    numbers.push_back(20);
+    numbers.push_back(30);
+
+    // Access elements
+    cout << "First element: " << numbers[0] << endl;
+    cout << "Second element: " << numbers[1] << endl;
+    cout << "Third element: " << numbers.at(2) << endl;
+
+    // Iterate through vector
+    cout << "All elements: ";
+    for (int num : numbers) {
+        cout << num << " ";
+    }
+    cout << endl;
+
+    // Size and capacity
+    cout << "Size: " << numbers.size() << endl;
+    cout << "Capacity: " << numbers.capacity() << endl;
+
+    // Remove last element
+    numbers.pop_back();
+
+    // Clear all elements
+    numbers.clear();
+
+    return 0;
+}</code></pre>
+
+    <h3>Map</h3>
+    <pre><code>#include &lt;map&gt;
+#include &lt;string&gt;
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    // Create a map (key-value pairs)
+    map&lt;string, int&gt; ages;
+
+    // Insert elements
+    ages["Alice"] = 30;
+    ages["Bob"] = 25;
+    ages.insert(make_pair("Charlie", 35));
+
+    // Access elements
+    cout << "Alice's age: " << ages["Alice"] << endl;
+    cout << "Bob's age: " << ages.at("Bob") << endl;
+
+    // Check if key exists
+    if (ages.find("David") == ages.end()) {
+        cout << "David not found in the map" << endl;
+    }
+
+    // Iterate through map
+    cout << "All ages:" << endl;
+    for (const auto& pair : ages) {
+        cout << pair.first << ": " << pair.second << endl;
+    }
+
+    // Size
+    cout << "Size: " << ages.size() << endl;
+
+    // Remove an element
+    ages.erase("Bob");
+
+    return 0;
+}</code></pre>
+
+    <h2>Algorithms</h2>
+    <p>The STL provides a large collection of algorithms that operate on containers:</p>
+
+    <h3>Common Algorithms</h3>
+    <ul>
+        <li><code>sort</code>: Sort elements in a range</li>
+        <li><code>find</code>: Find an element in a range</li>
+        <li><code>count</code>: Count occurrences of a value</li>
+        <li><code>copy</code>: Copy elements from one range to another</li>
+        <li><code>for_each</code>: Apply a function to each element</li>
+        <li><code>transform</code>: Apply a function to a range and store result</li>
+        <li><code>accumulate</code>: Compute sum of elements</li>
+        <li><code>reverse</code>: Reverse the order of elements</li>
+    </ul>
+
+    <h3>Algorithm Examples</h3>
+    <pre><code>#include &lt;algorithm&gt;
+#include &lt;vector&gt;
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    vector&lt;int&gt; numbers = {5, 2, 8, 1, 9, 3, 7, 4, 6};
+
+    // Sort
+    sort(numbers.begin(), numbers.end());
+    cout << "Sorted: ";
+    for (int num : numbers) {
+        cout << num << " ";
+    }
+    cout << endl;
+
+    // Find
+    auto it = find(numbers.begin(), numbers.end(), 7);
+    if (it != numbers.end()) {
+        cout << "Found 7 at position: " << (it - numbers.begin()) << endl;
+    }
+
+    // Count
+    int count_of_3 = count(numbers.begin(), numbers.end(), 3);
+    cout << "Count of 3: " << count_of_3 << endl;
+
+    // For each
+    cout << "Doubled values: ";
+    for_each(numbers.begin(), numbers.end(), [](int num) {
+        cout << num * 2 << " ";
+    });
+    cout << endl;
+
+    // Reverse
+    reverse(numbers.begin(), numbers.end());
+    cout << "Reversed: ";
+    for (int num : numbers) {
+        cout << num << " ";
+    }
+    cout << endl;
+
+    return 0;
+}</code></pre>
+
+    <h2>Iterators</h2>
+    <p>Iterators are used to point to container elements and navigate through them:</p>
+
+    <h3>Types of Iterators</h3>
+    <ul>
+        <li><code>begin()</code>: Returns an iterator to the beginning</li>
+        <li><code>end()</code>: Returns an iterator to the end (past-the-end)</li>
+        <li><code>rbegin()</code>: Returns a reverse iterator to the beginning (last element)</li>
+        <li><code>rend()</code>: Returns a reverse iterator to the end (before the first element)</li>
+    </ul>
+
+    <h3>Iterator Example</h3>
+    <pre><code>#include &lt;vector&gt;
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    vector&lt;int&gt; numbers = {10, 20, 30, 40, 50};
+
+    // Using iterators to traverse forward
+    cout << "Forward traversal: ";
+    for (vector&lt;int&gt;::iterator it = numbers.begin(); it != numbers.end(); ++it) {
+        cout << *it << " ";
+    }
+    cout << endl;
+
+    // Using iterators to traverse backward
+    cout << "Backward traversal: ";
+    for (vector&lt;int&gt;::reverse_iterator rit = numbers.rbegin(); rit != numbers.rend(); ++rit) {
+        cout << *rit << " ";
+    }
+    cout << endl;
+
+    // Using auto (C++11)
+    cout << "Using auto: ";
+    for (auto it = numbers.begin(); it != numbers.end(); ++it) {
+        cout << *it << " ";
+    }
+    cout << endl;
+
+    return 0;
+}</code></pre>
+
+    <h2>Key points to remember:</h2>
+    <ul>
+        <li>Include the appropriate header files for STL components</li>
+        <li>Choose the right container for your specific needs</li>
+        <li>Use algorithms to perform common operations efficiently</li>
+        <li>Iterators provide a uniform way to access container elements</li>
+        <li>The STL is designed for performance, type safety, and reusability</li>
+        <li>Modern C++ (C++11 and later) provides additional containers and features</li>
+    </ul>
+</body>
+
+</html>

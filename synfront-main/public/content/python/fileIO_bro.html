@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python File I/O Operations - Bro Mode</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        pre {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 15px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #e83e8c;
+        }
+        .output {
+            background-color: #f1f1f1;
+            border-left: 4px solid #4CAF50;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+        .tip {
+            background-color: #e6f7ff;
+            border-left: 4px solid #1890ff;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Python File I/O Operations - Bro Mode 😎</h1>
+
+    <h2>File I/O Kya Hai? 🤔</h2>
+    <p>Bro, File I/O matlab File Input/Output - basically computer ke files ke saath kaam karna! Python mein ye bahut easy hai, aur isse aap data save kar sakte ho, read kar sakte ho, aur process kar sakte ho.</p>
+    
+    <h3>File I/O Kyu Important Hai?</h3>
+    <ul>
+        <li>Data permanent store karne ke liye</li>
+        <li>Bade datasets process karne ke liye</li>
+        <li>Configuration settings save karne ke liye</li>
+        <li>Log files banane ke liye</li>
+        <li>Different programs ke beech data exchange karne ke liye</li>
+    </ul>
+
+    <h2>Files Kaise Open aur Close Karte Hai? 🔓</h2>
+    <p>Bro, files open karne ke liye <code>open()</code> function use karte hai:</p>
+    
+    <pre><code># Basic syntax
+file = open('filename.txt', 'mode')
+# File operations
+file.close()  # Always close files when done!
+
+# Pro wala approach - with statement use karo
+with open('filename.txt', 'mode') as file:
+    # File operations
+    pass  # Block khatam, file automatically close!</code></pre>
+
+    <h3>File Opening Modes:</h3>
+    <ul>
+        <li><code>'r'</code>: Read mode (default) - file ko sirf padhne ke liye</li>
+        <li><code>'w'</code>: Write mode - file mein likhne ke liye (purana content delete ho jayega!)</li>
+        <li><code>'a'</code>: Append mode - file ke end mein add karne ke liye</li>
+        <li><code>'x'</code>: Exclusive creation - new file banayega, agar file already hai to error</li>
+        <li><code>'b'</code>: Binary mode - images, audio jaise binary files ke liye (e.g., 'rb', 'wb')</li>
+        <li><code>'t'</code>: Text mode (default) - text files ke liye</li>
+        <li><code>'+'</code>: Update mode - reading aur writing dono ke liye</li>
+    </ul>
+
+    <div class="tip">
+        <p><strong>Pro Tip:</strong> Bro, hamesha <code>with</code> statement use karo! Isse file automatically close ho jati hai, even if koi error aaye. No tension!</p>
+    </div>
+
+    <h2>Files Se Data Kaise Read Karte Hai? 📖</h2>
+    <p>Bro, files se data read karne ke kai tarike hai:</p>
+    
+    <h3>Puri File Ek Baar Mein Read Karna:</h3>
+    <pre><code># Puri file ko ek string ki tarah read karo
+with open('example.txt', 'r') as file:
+    content = file.read()
+    print(content)
+
+# Puri file ko lines ki list ki tarah read karo
+with open('example.txt', 'r') as file:
+    lines = file.readlines()
+    for line in lines:
+        print(line.strip())  # strip() newline character hatata hai</code></pre>
+
+    <h3>Line by Line Read Karna:</h3>
+    <pre><code># Method 1: readline() use karke
+with open('example.txt', 'r') as file:
+    line = file.readline()
+    while line:
+        print(line.strip())
+        line = file.readline()
+
+# Method 2: File object pe loop chalake (ye zyada efficient hai)
+with open('example.txt', 'r') as file:
+    for line in file:
+        print(line.strip())</code></pre>
+
+    <h3>Specific Amount of Data Read Karna:</h3>
+    <pre><code>with open('example.txt', 'r') as file:
+    # First 10 characters read karo
+    chunk = file.read(10)
+    print(chunk)</code></pre>
+
+    <h2>Files Mein Data Kaise Write Karte Hai? ✍️</h2>
+    <p>Bro, files mein data write karne ke liye:</p>
+    
+    <h3>Text Write Karna:</h3>
+    <pre><code># File mein string write karo (new file create hogi ya existing overwrite hogi)
+with open('output.txt', 'w') as file:
+    file.write('Kya scene hai bro!\n')
+    file.write('Ye new line hai.')
+
+# Existing file mein append karo
+with open('output.txt', 'a') as file:
+    file.write('\nYe line append hui hai.')</code></pre>
+
+    <h3>Multiple Lines Write Karna:</h3>
+    <pre><code>lines = ['First line', 'Second line', 'Third line']
+
+# Method 1: write() use karke
+with open('output.txt', 'w') as file:
+    for line in lines:
+        file.write(line + '\n')
+
+# Method 2: writelines() use karke
+with open('output.txt', 'w') as file:
+    # Har string ke end mein newline add karo
+    file.writelines(line + '\n' for line in lines)</code></pre>
+
+    <h2>File Positions Control Karna 🎮</h2>
+    <p>Bro, file mein cursor ki position control karne ke liye <code>seek()</code> aur <code>tell()</code> methods use karte hai:</p>
+    
+    <pre><code>with open('example.txt', 'r') as file:
+    # Current position check karo
+    position = file.tell()
+    print(f"Current position: {position}")
+    
+    # First 5 characters read karo
+    content = file.read(5)
+    print(f"Read: {content}")
+    
+    # New position check karo
+    position = file.tell()
+    print(f"New position: {position}")
+    
+    # File ke beginning mein jao
+    file.seek(0)
+    print(f"After seek(0): {file.tell()}")
+    
+    # File ke 10th byte pe jao
+    file.seek(10)
+    print(f"After seek(10): {file.tell()}")</code></pre>
+
+    <h2>Binary Files Ke Saath Kaam Karna 🖼️</h2>
+    <p>Bro, binary files matlab non-text data jaise images, audio, ya programs. Inke saath kaam karne ke liye binary mode ('b') use karo:</p>
+    
+    <pre><code># Binary file read karna (e.g., image)
+with open('image.jpg', 'rb') as file:
+    binary_data = file.read()
+    print(f"File size: {len(binary_data)} bytes")
+
+# Binary file mein write karna
+with open('copy.jpg', 'wb') as file:
+    file.write(binary_data)</code></pre>
+
+    <h2>File aur Directory Management 📁</h2>
+    <p>Bro, Python ke <code>os</code> aur <code>shutil</code> modules se file aur directory operations kar sakte ho:</p>
+    
+    <pre><code>import os
+import shutil
+
+# Check karo ki file exist karti hai ya nahi
+if os.path.exists('example.txt'):
+    print('File exist karti hai')
+
+# File information nikalo
+if os.path.isfile('example.txt'):
+    size = os.path.getsize('example.txt')
+    print(f"File size: {size} bytes")
+    print(f"Last modified: {os.path.getmtime('example.txt')}")
+
+# Directory create karo
+os.makedirs('new_directory', exist_ok=True)
+
+# Directory mein files list karo
+files = os.listdir('.')
+print(files)
+
+# File rename karo
+os.rename('old_name.txt', 'new_name.txt')
+
+# File delete karo
+os.remove('file_to_delete.txt')
+
+# File copy karo
+shutil.copy('source.txt', 'destination.txt')
+
+# File move karo
+shutil.move('source.txt', 'new_location/source.txt')
+
+# Directory aur uske contents delete karo
+shutil.rmtree('directory_to_delete')</code></pre>
+
+    <h2>CSV Files Ke Saath Kaam Karna 📊</h2>
+    <p>Bro, CSV (Comma-Separated Values) files data store karne ka common format hai. Python ka <code>csv</code> module isse handle karne mein help karta hai:</p>
+    
+    <pre><code>import csv
+
+# CSV file read karna
+with open('data.csv', 'r', newline='') as file:
+    csv_reader = csv.reader(file)
+    # Header row skip karo
+    header = next(csv_reader)
+    print(f"Headers: {header}")
+    
+    # Data rows read karo
+    for row in csv_reader:
+        print(row)
+
+# CSV file mein write karna
+data = [
+    ['Name', 'Age', 'City'],
+    ['Rahul', 25, 'Delhi'],
+    ['Priya', 23, 'Mumbai'],
+    ['Amit', 27, 'Bangalore']
+]
+
+with open('output.csv', 'w', newline='') as file:
+    csv_writer = csv.writer(file)
+    # Multiple rows ek saath write karo
+    csv_writer.writerows(data)</code></pre>
+
+    <h2>JSON Files Ke Saath Kaam Karna 📝</h2>
+    <p>Bro, JSON (JavaScript Object Notation) data exchange ka lightweight format hai. Python ka <code>json</code> module isse handle karta hai:</p>
+    
+    <pre><code>import json
+
+# Python dictionary
+data = {
+    'name': 'Rahul',
+    'age': 25,
+    'city': 'Mumbai',
+    'skills': ['Python', 'JavaScript', 'React'],
+    'is_student': False
+}
+
+# JSON file mein write karna
+with open('data.json', 'w') as file:
+    json.dump(data, file, indent=4)  # indent for pretty formatting
+
+# JSON file se read karna
+with open('data.json', 'r') as file:
+    loaded_data = json.load(file)
+    print(loaded_data)</code></pre>
+
+    <h2>Custom File Handlers Banana 🛠️</h2>
+    <p>Bro, apne custom file handlers bhi bana sakte ho context managers use karke:</p>
+    
+    <pre><code>class MyFileHandler:
+    def __init__(self, filename, mode):
+        self.filename = filename
+        self.mode = mode
+        self.file = None
+    
+    def __enter__(self):
+        self.file = open(self.filename, self.mode)
+        return self.file
+    
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        if self.file:
+            self.file.close()
+        # Return False to propagate exceptions, True to suppress them
+        return False
+
+# Custom context manager use karna
+with MyFileHandler('example.txt', 'r') as file:
+    content = file.read()
+    print(content)</code></pre>
+
+    <div class="tip">
+        <p><strong>Security Tip:</strong> Bro, production environment mein file paths ko hamesha validate karo aur exceptions handle karo. Hackers path traversal attacks kar sakte hai agar aap careless ho!</p>
+    </div>
+
+    <h2>Conclusion 🏁</h2>
+    <p>Bro, File I/O Python programming ka important part hai! Ab aap files create kar sakte ho, read kar sakte ho, write kar sakte ho, aur manage kar sakte ho. Real-world applications mein ye skills bahut useful hai. Practice karo aur pro ban jao! 🚀</p>
+</body>
+</html>

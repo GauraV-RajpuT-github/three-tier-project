@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Basic Syntax and Structure</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #2b5b84;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #3776ab;
+            font-size: 1.8em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        h3 {
+            color: #4a8cc2;
+            font-size: 1.4em;
+            margin-top: 25px;
+        }
+        p {
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f5f5f5;
+            padding: 3px 6px;
+            border-radius: 3px;
+            font-size: 0.9em;
+            border: 1px solid #e0e0e0;
+        }
+        pre {
+            background-color: #f8f8f8;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            padding: 15px;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        pre code {
+            background-color: transparent;
+            border: none;
+            padding: 0;
+            display: block;
+            line-height: 1.5;
+        }
+        .note {
+            background-color: #e7f3fe;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .warning {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .example {
+            background-color: #f1f8e9;
+            border-left: 4px solid #8bc34a;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .output {
+            background-color: #f0f0f0;
+            border-left: 4px solid #9e9e9e;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>Python Basic Syntax and Structure</h1>
+    
+    <p>Python is known for its clean and readable syntax. Understanding the basic syntax and structure of Python programs is essential for writing effective code. This section covers the fundamental syntax rules and program structure in Python.</p>
+
+    <h2>Python Syntax Basics</h2>
+
+    <h3>Indentation</h3>
+    <p>Unlike many programming languages that use braces <code>{}</code> to define blocks of code, Python uses indentation. Indentation refers to the spaces at the beginning of a code line.</p>
+    
+    <div class="example">
+        <h4>Example: Indentation in Python</h4>
+        <pre><code># Correct indentation
+if True:
+    print("This is indented correctly")
+    if True:
+        print("Another level of indentation")
+
+# Incorrect indentation will cause an error
+if True:
+print("This will cause an IndentationError")</code></pre>
+    </div>
+    
+    <div class="note">
+        <strong>Note:</strong> The standard indentation in Python is 4 spaces, although any consistent number of spaces can be used. Avoid using tabs or mixing tabs and spaces.
+    </div>
+
+    <h3>Comments</h3>
+    <p>Comments in Python start with the hash character <code>#</code> and extend to the end of the line. Comments are used to explain code and make it more readable.</p>
+    
+    <div class="example">
+        <h4>Example: Comments in Python</h4>
+        <pre><code># This is a single-line comment
+
+print("Hello, World!")  # This is an inline comment
+
+# Multi-line comments can be created using multiple single-line comments
+# Like this
+# And this
+
+"""
+This is a multi-line string that is often used as a docstring
+to document functions, classes, and modules.
+It's not technically a comment, but serves a similar purpose.
+"""</code></pre>
+    </div>
+
+    <h3>Variables and Assignment</h3>
+    <p>In Python, variables are created when you assign a value to them. There's no need to declare variables before using them.</p>
+    
+    <div class="example">
+        <h4>Example: Variable Assignment</h4>
+        <pre><code># Variable assignment
+name = "John"
+age = 30
+is_student = True
+
+# Multiple assignment
+x, y, z = 1, 2, 3
+
+# Assigning the same value to multiple variables
+a = b = c = 0</code></pre>
+    </div>
+
+    <h3>Statements and Lines</h3>
+    <p>In Python, a statement is a unit of code that the Python interpreter can execute. Statements are usually written one per line.</p>
+    
+    <div class="example">
+        <h4>Example: Statements in Python</h4>
+        <pre><code># Each line is a statement
+print("Hello")
+name = "Alice"
+age = 25
+
+# Long statements can be broken into multiple lines using the backslash
+total = 1 + 2 + 3 + 4 + 5 + \
+        6 + 7 + 8 + 9 + 10
+
+# Statements in parentheses, brackets, or braces can span multiple lines without a backslash
+colors = [
+    "red",
+    "green",
+    "blue"
+]</code></pre>
+    </div>
+
+    <h3>Semicolons</h3>
+    <p>Unlike many programming languages, Python does not require semicolons to terminate statements. However, you can use semicolons to place multiple statements on a single line.</p>
+    
+    <div class="example">
+        <h4>Example: Semicolons in Python</h4>
+        <pre><code># No semicolons needed
+print("Hello")
+name = "Bob"
+
+# Multiple statements on one line using semicolons (not recommended for readability)
+print("Hello"); name = "Charlie"; print(name)</code></pre>
+    </div>
+    
+    <div class="note">
+        <strong>Note:</strong> While semicolons can be used, it's generally considered better practice in Python to write one statement per line for better readability.
+    </div>
+
+    <h2>Basic Program Structure</h2>
+
+    <h3>Python Scripts</h3>
+    <p>A Python script is a file containing Python code. Python files have the <code>.py</code> extension.</p>
+    
+    <div class="example">
+        <h4>Example: Simple Python Script (hello.py)</h4>
+        <pre><code># This is a simple Python script
+
+# Import a module
+import math
+
+# Define a variable
+radius = 5
+
+# Calculate the area of a circle
+area = math.pi * radius ** 2
+
+# Print the result
+print(f"The area of a circle with radius {radius} is {area:.2f}")</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            The area of a circle with radius 5 is 78.54
+        </div>
+    </div>
+
+    <h3>Python Modules</h3>
+    <p>A module is a file containing Python definitions and statements. The file name is the module name with the <code>.py</code> extension.</p>
+    
+    <div class="example">
+        <h4>Example: Creating and Using a Module</h4>
+        <p>First, create a file named <code>mymodule.py</code>:</p>
+        <pre><code># mymodule.py
+def greet(name):
+    """Return a greeting message"""
+    return f"Hello, {name}!"
+
+def add(a, b):
+    """Return the sum of two numbers"""
+    return a + b
+
+PI = 3.14159</code></pre>
+        
+        <p>Then, use the module in another script:</p>
+        <pre><code># main.py
+import mymodule
+
+# Use functions from the module
+message = mymodule.greet("Alice")
+print(message)
+
+result = mymodule.add(5, 3)
+print(f"5 + 3 = {result}")
+
+# Access a variable from the module
+print(f"PI value: {mymodule.PI}")</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            Hello, Alice!<br>
+            5 + 3 = 8<br>
+            PI value: 3.14159
+        </div>
+    </div>
+
+    <h3>Python Packages</h3>
+    <p>A package is a directory containing multiple module files and a special <code>__init__.py</code> file, which indicates that the directory should be treated as a package.</p>
+    
+    <div class="example">
+        <h4>Example: Package Structure</h4>
+        <pre><code>mypackage/
+    __init__.py
+    module1.py
+    module2.py
+    subpackage/
+        __init__.py
+        module3.py</code></pre>
+        
+        <p>Using modules from a package:</p>
+        <pre><code># Import a specific module from a package
+from mypackage import module1
+
+# Import a specific function from a module in a package
+from mypackage.module2 import some_function
+
+# Import a module from a subpackage
+from mypackage.subpackage import module3</code></pre>
+    </div>
+    
+    <div class="note">
+        <strong>Note:</strong> In Python 3.3 and later, the <code>__init__.py</code> file is not strictly required for a directory to be recognized as a package, but it's still recommended for compatibility.
+    </div>
+
+    <h2>Code Blocks and Control Structures</h2>
+
+    <h3>If Statements</h3>
+    <p>If statements allow you to execute code conditionally based on whether a condition is true or false.</p>
+    
+    <div class="example">
+        <h4>Example: If Statements</h4>
+        <pre><code>age = 18
+
+if age < 13:
+    print("Child")
+elif age < 18:
+    print("Teenager")
+else:
+    print("Adult")</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            Adult
+        </div>
+    </div>
+
+    <h3>Loops</h3>
+    <p>Python provides two main types of loops: <code>for</code> loops and <code>while</code> loops.</p>
+    
+    <div class="example">
+        <h4>Example: For Loop</h4>
+        <pre><code># Iterating over a list
+fruits = ["apple", "banana", "cherry"]
+for fruit in fruits:
+    print(fruit)
+
+# Iterating over a range of numbers
+for i in range(5):
+    print(i)</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            apple<br>
+            banana<br>
+            cherry<br>
+            0<br>
+            1<br>
+            2<br>
+            3<br>
+            4
+        </div>
+    </div>
+    
+    <div class="example">
+        <h4>Example: While Loop</h4>
+        <pre><code>count = 0
+while count < 5:
+    print(count)
+    count += 1</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            0<br>
+            1<br>
+            2<br>
+            3<br>
+            4
+        </div>
+    </div>
+
+    <h3>Functions</h3>
+    <p>Functions are defined using the <code>def</code> keyword, followed by the function name and parameters.</p>
+    
+    <div class="example">
+        <h4>Example: Function Definition and Call</h4>
+        <pre><code>def greet(name):
+    """This function greets the person passed in as a parameter"""
+    return f"Hello, {name}!"
+
+# Function call
+message = greet("Alice")
+print(message)</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            Hello, Alice!
+        </div>
+    </div>
+
+    <h3>Classes</h3>
+    <p>Classes are defined using the <code>class</code> keyword. They provide a means of bundling data and functionality together.</p>
+    
+    <div class="example">
+        <h4>Example: Class Definition and Usage</h4>
+        <pre><code>class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+    
+    def greet(self):
+        return f"Hello, my name is {self.name} and I am {self.age} years old."
+
+# Create an instance of the class
+person = Person("Alice", 30)
+
+# Call a method on the instance
+message = person.greet()
+print(message)</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            Hello, my name is Alice and I am 30 years old.
+        </div>
+    </div>
+
+    <h2>Python Style Guide (PEP 8)</h2>
+    <p>PEP 8 is the style guide for Python code. Following these conventions makes your code more readable and consistent with other Python code.</p>
+    
+    <h3>Key PEP 8 Recommendations</h3>
+    <ul>
+        <li>Use 4 spaces per indentation level</li>
+        <li>Limit lines to 79 characters</li>
+        <li>Use blank lines to separate functions and classes, and larger blocks of code inside functions</li>
+        <li>Use spaces around operators and after commas</li>
+        <li>Name classes using CamelCase (e.g., <code>MyClass</code>)</li>
+        <li>Name functions and variables using lowercase with underscores (e.g., <code>my_function</code>, <code>my_variable</code>)</li>
+        <li>Name constants using uppercase with underscores (e.g., <code>MY_CONSTANT</code>)</li>
+    </ul>
+    
+    <div class="example">
+        <h4>Example: PEP 8 Compliant Code</h4>
+        <pre><code>import os
+import sys
+
+# Constants
+MAX_VALUE = 100
+DEFAULT_NAME = "User"
+
+class MyClass:
+    """This is a sample class following PEP 8 guidelines."""
+    
+    def __init__(self, name=DEFAULT_NAME):
+        self.name = name
+    
+    def say_hello(self):
+        """Print a greeting message."""
+        print(f"Hello, {self.name}!")
+
+
+def calculate_average(numbers):
+    """Calculate the average of a list of numbers."""
+    if not numbers:
+        return 0
+    
+    total = sum(numbers)
+    average = total / len(numbers)
+    
+    return average
+
+
+if __name__ == "__main__":
+    # Create an instance of MyClass
+    my_instance = MyClass("Alice")
+    my_instance.say_hello()
+    
+    # Calculate and print the average of some numbers
+    values = [10, 20, 30, 40, 50]
+    avg = calculate_average(values)
+    print(f"The average is: {avg}")</code></pre>
+    </div>
+
+    <h2>Conclusion</h2>
+    <p>Understanding Python's syntax and structure is the foundation for writing effective Python code. The clean and readable nature of Python's syntax makes it an excellent language for beginners and experienced programmers alike.</p>
+    
+    <div class="note">
+        <strong>Next Steps:</strong> Now that you understand the basic syntax and structure of Python programs, you can move on to learning about data types and variables in Python.
+    </div>
+</body>
+</html>

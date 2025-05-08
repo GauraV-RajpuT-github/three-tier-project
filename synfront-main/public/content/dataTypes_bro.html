@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .content-container {
+            font-family: 'Comic Sans MS', cursive;
+            line-height: 1.6;
+            color: #333;
+            padding: 0 30px;
+        }
+
+        .content-container h2 {
+            color: #333;
+            font-size: 28px;
+            margin: 30px 0;
+            padding-bottom: 10px;
+            border-bottom: none;
+            text-shadow: 1px 1px 2px rgba(255, 140, 0, 0.2);
+        }
+
+        .content-container pre {
+            background-color: #fff8f0;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 25px 0;
+            border: 2px solid #FFD700;
+            box-shadow: 0 2px 4px rgba(255, 140, 0, 0.1);
+            font-size: 15px;
+        }
+
+        .content-container code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #FF4500;
+        }
+
+        .content-container ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 25px 0;
+        }
+
+        .content-container li {
+            margin: 15px 0;
+            position: relative;
+            padding-left: 25px;
+            font-size: 16px;
+        }
+
+        .content-container li:before {
+            content: "🔥";
+            position: absolute;
+            left: 0;
+        }
+
+        .content-container p {
+            margin: 20px 0;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .content-container code {
+            background-color: #fff8f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 15px;
+        }
+
+        .content-container table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(255, 140, 0, 0.1);
+        }
+
+        .content-container th {
+            background-color: #FF8C00;
+            color: white;
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        .content-container td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .content-container tr:nth-child(even) {
+            background-color: #fff8f0;
+        }
+
+        .content-container tr:hover {
+            background-color: #ffe4c4;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content-container">
+        <h2>Data Types aur Variables - Coding ke Dabba! 📦</h2>
+
+        <p>Bhai, C++ mein data types aur variables samajhna bahut zaroori hai! Yeh tere data ko store karne ke dabba hain! 🧰</p>
+
+        <h2>Basic Data Types - Alag Alag Dabbe! 🎁</h2>
+        <p>C++ mein kuch main data types hain, inko samajh le:</p>
+
+        <table>
+            <tr>
+                <th>Data Type</th>
+                <th>Kya Hai Yeh?</th>
+                <th>Size (bytes)</th>
+                <th>Example</th>
+            </tr>
+            <tr>
+                <td>int</td>
+                <td>Poore numbers ke liye</td>
+                <td>4</td>
+                <td><code>int age = 25;</code></td>
+            </tr>
+            <tr>
+                <td>float</td>
+                <td>Point wale numbers</td>
+                <td>4</td>
+                <td><code>float price = 19.99f;</code></td>
+            </tr>
+            <tr>
+                <td>double</td>
+                <td>Bade point wale numbers</td>
+                <td>8</td>
+                <td><code>double pi = 3.14159265359;</code></td>
+            </tr>
+            <tr>
+                <td>char</td>
+                <td>Ek character</td>
+                <td>1</td>
+                <td><code>char grade = 'A';</code></td>
+            </tr>
+            <tr>
+                <td>bool</td>
+                <td>Haan ya Naa (true/false)</td>
+                <td>1</td>
+                <td><code>bool isActive = true;</code></td>
+            </tr>
+        </table>
+
+        <h2>Variable Declare aur Initialize Karna! 🚀</h2>
+        <p>Variables ko use karne se pehle declare karna zaroori hai, bilkul phone number save karne jaisa:</p>
+
+        <pre><code>// Sirf declare karna
+int count;
+
+// Declare + value set karna
+int age = 25;
+float salary = 50000.50;
+char initial = 'J';
+bool isEmployed = true;</code></pre>
+
+        <h2>Type Modifiers - Extra Features! 🔧</h2>
+        <p>Type modifiers se data types ko customize kar sakte hain:</p>
+
+        <ul>
+            <li><code>short</code>: Chota int, kam memory leta hai! 🐜</li>
+            <li><code>long</code>: Bada int ya double, zyada range ke liye! 🐘</li>
+            <li><code>signed</code>: Positive aur negative dono values (default) ➕➖</li>
+            <li><code>unsigned</code>: Sirf positive values ke liye ➕</li>
+        </ul>
+
+        <pre><code>short int smallNumber = 32767;  // Chota dabba
+long int bigNumber = 2147483647;  // Bada dabba
+unsigned int positiveOnly = 4294967295;  // No negative vibes!</code></pre>
+
+        <h2>Constants - Jo Kabhi Change Na Ho! 🔒</h2>
+        <p>Constants woh variables hain jinki value kabhi change nahi hoti, ekdum pathar ki lakeer:</p>
+
+        <pre><code>const double PI = 3.14159;  // Yeh value kabhi change nahi hogi
+const int MAX_USERS = 100;  // Maximum users fix hai!</code></pre>
+
+        <h2>Type Conversion - Ek Type se Doosre Mein Convert! 🔄</h2>
+        <p>C++ mein type conversion do tarah se hota hai:</p>
+
+        <pre><code>// Implicit conversion - automatic
+int x = 10;
+double y = x;  // int se double mein convert ho gaya
+
+// Explicit conversion - manually
+double a = 3.14;
+int b = (int)a;  // double se int mein convert, b = 3 ho jayega
+int c = static_cast&lt;int&gt;(a);  // Modern C++ style casting</code></pre>
+
+        <h2>Yaad Rakhne Wali Baatein! 🧠</h2>
+        <ul>
+            <li>Variables ko hamesha initialize karo, warna random values aa sakti hain! 🎲</li>
+            <li>Sahi data type choose karo, memory bachao! 💾</li>
+            <li>Type conversion mein data loss ho sakta hai, dhyan rakho! ⚠️</li>
+            <li>Constants ka use karo jahan value fix ho! 🔒</li>
+            <li>Variable names case-sensitive hote hain, aur descriptive rakho! 📝</li>
+        </ul>
+    </div>
+</body>
+
+</html>

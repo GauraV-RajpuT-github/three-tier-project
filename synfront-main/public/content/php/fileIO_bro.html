@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP File I/O Operations - Bro Mode</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #4F5B93;
+        }
+        pre {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 15px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #8892BF;
+        }
+        .output {
+            background-color: #f1f1f1;
+            border-left: 4px solid #4CAF50;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+        .tip {
+            background-color: #e6f7ff;
+            border-left: 4px solid #1890ff;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+        .warning {
+            background-color: #fff2e8;
+            border-left: 4px solid #fa541c;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>PHP File I/O Operations - Bro Mode 🚀</h1>
+
+    <h2>File Handling Kya Hota Hai? 🤔</h2>
+    <p>Bro, file handling kisi bhi web application ka important part hota hai. PHP ke paas files create, read, upload, aur manipulate karne ke liye bahut saare functions hai. Is module mein hum PHP mein essential file input/output operations ke baare mein seekhenge.</p>
+
+    <div class="tip">
+        <p><strong>Note:</strong> Bro, file operations ke liye server par appropriate permissions hona zaroori hai. Make sure ki tumhare PHP script ko specified directories se read ya write karne ke liye necessary permissions hai.</p>
+    </div>
+
+    <h2>Files Open aur Close Karna 📂</h2>
+    <p>PHP <code>fopen()</code> function provide karta hai files open karne ke liye aur <code>fclose()</code> unhe close karne ke liye:</p>
+    
+    <pre><code>&lt;?php
+// Reading ke liye file open karo
+$file = fopen("example.txt", "r");
+
+// File ko process karo...
+
+// File close karo
+fclose($file);
+?&gt;</code></pre>
+
+    <p><code>fopen()</code> ka second parameter specify karta hai kis mode mein file open karni hai:</p>
+    <ul>
+        <li><code>"r"</code> - Sirf read karne ke liye. File ke beginning se start karta hai.</li>
+        <li><code>"r+"</code> - Read/write dono ke liye. File ke beginning se start karta hai.</li>
+        <li><code>"w"</code> - Sirf write karne ke liye. File ko open karke truncate karta hai; agar file exist nahi karti to new file create karta hai.</li>
+        <li><code>"w+"</code> - Read/write dono ke liye. File ko open karke truncate karta hai; agar file exist nahi karti to new file create karta hai.</li>
+        <li><code>"a"</code> - Sirf write karne ke liye. File ke end mein write karta hai; agar file exist nahi karti to new file create karta hai.</li>
+        <li><code>"a+"</code> - Read/write dono ke liye. File ke end mein write karke file content preserve karta hai; agar file exist nahi karti to new file create karta hai.</li>
+        <li><code>"x"</code> - Sirf write karne ke liye. New file create karta hai; agar file already exist karti hai to FALSE return karta hai aur error deta hai.</li>
+        <li><code>"x+"</code> - Read/write dono ke liye. New file create karta hai; agar file already exist karti hai to FALSE return karta hai aur error deta hai.</li>
+    </ul>
+
+    <div class="warning">
+        <p><strong>Important Bro:</strong> Hamesha check karo ki <code>fopen()</code> successful tha ya nahi before file handle par operations perform karne ke. Aur hamesha <code>fclose()</code> se files close karo jab tum unse kaam khatam kar lo, taki system resources free ho jaaye.</p>
+    </div>
+
+    <h2>Files Read Karna 📖</h2>
+    <p>Bro, PHP file contents read karne ke liye kai tarike offer karta hai:</p>
+
+    <h3>Poori File Ek Baar Mein Read Karna</h3>
+    <pre><code>&lt;?php
+// Poori file ko string mein read karo
+$content = file_get_contents("example.txt");
+echo $content;
+
+// Poori file ko array mein read karo (har line ek array element ban jati hai)
+$lines = file("example.txt");
+foreach ($lines as $lineNumber => $line) {
+    echo "Line #" . ($lineNumber + 1) . ": " . $line . "&lt;br&gt;";
+}
+?&gt;</code></pre>
+
+    <h3>Files Line by Line Read Karna</h3>
+    <pre><code>&lt;?php
+$file = fopen("example.txt", "r");
+
+// Check karo ki file successfully open hui ya nahi
+if ($file) {
+    // End-of-file tak line by line read karo
+    while (!feof($file)) {
+        $line = fgets($file);
+        echo $line . "&lt;br&gt;";
+    }
+    fclose($file);
+}
+?&gt;</code></pre>
+
+    <h3>Specific Number of Characters Read Karna</h3>
+    <pre><code>&lt;?php
+$file = fopen("example.txt", "r");
+
+if ($file) {
+    // 10 characters read karo
+    $chunk = fread($file, 10);
+    echo $chunk;
+    fclose($file);
+}
+?&gt;</code></pre>
+
+    <h3>Single Character Read Karna</h3>
+    <pre><code>&lt;?php
+$file = fopen("example.txt", "r");
+
+if ($file) {
+    // Single character read karo
+    $char = fgetc($file);
+    echo $char;
+    fclose($file);
+}
+?&gt;</code></pre>
+
+    <h2>Files Mein Write Karna ✍️</h2>
+    <p>Bro, PHP files mein data write karne ke liye kai functions provide karta hai:</p>
+
+    <h3>String Ko File Mein Write Karna</h3>
+    <pre><code>&lt;?php
+// String ko file mein write karo (agar file exist nahi karti to create karta hai, agar karti hai to overwrite karta hai)
+file_put_contents("output.txt", "Hello, World!");
+
+// File mein append karo
+file_put_contents("output.txt", "More content", FILE_APPEND);
+?&gt;</code></pre>
+
+    <h3>fwrite() Se Write Karna</h3>
+    <pre><code>&lt;?php
+$file = fopen("output.txt", "w");
+
+if ($file) {
+    fwrite($file, "Hello, World!");
+    fclose($file);
+}
+?&gt;</code></pre>
+
+    <h3>File Mein Append Karna</h3>
+    <pre><code>&lt;?php
+$file = fopen("output.txt", "a");
+
+if ($file) {
+    fwrite($file, "Appended content\n");
+    fclose($file);
+}
+?&gt;</code></pre>
+
+    <h2>File System Functions 🗄️</h2>
+    <p>Bro, PHP file system ke saath kaam karne ke liye various functions provide karta hai:</p>
+
+    <h3>Check Karna Ki File Exist Karti Hai Ya Nahi</h3>
+    <pre><code>&lt;?php
+if (file_exists("example.txt")) {
+    echo "File exist karti hai";
+} else {
+    echo "File exist nahi karti";
+}
+?&gt;</code></pre>
+
+    <h3>File Information Get Karna</h3>
+    <pre><code>&lt;?php
+// File size bytes mein get karo
+$size = filesize("example.txt");
+echo "File size: $size bytes&lt;br&gt;";
+
+// File type get karo
+$type = filetype("example.txt");
+echo "File type: $type&lt;br&gt;";
+
+// Last access time get karo
+$lastAccess = fileatime("example.txt");
+echo "Last accessed: " . date("Y-m-d H:i:s", $lastAccess) . "&lt;br&gt;";
+
+// Last modification time get karo
+$lastModified = filemtime("example.txt");
+echo "Last modified: " . date("Y-m-d H:i:s", $lastModified) . "&lt;br&gt;";
+
+// Check karo ki ye file hai ya directory
+if (is_file("example.txt")) {
+    echo "Ye ek file hai&lt;br&gt;";
+}
+
+if (is_dir("example_directory")) {
+    echo "Ye ek directory hai&lt;br&gt;";
+}
+
+// Check karo ki file readable, writable, ya executable hai
+if (is_readable("example.txt")) {
+    echo "File readable hai&lt;br&gt;";
+}
+
+if (is_writable("example.txt")) {
+    echo "File writable hai&lt;br&gt;";
+}
+
+if (is_executable("example.txt")) {
+    echo "File executable hai&lt;br&gt;";
+}
+?&gt;</code></pre>
+
+    <h3>Directories Create aur Remove Karna</h3>
+    <pre><code>&lt;?php
+// Directory create karo
+if (!file_exists("new_directory")) {
+    mkdir("new_directory");
+    echo "Directory create ho gayi";
+}
+
+// Nested directories create karo
+if (!file_exists("parent/child/grandchild")) {
+    mkdir("parent/child/grandchild", 0777, true);
+    echo "Nested directories create ho gayi";
+}
+
+// Directory remove karo
+if (file_exists("old_directory") && is_dir("old_directory")) {
+    rmdir("old_directory");
+    echo "Directory remove ho gayi";
+}
+?&gt;</code></pre>
+
+    <h3>Files Copy, Rename, aur Delete Karna</h3>
+    <pre><code>&lt;?php
+// File copy karo
+if (file_exists("source.txt")) {
+    copy("source.txt", "destination.txt");
+    echo "File copy ho gayi";
+}
+
+// File rename ya move karo
+if (file_exists("old_name.txt")) {
+    rename("old_name.txt", "new_name.txt");
+    echo "File rename ho gayi";
+}
+
+// File delete karo
+if (file_exists("to_delete.txt")) {
+    unlink("to_delete.txt");
+    echo "File delete ho gayi";
+}
+?&gt;</code></pre>
+
+    <h2>CSV Files Ke Saath Kaam Karna 📊</h2>
+    <p>Bro, CSV (Comma-Separated Values) files tabular data store karne ke liye commonly use hoti hai. PHP CSV files read aur write karne ke liye functions provide karta hai:</p>
+
+    <h3>CSV Files Read Karna</h3>
+    <pre><code>&lt;?php
+$file = fopen("data.csv", "r");
+
+if ($file) {
+    // Har line ko CSV record ke roop mein read karo
+    while (($data = fgetcsv($file, 1000, ",")) !== FALSE) {
+        echo "Name: " . $data[0] . ", Email: " . $data[1] . ", Age: " . $data[2] . "&lt;br&gt;";
+    }
+    fclose($file);
+}
+?&gt;</code></pre>
+
+    <h3>CSV Files Write Karna</h3>
+    <pre><code>&lt;?php
+$file = fopen("users.csv", "w");
+
+if ($file) {
+    // CSV header write karo
+    fputcsv($file, ["Name", "Email", "Age"]);
+    
+    // Data rows write karo
+    fputcsv($file, ["Rahul Sharma", "rahul@example.com", 30]);
+    fputcsv($file, ["Priya Patel", "priya@example.com", 25]);
+    fputcsv($file, ["Amit Kumar", "amit@example.com", 35]);
+    
+    fclose($file);
+    echo "CSV file successfully create ho gayi";
+}
+?&gt;</code></pre>
+
+    <h2>File Uploading 📤</h2>
+    <p>Bro, PHP HTML forms se file uploads handle karna easy banata hai:</p>
+
+    <h3>File Upload Ke Liye HTML Form</h3>
+    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;File Upload Form&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;form action="upload.php" method="post" enctype="multipart/form-data"&gt;
+        Upload karne ke liye file select karo:
+        &lt;input type="file" name="fileToUpload" id="fileToUpload"&gt;
+        &lt;input type="submit" value="Upload File" name="submit"&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+    <h3>File Upload Handle Karne Ke Liye PHP Script</h3>
+    <pre><code>&lt;?php
+// upload.php
+
+// Check karo ki form submit hua ya nahi
+if (isset($_POST["submit"])) {
+    // Target directory aur file path define karo
+    $targetDir = "uploads/";
+    $targetFile = $targetDir . basename($_FILES["fileToUpload"]["name"]);
+    $uploadOk = 1;
+    $fileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+    
+    // Agar uploads directory exist nahi karti to create karo
+    if (!file_exists($targetDir)) {
+        mkdir($targetDir, 0777, true);
+    }
+    
+    // Check karo ki file already exist karti hai ya nahi
+    if (file_exists($targetFile)) {
+        echo "Sorry, file already exist karti hai.&lt;br&gt;";
+        $uploadOk = 0;
+    }
+    
+    // File size check karo (2MB tak limit karo)
+    if ($_FILES["fileToUpload"]["size"] > 2000000) {
+        echo "Sorry, tumhari file bahut badi hai.&lt;br&gt;";
+        $uploadOk = 0;
+    }
+    
+    // Sirf certain file formats allow karo
+    $allowedTypes = ["jpg", "jpeg", "png", "gif", "pdf", "doc", "docx"];
+    if (!in_array($fileType, $allowedTypes)) {
+        echo "Sorry, sirf JPG, JPEG, PNG, GIF, PDF, DOC, aur DOCX files allowed hai.&lt;br&gt;";
+        $uploadOk = 0;
+    }
+    
+    // Check karo ki $uploadOk kisi error se 0 set hua ya nahi
+    if ($uploadOk == 0) {
+        echo "Sorry, tumhari file upload nahi hui.";
+    } else {
+        // File upload karne ki koshish karo
+        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $targetFile)) {
+            echo "File " . htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " upload ho gayi hai.";
+        } else {
+            echo "Sorry, tumhari file upload karne mein error aaya.";
+        }
+    }
+}
+?&gt;</code></pre>
+
+    <div class="tip">
+        <p><strong>Security Tip Bro:</strong> Hamesha file uploads ko validate aur sanitize karo. File types, sizes check karo, aur security vulnerabilities prevent karne ke liye proper permissions use karo.</p>
+    </div>
+
+    <h2>JSON Files Ke Saath Kaam Karna 📝</h2>
+    <p>Bro, JSON (JavaScript Object Notation) ek lightweight data-interchange format hai. PHP JSON data encode aur decode karne ke liye functions provide karta hai:</p>
+
+    <h3>JSON Files Read aur Write Karna</h3>
+    <pre><code>&lt;?php
+// Array create karo
+$data = [
+    "name" => "Rahul Sharma",
+    "email" => "rahul@example.com",
+    "age" => 30,
+    "skills" => ["PHP", "JavaScript", "HTML", "CSS"]
+];
+
+// Array ko JSON string mein convert karo
+$jsonString = json_encode($data, JSON_PRETTY_PRINT);
+
+// JSON ko file mein write karo
+file_put_contents("data.json", $jsonString);
+echo "JSON file successfully create ho gayi&lt;br&gt;";
+
+// File se JSON read karo
+$jsonContent = file_get_contents("data.json");
+
+// JSON string ko PHP array mein convert karo
+$decodedData = json_decode($jsonContent, true);
+
+// Data access karo
+echo "Name: " . $decodedData["name"] . "&lt;br&gt;";
+echo "Email: " . $decodedData["email"] . "&lt;br&gt;";
+echo "Age: " . $decodedData["age"] . "&lt;br&gt;";
+echo "Skills: " . implode(", ", $decodedData["skills"]);
+?&gt;</code></pre>
+
+    <h2>File Locking 🔒</h2>
+    <p>Bro, jab multiple scripts simultaneously same file mein write karne ki koshish karte hai, to race conditions ho sakti hai. File locking in issues ko prevent karne mein help karta hai:</p>
+
+    <pre><code>&lt;?php
+$file = fopen("counter.txt", "r+");
+
+if ($file) {
+    // Exclusive lock acquire karo
+    if (flock($file, LOCK_EX)) {
+        // Current value read karo
+        $count = (int)fread($file, filesize("counter.txt"));
+        
+        // Counter increment karo
+        $count++;
+        
+        // File pointer ko beginning mein move karo
+        rewind($file);
+        
+        // New value write karo
+        fwrite($file, $count);
+        
+        // Lock release karo
+        flock($file, LOCK_UN);
+        
+        echo "Counter update ho gaya: $count";
+    } else {
+        echo "Lock nahi mil paya!";
+    }
+    
+    fclose($file);
+}
+?&gt;</code></pre>
+
+    <p><code>flock()</code> function following lock types accept karta hai:</p>
+    <ul>
+        <li><code>LOCK_SH</code> - Shared lock (reader)</li>
+        <li><code>LOCK_EX</code> - Exclusive lock (writer)</li>
+        <li><code>LOCK_UN</code> - Lock release karo</li>
+        <li><code>LOCK_NB</code> - Non-blocking operation (LOCK_SH ya LOCK_EX ke saath bitwise OR operator | use karke combine kiya ja sakta hai)</li>
+    </ul>
+
+    <h2>Temporary Files Ke Saath Kaam Karna 🕒</h2>
+    <p>Bro, PHP temporary files create karne aur unke saath kaam karne ke liye functions provide karta hai:</p>
+
+    <pre><code>&lt;?php
+// Temporary file create karo
+$tempFile = tmpfile();
+
+// Temporary file mein write karo
+fwrite($tempFile, "Ye temporary data hai");
+
+// File path get karo
+$metaData = stream_get_meta_data($tempFile);
+$tempFilePath = $metaData["uri"];
+
+echo "Temporary file yahan create hui: $tempFilePath&lt;br&gt;";
+
+// Temporary file se read karo
+rewind($tempFile);
+echo "Content: " . fread($tempFile, 1024) . "&lt;br&gt;";
+
+// Temporary file automatically delete ho jati hai jab script end hota hai ya jab fclose() call hota hai
+fclose($tempFile);
+echo "Temporary file close aur delete ho gayi";
+?&gt;</code></pre>
+
+    <h2>File Operations Mein Error Handling 🛠️</h2>
+    <p>Bro, files ke saath kaam karte time errors ko properly handle karna important hai:</p>
+
+    <pre><code>&lt;?php
+// Try-catch blocks use karna
+try {
+    $content = file_get_contents("non_existent_file.txt");
+    echo $content;
+} catch (Exception $e) {
+    echo "Error: " . $e->getMessage();
+}
+
+// Error control operator (@) use karna
+$content = @file_get_contents("non_existent_file.txt");
+if ($content === false) {
+    echo "Error: File read nahi kar paye";
+}
+
+// Function return values check karna
+$file = fopen("non_existent_file.txt", "r");
+if ($file === false) {
+    echo "Error: File open nahi kar paye";
+} else {
+    // File process karo
+    fclose($file);
+}
+?&gt;</code></pre>
+
+    <div class="warning">
+        <p><strong>Warning Bro:</strong> Error control operator (@) error messages ko suppress karta hai lekin error hone se nahi rokta. Ise sparingly use karo aur hamesha function ke return value ko check karo.</p>
+    </div>
+
+    <h2>File Paths Ke Saath Kaam Karna 🛣️</h2>
+    <p>Bro, PHP file paths ke saath kaam karne ke liye functions provide karta hai:</p>
+
+    <pre><code>&lt;?php
+// Path se filename get karo
+$path = "/var/www/html/example.txt";
+$filename = basename($path);
+echo "Filename: $filename&lt;br&gt;";  // Output: example.txt
+
+// Path se directory name get karo
+$dirname = dirname($path);
+echo "Directory: $dirname&lt;br&gt;";  // Output: /var/www/html
+
+// File extension get karo
+$extension = pathinfo($path, PATHINFO_EXTENSION);
+echo "Extension: $extension&lt;br&gt;";  // Output: txt
+
+// Extension ke bina filename get karo
+$filenameWithoutExt = pathinfo($path, PATHINFO_FILENAME);
+echo "Extension ke bina filename: $filenameWithoutExt&lt;br&gt;";  // Output: example
+
+// Paths combine karo
+$directory = "/var/www/html";
+$file = "example.txt";
+$fullPath = $directory . "/" . $file;
+echo "Full path: $fullPath&lt;br&gt;";  // Output: /var/www/html/example.txt
+
+// Paths combine karne ka better way
+$fullPath = rtrim($directory, "/") . "/" . ltrim($file, "/");
+echo "Full path: $fullPath&lt;br&gt;";  // Output: /var/www/html/example.txt
+?&gt;</code></pre>
+
+    <h2>File Handling Ke Best Practices 💯</h2>
+    <ol>
+        <li><strong>Hamesha check karo ki file operations successful hai ya nahi</strong> before aage badhne ke.</li>
+        <li><strong>File handles close karo</strong> jab tum unse kaam khatam kar lo taki system resources free ho jaye.</li>
+        <li><strong>Proper error handling use karo</strong> file operation errors catch aur handle karne ke liye.</li>
+        <li><strong>File uploads ko validate aur sanitize karo</strong> security vulnerabilities prevent karne ke liye.</li>
+        <li><strong>File locking use karo</strong> jab multiple scripts simultaneously same file access kar sakte hai.</li>
+        <li><strong>File permissions ke saath careful raho</strong> taki tumhare scripts necessary files aur directories se read aur write kar sake.</li>
+        <li><strong>Jab possible ho absolute paths use karo</strong> path resolution issues avoid karne ke liye.</li>
+        <li><strong>Important files ko modify karne se pehle backup lo</strong>.</li>
+        <li><strong>Uploads ke liye file sizes limit karo</strong> server overload prevent karne ke liye.</li>
+        <li><strong>Different types ke data ke liye appropriate file formats use karo</strong> (e.g., tabular data ke liye CSV, structured data ke liye JSON).</li>
+    </ol>
+
+    <h2>Practical Example: Simple Log System 📝</h2>
+    <p>Bro, yahan ek simple logging system ka practical example hai jo log messages ko file mein write karta hai:</p>
+
+    <pre><code>&lt;?php
+class Logger {
+    private $logFile;
+    
+    public function __construct($logFile = "app.log") {
+        $this->logFile = $logFile;
+    }
+    
+    public function log($message, $level = "INFO") {
+        $timestamp = date("Y-m-d H:i:s");
+        $logMessage = "[$timestamp] [$level] $message" . PHP_EOL;
+        
+        $file = fopen($this->logFile, "a");
+        
+        if ($file) {
+            // Exclusive lock acquire karo
+            if (flock($file, LOCK_EX)) {
+                fwrite($file, $logMessage);
+                flock($file, LOCK_UN);
+            }
+            
+            fclose($file);
+            return true;
+        }
+        
+        return false;
+    }
+    
+    public function info($message) {
+        return $this->log($message, "INFO");
+    }
+    
+    public function warning($message) {
+        return $this->log($message, "WARNING");
+    }
+    
+    public function error($message) {
+        return $this->log($message, "ERROR");
+    }
+    
+    public function getLogContents() {
+        if (file_exists($this->logFile)) {
+            return file_get_contents($this->logFile);
+        }
+        
+        return "";
+    }
+    
+    public function clearLog() {
+        return file_put_contents($this->logFile, "");
+    }
+}
+
+// Usage example
+$logger = new Logger("application.log");
+
+$logger->info("Application start ho gaya");
+$logger->warning("Low memory warning");
+$logger->error("Database connection fail ho gaya");
+
+echo "&lt;pre&gt;" . $logger->getLogContents() . "&lt;/pre&gt;";
+?&gt;</code></pre>
+
+    <h2>Conclusion 🏁</h2>
+    <p>Bro, file handling PHP programming ka crucial aspect hai. Is module mein cover kiye gaye functions aur techniques se tum effectively files se read aur write kar sakte ho, directories manage kar sakte ho, file uploads handle kar sakte ho, aur CSV aur JSON jaise various file formats ke saath kaam kar sakte ho.</p>
+    
+    <p>Yaad rakho ki hamesha proper error handling aur security measures implement karo jab files ke saath kaam kar rahe ho taki tumhare applications robust aur secure rahe.</p>
+
+    <p>Ab tum PHP file handling ke master ban gaye ho! Next topic mein, hum exception handling ke baare mein seekhenge. Keep coding! 🚀</p>
+</body>
+</html>

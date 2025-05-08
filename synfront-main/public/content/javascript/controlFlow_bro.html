@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #FF8C00;
+            border-bottom: 2px solid #FFA500;
+            padding-bottom: 10px;
+        }
+
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            border: 1px solid #ddd;
+        }
+
+        code {
+            font-family: Consolas, Monaco, 'Andale Mono', monospace;
+            background-color: #f5f5f5;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        .note {
+            background-color: #fff8dc;
+            border-left: 4px solid #ffeb3b;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .bro-highlight {
+            background-color: #FFE4B5;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Control Flow in JavaScript - Bro Style! 🔥</h2>
+
+    <p>Aye bro! Aaj hum JavaScript ke <span class="bro-highlight">control flow</span> ke baare mein baat karenge. Control flow matlab aapke code ka traffic control - kaunsa code kab chalega, kitni baar chalega, aur kaunsa code skip hoga. Samjhe? Chalo shuru karte hain! 🚦</p>
+
+    <h3>Conditional Statements - Faisla Lene Wale Statements</h3>
+    <p>Ye statements aapko conditions ke basis par alag-alag code chalane dete hain.</p>
+
+    <h4>if...else Statement - Agar...Warna Statement</h4>
+    <p>Agar condition sahi hai, toh ek code chalao, warna doosra code chalao. Simple!</p>
+
+    <pre><code>// Basic if statement
+if (condition) {
+    // tab ye code chalega jab condition true ho
+}
+
+// if...else statement
+if (condition) {
+    // tab ye code chalega jab condition true ho
+} else {
+    // tab ye code chalega jab condition false ho
+}
+
+// if...else if...else statement
+if (condition1) {
+    // tab ye code chalega jab condition1 true ho
+} else if (condition2) {
+    // tab ye code chalega jab condition1 false ho aur condition2 true ho
+} else {
+    // tab ye code chalega jab dono conditions false hon
+}</code></pre>
+
+    <p>Example:</p>
+    <pre><code>const hour = new Date().getHours();
+let greeting;
+
+if (hour < 12) {
+    greeting = "Good morning bro!";
+} else if (hour < 18) {
+    greeting = "Good afternoon bro!";
+} else {
+    greeting = "Good evening bro!";
+}
+
+console.log(greeting);</code></pre>
+
+    <h4>Ternary Operator - Shortcut Tarika</h4>
+    <p>Ye ek shortcut hai <code>if...else</code> ka. Ek line mein kaam khatam!</p>
+
+    <pre><code>// Syntax
+condition ? expressionIfTrue : expressionIfFalse;
+
+// Example
+const age = 20;
+const canVote = age >= 18 ? "Haan bro, vote de sakta hai" : "Nahi bro, abhi nahi";
+console.log(canVote);  // Output: "Haan bro, vote de sakta hai"</code></pre>
+
+    <h4>switch Statement - Menu Jaisa Statement</h4>
+    <p>Jab aapko ek variable ki multiple values check karni hon, tab <code>switch</code> use karo. Ye restaurant menu jaisa hai - aapne jo order kiya, wahi milega!</p>
+
+    <pre><code>// Syntax
+switch (expression) {
+    case value1:
+        // tab ye code chalega jab expression === value1
+        break;
+    case value2:
+        // tab ye code chalega jab expression === value2
+        break;
+    // more cases...
+    default:
+        // tab ye code chalega jab koi match nahi hua
+}
+
+// Example
+const day = new Date().getDay();
+let dayName;
+
+switch (day) {
+    case 0:
+        dayName = "Sunday - Chill day bro!";
+        break;
+    case 1:
+        dayName = "Monday - Back to hustle!";
+        break;
+    case 2:
+        dayName = "Tuesday - Still grinding!";
+        break;
+    case 3:
+        dayName = "Wednesday - Halfway there!";
+        break;
+    case 4:
+        dayName = "Thursday - Weekend ki planning!";
+        break;
+    case 5:
+        dayName = "Friday - Party mode on!";
+        break;
+    case 6:
+        dayName = "Saturday - Full masti!";
+        break;
+    default:
+        dayName = "Pata nahi bro, koi alien day hai";
+}
+
+console.log(`Today is ${dayName}`);</code></pre>
+
+    <div class="note">
+        <strong>Yaad rakhna bro:</strong> <code>break</code> statement bahut important hai <code>switch</code> mein. Agar <code>break</code> nahi lagaya, toh code agle case mein bhi ghus jayega, chahe condition match na ho! Jaise ki party mein uninvited guest aa jaye! 😂
+    </div>
+
+    <h3>Loops - Ghoomne Wale Statements</h3>
+    <p>Loops ka matlab hai ek hi code ko baar-baar chalana, bina copy-paste kiye. Time bachao, code clean rakho!</p>
+
+    <h4>for Loop - Counting Wala Loop</h4>
+    <p>Jab aapko pata ho ki kitni baar loop chalana hai, tab <code>for</code> loop use karo.</p>
+
+    <pre><code>// Syntax
+for (initialization; condition; increment/decrement) {
+    // ye code baar-baar chalega
+}
+
+// Example: 1 se 5 tak numbers print karo
+for (let i = 1; i <= 5; i++) {
+    console.log(i);
+}
+// Output: 1, 2, 3, 4, 5</code></pre>
+
+    <h4>for...of Loop - Array Ke Liye Loop</h4>
+    <p>Arrays aur strings par loop lagane ka sabse easy tarika!</p>
+
+    <pre><code>// Syntax
+for (variable of iterable) {
+    // ye code baar-baar chalega
+}
+
+// Example: Array ke har item ko print karo
+const fruits = ["apple", "banana", "cherry"];
+for (const fruit of fruits) {
+    console.log(`Mujhe ${fruit} pasand hai`);
+}
+// Output: "Mujhe apple pasand hai", "Mujhe banana pasand hai", "Mujhe cherry pasand hai"</code></pre>
+
+    <h4>for...in Loop - Object Ke Liye Loop</h4>
+    <p>Objects ke properties par loop lagane ka tarika!</p>
+
+    <pre><code>// Syntax
+for (variable in object) {
+    // ye code baar-baar chalega
+}
+
+// Example: Object ki properties print karo
+const person = {
+    name: "Rahul",
+    age: 25,
+    job: "Developer"
+};
+
+for (const key in person) {
+    console.log(`${key}: ${person[key]}`);
+}
+// Output: "name: Rahul", "age: 25", "job: Developer"</code></pre>
+
+    <div class="note">
+        <strong>Dhyan do bro:</strong> <code>for...in</code> loop arrays ke liye use mat karo agar order important hai, kyunki ye properties ke order ko guarantee nahi karta. Array ke liye <code>for...of</code> ya normal <code>for</code> loop use karo.
+    </div>
+
+    <h4>while Loop - Tab Tak Chalao Jab Tak</h4>
+    <p>Jab aapko pata na ho ki loop kitni baar chalega, tab <code>while</code> loop use karo.</p>
+
+    <pre><code>// Syntax
+while (condition) {
+    // ye code tab tak chalega jab tak condition true hai
+}
+
+// Example: 1 se 5 tak numbers print karo
+let i = 1;
+while (i <= 5) {
+    console.log(i);
+    i++;
+}
+// Output: 1, 2, 3, 4, 5</code></pre>
+
+    <h4>do...while Loop - Kam Se Kam Ek Baar Chalao</h4>
+    <p><code>do...while</code> loop kam se kam ek baar zaroor chalega, chahe condition false ho!</p>
+
+    <pre><code>// Syntax
+do {
+    // ye code kam se kam ek baar chalega
+} while (condition);
+
+// Example: 1 se 5 tak numbers print karo
+let j = 1;
+do {
+    console.log(j);
+    j++;
+} while (j <= 5);
+// Output: 1, 2, 3, 4, 5</code></pre>
+
+    <h3>Loop Control Statements - Loop Ko Control Karne Wale Statements</h3>
+    <p>Kabhi kabhi aapko loop ko beech mein hi rokna ya skip karna pad sakta hai.</p>
+
+    <h4>break Statement - Emergency Exit</h4>
+    <p><code>break</code> statement loop se bahar nikal deta hai, jaise movie beech mein chhod ke chale jao!</p>
+
+    <pre><code>// Example: Jab i 3 ho, tab loop se bahar niklo
+for (let i = 1; i <= 5; i++) {
+    if (i === 3) {
+        console.log("3 aa gaya, mai nikal leta hoon!");
+        break;
+    }
+    console.log(i);
+}
+// Output: 1, 2, "3 aa gaya, mai nikal leta hoon!"</code></pre>
+
+    <h4>continue Statement - Skip Karo</h4>
+    <p><code>continue</code> statement current iteration ko skip kar deta hai, jaise class mein teacher ko ignore karna!</p>
+
+    <pre><code>// Example: Jab i 3 ho, tab skip karo
+for (let i = 1; i <= 5; i++) {
+    if (i === 3) {
+        console.log("3 ko skip kar dete hain!");
+        continue;
+    }
+    console.log(i);
+}
+// Output: 1, 2, "3 ko skip kar dete hain!", 4, 5</code></pre>
+
+    <h3>Error Handling - Errors Ko Handle Karna</h3>
+    <p>Errors aane par program crash hone se bachane ke liye error handling use karo.</p>
+
+    <h4>try...catch...finally Statement - Koshish Karo, Pakdo, Aur Finally</h4>
+    <p>Jaise cricket mein catch drop hone par bhi game continue rehta hai, waise hi <code>try...catch</code> se program crash hone se bach jata hai.</p>
+
+    <pre><code>// Syntax
+try {
+    // risky code jo error throw kar sakta hai
+} catch (error) {
+    // error ko handle karne wala code
+} finally {
+    // ye code hamesha chalega, chahe error aaye ya na aaye
+}
+
+// Example
+try {
+    // Koshish karo ek non-existent variable ko access karne ki
+    console.log(nonExistentVariable.property);
+} catch (error) {
+    console.error("Oops! Error aa gaya bro:", error.message);
+} finally {
+    console.log("Ye line toh hamesha chalegi, chahe kuch bhi ho jaye!");
+}</code></pre>
+
+    <h4>throw Statement - Khud Se Error Throw Karna</h4>
+    <p>Kabhi kabhi aapko khud se error generate karna pad sakta hai.</p>
+
+    <pre><code>// Example
+function divide(a, b) {
+    if (b === 0) {
+        throw new Error("Bro, zero se divide nahi kar sakte! Physics ki dhajjiyaan mat udao!");
+    }
+    return a / b;
+}
+
+try {
+    console.log(divide(10, 0));
+} catch (error) {
+    console.error(error.message);  // Output: "Bro, zero se divide nahi kar sakte! Physics ki dhajjiyaan mat udao!"
+}</code></pre>
+
+    <h3>Yaad Rakhne Wali Baatein</h3>
+    <ul>
+        <li>Simple conditions ke liye <code>if...else</code> use karo</li>
+        <li>Multiple conditions check karne ke liye <code>switch</code> use karo</li>
+        <li>Ek line mein condition check karne ke liye ternary operator (<code>?:</code>) use karo</li>
+        <li>Sahi loop chunno:
+            <ul>
+                <li><code>for</code> loop: jab pata ho kitni baar loop chalana hai</li>
+                <li><code>while</code> loop: jab pata na ho kitni baar loop chalana hai</li>
+                <li><code>for...of</code> loop: arrays ke liye</li>
+                <li><code>for...in</code> loop: objects ke liye</li>
+            </ul>
+        </li>
+        <li>Loop se jaldi bahar nikalne ke liye <code>break</code> use karo</li>
+        <li>Current iteration skip karne ke liye <code>continue</code> use karo</li>
+        <li>Errors handle karne ke liye hamesha <code>try...catch</code> blocks use karo</li>
+    </ul>
+
+    <p>Ab toh JavaScript ke control flow mein master ban gaye ho bro! Koi confusion ho toh console.log() karke check kar lena. Happy coding! 🚀</p>
+</body>
+
+</html>

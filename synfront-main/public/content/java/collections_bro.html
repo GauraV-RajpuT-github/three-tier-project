@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .content-container {
+            font-family: 'Comic Sans MS', cursive;
+            line-height: 1.6;
+            color: #333;
+            padding: 0 30px;
+        }
+
+        .content-container h2 {
+            color: #333;
+            font-size: 28px;
+            margin: 30px 0;
+            padding-bottom: 10px;
+            border-bottom: none;
+            text-shadow: 1px 1px 2px rgba(255, 140, 0, 0.2);
+        }
+
+        .content-container h3 {
+            color: #FF8C00;
+            font-size: 22px;
+            margin: 25px 0;
+        }
+
+        .content-container pre {
+            background-color: #fff8f0;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 25px 0;
+            border: 2px solid #FFD700;
+            box-shadow: 0 2px 4px rgba(255, 140, 0, 0.1);
+            font-size: 15px;
+        }
+
+        .content-container code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #FF4500;
+        }
+
+        .content-container ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 25px 0;
+        }
+
+        .content-container li {
+            margin: 15px 0;
+            position: relative;
+            padding-left: 25px;
+            font-size: 16px;
+        }
+
+        .content-container li:before {
+            content: "🔥";
+            position: absolute;
+            left: 0;
+        }
+
+        .content-container p {
+            margin: 20px 0;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .content-container code {
+            background-color: #fff8f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 15px;
+        }
+
+        .content-container table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(255, 140, 0, 0.1);
+        }
+
+        .content-container th, .content-container td {
+            border: 1px solid #FFD700;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .content-container th {
+            background-color: #FFA500;
+            color: white;
+            font-weight: bold;
+        }
+
+        .content-container tr:nth-child(even) {
+            background-color: #fff8f0;
+        }
+
+        .content-container tr:hover {
+            background-color: #FFE4B5;
+        }
+
+        .hierarchy-diagram {
+            width: 100%;
+            padding: 15px;
+            background-color: #fff8f0;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+            border: 2px solid #FFD700;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content-container">
+        <h2>Collections Framework - Java ka Dabba System! 📦</h2>
+
+        <p>Bhai, Collections Framework Java ka ek mast system hai multiple objects ko store aur manage karne ke liye! Agar tere paas bahut saare items hain, toh unhe organize karne ka tarika hai yeh - bilkul almirah ki tarah! 🗄️</p>
+
+        <div class="hierarchy-diagram">
+            <pre>
+                                Collection
+                                    |
+            +-----------------------+------------------------+
+            |                       |                        |
+           List                    Set                     Queue
+            |                       |                        |
+  +---------+--------+    +--------+--------+      +--------+--------+
+  |         |        |    |        |        |      |        |        |
+ArrayList LinkedList Vector HashSet TreeSet  ...  PriorityQueue  Deque
+                                                                   |
+                                                           +-------+------+
+                                                           |              |
+                                                      ArrayDeque     LinkedList
+            </pre>
+        </div>
+
+        <h2>Collection Interfaces - Framework ke Building Blocks! 🧱</h2>
+
+        <h3>Collection - Sabka Baap! 👑</h3>
+        <p>Collection interface hierarchy ka root hai. Yeh objects ke group ko represent karta hai, jinhe elements kehte hain.</p>
+
+        <h3>List - Order Wala Collection! 📋</h3>
+        <p>List ek ordered collection hai (sequence) jisme duplicate elements ho sakte hain. Index number se elements access kar sakte ho - bilkul array ki tarah!</p>
+
+        <h3>Set - No Duplicates Wala Collection! 🚫</h3>
+        <p>Set mein duplicate elements nahi ho sakte. Yeh mathematical set ki tarah work karta hai - har cheez unique!</p>
+
+        <h3>Queue - Line System! 🧍‍♂️🧍‍♀️🧍‍♂️</h3>
+        <p>Queue elements ko process karne se pehle hold karne ke liye designed hai. First-In-First-Out (FIFO) system - bilkul movie ticket line ki tarah!</p>
+
+        <h3>Deque - Double Ended Queue! 🔄</h3>
+        <p>Double-ended queue jisme dono ends se elements add aur remove kar sakte ho - dono taraf se entry-exit wala system!</p>
+
+        <h3>Map - Key-Value Pairs! 🔑➡️📦</h3>
+        <p>Map keys ko values se map karta hai. Duplicate keys nahi ho sakti; har key sirf ek value se map ho sakti hai - dictionary jaisa!</p>
+
+        <h2>Common Implementations - Asli Collections! 🛠️</h2>
+
+        <table>
+            <tr>
+                <th>Interface</th>
+                <th>Implementation</th>
+                <th>Kya Khaas Hai?</th>
+            </tr>
+            <tr>
+                <td rowspan="3">List</td>
+                <td>ArrayList</td>
+                <td>Resizable array implementation. Random access fast hai par middle mein insertion/deletion slow hai. Array jaisa par size fixed nahi! 📏</td>
+            </tr>
+            <tr>
+                <td>LinkedList</td>
+                <td>Doubly-linked list implementation. Insertions aur deletions fast hain par random access slow hai. Train ke dabbo ki tarah connected! 🚂</td>
+            </tr>
+            <tr>
+                <td>Vector</td>
+                <td>Legacy synchronized implementation. ArrayList jaisa par thread-safe hai. Purana player hai market ka! 👴</td>
+            </tr>
+            <tr>
+                <td rowspan="2">Set</td>
+                <td>HashSet</td>
+                <td>Hash table implementation. Order guaranteed nahi hai par operations constant-time mein hote hain. Super fast lookup! ⚡</td>
+            </tr>
+            <tr>
+                <td>TreeSet</td>
+                <td>Sorted set implementation using a tree. Elements sorted order mein rehte hain. Alphabetical order mein books ki tarah! 📚</td>
+            </tr>
+            <tr>
+                <td rowspan="3">Map</td>
+                <td>HashMap</td>
+                <td>Hash table implementation. Order guaranteed nahi hai par operations constant-time mein hote hain. Dictionary jaisa fast lookup! 📖</td>
+            </tr>
+            <tr>
+                <td>TreeMap</td>
+                <td>Sorted map implementation using a tree. Keys sorted order mein rehti hain. Phone directory jaisa sorted! 📱</td>
+            </tr>
+            <tr>
+                <td>LinkedHashMap</td>
+                <td>Hash table + linked list implementation. Insertion order maintain karta hai. History maintain karne wala HashMap! 🕰️</td>
+            </tr>
+            <tr>
+                <td rowspan="2">Queue</td>
+                <td>PriorityQueue</td>
+                <td>Priority heap implementation. Elements priority ke hisaab se order hote hain. VIP line system! 🌟</td>
+            </tr>
+            <tr>
+                <td>ArrayDeque</td>
+                <td>Resizable array implementation. Queue aur stack dono ki tarah use kar sakte ho. 2-in-1 collection! 🔄</td>
+            </tr>
+        </table>
+
+        <h2>Collections Use Karna - Practical Examples! 💻</h2>
+
+        <h3>ArrayList Example - Sabse Popular List! 🌟</h3>
+        <pre><code>import java.util.ArrayList;
+import java.util.List;
+
+public class ArrayListExample {
+    public static void main(String[] args) {
+        // ArrayList banao
+        List&lt;String&gt; fruits = new ArrayList&lt;&gt;();
+        
+        // Elements add karo
+        fruits.add("Apple");
+        fruits.add("Banana");
+        fruits.add("Orange");
+        
+        // Elements access karo
+        System.out.println("Pehla fruit: " + fruits.get(0));  // Apple
+        
+        // Saare elements pe loop chalao
+        System.out.println("Saare fruits:");
+        for (String fruit : fruits) {
+            System.out.println(fruit);
+        }
+        
+        // Check karo ki element exist karta hai ya nahi
+        boolean containsBanana = fruits.contains("Banana");
+        System.out.println("Banana hai kya? " + containsBanana);  // true
+        
+        // Element remove karo
+        fruits.remove("Banana");
+        
+        // Size pata karo
+        System.out.println("Fruits ki total count: " + fruits.size());  // 2
+    }
+}</code></pre>
+
+        <h3>HashSet Example - Duplicates Hata Do! 🚫</h3>
+        <pre><code>import java.util.HashSet;
+import java.util.Set;
+
+public class HashSetExample {
+    public static void main(String[] args) {
+        // HashSet banao
+        Set&lt;String&gt; uniqueFruits = new HashSet&lt;&gt;();
+        
+        // Elements add karo
+        uniqueFruits.add("Apple");
+        uniqueFruits.add("Banana");
+        uniqueFruits.add("Orange");
+        uniqueFruits.add("Apple");  // Duplicate, add nahi hoga!
+        
+        // Saare elements pe loop chalao
+        System.out.println("Saare unique fruits:");
+        for (String fruit : uniqueFruits) {
+            System.out.println(fruit);  // Apple, Orange, Banana (koi bhi order mein)
+        }
+        
+        // Check karo ki element exist karta hai ya nahi
+        boolean containsBanana = uniqueFruits.contains("Banana");
+        System.out.println("Banana hai kya? " + containsBanana);  // true
+        
+        // Element remove karo
+        uniqueFruits.remove("Banana");
+        
+        // Size pata karo
+        System.out.println("Unique fruits ki total count: " + uniqueFruits.size());  // 2
+    }
+}</code></pre>
+
+        <h3>HashMap Example - Key-Value Pairs! 🔑</h3>
+        <pre><code>import java.util.HashMap;
+import java.util.Map;
+
+public class HashMapExample {
+    public static void main(String[] args) {
+        // HashMap banao
+        Map&lt;String, Double&gt; fruitPrices = new HashMap&lt;&gt;();
+        
+        // Key-value pairs add karo
+        fruitPrices.put("Apple", 1.99);
+        fruitPrices.put("Banana", 0.59);
+        fruitPrices.put("Orange", 1.29);
+        
+        // Key se value access karo
+        Double applePrice = fruitPrices.get("Apple");
+        System.out.println("Apple ki price: $" + applePrice);  // $1.99
+        
+        // Saare key-value pairs pe loop chalao
+        System.out.println("Saare fruits ki prices:");
+        for (Map.Entry&lt;String, Double&gt; entry : fruitPrices.entrySet()) {
+            System.out.println(entry.getKey() + ": $" + entry.getValue());
+        }
+        
+        // Check karo ki key exist karti hai ya nahi
+        boolean containsBanana = fruitPrices.containsKey("Banana");
+        System.out.println("Banana ki price available hai? " + containsBanana);  // true
+        
+        // Key-value pair remove karo
+        fruitPrices.remove("Banana");
+        
+        // Size pata karo
+        System.out.println("Price wale fruits ki total count: " + fruitPrices.size());  // 2
+    }
+}</code></pre>
+
+        <h2>Collections Utility Class - Swiss Army Knife! 🔧</h2>
+        <p>Collections class static methods provide karta hai collections pe operate karne ke liye - ekdum multi-purpose tool ki tarah!</p>
+
+        <pre><code>import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class CollectionsUtilityExample {
+    public static void main(String[] args) {
+        List&lt;Integer&gt; numbers = new ArrayList&lt;&gt;();
+        numbers.add(5);
+        numbers.add(2);
+        numbers.add(8);
+        numbers.add(1);
+        
+        // List ko sort karo
+        Collections.sort(numbers);
+        System.out.println("Sorted numbers: " + numbers);  // [1, 2, 5, 8]
+        
+        // Binary search (sorted list pe)
+        int index = Collections.binarySearch(numbers, 5);
+        System.out.println("5 ka index: " + index);  // 2
+        
+        // Min aur max find karo
+        int min = Collections.min(numbers);
+        int max = Collections.max(numbers);
+        System.out.println("Min: " + min + ", Max: " + max);  // Min: 1, Max: 8
+        
+        // List ko reverse karo
+        Collections.reverse(numbers);
+        System.out.println("Reversed: " + numbers);  // [8, 5, 2, 1]
+        
+        // List ko shuffle karo
+        Collections.shuffle(numbers);
+        System.out.println("Shuffled: " + numbers);  // Random order
+        
+        // Unmodifiable list banao
+        List&lt;Integer&gt; unmodifiableList = Collections.unmodifiableList(numbers);
+        // unmodifiableList.add(10);  // Yeh error throw karega - read-only list!
+        
+        // Synchronized list banao
+        List&lt;Integer&gt; synchronizedList = Collections.synchronizedList(new ArrayList&lt;&gt;());
+        // Ab list thread-safe hai - multiple threads ek saath access kar sakte hain!
+    }
+}</code></pre>
+
+        <h2>Sahi Collection Choose Karna - Konsa Use Karein? 🤔</h2>
+
+        <table>
+            <tr>
+                <th>Agar Chahiye...</th>
+                <th>Use Karo...</th>
+            </tr>
+            <tr>
+                <td>Ordered collection with fast random access</td>
+                <td>ArrayList - index se jaldi access karne ke liye! 📏</td>
+            </tr>
+            <tr>
+                <td>Fast insertions/deletions in the middle</td>
+                <td>LinkedList - beech mein add/remove karne ke liye! 🚂</td>
+            </tr>
+            <tr>
+                <td>No duplicates and fast lookup</td>
+                <td>HashSet - unique items aur fast search ke liye! 🔍</td>
+            </tr>
+            <tr>
+                <td>No duplicates and sorted elements</td>
+                <td>TreeSet - sorted unique items ke liye! 📊</td>
+            </tr>
+            <tr>
+                <td>Key-value pairs with fast lookup</td>
+                <td>HashMap - key se value fast find karne ke liye! 🔑</td>
+            </tr>
+            <tr>
+                <td>Key-value pairs with sorted keys</td>
+                <td>TreeMap - sorted keys ke liye! 📑</td>
+            </tr>
+            <tr>
+                <td>FIFO (First-In-First-Out) behavior</td>
+                <td>Queue (LinkedList ya ArrayDeque) - line system ke liye! 🧍‍♂️🧍‍♀️</td>
+            </tr>
+            <tr>
+                <td>LIFO (Last-In-First-Out) behavior</td>
+                <td>Stack ya Deque (ArrayDeque) - plates stack karne jaisa! 🍽️</td>
+            </tr>
+            <tr>
+                <td>Elements ordered by priority</td>
+                <td>PriorityQueue - VIP system ke liye! 🌟</td>
+            </tr>
+        </table>
+
+        <h2>Yaad Rakhne Wali Baatein! 🧠</h2>
+        <ul>
+            <li>Collections Framework ek unified architecture hai objects ke groups ke saath kaam karne ke liye - organized tarika! 🗂️</li>
+            <li>Apni requirement ke hisaab se sahi collection choose karo (ordering, duplicates, access patterns) - right tool for the job! 🛠️</li>
+            <li>ArrayList random access ke liye fast hai, LinkedList insertions aur deletions ke liye fast hai - use case ke hisaab se choose karo! ⚡</li>
+            <li>Sets mein duplicates nahi ho sakte, Lists mein ho sakte hain - requirements ke hisaab se choose karo! 🚫</li>
+            <li>Maps key-value pairs store karte hain aur key se fast lookup provide karte hain - dictionary system! 📖</li>
+            <li>Collections utility class useful methods provide karta hai collections pe operate karne ke liye - helper functions! 🔧</li>
+            <li>Most collection implementations by default thread-safe nahi hoti; multi-threaded environments ke liye synchronized wrappers ya concurrent collections use karo! 🧵</li>
+            <li>Hamesha collections ke saath generics use karo type safety ensure karne ke liye - compile-time type checking! 🔒</li>
+        </ul>
+    </div>
+</body>
+
+</html>

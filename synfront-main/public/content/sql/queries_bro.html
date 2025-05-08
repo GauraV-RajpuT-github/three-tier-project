@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Writing SQL Queries - Bro Mode</title>
+    <style>
+        .content-container {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 100%;
+        }
+        h1 {
+            color: #004085;
+            border-bottom: 2px solid #004085;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #004085;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #0062cc;
+        }
+        .code-block {
+            background-color: #f8f9fa;
+            border-left: 4px solid #004085;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .note {
+            background-color: #e7f3fe;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .bro-tip {
+            background-color: #ffe0b2;
+            border-left: 4px solid #ff9800;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .example {
+            background-color: #f0f4c3;
+            border-left: 4px solid #cddc39;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #004085;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="content-container">
+        <h1>Writing SQL Queries - Extracting Data Like a Boss</h1>
+        
+        <p>
+            Yo, what's up data warriors! 🔥 It's time to level up your SQL game with some serious query skills. This is where the real power of databases comes in - getting exactly the data you want, when you want it. Let's crush this!
+        </p>
+
+        <h2>The SELECT Statement - Your Data Extraction Tool</h2>
+        
+        <p>
+            Think of SELECT as your data fishing rod. You cast it into your database ocean and pull out exactly the fish (data) you want.
+        </p>
+        
+        <div class="code-block">
+            <pre>
+SELECT column1, column2, ... 
+FROM table_name;
+            </pre>
+        </div>
+        
+        <p>Want ALL the columns? Use the wildcard (*) - but be careful with this power move:</p>
+        
+        <div class="code-block">
+            <pre>
+SELECT * 
+FROM table_name;
+            </pre>
+        </div>
+        
+        <div class="bro-tip">
+            <p><strong>Bro Tip:</strong> Using SELECT * in production code is like showing up to the gym and doing random exercises with no plan. Sure, you'll hit some muscles, but it's inefficient and might cause problems later. Be specific about what columns you actually need!</p>
+        </div>
+
+        <div class="example">
+            <h3>Real Talk Example:</h3>
+            <p>Let's say we have a table of gym members:</p>
+            <div class="code-block">
+                <pre>
+SELECT first_name, last_name, membership_type 
+FROM gym_members;
+                </pre>
+            </div>
+            <p>This gives you just the names and membership types - perfect for making a quick member list without all the extra baggage.</p>
+        </div>
+
+        <h2>WHERE Clause - Filtering Out the Weak</h2>
+        
+        <p>
+            The WHERE clause is your bouncer - it decides which rows get into your result set club and which ones stay out.
+        </p>
+        
+        <div class="code-block">
+            <pre>
+SELECT column1, column2, ... 
+FROM table_name
+WHERE condition;  -- Only rows that meet this condition get through
+            </pre>
+        </div>
+        
+        <h3>Operator Arsenal - Your Filtering Weapons</h3>
+        
+        <table>
+            <tr>
+                <th>Operator</th>
+                <th>What It Does</th>
+                <th>Example</th>
+            </tr>
+            <tr>
+                <td>=</td>
+                <td>Exact match</td>
+                <td>WHERE membership_type = 'Premium'</td>
+            </tr>
+            <tr>
+                <td>></td>
+                <td>Greater than</td>
+                <td>WHERE bench_press > 225</td>
+            </tr>
+            <tr>
+                <td><</td>
+                <td>Less than</td>
+                <td>WHERE body_fat < 15</td>
+            </tr>
+            <tr>
+                <td>>=</td>
+                <td>Greater than or equal</td>
+                <td>WHERE join_date >= '2023-01-01'</td>
+            </tr>
+            <tr>
+                <td><=</td>
+                <td>Less than or equal</td>
+                <td>WHERE monthly_fee <= 50</td>
+            </tr>
+            <tr>
+                <td><> or !=</td>
+                <td>Not equal (the haters)</td>
+                <td>WHERE status <> 'Inactive'</td>
+            </tr>
+            <tr>
+                <td>BETWEEN</td>
+                <td>In a range (inclusive)</td>
+                <td>WHERE age BETWEEN 25 AND 35</td>
+            </tr>
+            <tr>
+                <td>LIKE</td>
+                <td>Pattern matching</td>
+                <td>WHERE name LIKE 'B%' -- Names starting with B</td>
+            </tr>
+            <tr>
+                <td>IN</td>
+                <td>Matches any in a list</td>
+                <td>WHERE favorite_exercise IN ('Squat', 'Deadlift', 'Bench')</td>
+            </tr>
+            <tr>
+                <td>IS NULL</td>
+                <td>Finding the missing</td>
+                <td>WHERE trainer_id IS NULL -- No trainer assigned</td>
+            </tr>
+        </table>
+        
+        <div class="example">
+            <h3>Flex That SQL:</h3>
+            <div class="code-block">
+                <pre>
+SELECT first_name, last_name, weight_kg 
+FROM gym_members
+WHERE membership_type = 'Premium' AND attendance_rate > 80;
+                </pre>
+            </div>
+            <p>This query is like saying "Show me the dedicated premium members who actually show up to the gym." Perfect for finding your gym bros!</p>
+        </div>
+
+        <h2>ORDER BY - Sorting Your Gains</h2>
+        
+        <p>
+            ORDER BY is how you rank your results - from heaviest lifters to the lightweights, or alphabetically, or whatever order makes sense.
+        </p>
+        
+        <div class="code-block">
+            <pre>
+SELECT column1, column2, ... 
+FROM table_name
+ORDER BY column1 [ASC|DESC], column2 [ASC|DESC], ...;
+            </pre>
+        </div>
+        
+        <ul>
+            <li><strong>ASC</strong> - Ascending order (A to Z, smallest to largest) - this is the default</li>
+            <li><strong>DESC</strong> - Descending order (Z to A, largest to smallest) - for when you want the big dogs first</li>
+        </ul>
+        
+        <div class="example">
+            <h3>Example:</h3>
+            <div class="code-block">
+                <pre>
+SELECT first_name, last_name, max_deadlift 
+FROM gym_members
+ORDER BY max_deadlift DESC, last_name ASC;
+                </pre>
+            </div>
+            <p>This query ranks everyone by their deadlift PR (heaviest first), and if two people lift the same weight, it sorts them alphabetically by last name. Perfect for your gym's leaderboard!</p>
+        </div>
+
+        <h2>LIMIT - Because Ain't Nobody Got Time for All That Data</h2>
+        
+        <p>
+            LIMIT is like telling your spotter "just 5 more reps" - it caps how many results you get back.
+        </p>
+        
+        <div class="code-block">
+            <pre>
+-- MySQL, PostgreSQL, SQLite style
+SELECT column1, column2, ... 
+FROM table_name
+LIMIT number;
+
+-- SQL Server style
+SELECT TOP(number) column1, column2, ... 
+FROM table_name;
+            </pre>
+        </div>
+        
+        <div class="example">
+            <h3>Example:</h3>
+            <div class="code-block">
+                <pre>
+-- Find the top 5 bench pressers in the gym
+SELECT first_name, last_name, max_bench 
+FROM gym_members
+ORDER BY max_bench DESC
+LIMIT 5;
+                </pre>
+            </div>
+            <p>This is perfect for creating a "Top 5" list for your gym's wall of fame!</p>
+        </div>
+
+        <h2>Aggregate Functions - Calculating Your Gains</h2>
+        
+        <p>
+            These are like your fitness tracker stats but for your database - they crunch numbers and give you the highlights.
+        </p>
+        
+        <table>
+            <tr>
+                <th>Function</th>
+                <th>What It Does</th>
+                <th>When To Use It</th>
+            </tr>
+            <tr>
+                <td>COUNT()</td>
+                <td>Counts rows</td>
+                <td>How many members showed up today?</td>
+            </tr>
+            <tr>
+                <td>SUM()</td>
+                <td>Adds up values</td>
+                <td>Total weight lifted by all members this month</td>
+            </tr>
+            <tr>
+                <td>AVG()</td>
+                <td>Calculates average</td>
+                <td>Average bench press across all members</td>
+            </tr>
+            <tr>
+                <td>MIN()</td>
+                <td>Finds minimum</td>
+                <td>Lightest deadlift in the advanced class</td>
+            </tr>
+            <tr>
+                <td>MAX()</td>
+                <td>Finds maximum</td>
+                <td>Heaviest squat in the gym (gym record)</td>
+            </tr>
+        </table>
+        
+        <div class="example">
+            <h3>Example:</h3>
+            <div class="code-block">
+                <pre>
+SELECT 
+    membership_type,
+    COUNT(*) AS member_count,
+    AVG(monthly_fee) AS avg_fee,
+    MAX(max_deadlift) AS best_deadlift,
+    MIN(body_fat_percentage) AS lowest_body_fat
+FROM gym_members
+GROUP BY membership_type;
+                </pre>
+            </div>
+            <p>This query gives you a breakdown of stats by membership type - perfect for comparing how your premium members stack up against the basic plan folks!</p>
+        </div>
+
+        <h2>GROUP BY - Organizing Your Workout Split</h2>
+        
+        <p>
+            GROUP BY is like organizing members into different workout groups - it clusters similar rows together so you can analyze each group.
+        </p>
+        
+        <div class="code-block">
+            <pre>
+SELECT column_to_group_by, aggregate_function(column_to_calculate)
+FROM table_name
+GROUP BY column_to_group_by;
+            </pre>
+        </div>
+        
+        <div class="example">
+            <h3>Example:</h3>
+            <div class="code-block">
+                <pre>
+-- Find out how many members you have in each age group
+SELECT 
+    CASE 
+        WHEN age < 20 THEN 'Teens'
+        WHEN age BETWEEN 20 AND 29 THEN '20s'
+        WHEN age BETWEEN 30 AND 39 THEN '30s'
+        ELSE '40+'
+    END AS age_group,
+    COUNT(*) AS member_count
+FROM gym_members
+GROUP BY age_group;
+                </pre>
+            </div>
+            <p>This query segments your gym members by age group and counts how many are in each bracket. Perfect for targeted marketing!</p>
+        </div>
+
+        <h2>HAVING - When Some Groups Just Don't Make the Cut</h2>
+        
+        <p>
+            HAVING is like GROUP BY's bouncer friend - it filters out entire groups that don't meet certain criteria.
+        </p>
+        
+        <div class="code-block">
+            <pre>
+SELECT column_to_group_by, aggregate_function(column_to_calculate)
+FROM table_name
+GROUP BY column_to_group_by
+HAVING aggregate_condition;
+            </pre>
+        </div>
+        
+        <div class="example">
+            <h3>Example:</h3>
+            <div class="code-block">
+                <pre>
+-- Find trainers who have at least 5 clients
+SELECT 
+    trainer_id, 
+    trainer_name,
+    COUNT(*) AS client_count
+FROM gym_members
+WHERE trainer_id IS NOT NULL
+GROUP BY trainer_id, trainer_name
+HAVING COUNT(*) >= 5;
+                </pre>
+            </div>
+            <p>This query finds your most popular trainers - the ones with at least 5 clients. Time for a bonus!</p>
+        </div>
+
+        <div class="bro-tip">
+            <p><strong>Bro Science:</strong> WHERE filters individual rows before grouping, while HAVING filters groups after they're formed. It's like the difference between rejecting individual applicants vs. disbanding entire teams.</p>
+        </div>
+
+        <h2>JOINs - Combining Your Workout Routines</h2>
+        
+        <p>
+            JOINs are how you combine data from multiple tables - like how you combine different exercises into a complete workout routine.
+        </p>
+        
+        <div class="code-block">
+            <pre>
+SELECT a.column1, b.column2
+FROM table1 a
+JOIN table2 b ON a.common_field = b.common_field;
+            </pre>
+        </div>
+        
+        <div class="example">
+            <h3>Example:</h3>
+            <div class="code-block">
+                <pre>
+-- Get members with their trainer details
+SELECT 
+    m.first_name AS member_first, 
+    m.last_name AS member_last, 
+    t.first_name AS trainer_first,
+    t.last_name AS trainer_last,
+    t.specialization
+FROM gym_members m
+JOIN trainers t ON m.trainer_id = t.trainer_id;
+                </pre>
+            </div>
+            <p>This query matches each gym member with their trainer's details. Now you know who to blame for your sore legs!</p>
+        </div>
+
+        <h2>Subqueries - The Workout Within a Workout</h2>
+        
+        <p>
+            A subquery is a query inside another query - like doing a set of curls in the middle of your squats. It's a power move.
+        </p>
+        
+        <div class="code-block">
+            <pre>
+SELECT column1, column2
+FROM table1
+WHERE column3 IN (SELECT column3 FROM table2 WHERE condition);
+            </pre>
+        </div>
+        
+        <div class="example">
+            <h3>Example:</h3>
+            <div class="code-block">
+                <pre>
+-- Find members who can lift more than the average deadlift
+SELECT first_name, last_name, max_deadlift
+FROM gym_members
+WHERE max_deadlift > (
+    SELECT AVG(max_deadlift) 
+    FROM gym_members
+);
+                </pre>
+            </div>
+            <p>This query finds the members who are above average in deadlifting. The subquery calculates the average, and the main query finds everyone above that number. These are your gym's strong bois!</p>
+        </div>
+
+        <h2>Common Table Expressions (CTEs) - Your Prep Work</h2>
+        
+        <p>
+            CTEs are like meal prepping for the week - you do the work upfront to make things easier later.
+        </p>
+        
+        <div class="code-block">
+            <pre>
+WITH cte_name AS (
+    SELECT column1, column2
+    FROM table1
+    WHERE condition
+)
+SELECT * FROM cte_name;
+            </pre>
+        </div>
+        
+        <div class="example">
+            <h3>Example:</h3>
+            <div class="code-block">
+                <pre>
+-- Find members who attend more frequently than their membership tier average
+WITH tier_averages AS (
+    SELECT 
+        membership_type, 
+        AVG(attendance_rate) AS avg_attendance
+    FROM gym_members
+    GROUP BY membership_type
+)
+SELECT 
+    m.first_name,
+    m.last_name,
+    m.membership_type,
+    m.attendance_rate,
+    ta.avg_attendance AS tier_average
+FROM gym_members m
+JOIN tier_averages ta ON m.membership_type = ta.membership_type
+WHERE m.attendance_rate > ta.avg_attendance
+ORDER BY m.attendance_rate DESC;
+                </pre>
+            </div>
+            <p>This query first calculates the average attendance for each membership tier, then finds members who show up more often than their tier's average. These are your dedicated bros who deserve a shoutout!</p>
+        </div>
+
+        <h2>UNION - Combining Different Workout Plans</h2>
+        
+        <p>
+            UNION combines results from multiple SELECT statements - like how you might combine your chest day and back day when you're short on time.
+        </p>
+        
+        <div class="code-block">
+            <pre>
+SELECT column1, column2 FROM table1
+UNION [ALL]
+SELECT column1, column2 FROM table2;
+            </pre>
+        </div>
+        
+        <ul>
+            <li><strong>UNION</strong> - Removes duplicate results (like doing 3 sets of 10 instead of 6 sets of 5)</li>
+            <li><strong>UNION ALL</strong> - Keeps all results including duplicates (more volume, bro!)</li>
+        </ul>
+        
+        <div class="example">
+            <h3>Example:</h3>
+            <div class="code-block">
+                <pre>
+-- Combined list of people who can access the gym
+SELECT member_id, first_name, last_name, 'Member' AS type
+FROM gym_members
+WHERE status = 'Active'
+UNION
+SELECT staff_id, first_name, last_name, 'Staff' AS type
+FROM gym_staff
+WHERE employment_status = 'Current';
+                </pre>
+            </div>
+            <p>This query creates a master list of everyone who can access the gym - both members and staff. Perfect for your door security system!</p>
+        </div>
+
+        <h2>SQL Gains - Best Practices for Maximum Results</h2>
+        
+        <div class="bro-tip">
+            <p><strong>Bro Wisdom for SQL Gains:</strong></p>
+            <ul>
+                <li><strong>Don't skip leg day or indexes</strong> - Make sure your frequently queried columns have indexes</li>
+                <li><strong>Form matters</strong> - Format your SQL with proper indentation and line breaks</li>
+                <li><strong>Don't ego lift with SELECT *</strong> - Only select the columns you actually need</li>
+                <li><strong>Use a spotter (parameters)</strong> - Prevent SQL injection by using parameterized queries</li>
+                <li><strong>Progressive overload</strong> - Test your queries with increasingly large datasets</li>
+                <li><strong>Recovery is important</strong> - Add comments to complex queries so others (including future you) understand them</li>
+                <li><strong>Proper nutrition (data types)</strong> - Use the right data types for your columns</li>
+            </ul>
+        </div>
+        
+        <p>
+            That's it for SQL queries, bro! You've now got the knowledge to extract exactly the data you need from your database. Remember, just like in the gym, consistency and good form are key. Keep practicing these patterns and soon you'll be the SQL beast everyone comes to for help! 💪
+        </p>
+    </div>
+</body>
+</html>

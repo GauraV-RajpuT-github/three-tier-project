@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP Control Flow - Bro Mode</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #4F5B93;
+        }
+        pre {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 15px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #8892BF;
+        }
+        .output {
+            background-color: #f1f1f1;
+            border-left: 4px solid #4CAF50;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+        .tip {
+            background-color: #e6f7ff;
+            border-left: 4px solid #1890ff;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>PHP Control Flow - Bro Mode 😎</h1>
+
+    <h2>Control Flow Kya Hota Hai? 🤔</h2>
+    <p>Bro, control flow statements se tum apne code ke execution ko control kar sakte ho based on certain conditions. PHP mein ye control flow structures hai:</p>
+    <ul>
+        <li>Conditional statements (if, else, elseif, switch) - Conditions check karne ke liye</li>
+        <li>Loops (for, while, do-while, foreach) - Code ko baar baar run karne ke liye</li>
+        <li>Jump statements (break, continue, return) - Flow ko change karne ke liye</li>
+    </ul>
+
+    <h2>Conditional Statements 🔀</h2>
+    
+    <h3>If Statement</h3>
+    <p>Bro, <code>if</code> statement tab code execute karta hai jab condition true hoti hai:</p>
+    
+    <pre><code>&lt;?php
+$age = 20;
+
+if ($age >= 18) {
+    echo "Tum adult ho.";
+}
+?&gt;</code></pre>
+
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Tum adult ho.</p>
+    </div>
+
+    <h3>If-Else Statement</h3>
+    <p>Bro, <code>if-else</code> statement ek code block execute karta hai jab condition true hoti hai, aur dusra block jab false hoti hai:</p>
+    
+    <pre><code>&lt;?php
+$age = 15;
+
+if ($age >= 18) {
+    echo "Tum adult ho.";
+} else {
+    echo "Tum minor ho.";
+}
+?&gt;</code></pre>
+
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Tum minor ho.</p>
+    </div>
+
+    <h3>If-Elseif-Else Statement</h3>
+    <p>Bro, <code>if-elseif-else</code> statement se tum multiple conditions check kar sakte ho:</p>
+    
+    <pre><code>&lt;?php
+$score = 85;
+
+if ($score >= 90) {
+    echo "Grade: A";
+} elseif ($score >= 80) {
+    echo "Grade: B";
+} elseif ($score >= 70) {
+    echo "Grade: C";
+} elseif ($score >= 60) {
+    echo "Grade: D";
+} else {
+    echo "Grade: F";
+}
+?&gt;</code></pre>
+
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Grade: B</p>
+    </div>
+
+    <h3>Nested If Statements</h3>
+    <p>Bro, tum ek <code>if</code> statement ke andar dusra <code>if</code> statement bhi rakh sakte ho:</p>
+    
+    <pre><code>&lt;?php
+$age = 25;
+$hasLicense = true;
+
+if ($age >= 18) {
+    echo "Tum adult ho. ";
+    
+    if ($hasLicense) {
+        echo "Tum drive kar sakte ho.";
+    } else {
+        echo "Tumhe drive karne ke liye license chahiye.";
+    }
+} else {
+    echo "Tum minor ho. Tum drive nahi kar sakte.";
+}
+?&gt;</code></pre>
+
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Tum adult ho. Tum drive kar sakte ho.</p>
+    </div>
+
+    <h3>Switch Statement</h3>
+    <p>Bro, <code>switch</code> statement different conditions ke basis par different actions perform karne ke liye use hota hai:</p>
+    
+    <pre><code>&lt;?php
+$day = "Monday";
+
+switch ($day) {
+    case "Monday":
+        echo "Work week ki shuruat hai.";
+        break;
+    case "Tuesday":
+    case "Wednesday":
+    case "Thursday":
+        echo "Work day hai.";
+        break;
+    case "Friday":
+        echo "Weekend almost aa gaya hai.";
+        break;
+    case "Saturday":
+    case "Sunday":
+        echo "Weekend hai bro!";
+        break;
+    default:
+        echo "Invalid day.";
+}
+?&gt;</code></pre>
+
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Work week ki shuruat hai.</p>
+    </div>
+
+    <div class="tip">
+        <p><strong>Important Tip:</strong> Bro, har case ke baad <code>break</code> statement lagana mat bhulna. Agar break nahi lagaya to PHP next cases ke statements bhi execute karega.</p>
+    </div>
+
+    <h3>Ternary Operator</h3>
+    <p>Bro, ternary operator <code>if-else</code> statement ka shorthand hai:</p>
+    
+    <pre><code>&lt;?php
+$age = 20;
+
+// Syntax: condition ? true_wala_expression : false_wala_expression
+$status = ($age >= 18) ? "adult" : "minor";
+echo "Tum ek $status ho.";
+
+// Nested ternary operators (readability ke liye dhyan se use karo)
+$score = 85;
+$grade = ($score >= 90) ? "A" : (($score >= 80) ? "B" : (($score >= 70) ? "C" : (($score >= 60) ? "D" : "F")));
+echo "Grade: $grade";
+?&gt;</code></pre>
+
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Tum ek adult ho.<br>
+        Grade: B</p>
+    </div>
+
+    <h3>Null Coalescing Operator</h3>
+    <p>Bro, null coalescing operator (<code>??</code>) first operand return karta hai agar wo exist karta hai aur NULL nahi hai; warna second operand return karta hai:</p>
+    
+    <pre><code>&lt;?php
+// Assume $_GET['user'] set nahi hai
+$username = $_GET['user'] ?? 'Guest';
+echo "Hello, $username";
+
+// Null coalescing operator ko chain karna
+$username = $_GET['user'] ?? $_POST['user'] ?? 'Guest';
+echo "Hello, $username";
+?&gt;</code></pre>
+
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Hello, Guest<br>
+        Hello, Guest</p>
+    </div>
+
+    <h2>Loops - Code Ko Baar Baar Run Karna 🔄</h2>
+    <p>Bro, loops se tum ek code block ko baar baar execute kar sakte ho.</p>
+    
+    <h3>For Loop</h3>
+    <p>Bro, <code>for</code> loop tab use karo jab tumhe pehle se pata ho ki code kitni baar run karna hai:</p>
+    
+    <pre><code>&lt;?php
+// Syntax: for (initialization; condition; increment/decrement)
+for ($i = 1; $i <= 5; $i++) {
+    echo "Number: $i&lt;br&gt;";
+}
+?&gt;</code></pre>
+
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Number: 1<br>
+        Number: 2<br>
+        Number: 3<br>
+        Number: 4<br>
+        Number: 5</p>
+    </div>
+
+    <h3>While Loop</h3>
+    <p>Bro, <code>while</code> loop tab tak code execute karta hai jab tak condition true hai:</p>
+    
+    <pre><code>&lt;?php
+$i = 1;
+while ($i <= 5) {
+    echo "Number: $i&lt;br&gt;";
+    $i++;
+}
+?&gt;</code></pre>
+
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Number: 1<br>
+        Number: 2<br>
+        Number: 3<br>
+        Number: 4<br>
+        Number: 5</p>
+    </div>
+
+    <h3>Do-While Loop</h3>
+    <p>Bro, <code>do-while</code> loop <code>while</code> loop jaisa hai, lekin ye code block ko ek baar zaroor execute karega, phir condition check karega:</p>
+    
+    <pre><code>&lt;?php
+$i = 1;
+do {
+    echo "Number: $i&lt;br&gt;";
+    $i++;
+} while ($i <= 5);
+
+// Even if condition initially false hai, code ek baar execute hoga
+$j = 10;
+do {
+    echo "Ye ek baar print hoga even though j > 5 hai.";
+} while ($j <= 5);
+?&gt;</code></pre>
+
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Number: 1<br>
+        Number: 2<br>
+        Number: 3<br>
+        Number: 4<br>
+        Number: 5<br>
+        Ye ek baar print hoga even though j > 5 hai.</p>
+    </div>
+
+    <h3>Foreach Loop</h3>
+    <p>Bro, <code>foreach</code> loop arrays ke through iterate karne ke liye use hota hai:</p>
+    
+    <pre><code>&lt;?php
+// Indexed array
+$colors = ["red", "green", "blue"];
+
+foreach ($colors as $color) {
+    echo "Color: $color&lt;br&gt;";
+}
+
+// Associative array
+$person = [
+    "name" => "Rahul",
+    "age" => 25,
+    "city" => "Mumbai"
+];
+
+foreach ($person as $key => $value) {
+    echo "$key: $value&lt;br&gt;";
+}
+?&gt;</code></pre>
+
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Color: red<br>
+        Color: green<br>
+        Color: blue<br>
+        name: Rahul<br>
+        age: 25<br>
+        city: Mumbai</p>
+    </div>
+
+    <h2>Jump Statements - Flow Ko Control Karna 🦘</h2>
+    <p>Bro, jump statements se tum loop ya conditional statement ke flow ko alter kar sakte ho.</p>
+    
+    <h3>Break Statement</h3>
+    <p>Bro, <code>break</code> statement loop ya switch statement ke execution ko terminate karta hai:</p>
+    
+    <pre><code>&lt;?php
+// For loop mein break
+for ($i = 1; $i <= 10; $i++) {
+    if ($i == 6) {
+        break;  // Jab i equals 6 ho to loop se bahar nikal jao
+    }
+    echo "Number: $i&lt;br&gt;";
+}
+
+// Switch statement mein break
+$fruit = "apple";
+switch ($fruit) {
+    case "apple":
+        echo "Ye apple hai.";
+        break;  // Switch statement se bahar nikal jao
+    case "banana":
+        echo "Ye banana hai.";
+        break;
+    default:
+        echo "Ye kuch aur hai.";
+}
+?&gt;</code></pre>
+
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Number: 1<br>
+        Number: 2<br>
+        Number: 3<br>
+        Number: 4<br>
+        Number: 5<br>
+        Ye apple hai.</p>
+    </div>
+
+    <h3>Continue Statement</h3>
+    <p>Bro, <code>continue</code> statement loop ke current iteration ko skip karke next iteration pe jump karta hai:</p>
+    
+    <pre><code>&lt;?php
+// Even numbers ko skip karo
+for ($i = 1; $i <= 10; $i++) {
+    if ($i % 2 == 0) {
+        continue;  // Even numbers ke liye loop body ke baaki part ko skip karo
+    }
+    echo "Odd number: $i&lt;br&gt;";
+}
+?&gt;</code></pre>
+
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Odd number: 1<br>
+        Odd number: 3<br>
+        Odd number: 5<br>
+        Odd number: 7<br>
+        Odd number: 9</p>
+    </div>
+
+    <h3>Return Statement</h3>
+    <p>Bro, <code>return</code> statement function se bahar nikalne aur value return karne ke liye use hota hai:</p>
+    
+    <pre><code>&lt;?php
+function add($a, $b) {
+    return $a + $b;  // Sum return karo aur function se bahar niklo
+    echo "Ye line kabhi execute nahi hogi.";
+}
+
+$result = add(5, 3);
+echo "Result: $result";
+?&gt;</code></pre>
+
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Result: 8</p>
+    </div>
+
+    <h2>Control Structures Ka Alternative Syntax 🔄</h2>
+    <p>Bro, PHP mein control structures ke liye alternative syntax bhi hai, jo especially useful hai jab PHP ko HTML ke saath mix karte ho:</p>
+    
+    <pre><code>&lt;?php
+$user_logged_in = true;
+?&gt;
+
+&lt;!-- If-else ke liye alternative syntax --&gt;
+&lt;?php if ($user_logged_in): ?&gt;
+    &lt;h2&gt;Welcome, User!&lt;/h2&gt;
+    &lt;p&gt;Tum logged in ho.&lt;/p&gt;
+&lt;?php else: ?&gt;
+    &lt;h2&gt;Welcome, Guest!&lt;/h2&gt;
+    &lt;p&gt;Please log in karo.&lt;/p&gt;
+&lt;?php endif; ?&gt;
+
+&lt;!-- Foreach ke liye alternative syntax --&gt;
+&lt;?php
+$fruits = ["Apple", "Banana", "Cherry"];
+?&gt;
+&lt;ul&gt;
+    &lt;?php foreach ($fruits as $fruit): ?&gt;
+        &lt;li&gt;&lt;?php echo $fruit; ?&gt;&lt;/li&gt;
+    &lt;?php endforeach; ?&gt;
+&lt;/ul&gt;
+
+&lt;!-- Switch ke liye alternative syntax --&gt;
+&lt;?php
+$day = "Monday";
+switch ($day):
+    case "Monday":
+        echo "Aaj Monday hai.";
+        break;
+    case "Tuesday":
+        echo "Aaj Tuesday hai.";
+        break;
+    default:
+        echo "Aaj koi aur din hai.";
+endswitch;
+?&gt;</code></pre>
+
+    <h2>Practical Examples 🛠️</h2>
+    
+    <h3>Form Validation</h3>
+    <p>Bro, form validation ke liye control flow ka use:</p>
+    
+    <pre><code>&lt;?php
+// Check karo ki form submit hua hai ya nahi
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Error array initialize karo
+    $errors = [];
+    
+    // Name validate karo
+    if (empty($_POST["name"])) {
+        $errors[] = "Name required hai";
+    } elseif (strlen($_POST["name"]) < 3) {
+        $errors[] = "Name kam se kam 3 characters hona chahiye";
+    }
+    
+    // Email validate karo
+    if (empty($_POST["email"])) {
+        $errors[] = "Email required hai";
+    } elseif (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
+        $errors[] = "Invalid email format";
+    }
+    
+    // Errors ya success message display karo
+    if (!empty($errors)) {
+        echo "&lt;ul&gt;";
+        foreach ($errors as $error) {
+            echo "&lt;li&gt;$error&lt;/li&gt;";
+        }
+        echo "&lt;/ul&gt;";
+    } else {
+        echo "Form successfully submit ho gaya!";
+    }
+}
+?&gt;
+
+&lt;form method="post" action="&lt;?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?&gt;"&gt;
+    &lt;label for="name"&gt;Name:&lt;/label&gt;
+    &lt;input type="text" id="name" name="name"&gt;&lt;br&gt;&lt;br&gt;
+    
+    &lt;label for="email"&gt;Email:&lt;/label&gt;
+    &lt;input type="email" id="email" name="email"&gt;&lt;br&gt;&lt;br&gt;
+    
+    &lt;input type="submit" value="Submit"&gt;
+&lt;/form&gt;</code></pre>
+
+    <h3>Pagination</h3>
+    <p>Bro, pagination ke liye control flow ka use:</p>
+    
+    <pre><code>&lt;?php
+// Sample data (real application mein, ye database se aayega)
+$items = [];
+for ($i = 1; $i <= 100; $i++) {
+    $items[] = "Item $i";
+}
+
+// Pagination settings
+$items_per_page = 10;
+$total_items = count($items);
+$total_pages = ceil($total_items / $items_per_page);
+
+// Query string se current page get karo
+$current_page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+
+// Ensure current page valid hai
+if ($current_page < 1) {
+    $current_page = 1;
+} elseif ($current_page > $total_pages) {
+    $current_page = $total_pages;
+}
+
+// Current page ke items ke liye start index calculate karo
+$start_index = ($current_page - 1) * $items_per_page;
+
+// Current page ke items get karo
+$current_items = array_slice($items, $start_index, $items_per_page);
+
+// Items display karo
+echo "&lt;h3&gt;Page $current_page of $total_pages&lt;/h3&gt;";
+echo "&lt;ul&gt;";
+foreach ($current_items as $item) {
+    echo "&lt;li&gt;$item&lt;/li&gt;";
+}
+echo "&lt;/ul&gt;";
+
+// Pagination links display karo
+echo "&lt;div&gt;";
+if ($current_page > 1) {
+    echo "&lt;a href='?page=" . ($current_page - 1) . "'&gt;Previous&lt;/a&gt; ";
+}
+
+for ($i = 1; $i <= $total_pages; $i++) {
+    if ($i == $current_page) {
+        echo "&lt;strong&gt;$i&lt;/strong&gt; ";
+    } else {
+        echo "&lt;a href='?page=$i'&gt;$i&lt;/a&gt; ";
+    }
+}
+
+if ($current_page < $total_pages) {
+    echo "&lt;a href='?page=" . ($current_page + 1) . "'&gt;Next&lt;/a&gt;";
+}
+echo "&lt;/div&gt;";
+?&gt;</code></pre>
+
+    <h2>Best Practices 💯</h2>
+    <ul>
+        <li><strong>Simple rakho:</strong> Bro, deeply nested control structures se bacho kyunki isse code read aur maintain karna mushkil ho jata hai.</li>
+        <li><strong>Meaningful variable names use karo:</strong> Isse tumhare conditions zyada readable ho jate hai.</li>
+        <li><strong>Multiple if-elseif ki jagah switch use karo:</strong> Jab ek hi variable ko multiple values ke against compare kar rahe ho, to switch statement zyada clear hota hai.</li>
+        <li><strong>Loop conditions ke saath careful raho:</strong> Ensure karo ki tumhare loops eventually terminate honge to avoid infinite loops.</li>
+        <li><strong>Alternative syntax use karo:</strong> Jab PHP ko HTML ke saath mix kar rahe ho, to control structures ke liye alternative syntax tumhare code ko zyada readable bana sakti hai.</li>
+        <li><strong>Hamesha curly braces use karo:</strong> Even single-line blocks ke liye, curly braces use karna tumhare code ko more maintainable aur less error-prone banata hai.</li>
+    </ul>
+
+    <h2>Conclusion 🏁</h2>
+    <p>Bro, ab tum PHP control flow ke master ban gaye ho! In concepts ko use karke tum powerful aur dynamic web applications bana sakte ho. Next step mein, hum functions ke baare mein seekhenge. Keep coding! 🚀</p>
+</body>
+</html>

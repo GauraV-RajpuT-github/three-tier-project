@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .content-container {
+            font-family: 'Comic Sans MS', cursive;
+            line-height: 1.6;
+            color: #333;
+            padding: 0 30px;
+        }
+
+        .content-container h2 {
+            color: #333;
+            font-size: 28px;
+            margin: 30px 0;
+            padding-bottom: 10px;
+            border-bottom: none;
+            text-shadow: 1px 1px 2px rgba(255, 140, 0, 0.2);
+        }
+
+        .content-container h3 {
+            color: #FF8C00;
+            font-size: 22px;
+            margin: 25px 0 15px 0;
+        }
+
+        .content-container pre {
+            background-color: #fff8f0;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 25px 0;
+            border: 2px solid #FFD700;
+            box-shadow: 0 2px 4px rgba(255, 140, 0, 0.1);
+            font-size: 15px;
+        }
+
+        .content-container code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #FF4500;
+        }
+
+        .content-container ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 25px 0;
+        }
+
+        .content-container li {
+            margin: 15px 0;
+            position: relative;
+            padding-left: 25px;
+            font-size: 16px;
+        }
+
+        .content-container li:before {
+            content: "🔥";
+            position: absolute;
+            left: 0;
+        }
+
+        .content-container p {
+            margin: 20px 0;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .content-container code {
+            background-color: #fff8f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content-container">
+        <h2>Standard Template Library (STL) - Ready-Made Maal! 🧰</h2>
+
+        <p>Bhai, STL matlab Standard Template Library C++ ka ready-made maal hai! Saare common data structures aur functions pre-built milte hain - lists, stacks, arrays sab kuch! Bilkul ready-made furniture ki tarah, khud se banane ki tension nahi! 🪑</p>
+
+        <h2>Containers - Data Store Karne Ke Dabba! 📦</h2>
+        <p>Containers matlab data store karne ke dabba. STL mein alag-alag type ke containers milte hain:</p>
+
+        <h3>Sequence Containers - Order Maintain Karne Wale! 📋</h3>
+        <ul>
+            <li><code>vector</code>: Dynamic array jo khud resize ho jata hai - rubber band ki tarah stretch ho jata hai! 🧠</li>
+            <li><code>list</code>: Doubly-linked list - dono taraf se connected train coaches ki tarah! 🚂</li>
+            <li><code>deque</code>: Double-ended queue - dono side se entry-exit wali line! 🚶‍♂️</li>
+            <li><code>array</code>: Static array (C++11) - fixed size ka dabba! 📏</li>
+            <li><code>forward_list</code>: Singly-linked list (C++11) - ek taraf se connected train coaches! 🚂</li>
+        </ul>
+
+        <h3>Associative Containers - Key-Value Pairs! 🔑</h3>
+        <ul>
+            <li><code>set</code>: Unique keys ka collection, sorted - VIP guest list jaisa! 🎭</li>
+            <li><code>map</code>: Key-value pairs, sorted by keys - phone contacts list jaisa! 📱</li>
+            <li><code>multiset</code>: Keys ka collection with duplicates - general admission tickets! 🎟️</li>
+            <li><code>multimap</code>: Key-value pairs with duplicates - same name, different numbers! 📞</li>
+        </ul>
+
+        <h3>Unordered Associative Containers - Hash Based! 🎲</h3>
+        <ul>
+            <li><code>unordered_set</code>: Unique keys, hashed - random VIP list! 🎭</li>
+            <li><code>unordered_map</code>: Key-value pairs, hashed - random contacts! 📱</li>
+            <li><code>unordered_multiset</code>: Keys with duplicates, hashed - random tickets! 🎟️</li>
+            <li><code>unordered_multimap</code>: Key-value pairs with duplicates, hashed - random same names! 📞</li>
+        </ul>
+
+        <h3>Container Adapters - Special Purpose Containers! 🧩</h3>
+        <ul>
+            <li><code>stack</code>: LIFO (Last-In, First-Out) - plates ka stack! 🍽️</li>
+            <li><code>queue</code>: FIFO (First-In, First-Out) - movie ticket line! 🎬</li>
+            <li><code>priority_queue</code>: Priority wali queue - VIP line! 👑</li>
+        </ul>
+
+        <h2>Containers Kaise Use Karte Hain? 🤔</h2>
+
+        <h3>Vector - Sabse Popular Container! 🌟</h3>
+        <pre><code>#include &lt;vector&gt;
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    // Vector banao
+    vector&lt;int&gt; numbers;  // Int type ka empty vector
+
+    // Elements add karo - peeche se jodna
+    numbers.push_back(10);  // [10]
+    numbers.push_back(20);  // [10, 20]
+    numbers.push_back(30);  // [10, 20, 30]
+
+    // Elements access karo
+    cout << "First element: " << numbers[0] << endl;  // 10
+    cout << "Second element: " << numbers[1] << endl;  // 20
+    cout << "Third element: " << numbers.at(2) << endl;  // 30 (safe access)
+
+    // Vector mein loop karo
+    cout << "All elements: ";
+    for (int num : numbers) {  // Range-based for loop (C++11)
+        cout << num << " ";  // 10 20 30
+    }
+    cout << endl;
+
+    // Size aur capacity check karo
+    cout << "Size: " << numbers.size() << endl;  // 3
+    cout << "Capacity: " << numbers.capacity() << endl;  // Kitna space allocated hai
+
+    // Last element hatao
+    numbers.pop_back();  // [10, 20]
+
+    // Saare elements clear karo
+    numbers.clear();  // []
+
+    return 0;
+}</code></pre>
+
+        <h3>Map - Key-Value Pairs Store Karne Ke Liye! 🗝️</h3>
+        <pre><code>#include &lt;map&gt;
+#include &lt;string&gt;
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    // Map banao - phone book jaisa
+    map&lt;string, int&gt; ages;  // Name -> Age mapping
+
+    // Elements insert karo
+    ages["Alice"] = 30;  // Alice ki age 30
+    ages["Bob"] = 25;    // Bob ki age 25
+    ages.insert(make_pair("Charlie", 35));  // Charlie ki age 35
+
+    // Elements access karo
+    cout << "Alice's age: " << ages["Alice"] << endl;  // 30
+    cout << "Bob's age: " << ages.at("Bob") << endl;   // 25 (safe access)
+
+    // Check karo key exist karti hai ya nahi
+    if (ages.find("David") == ages.end()) {
+        cout << "David not found in the map" << endl;  // David nahi mila
+    }
+
+    // Map mein loop karo
+    cout << "All ages:" << endl;
+    for (const auto& pair : ages) {  // C++11 auto and range-based for
+        cout << pair.first << ": " << pair.second << endl;  // Name: Age
+    }
+
+    // Size check karo
+    cout << "Size: " << ages.size() << endl;  // 3
+
+    // Element remove karo
+    ages.erase("Bob");  // Bob ko hatao
+
+    return 0;
+}</code></pre>
+
+        <h2>Algorithms - Ready-Made Functions! 🛠️</h2>
+        <p>STL mein bahut saare algorithms milte hain jo containers par kaam karte hain - bilkul Swiss Army knife ki tarah!</p>
+
+        <h3>Common Algorithms - Roz Ke Kaam! 🔧</h3>
+        <ul>
+            <li><code>sort</code>: Elements ko sort karo - cards arrange karne jaisa! 🃏</li>
+            <li><code>find</code>: Element dhundho - khoi hui chabi dhundhna! 🔍</li>
+            <li><code>count</code>: Value kitni baar hai, count karo - attendance count karna! 🧮</li>
+            <li><code>copy</code>: Elements ko ek jagah se dusri jagah copy karo - xerox machine! 📠</li>
+            <li><code>for_each</code>: Har element par function apply karo - assembly line! 🏭</li>
+            <li><code>transform</code>: Function apply karke result store karo - factory production! 🏗️</li>
+            <li><code>accumulate</code>: Elements ka sum nikalo - bill total karna! 💰</li>
+            <li><code>reverse</code>: Elements ka order ulta karo - uno reverse card! 🔄</li>
+        </ul>
+
+        <h3>Algorithms Kaise Use Karte Hain? 🤔</h3>
+        <pre><code>#include &lt;algorithm&gt;
+#include &lt;vector&gt;
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    vector&lt;int&gt; numbers = {5, 2, 8, 1, 9, 3, 7, 4, 6};  // Unsorted numbers
+
+    // Sort karo - chote se bade
+    sort(numbers.begin(), numbers.end());
+    cout << "Sorted: ";
+    for (int num : numbers) {
+        cout << num << " ";  // 1 2 3 4 5 6 7 8 9
+    }
+    cout << endl;
+
+    // Find karo - element dhundho
+    auto it = find(numbers.begin(), numbers.end(), 7);
+    if (it != numbers.end()) {
+        cout << "Found 7 at position: " << (it - numbers.begin()) << endl;  // Position 6
+    }
+
+    // Count karo - kitne 3 hain?
+    int count_of_3 = count(numbers.begin(), numbers.end(), 3);
+    cout << "Count of 3: " << count_of_3 << endl;  // 1
+
+    // For each - har element ko double karo
+    cout << "Doubled values: ";
+    for_each(numbers.begin(), numbers.end(), [](int num) {
+        cout << num * 2 << " ";  // Har number * 2
+    });
+    cout << endl;
+
+    // Reverse karo - ulta order
+    reverse(numbers.begin(), numbers.end());
+    cout << "Reversed: ";
+    for (int num : numbers) {
+        cout << num << " ";  // 9 8 7 6 5 4 3 2 1
+    }
+    cout << endl;
+
+    return 0;
+}</code></pre>
+
+        <h2>Iterators - Container Mein Ghoomne Ke Liye! 👉</h2>
+        <p>Iterators container elements ko point karte hain aur unme navigate karte hain - bilkul GPS ki tarah!</p>
+
+        <h3>Iterator Types - Alag Alag Pointers! 🧭</h3>
+        <ul>
+            <li><code>begin()</code>: Starting point ka iterator - race ki starting line! 🏁</li>
+            <li><code>end()</code>: End ke baad ka iterator (past-the-end) - finish line ke baad! 🏁</li>
+            <li><code>rbegin()</code>: Reverse iterator for beginning (last element) - ulta start! 🔄</li>
+            <li><code>rend()</code>: Reverse iterator for end (before first) - ulta end! 🔄</li>
+        </ul>
+
+        <h3>Iterators Kaise Use Karte Hain? 🤔</h3>
+        <pre><code>#include &lt;vector&gt;
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    vector&lt;int&gt; numbers = {10, 20, 30, 40, 50};  // 5 numbers
+
+    // Forward traversal - aage se peeche
+    cout << "Forward traversal: ";
+    for (vector&lt;int&gt;::iterator it = numbers.begin(); it != numbers.end(); ++it) {
+        cout << *it << " ";  // 10 20 30 40 50
+    }
+    cout << endl;
+
+    // Backward traversal - peeche se aage
+    cout << "Backward traversal: ";
+    for (vector&lt;int&gt;::reverse_iterator rit = numbers.rbegin(); rit != numbers.rend(); ++rit) {
+        cout << *rit << " ";  // 50 40 30 20 10
+    }
+    cout << endl;
+
+    // Auto use karke (C++11) - typing kam karo!
+    cout << "Using auto: ";
+    for (auto it = numbers.begin(); it != numbers.end(); ++it) {
+        cout << *it << " ";  // 10 20 30 40 50
+    }
+    cout << endl;
+
+    return 0;
+}</code></pre>
+
+        <h2>Yaad Rakhne Wali Baatein! 🧠</h2>
+        <ul>
+            <li>Sahi header files include karna na bhoolna - tools ki toolbox! 🧰</li>
+            <li>Apne kaam ke hisaab se sahi container choose karo - sahi tool for sahi kaam! 🔨</li>
+            <li>Common operations ke liye algorithms use karo - ready-made solutions! 🧩</li>
+            <li>Iterators se uniform way mein container elements access karo - universal remote! 📱</li>
+            <li>STL performance, type safety, aur reusability ke liye designed hai - premium quality! 💯</li>
+            <li>Modern C++ (C++11 and later) mein aur bhi features hain - latest models! 🚀</li>
+        </ul>
+    </div>
+</body>
+
+</html>

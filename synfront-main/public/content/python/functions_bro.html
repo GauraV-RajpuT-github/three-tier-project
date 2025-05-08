@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Functions - Bro Mode</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        pre {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 15px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #e83e8c;
+        }
+        .output {
+            background-color: #f1f1f1;
+            border-left: 4px solid #4CAF50;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+        .tip {
+            background-color: #e6f7ff;
+            border-left: 4px solid #1890ff;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Python Functions - Bro Mode 😎</h1>
+
+    <h2>Kya hai ye Functions? 🤔</h2>
+    <p>Bro, functions matlab reusable code blocks! Baar baar same cheez likhne se better hai ek baar likh ke use karo jab chahiye. Samjhe?</p>
+    
+    <h3>Functions ke fayde:</h3>
+    <ul>
+        <li>Code reuse kar sakte ho - ek baar likho, hazaar baar use karo!</li>
+        <li>Complex problems ko chote-chote parts mein break kar sakte ho</li>
+        <li>Code organize rehta hai, bro - clean and sexy!</li>
+    </ul>
+
+    <h2>Function kaise banate hai? 💪</h2>
+    <p>Bro, function banane ke liye <code>def</code> keyword use karte hai. Simple!</p>
+    
+    <pre><code>def mera_function():
+    print("Aur bhai, kya haal hai?")
+
+# Function ko call karne ke liye
+mera_function()</code></pre>
+    
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Aur bhai, kya haal hai?</p>
+    </div>
+
+    <h2>Parameters aur Arguments 🎯</h2>
+    <p>Bro, function ko data pass karne ke liye parameters use karte hai:</p>
+    
+    <pre><code>def greeting(naam):
+    print(f"Kya scene hai {naam} bhai?")
+
+# Ab call karo with argument
+greeting("Rahul")
+greeting("Priya")</code></pre>
+    
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Kya scene hai Rahul bhai?<br>
+        Kya scene hai Priya bhai?</p>
+    </div>
+
+    <h2>Multiple Parameters 🔥</h2>
+    <p>Ek se zyada parameters bhi de sakte hai, bro:</p>
+    
+    <pre><code>def add_numbers(x, y):
+    return x + y
+
+result = add_numbers(5, 3)
+print(f"5 + 3 = {result}")</code></pre>
+    
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        5 + 3 = 8</p>
+    </div>
+
+    <h2>Default Parameters 😌</h2>
+    <p>Bro, kabhi-kabhi argument nahi dena ho toh default value set kar sakte hai:</p>
+    
+    <pre><code>def greeting(naam="dost"):
+    print(f"Kya scene hai {naam}?")
+
+greeting()  # Default value use hoga
+greeting("Vikram")</code></pre>
+    
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Kya scene hai dost?<br>
+        Kya scene hai Vikram?</p>
+    </div>
+
+    <h2>Return Statement 🔙</h2>
+    <p>Function se value wapas lene ke liye <code>return</code> use karte hai:</p>
+    
+    <pre><code>def multiply(x, y):
+    return x * y
+
+result = multiply(4, 5)
+print(f"4 * 5 = {result}")</code></pre>
+    
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        4 * 5 = 20</p>
+    </div>
+
+    <h2>Keyword Arguments 🔑</h2>
+    <p>Parameter ka naam specify karke bhi arguments pass kar sakte hai:</p>
+    
+    <pre><code>def student_info(name, age, city):
+    print(f"{name} is {age} years old from {city}")
+
+# Order matter nahi karta with keyword arguments
+student_info(city="Mumbai", name="Raj", age=21)</code></pre>
+    
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Raj is 21 years old from Mumbai</p>
+    </div>
+
+    <h2>Variable Length Arguments (*args) 📏</h2>
+    <p>Bro, jab pata nahi kitne arguments aayenge tab <code>*args</code> use karo:</p>
+    
+    <pre><code>def add_all(*numbers):
+    total = 0
+    for num in numbers:
+        total += num
+    return total
+
+print(add_all(1, 2, 3))
+print(add_all(5, 10, 15, 20))</code></pre>
+    
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        6<br>
+        50</p>
+    </div>
+
+    <h2>Keyword Variable Length Arguments (**kwargs) 🔠</h2>
+    <p>Aur jab key-value pairs pass karne ho tab <code>**kwargs</code> use karo:</p>
+    
+    <pre><code>def student_details(**info):
+    for key, value in info.items():
+        print(f"{key}: {value}")
+
+student_details(name="Rahul", age=20, city="Delhi", hobby="Gaming")</code></pre>
+    
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        name: Rahul<br>
+        age: 20<br>
+        city: Delhi<br>
+        hobby: Gaming</p>
+    </div>
+
+    <h2>Lambda Functions (One-liners) 🚀</h2>
+    <p>Bro, chote functions ke liye lambda use kar sakte hai - one-line mein kaam khatam!</p>
+    
+    <pre><code># Normal function
+def square(x):
+    return x * x
+
+# Same cheez lambda se
+square_lambda = lambda x: x * x
+
+print(square(5))
+print(square_lambda(5))</code></pre>
+    
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        25<br>
+        25</p>
+    </div>
+
+    <div class="tip">
+        <p><strong>Pro Tip:</strong> Bro, functions ko variables ki tarah pass kar sakte hai dusre functions mein! Ye advanced programming mein bahut useful hota hai.</p>
+    </div>
+
+    <h2>Scope of Variables 🔍</h2>
+    <p>Bro, variables ka scope important hai - local variables sirf function ke andar, global variables pure program mein:</p>
+    
+    <pre><code>global_var = "Main hoon global"
+
+def test_scope():
+    local_var = "Main hoon local"
+    print(local_var)
+    print(global_var)  # Global variable access kar sakte hai
+
+test_scope()
+print(global_var)
+# print(local_var)  # Error aayega - local_var sirf function ke andar hai</code></pre>
+    
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Main hoon local<br>
+        Main hoon global<br>
+        Main hoon global</p>
+    </div>
+
+    <h2>Recursion - Function khud ko call kare 🔄</h2>
+    <p>Bro, recursion matlab function khud ko call karta hai - mind-blowing concept hai!</p>
+    
+    <pre><code>def factorial(n):
+    if n == 0 or n == 1:
+        return 1
+    else:
+        return n * factorial(n-1)
+
+print(f"5! = {factorial(5)}")</code></pre>
+    
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        5! = 120</p>
+    </div>
+
+    <div class="tip">
+        <p><strong>Yaad rakhna:</strong> Recursion mein base case zaroor define karo, warna infinite loop mein fas jaoge!</p>
+    </div>
+
+    <h2>Conclusion 🏁</h2>
+    <p>Bro, functions Python programming ka heart hai! Inko master kar liya toh aadha game jeet gaye samjho. Practice karo, code clean rahega aur life easy!</p>
+</body>
+</html>

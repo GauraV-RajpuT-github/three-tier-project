@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .content-container {
+            font-family: 'Comic Sans MS', cursive;
+            line-height: 1.6;
+            color: #333;
+            padding: 0 30px;
+        }
+
+        .content-container h2 {
+            color: #333;
+            font-size: 28px;
+            margin: 30px 0;
+            padding-bottom: 10px;
+            border-bottom: none;
+            text-shadow: 1px 1px 2px rgba(255, 140, 0, 0.2);
+        }
+
+        .content-container h3 {
+            color: #FF8C00;
+            font-size: 22px;
+            margin: 25px 0;
+        }
+
+        .content-container pre {
+            background-color: #fff8f0;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 25px 0;
+            border: 2px solid #FFD700;
+            box-shadow: 0 2px 4px rgba(255, 140, 0, 0.1);
+            font-size: 15px;
+        }
+
+        .content-container code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #FF4500;
+        }
+
+        .content-container ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 25px 0;
+        }
+
+        .content-container li {
+            margin: 15px 0;
+            position: relative;
+            padding-left: 25px;
+            font-size: 16px;
+        }
+
+        .content-container li:before {
+            content: "🔥";
+            position: absolute;
+            left: 0;
+        }
+
+        .content-container p {
+            margin: 20px 0;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .content-container code {
+            background-color: #fff8f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content-container">
+        <h2>Object-Oriented Programming in Java - OOP ka Mast System! 🏗️</h2>
+
+        <p>Bhai, Object-Oriented Programming (OOP) ek programming style hai jisme sab kuch "objects" ke around revolve karta hai! Java toh full-on OOP language hai - ekdum hardcore! 💪</p>
+
+        <h2>Classes aur Objects - Blueprint aur Actual Cheezein! 📝</h2>
+
+        <h3>Classes - Blueprints 🗺️</h3>
+        <p>Class ek blueprint ya template hota hai objects banane ke liye. Isme properties (attributes) aur behaviors (methods) define kiye jate hain:</p>
+
+        <pre><code>public class Car {
+    // Attributes (instance variables) - Car ki properties
+    private String brand;
+    private String model;
+    private int year;
+    
+    // Constructor - Car banane ka tarika
+    public Car(String brand, String model, int year) {
+        this.brand = brand;
+        this.model = model;
+        this.year = year;
+    }
+    
+    // Methods - Car kya kar sakti hai
+    public void start() {
+        System.out.println("The " + brand + " " + model + " is starting. Vroom vroom!");
+    }
+    
+    public void drive() {
+        System.out.println("The " + brand + " " + model + " is driving. Zoom zoom!");
+    }
+}</code></pre>
+
+        <h3>Objects - Asli Cheezein! 🚗</h3>
+        <p>Object class ka ek instance hota hai - blueprint se bani actual cheez! Ek hi class se multiple objects bana sakte hain:</p>
+
+        <pre><code>public class Main {
+    public static void main(String[] args) {
+        // Car class ke objects banaye
+        Car car1 = new Car("Toyota", "Fortuner", 2020);
+        Car car2 = new Car("Honda", "City", 2019);
+        
+        // Objects ke methods call kiye
+        car1.start();  // Output: The Toyota Fortuner is starting. Vroom vroom!
+        car1.drive();  // Output: The Toyota Fortuner is driving. Zoom zoom!
+        
+        car2.start();  // Output: The Honda City is starting. Vroom vroom!
+        car2.drive();  // Output: The Honda City is driving. Zoom zoom!
+    }
+}</code></pre>
+
+        <h2>Encapsulation - Data ko Secure Rakhna! 🔒</h2>
+        <p>Encapsulation matlab data ko private rakhna aur sirf methods ke through access karna - bilkul bank locker system ki tarah! Bahar se sirf keys (methods) se access kar sakte hain:</p>
+
+        <pre><code>public class Person {
+    // Private attributes - bahar se direct access nahi kar sakte
+    private String name;
+    private int age;
+    
+    // Constructor
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+    
+    // Getter methods - data ko bahar nikalne ke liye
+    public String getName() {
+        return name;
+    }
+    
+    public int getAge() {
+        return age;
+    }
+    
+    // Setter methods - data ko update karne ke liye
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    public void setAge(int age) {
+        if (age > 0) {  // Validation - negative age nahi set kar sakte!
+            this.age = age;
+        } else {
+            System.out.println("Bhai, age negative nahi ho sakti! 😂");
+        }
+    }
+}</code></pre>
+
+        <p>Person class ka use kaise karein:</p>
+
+        <pre><code>public class Main {
+    public static void main(String[] args) {
+        Person person = new Person("Rahul", 30);
+        
+        // Methods ke through attributes access karo
+        System.out.println(person.getName());  // Output: Rahul
+        System.out.println(person.getAge());   // Output: 30
+        
+        // Methods ke through attributes modify karo
+        person.setName("Raj");
+        person.setAge(25);
+        
+        System.out.println(person.getName());  // Output: Raj
+        System.out.println(person.getAge());   // Output: 25
+        
+        // Validation fail hogi, age 25 hi rahegi
+        person.setAge(-5);  // Output: Bhai, age negative nahi ho sakti! 😂
+        System.out.println(person.getAge());   // Output: 25
+    }
+}</code></pre>
+
+        <h2>Inheritance - Properties aur Methods Inherit Karna! 👨‍👦</h2>
+        <p>Inheritance se ek class dusri class ki properties aur methods inherit kar sakti hai - bilkul baap se beta property inherit karta hai waise! 😄</p>
+
+        <pre><code>// Superclass (Parent class) - Baap
+public class Vehicle {
+    protected String brand;
+    protected String model;
+    
+    public Vehicle(String brand, String model) {
+        this.brand = brand;
+        this.model = model;
+    }
+    
+    public void start() {
+        System.out.println("Vehicle start ho raha hai...");
+    }
+    
+    public void stop() {
+        System.out.println("Vehicle stop ho raha hai...");
+    }
+}
+
+// Subclass (Child class) - Beta
+public class Car extends Vehicle {
+    private int numDoors;
+    
+    public Car(String brand, String model, int numDoors) {
+        super(brand, model);  // Parent class ka constructor call kiya
+        this.numDoors = numDoors;
+    }
+    
+    // Override the start method - parent ka method override kiya
+    @Override
+    public void start() {
+        System.out.println(brand + " " + model + " car start ho rahi hai... Vroom vroom!");
+    }
+    
+    // New method specific to Car - car ka apna special method
+    public void honk() {
+        System.out.println("Horn bajaya... Pom pom! 📢");
+    }
+}</code></pre>
+
+        <p>Inheritance ka use kaise karein:</p>
+
+        <pre><code>public class Main {
+    public static void main(String[] args) {
+        Car car = new Car("Maruti", "Swift", 4);
+        
+        car.start();  // Overridden method call hoga: Maruti Swift car start ho rahi hai... Vroom vroom!
+        car.stop();   // Parent class ka method call hoga: Vehicle stop ho raha hai...
+        car.honk();   // Car class ka special method: Horn bajaya... Pom pom! 📢
+    }
+}</code></pre>
+
+        <h2>Polymorphism - Ek Cheez, Multiple Forms! 🦎</h2>
+        <p>Polymorphism matlab ek hi cheez ke multiple forms - bilkul chameleon ki tarah jo environment ke hisaab se rang badalta hai! 🌈</p>
+
+        <h3>Method Overriding - Method ko Override Karna</h3>
+        <pre><code>// Superclass - Parent
+public class Animal {
+    public void makeSound() {
+        System.out.println("Animal koi sound karta hai...");
+    }
+}
+
+// Subclasses - Children
+public class Dog extends Animal {
+    @Override
+    public void makeSound() {
+        System.out.println("Dog bhaukta hai... Woof woof! 🐕");
+    }
+}
+
+public class Cat extends Animal {
+    @Override
+    public void makeSound() {
+        System.out.println("Cat meow karti hai... Meow meow! 🐱");
+    }
+}</code></pre>
+
+        <p>Polymorphism ka use kaise karein:</p>
+
+        <pre><code>public class Main {
+    public static void main(String[] args) {
+        // Animal type ka array banaya par different animals store kiye
+        Animal[] animals = new Animal[3];
+        animals[0] = new Animal();
+        animals[1] = new Dog();
+        animals[2] = new Cat();
+        
+        // Polymorphic behavior - same method call, different outputs!
+        for (Animal animal : animals) {
+            animal.makeSound();
+        }
+        
+        // Output:
+        // Animal koi sound karta hai...
+        // Dog bhaukta hai... Woof woof! 🐕
+        // Cat meow karti hai... Meow meow! 🐱
+    }
+}</code></pre>
+
+        <h3>Interfaces - Contract System! 📜</h3>
+        <p>Interfaces ek contract define karte hain jise implementing classes ko follow karna padta hai - bilkul legal agreement ki tarah!</p>
+
+        <pre><code>// Interface - Contract
+public interface Drawable {
+    void draw();  // Abstract method - implementation nahi hai
+}
+
+// Implementing classes - Contract follow karne wale
+public class Circle implements Drawable {
+    @Override
+    public void draw() {
+        System.out.println("Circle draw kar raha hun... ⭕");
+    }
+}
+
+public class Rectangle implements Drawable {
+    @Override
+    public void draw() {
+        System.out.println("Rectangle draw kar raha hun... 🔲");
+    }
+}</code></pre>
+
+        <p>Interfaces ka use kaise karein:</p>
+
+        <pre><code>public class Main {
+    public static void main(String[] args) {
+        Drawable[] shapes = new Drawable[2];
+        shapes[0] = new Circle();
+        shapes[1] = new Rectangle();
+        
+        for (Drawable shape : shapes) {
+            shape.draw();
+        }
+        
+        // Output:
+        // Circle draw kar raha hun... ⭕
+        // Rectangle draw kar raha hun... 🔲
+    }
+}</code></pre>
+
+        <h2>Abstraction - Complex Cheezein Hide Karna! 🙈</h2>
+        <p>Abstraction matlab complex implementation details ko hide karke sirf zaruri features dikhana - bilkul car chalane jaisa, engine kaise work karta hai pata nahi par accelerator dabao toh car chalti hai!</p>
+
+        <h3>Abstract Classes - Adhure Blueprints! 🏗️</h3>
+        <pre><code>// Abstract class - Cannot create objects directly
+public abstract class Shape {
+    // Abstract method (no implementation) - Subclasses must implement
+    public abstract double calculateArea();
+    
+    // Concrete method (with implementation) - Ready to use
+    public void display() {
+        System.out.println("Yeh ek shape hai jiska area hai: " + calculateArea());
+    }
+}
+
+// Concrete subclasses - Complete implementations
+public class Circle extends Shape {
+    private double radius;
+    
+    public Circle(double radius) {
+        this.radius = radius;
+    }
+    
+    @Override
+    public double calculateArea() {
+        return Math.PI * radius * radius;
+    }
+}
+
+public class Rectangle extends Shape {
+    private double length;
+    private double width;
+    
+    public Rectangle(double length, double width) {
+        this.length = length;
+        this.width = width;
+    }
+    
+    @Override
+    public double calculateArea() {
+        return length * width;
+    }
+}</code></pre>
+
+        <p>Abstract classes ka use kaise karein:</p>
+
+        <pre><code>public class Main {
+    public static void main(String[] args) {
+        // Shape shape = new Shape();  // Error: Cannot instantiate abstract class
+        
+        Shape circle = new Circle(5);
+        Shape rectangle = new Rectangle(4, 6);
+        
+        circle.display();     // Output: Yeh ek shape hai jiska area hai: 78.53981633974483
+        rectangle.display();  // Output: Yeh ek shape hai jiska area hai: 24.0
+    }
+}</code></pre>
+
+        <h2>Yaad Rakhne Wali Baatein! 🧠</h2>
+        <ul>
+            <li>Java ek full-on object-oriented programming language hai - sab kuch objects ke around revolve karta hai! 🌍</li>
+            <li>Classes blueprints hote hain, objects actual instances hote hain - blueprint vs actual building! 🏢</li>
+            <li>Encapsulation data ko secure rakhta hai aur controlled access provide karta hai - data security! 🔒</li>
+            <li>Inheritance se ek class dusri class ki properties aur methods inherit kar sakti hai - code reuse! 👨‍👦</li>
+            <li>Polymorphism se different objects ko same interface se handle kar sakte hain - flexibility! 🦎</li>
+            <li>Abstraction complex details ko hide karke simple interface provide karta hai - simplicity! 🙈</li>
+            <li>Abstract classes mein abstract methods (bina implementation ke) aur concrete methods (implementation ke saath) dono ho sakte hain! 🏗️</li>
+            <li>Interfaces sirf abstract methods define karte hain (Java 8 ke baad default methods bhi) - pure contract! 📜</li>
+            <li>Java mein multiple inheritance interfaces ke through support hota hai, classes ke through nahi - confusion avoid karne ke liye! 🚫</li>
+        </ul>
+    </div>
+</body>
+
+</html>

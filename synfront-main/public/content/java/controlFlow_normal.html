@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #FF8C00;
+            border-bottom: 2px solid #FFA500;
+            padding-bottom: 10px;
+        }
+
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        li {
+            margin: 10px 0;
+            position: relative;
+        }
+
+        li:before {
+            content: "•";
+            color: #FFA500;
+            font-weight: bold;
+            position: absolute;
+            left: -15px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Control Flow (if, for, while)</h2>
+
+    <p>Control flow statements allow you to control the execution flow of your program based on conditions, repeat blocks of code, and make decisions.</p>
+
+    <h2>Decision Making Statements</h2>
+
+    <h3>if Statement</h3>
+    <p>The <code>if</code> statement executes a block of code if a specified condition is true:</p>
+
+    <pre><code>int age = 20;
+
+if (age >= 18) {
+    System.out.println("You are an adult.");
+}</code></pre>
+
+    <h3>if-else Statement</h3>
+    <p>The <code>if-else</code> statement executes one block of code if a condition is true and another if it's false:</p>
+
+    <pre><code>int age = 15;
+
+if (age >= 18) {
+    System.out.println("You are an adult.");
+} else {
+    System.out.println("You are a minor.");
+}</code></pre>
+
+    <h3>if-else-if Ladder</h3>
+    <p>The <code>if-else-if</code> ladder tests multiple conditions in sequence:</p>
+
+    <pre><code>int score = 85;
+
+if (score >= 90) {
+    System.out.println("Grade: A");
+} else if (score >= 80) {
+    System.out.println("Grade: B");
+} else if (score >= 70) {
+    System.out.println("Grade: C");
+} else if (score >= 60) {
+    System.out.println("Grade: D");
+} else {
+    System.out.println("Grade: F");
+}</code></pre>
+
+    <h3>switch Statement</h3>
+    <p>The <code>switch</code> statement selects one of many code blocks to execute based on a variable's value:</p>
+
+    <pre><code>int day = 4;
+String dayName;
+
+switch (day) {
+    case 1:
+        dayName = "Monday";
+        break;
+    case 2:
+        dayName = "Tuesday";
+        break;
+    case 3:
+        dayName = "Wednesday";
+        break;
+    case 4:
+        dayName = "Thursday";
+        break;
+    case 5:
+        dayName = "Friday";
+        break;
+    case 6:
+        dayName = "Saturday";
+        break;
+    case 7:
+        dayName = "Sunday";
+        break;
+    default:
+        dayName = "Invalid day";
+}
+System.out.println(dayName);</code></pre>
+
+    <p>In Java 12 and later, you can also use the enhanced switch expression:</p>
+
+    <pre><code>int day = 4;
+String dayName = switch (day) {
+    case 1 -> "Monday";
+    case 2 -> "Tuesday";
+    case 3 -> "Wednesday";
+    case 4 -> "Thursday";
+    case 5 -> "Friday";
+    case 6 -> "Saturday";
+    case 7 -> "Sunday";
+    default -> "Invalid day";
+};
+System.out.println(dayName);</code></pre>
+
+    <h2>Looping Statements</h2>
+
+    <h3>for Loop</h3>
+    <p>The <code>for</code> loop executes a block of code a specified number of times:</p>
+
+    <pre><code>// Print numbers from 1 to 5
+for (int i = 1; i <= 5; i++) {
+    System.out.println(i);
+}</code></pre>
+
+    <h3>Enhanced for Loop (for-each)</h3>
+    <p>The enhanced <code>for</code> loop simplifies iterating over arrays and collections:</p>
+
+    <pre><code>int[] numbers = {1, 2, 3, 4, 5};
+
+// Print each number in the array
+for (int num : numbers) {
+    System.out.println(num);
+}</code></pre>
+
+    <h3>while Loop</h3>
+    <p>The <code>while</code> loop executes a block of code as long as a condition is true:</p>
+
+    <pre><code>int i = 1;
+
+// Print numbers from 1 to 5
+while (i <= 5) {
+    System.out.println(i);
+    i++;
+}</code></pre>
+
+    <h3>do-while Loop</h3>
+    <p>The <code>do-while</code> loop is similar to the <code>while</code> loop, but it executes the code block at least once before checking the condition:</p>
+
+    <pre><code>int i = 1;
+
+// Print numbers from 1 to 5
+do {
+    System.out.println(i);
+    i++;
+} while (i <= 5);</code></pre>
+
+    <h2>Jump Statements</h2>
+
+    <h3>break Statement</h3>
+    <p>The <code>break</code> statement terminates the loop or switch statement:</p>
+
+    <pre><code>// Print numbers from 1 to 10, but stop at 5
+for (int i = 1; i <= 10; i++) {
+    if (i > 5) {
+        break;  // Exit the loop when i > 5
+    }
+    System.out.println(i);
+}</code></pre>
+
+    <h3>continue Statement</h3>
+    <p>The <code>continue</code> statement skips the current iteration of a loop and continues with the next iteration:</p>
+
+    <pre><code>// Print odd numbers from 1 to 10
+for (int i = 1; i <= 10; i++) {
+    if (i % 2 == 0) {
+        continue;  // Skip even numbers
+    }
+    System.out.println(i);
+}</code></pre>
+
+    <h3>return Statement</h3>
+    <p>The <code>return</code> statement exits from a method, optionally returning a value:</p>
+
+    <pre><code>public boolean isEven(int number) {
+    if (number % 2 == 0) {
+        return true;  // Exit method and return true
+    }
+    return false;  // Exit method and return false
+}</code></pre>
+
+    <h2>Key points to remember:</h2>
+    <ul>
+        <li>Use <code>if</code> statements for decision making based on conditions</li>
+        <li>Use <code>switch</code> statements when comparing a variable against multiple values</li>
+        <li>Use <code>for</code> loops when you know the number of iterations in advance</li>
+        <li>Use <code>while</code> loops when the number of iterations depends on a condition</li>
+        <li>Use <code>do-while</code> loops when you need to execute the code at least once</li>
+        <li>Use <code>break</code> to exit a loop or switch statement</li>
+        <li>Use <code>continue</code> to skip the current iteration of a loop</li>
+        <li>Always use curly braces {} for code blocks, even for single statements, to improve readability and prevent bugs</li>
+        <li>Be careful with infinite loops (loops that never terminate) as they can cause your program to hang</li>
+    </ul>
+</body>
+
+</html>

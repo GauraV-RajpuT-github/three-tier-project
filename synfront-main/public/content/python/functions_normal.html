@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Functions</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #2b5b84;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #3776ab;
+            font-size: 1.8em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        h3 {
+            color: #4a8cc2;
+            font-size: 1.4em;
+            margin-top: 25px;
+        }
+        p {
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f5f5f5;
+            padding: 3px 6px;
+            border-radius: 3px;
+            font-size: 0.9em;
+            border: 1px solid #e0e0e0;
+        }
+        pre {
+            background-color: #f8f8f8;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            padding: 15px;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        pre code {
+            background-color: transparent;
+            border: none;
+            padding: 0;
+            display: block;
+            line-height: 1.5;
+        }
+        .note {
+            background-color: #e7f3fe;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .warning {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .example {
+            background-color: #f1f8e9;
+            border-left: 4px solid #8bc34a;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .output {
+            background-color: #f0f0f0;
+            border-left: 4px solid #9e9e9e;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>Python Functions</h1>
+    
+    <p>Functions are reusable blocks of code that perform a specific task. They help organize code, make it more readable, and reduce redundancy. This section covers how to define, call, and work with functions in Python.</p>
+
+    <h2>Defining Functions</h2>
+    
+    <p>In Python, functions are defined using the <code>def</code> keyword, followed by the function name and parentheses containing any parameters. The function body is indented below the definition line.</p>
+    
+    <div class="example">
+        <h4>Example: Basic Function Definition</h4>
+        <pre><code>def greet():
+    """This function prints a greeting message."""
+    print("Hello, World!")
+
+# Call the function
+greet()</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            Hello, World!
+        </div>
+    </div>
+    
+    <div class="note">
+        <strong>Note:</strong> The triple-quoted string after the function definition is called a docstring. It documents what the function does and is a good practice for code readability and maintainability.
+    </div>
+
+    <h2>Function Parameters and Arguments</h2>
+    
+    <p>Functions can accept input values, called parameters, which are specified in the parentheses of the function definition. When you call a function with specific values, these values are called arguments.</p>
+    
+    <h3>Positional Arguments</h3>
+    <p>Positional arguments are matched to parameters based on their order.</p>
+    
+    <div class="example">
+        <h4>Example: Function with Positional Arguments</h4>
+        <pre><code>def greet(name, message):
+    """Greet a person with a message."""
+    print(f"Hello, {name}! {message}")
+
+# Call the function with positional arguments
+greet("Alice", "How are you today?")</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            Hello, Alice! How are you today?
+        </div>
+    </div>
+    
+    <h3>Keyword Arguments</h3>
+    <p>Keyword arguments are specified by the parameter name, allowing you to provide arguments in any order.</p>
+    
+    <div class="example">
+        <h4>Example: Function with Keyword Arguments</h4>
+        <pre><code>def greet(name, message):
+    """Greet a person with a message."""
+    print(f"Hello, {name}! {message}")
+
+# Call the function with keyword arguments
+greet(message="How are you today?", name="Bob")</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            Hello, Bob! How are you today?
+        </div>
+    </div>
+    
+    <h3>Default Parameter Values</h3>
+    <p>You can specify default values for parameters, which are used if the caller doesn't provide a value for that parameter.</p>
+    
+    <div class="example">
+        <h4>Example: Function with Default Parameter Values</h4>
+        <pre><code>def greet(name, message="How are you?"):
+    """Greet a person with a message."""
+    print(f"Hello, {name}! {message}")
+
+# Call the function with only the required argument
+greet("Charlie")
+
+# Call the function with both arguments
+greet("Dave", "Nice to meet you!")</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            Hello, Charlie! How are you?<br>
+            Hello, Dave! Nice to meet you!
+        </div>
+    </div>
+    
+    <div class="warning">
+        <strong>Warning:</strong> Default parameter values are evaluated only once when the function is defined, not each time the function is called. This can lead to unexpected behavior if the default value is a mutable object like a list or dictionary.
+    </div>
+    
+    <div class="example">
+        <h4>Example: Issue with Mutable Default Arguments</h4>
+        <pre><code>def add_item(item, items=[]):
+    """Add an item to a list."""
+    items.append(item)
+    return items
+
+# First call
+print(add_item("apple"))
+
+# Second call - the default list already contains "apple"!
+print(add_item("banana"))</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            ['apple']<br>
+            ['apple', 'banana']
+        </div>
+    </div>
+    
+    <div class="example">
+        <h4>Example: Correct Way to Handle Mutable Default Arguments</h4>
+        <pre><code>def add_item(item, items=None):
+    """Add an item to a list."""
+    if items is None:
+        items = []
+    items.append(item)
+    return items
+
+# First call
+print(add_item("apple"))
+
+# Second call - a new empty list is created
+print(add_item("banana"))</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            ['apple']<br>
+            ['banana']
+        </div>
+    </div>
+    
+    <h3>Variable-Length Arguments (*args)</h3>
+    <p>You can define a function to accept any number of positional arguments using the <code>*args</code> syntax.</p>
+    
+    <div class="example">
+        <h4>Example: Function with Variable-Length Arguments</h4>
+        <pre><code>def sum_all(*numbers):
+    """Sum all the numbers."""
+    total = 0
+    for num in numbers:
+        total += num
+    return total
+
+# Call the function with different numbers of arguments
+print(sum_all(1, 2))
+print(sum_all(1, 2, 3, 4, 5))</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            3<br>
+            15
+        </div>
+    </div>
+    
+    <h3>Variable-Length Keyword Arguments (**kwargs)</h3>
+    <p>You can define a function to accept any number of keyword arguments using the <code>**kwargs</code> syntax.</p>
+    
+    <div class="example">
+        <h4>Example: Function with Variable-Length Keyword Arguments</h4>
+        <pre><code>def print_info(**kwargs):
+    """Print all the information."""
+    for key, value in kwargs.items():
+        print(f"{key}: {value}")
+
+# Call the function with different keyword arguments
+print_info(name="Alice", age=30)
+print_info(name="Bob", age=25, job="Developer", city="New York")</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            name: Alice<br>
+            age: 30<br>
+            name: Bob<br>
+            age: 25<br>
+            job: Developer<br>
+            city: New York
+        </div>
+    </div>
+    
+    <h3>Combining Different Types of Parameters</h3>
+    <p>You can combine different types of parameters in a function, but they must be in the correct order: positional parameters, parameters with default values, <code>*args</code>, and <code>**kwargs</code>.</p>
+    
+    <div class="example">
+        <h4>Example: Function with Combined Parameter Types</h4>
+        <pre><code>def example_function(pos1, pos2, default1="default1", default2="default2", *args, **kwargs):
+    """Example function with different parameter types."""
+    print(f"Positional: {pos1}, {pos2}")
+    print(f"Default: {default1}, {default2}")
+    print(f"Args: {args}")
+    print(f"Kwargs: {kwargs}")
+
+# Call the function with various arguments
+example_function("a", "b", "custom1", "custom2", 1, 2, 3, key1="value1", key2="value2")</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            Positional: a, b<br>
+            Default: custom1, custom2<br>
+            Args: (1, 2, 3)<br>
+            Kwargs: {'key1': 'value1', 'key2': 'value2'}
+        </div>
+    </div>
+
+    <h2>Return Values</h2>
+    
+    <p>Functions can return values using the <code>return</code> statement. A function can return a single value, multiple values, or nothing (in which case it returns <code>None</code> implicitly).</p>
+    
+    <h3>Returning a Single Value</h3>
+    
+    <div class="example">
+        <h4>Example: Function Returning a Single Value</h4>
+        <pre><code>def square(x):
+    """Return the square of a number."""
+    return x ** 2
+
+# Call the function and use the return value
+result = square(5)
+print(result)</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            25
+        </div>
+    </div>
+    
+    <h3>Returning Multiple Values</h3>
+    <p>In Python, you can return multiple values from a function as a tuple, which can be unpacked by the caller.</p>
+    
+    <div class="example">
+        <h4>Example: Function Returning Multiple Values</h4>
+        <pre><code>def get_min_max(numbers):
+    """Return the minimum and maximum values from a list."""
+    return min(numbers), max(numbers)
+
+# Call the function and unpack the return values
+min_val, max_val = get_min_max([5, 3, 8, 1, 7])
+print(f"Minimum: {min_val}, Maximum: {max_val}")</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            Minimum: 1, Maximum: 8
+        </div>
+    </div>
+    
+    <h3>Early Return</h3>
+    <p>You can use the <code>return</code> statement to exit a function early based on certain conditions.</p>
+    
+    <div class="example">
+        <h4>Example: Function with Early Return</h4>
+        <pre><code>def is_even(number):
+    """Check if a number is even."""
+    if number % 2 == 0:
+        return True
+    return False
+
+# Alternative implementation
+def is_even_alternative(number):
+    """Check if a number is even."""
+    return number % 2 == 0
+
+print(is_even(4))
+print(is_even(5))</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            True<br>
+            False
+        </div>
+    </div>
+
+    <h2>Scope and Lifetime of Variables</h2>
+    
+    <p>The scope of a variable determines where in your code the variable can be accessed. Python has different levels of scope:</p>
+    
+    <h3>Local Scope</h3>
+    <p>Variables defined inside a function have local scope, meaning they can only be accessed within that function.</p>
+    
+    <div class="example">
+        <h4>Example: Local Scope</h4>
+        <pre><code>def my_function():
+    x = 10  # Local variable
+    print(f"Inside function: x = {x}")
+
+my_function()
+# This would raise an error: print(x)</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            Inside function: x = 10
+        </div>
+    </div>
+    
+    <h3>Global Scope</h3>
+    <p>Variables defined outside all functions have global scope, meaning they can be accessed from anywhere in the module.</p>
+    
+    <div class="example">
+        <h4>Example: Global Scope</h4>
+        <pre><code>y = 20  # Global variable
+
+def my_function():
+    print(f"Inside function: y = {y}")
+
+my_function()
+print(f"Outside function: y = {y}")</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            Inside function: y = 20<br>
+            Outside function: y = 20
+        </div>
+    </div>
+    
+    <h3>Modifying Global Variables</h3>
+    <p>To modify a global variable from within a function, you need to use the <code>global</code> keyword.</p>
+    
+    <div class="example">
+        <h4>Example: Modifying Global Variables</h4>
+        <pre><code>z = 30  # Global variable
+
+def modify_global():
+    global z
+    z = 40  # Modifies the global variable
+
+print(f"Before function call: z = {z}")
+modify_global()
+print(f"After function call: z = {z}")</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            Before function call: z = 30<br>
+            After function call: z = 40
+        </div>
+    </div>
+    
+    <div class="note">
+        <strong>Note:</strong> It's generally considered better practice to avoid modifying global variables from within functions, as it can make your code harder to understand and debug. Instead, pass variables as arguments and return modified values.
+    </div>
+    
+    <h3>Nonlocal Variables</h3>
+    <p>The <code>nonlocal</code> keyword is used to work with variables in the nearest enclosing scope that is not global.</p>
+    
+    <div class="example">
+        <h4>Example: Nonlocal Variables</h4>
+        <pre><code>def outer_function():
+    x = 10
+    
+    def inner_function():
+        nonlocal x
+        x = 20
+        print(f"Inside inner function: x = {x}")
+    
+    print(f"Before inner function call: x = {x}")
+    inner_function()
+    print(f"After inner function call: x = {x}")
+
+outer_function()</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            Before inner function call: x = 10<br>
+            Inside inner function: x = 20<br>
+            After inner function call: x = 20
+        </div>
+    </div>
+
+    <h2>Lambda Functions</h2>
+    
+    <p>Lambda functions are small, anonymous functions defined using the <code>lambda</code> keyword. They can have any number of arguments but only one expression.</p>
+    
+    <div class="example">
+        <h4>Example: Lambda Function</h4>
+        <pre><code># Regular function
+def square(x):
+    return x ** 2
+
+# Equivalent lambda function
+square_lambda = lambda x: x ** 2
+
+print(square(5))
+print(square_lambda(5))</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            25<br>
+            25
+        </div>
+    </div>
+    
+    <h3>Lambda Functions with Multiple Arguments</h3>
+    
+    <div class="example">
+        <h4>Example: Lambda Function with Multiple Arguments</h4>
+        <pre><code>add = lambda x, y: x + y
+print(add(3, 4))</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            7
+        </div>
+    </div>
+    
+    <h3>Lambda Functions with Built-in Functions</h3>
+    <p>Lambda functions are often used with built-in functions like <code>map()</code>, <code>filter()</code>, and <code>sorted()</code>.</p>
+    
+    <div class="example">
+        <h4>Example: Lambda Function with map()</h4>
+        <pre><code>numbers = [1, 2, 3, 4, 5]
+
+# Using map() with a lambda function to square each number
+squared = list(map(lambda x: x ** 2, numbers))
+print(squared)</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            [1, 4, 9, 16, 25]
+        </div>
+    </div>
+    
+    <div class="example">
+        <h4>Example: Lambda Function with filter()</h4>
+        <pre><code>numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+# Using filter() with a lambda function to get even numbers
+even_numbers = list(filter(lambda x: x % 2 == 0, numbers))
+print(even_numbers)</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            [2, 4, 6, 8, 10]
+        </div>
+    </div>
+    
+    <div class="example">
+        <h4>Example: Lambda Function with sorted()</h4>
+        <pre><code>students = [
+    {"name": "Alice", "grade": 85},
+    {"name": "Bob", "grade": 92},
+    {"name": "Charlie", "grade": 78}
+]
+
+# Sort students by grade in descending order
+sorted_students = sorted(students, key=lambda student: student["grade"], reverse=True)
+for student in sorted_students:
+    print(f"{student['name']}: {student['grade']}")</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            Bob: 92<br>
+            Alice: 85<br>
+            Charlie: 78
+        </div>
+    </div>
+    
+    <div class="note">
+        <strong>Note:</strong> While lambda functions can be convenient for short, simple operations, they can make code harder to read if overused or if they contain complex logic. In such cases, it's better to use regular functions.
+    </div>
+
+    <h2>Recursion</h2>
+    
+    <p>Recursion is a technique where a function calls itself to solve a problem. It's useful for problems that can be broken down into simpler versions of the same problem.</p>
+    
+    <div class="example">
+        <h4>Example: Factorial Using Recursion</h4>
+        <pre><code>def factorial(n):
+    """Calculate the factorial of a number using recursion."""
+    if n == 0 or n == 1:
+        return 1
+    else:
+        return n * factorial(n - 1)
+
+print(factorial(5))</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            120
+        </div>
+    </div>
+    
+    <div class="warning">
+        <strong>Warning:</strong> Recursive functions must have a base case (a condition that stops the recursion) to prevent infinite recursion, which would cause a stack overflow error. Also, Python has a default recursion limit of 1000 calls, which can be changed using <code>sys.setrecursionlimit()</code>.
+    </div>
+    
+    <div class="example">
+        <h4>Example: Fibonacci Sequence Using Recursion</h4>
+        <pre><code>def fibonacci(n):
+    """Calculate the nth Fibonacci number using recursion."""
+    if n <= 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        return fibonacci(n - 1) + fibonacci(n - 2)
+
+for i in range(10):
+    print(fibonacci(i), end=" ")
+print()</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            0 1 1 2 3 5 8 13 21 34
+        </div>
+    </div>
+    
+    <div class="note">
+        <strong>Note:</strong> While recursion can lead to elegant solutions, it's not always the most efficient approach. For example, the recursive Fibonacci implementation above has exponential time complexity. In such cases, iterative solutions or memoization (caching results) can be more efficient.
+    </div>
+
+    <h2>Decorators</h2>
+    
+    <p>Decorators are a powerful feature in Python that allow you to modify the behavior of functions or methods. A decorator is a function that takes another function as an argument and extends its behavior without explicitly modifying it.</p>
+    
+    <h3>Basic Decorator</h3>
+    
+    <div class="example">
+        <h4>Example: Basic Decorator</h4>
+        <pre><code>def my_decorator(func):
+    def wrapper():
+        print("Something is happening before the function is called.")
+        func()
+        print("Something is happening after the function is called.")
+    return wrapper
+
+@my_decorator
+def say_hello():
+    print("Hello!")
+
+# Call the decorated function
+say_hello()</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            Something is happening before the function is called.<br>
+            Hello!<br>
+            Something is happening after the function is called.
+        </div>
+    </div>
+    
+    <div class="note">
+        <strong>Note:</strong> The <code>@my_decorator</code> syntax is equivalent to <code>say_hello = my_decorator(say_hello)</code>.
+    </div>
+    
+    <h3>Decorator with Arguments</h3>
+    
+    <div class="example">
+        <h4>Example: Decorator for Functions with Arguments</h4>
+        <pre><code>def my_decorator(func):
+    def wrapper(*args, **kwargs):
+        print("Something is happening before the function is called.")
+        result = func(*args, **kwargs)
+        print("Something is happening after the function is called.")
+        return result
+    return wrapper
+
+@my_decorator
+def say_hello(name):
+    print(f"Hello, {name}!")
+    return name
+
+# Call the decorated function
+result = say_hello("Alice")
+print(f"Result: {result}")</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            Something is happening before the function is called.<br>
+            Hello, Alice!<br>
+            Something is happening after the function is called.<br>
+            Result: Alice
+        </div>
+    </div>
+    
+    <h3>Practical Example: Timing Decorator</h3>
+    
+    <div class="example">
+        <h4>Example: Timing Decorator</h4>
+        <pre><code>import time
+
+def timing_decorator(func):
+    def wrapper(*args, **kwargs):
+        start_time = time.time()
+        result = func(*args, **kwargs)
+        end_time = time.time()
+        print(f"Function {func.__name__} took {end_time - start_time:.4f} seconds to run.")
+        return result
+    return wrapper
+
+@timing_decorator
+def slow_function():
+    time.sleep(1)  # Simulate a slow function
+    print("Function executed.")
+
+slow_function()</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            Function executed.<br>
+            Function slow_function took 1.0012 seconds to run.
+        </div>
+    </div>
+    
+    <h3>Decorator with Parameters</h3>
+    
+    <div class="example">
+        <h4>Example: Decorator with Parameters</h4>
+        <pre><code>def repeat(n):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            results = []
+            for _ in range(n):
+                results.append(func(*args, **kwargs))
+            return results
+        return wrapper
+    return decorator
+
+@repeat(3)
+def say_hello(name):
+    return f"Hello, {name}!"
+
+print(say_hello("Bob"))</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            ['Hello, Bob!', 'Hello, Bob!', 'Hello, Bob!']
+        </div>
+    </div>
+
+    <h2>Function Documentation</h2>
+    
+    <p>Documenting your functions is an important practice for code readability and maintainability. Python provides docstrings for this purpose.</p>
+    
+    <div class="example">
+        <h4>Example: Function with Docstring</h4>
+        <pre><code>def calculate_area(radius):
+    """
+    Calculate the area of a circle.
+    
+    Parameters:
+    radius (float): The radius of the circle.
+    
+    Returns:
+    float: The area of the circle.
+    
+    Examples:
+    >>> calculate_area(1)
+    3.141592653589793
+    >>> calculate_area(2)
+    12.566370614359172
+    """
+    import math
+    return math.pi * radius ** 2
+
+# Access the docstring
+print(calculate_area.__doc__)</code></pre>
+    </div>
+    
+    <div class="note">
+        <strong>Note:</strong> You can access a function's docstring using the <code>__doc__</code> attribute or the <code>help()</code> function. Docstrings can also be used for automated testing with the <code>doctest</code> module.
+    </div>
+
+    <h2>Best Practices for Functions</h2>
+    
+    <ol>
+        <li><strong>Single Responsibility Principle:</strong> Each function should do one thing and do it well.</li>
+        <li><strong>Keep Functions Short:</strong> Aim for functions that are less than 20-30 lines of code.</li>
+        <li><strong>Use Descriptive Names:</strong> Function names should clearly describe what the function does.</li>
+        <li><strong>Document Your Functions:</strong> Use docstrings to explain what the function does, its parameters, return values, and examples.</li>
+        <li><strong>Return Values Instead of Printing:</strong> Functions should generally return values rather than printing them, which makes them more reusable.</li>
+        <li><strong>Avoid Side Effects:</strong> Functions should not modify global state or have unexpected side effects.</li>
+        <li><strong>Use Type Hints:</strong> In Python 3.5+, you can use type hints to indicate the expected types of parameters and return values.</li>
+    </ol>
+    
+    <div class="example">
+        <h4>Example: Function with Type Hints</h4>
+        <pre><code>def calculate_area(radius: float) -> float:
+    """Calculate the area of a circle."""
+    import math
+    return math.pi * radius ** 2
+
+print(calculate_area(2.5))</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            19.634954084936208
+        </div>
+    </div>
+
+    <h2>Conclusion</h2>
+    
+    <p>Functions are a fundamental building block in Python programming. They allow you to organize your code into reusable, modular pieces, making your programs more readable, maintainable, and efficient. By mastering functions, you'll be able to write more elegant and powerful Python code.</p>
+    
+    <div class="note">
+        <strong>Next Steps:</strong> Now that you understand Python functions, you can move on to learning about object-oriented programming, which builds on these concepts to create reusable and organized code through classes and objects.
+    </div>
+</body>
+</html>

@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Writing SQL Queries</title>
+    <style>
+        .content-container {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 100%;
+        }
+        h1 {
+            color: #004085;
+            border-bottom: 2px solid #004085;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #004085;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #0062cc;
+        }
+        .code-block {
+            background-color: #f8f9fa;
+            border-left: 4px solid #004085;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .note {
+            background-color: #e7f3fe;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .example {
+            background-color: #f0f4c3;
+            border-left: 4px solid #cddc39;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #004085;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="content-container">
+        <h1>Writing SQL Queries</h1>
+        
+        <p>
+            SQL (Structured Query Language) is primarily used to query and manipulate data in relational databases. In this section, we'll explore how to write effective SQL queries to retrieve, filter, and organize data.
+        </p>
+
+        <h2>Basic SELECT Statement</h2>
+        
+        <p>
+            The SELECT statement is the most commonly used SQL command. It allows you to retrieve data from one or more tables.
+        </p>
+        
+        <div class="code-block">
+            <pre>
+SELECT column1, column2, ... 
+FROM table_name;
+            </pre>
+        </div>
+        
+        <p>To select all columns, you can use the asterisk (*) wildcard:</p>
+        
+        <div class="code-block">
+            <pre>
+SELECT * 
+FROM table_name;
+            </pre>
+        </div>
+        
+        <div class="example">
+            <h3>Example:</h3>
+            <p>Let's assume we have a table called "employees" with columns for employee_id, first_name, last_name, and department.</p>
+            <div class="code-block">
+                <pre>
+SELECT first_name, last_name 
+FROM employees;
+                </pre>
+            </div>
+            <p>This query will return a list of all employees' first and last names.</p>
+        </div>
+
+        <div class="note">
+            <p><strong>Note:</strong> While SELECT * is convenient for exploration, it's generally better practice to explicitly list the columns you need in production code. This improves readability and can enhance performance.</p>
+        </div>
+
+        <h2>Filtering Data with WHERE</h2>
+        
+        <p>
+            The WHERE clause allows you to filter records based on specific conditions.
+        </p>
+        
+        <div class="code-block">
+            <pre>
+SELECT column1, column2, ... 
+FROM table_name
+WHERE condition;
+            </pre>
+        </div>
+        
+        <h3>Common Operators in WHERE Clauses</h3>
+        
+        <table>
+            <tr>
+                <th>Operator</th>
+                <th>Description</th>
+                <th>Example</th>
+            </tr>
+            <tr>
+                <td>=</td>
+                <td>Equal</td>
+                <td>WHERE age = 30</td>
+            </tr>
+            <tr>
+                <td>></td>
+                <td>Greater than</td>
+                <td>WHERE salary > 50000</td>
+            </tr>
+            <tr>
+                <td><</td>
+                <td>Less than</td>
+                <td>WHERE age < 25</td>
+            </tr>
+            <tr>
+                <td>>=</td>
+                <td>Greater than or equal</td>
+                <td>WHERE hire_date >= '2020-01-01'</td>
+            </tr>
+            <tr>
+                <td><=</td>
+                <td>Less than or equal</td>
+                <td>WHERE price <= 100</td>
+            </tr>
+            <tr>
+                <td><> or !=</td>
+                <td>Not equal</td>
+                <td>WHERE status <> 'Inactive'</td>
+            </tr>
+            <tr>
+                <td>BETWEEN</td>
+                <td>Between a range (inclusive)</td>
+                <td>WHERE age BETWEEN 25 AND 35</td>
+            </tr>
+            <tr>
+                <td>LIKE</td>
+                <td>Pattern matching</td>
+                <td>WHERE name LIKE 'J%'</td>
+            </tr>
+            <tr>
+                <td>IN</td>
+                <td>Matches any value in a list</td>
+                <td>WHERE department IN ('HR', 'Finance')</td>
+            </tr>
+            <tr>
+                <td>IS NULL</td>
+                <td>Is a NULL value</td>
+                <td>WHERE phone IS NULL</td>
+            </tr>
+        </table>
+        
+        <div class="example">
+            <h3>Example:</h3>
+            <div class="code-block">
+                <pre>
+SELECT first_name, last_name, salary 
+FROM employees
+WHERE department = 'IT' AND salary > 60000;
+                </pre>
+            </div>
+            <p>This query retrieves the names and salaries of all IT employees who earn more than $60,000.</p>
+        </div>
+
+        <h2>Sorting Results with ORDER BY</h2>
+        
+        <p>
+            The ORDER BY clause allows you to sort the result set based on one or more columns.
+        </p>
+        
+        <div class="code-block">
+            <pre>
+SELECT column1, column2, ... 
+FROM table_name
+ORDER BY column1 [ASC|DESC], column2 [ASC|DESC], ...;
+            </pre>
+        </div>
+        
+        <ul>
+            <li><strong>ASC</strong> - Ascending order (default if not specified)</li>
+            <li><strong>DESC</strong> - Descending order</li>
+        </ul>
+        
+        <div class="example">
+            <h3>Example:</h3>
+            <div class="code-block">
+                <pre>
+SELECT first_name, last_name, hire_date 
+FROM employees
+ORDER BY hire_date DESC, last_name ASC;
+                </pre>
+            </div>
+            <p>This query retrieves employee names and hire dates, sorted by hire date in descending order (newest first). If multiple employees were hired on the same date, they are sorted by last name in ascending order.</p>
+        </div>
+
+        <h2>Limiting Results</h2>
+        
+        <p>
+            Many database systems allow you to limit the number of records returned by a query.
+        </p>
+        
+        <div class="code-block">
+            <pre>
+-- MySQL, PostgreSQL, SQLite
+SELECT column1, column2, ... 
+FROM table_name
+LIMIT number;
+
+-- SQL Server
+SELECT TOP(number) column1, column2, ... 
+FROM table_name;
+
+-- Oracle
+SELECT column1, column2, ... 
+FROM table_name
+FETCH FIRST number ROWS ONLY;
+            </pre>
+        </div>
+        
+        <div class="example">
+            <h3>Example:</h3>
+            <div class="code-block">
+                <pre>
+-- MySQL, PostgreSQL, SQLite
+SELECT first_name, last_name, salary 
+FROM employees
+ORDER BY salary DESC
+LIMIT 5;
+                </pre>
+            </div>
+            <p>This query retrieves the top 5 highest-paid employees.</p>
+        </div>
+
+        <h2>Aggregating Data</h2>
+        
+        <p>
+            SQL provides several aggregate functions to perform calculations on sets of values.
+        </p>
+        
+        <table>
+            <tr>
+                <th>Function</th>
+                <th>Description</th>
+                <th>Example</th>
+            </tr>
+            <tr>
+                <td>COUNT()</td>
+                <td>Counts the number of rows</td>
+                <td>COUNT(*) or COUNT(column)</td>
+            </tr>
+            <tr>
+                <td>SUM()</td>
+                <td>Calculates the sum of values</td>
+                <td>SUM(salary)</td>
+            </tr>
+            <tr>
+                <td>AVG()</td>
+                <td>Calculates the average of values</td>
+                <td>AVG(age)</td>
+            </tr>
+            <tr>
+                <td>MIN()</td>
+                <td>Finds the minimum value</td>
+                <td>MIN(price)</td>
+            </tr>
+            <tr>
+                <td>MAX()</td>
+                <td>Finds the maximum value</td>
+                <td>MAX(score)</td>
+            </tr>
+        </table>
+        
+        <div class="example">
+            <h3>Example:</h3>
+            <div class="code-block">
+                <pre>
+SELECT 
+    department,
+    COUNT(*) AS employee_count,
+    AVG(salary) AS avg_salary,
+    MAX(salary) AS highest_salary,
+    MIN(salary) AS lowest_salary
+FROM employees
+GROUP BY department;
+                </pre>
+            </div>
+            <p>This query calculates various statistics for each department.</p>
+        </div>
+
+        <h2>Grouping Data with GROUP BY</h2>
+        
+        <p>
+            The GROUP BY clause groups rows that have the same values in specified columns into summary rows.
+        </p>
+        
+        <div class="code-block">
+            <pre>
+SELECT column1, aggregate_function(column2)
+FROM table_name
+GROUP BY column1;
+            </pre>
+        </div>
+        
+        <div class="example">
+            <h3>Example:</h3>
+            <div class="code-block">
+                <pre>
+SELECT 
+    department, 
+    COUNT(*) AS employee_count
+FROM employees
+GROUP BY department;
+                </pre>
+            </div>
+            <p>This query counts the number of employees in each department.</p>
+        </div>
+
+        <h2>Filtering Groups with HAVING</h2>
+        
+        <p>
+            The HAVING clause filters groups based on aggregate conditions, similar to how WHERE filters individual rows.
+        </p>
+        
+        <div class="code-block">
+            <pre>
+SELECT column1, aggregate_function(column2)
+FROM table_name
+GROUP BY column1
+HAVING condition;
+            </pre>
+        </div>
+        
+        <div class="example">
+            <h3>Example:</h3>
+            <div class="code-block">
+                <pre>
+SELECT 
+    department, 
+    COUNT(*) AS employee_count
+FROM employees
+GROUP BY department
+HAVING COUNT(*) > 10;
+                </pre>
+            </div>
+            <p>This query retrieves only departments that have more than 10 employees.</p>
+        </div>
+
+        <div class="note">
+            <p><strong>Important Distinction:</strong> WHERE filters rows before they are grouped, while HAVING filters after grouping has occurred.</p>
+        </div>
+
+        <h2>Combining Multiple Tables with JOINs</h2>
+        
+        <p>
+            JOINs allow you to combine rows from two or more tables based on a related column.
+        </p>
+        
+        <div class="code-block">
+            <pre>
+SELECT a.column1, b.column2
+FROM table1 a
+JOIN table2 b ON a.common_field = b.common_field;
+            </pre>
+        </div>
+        
+        <div class="example">
+            <h3>Example:</h3>
+            <div class="code-block">
+                <pre>
+SELECT 
+    e.first_name, 
+    e.last_name, 
+    d.department_name
+FROM employees e
+JOIN departments d ON e.department_id = d.department_id;
+                </pre>
+            </div>
+            <p>This query retrieves employee names along with their department names by joining the employees and departments tables.</p>
+        </div>
+
+        <h2>Subqueries</h2>
+        
+        <p>
+            A subquery is a query nested inside another query. It can be used in various parts of a SQL statement.
+        </p>
+        
+        <div class="code-block">
+            <pre>
+SELECT column1, column2
+FROM table1
+WHERE column3 IN (SELECT column3 FROM table2 WHERE condition);
+            </pre>
+        </div>
+        
+        <div class="example">
+            <h3>Example:</h3>
+            <div class="code-block">
+                <pre>
+SELECT first_name, last_name
+FROM employees
+WHERE department_id IN (
+    SELECT department_id 
+    FROM departments 
+    WHERE location = 'New York'
+);
+                </pre>
+            </div>
+            <p>This query finds all employees who work in departments located in New York.</p>
+        </div>
+
+        <h2>Common Table Expressions (CTEs)</h2>
+        
+        <p>
+            CTEs provide a way to write more readable and maintainable queries by defining temporary result sets.
+        </p>
+        
+        <div class="code-block">
+            <pre>
+WITH cte_name AS (
+    SELECT column1, column2
+    FROM table1
+    WHERE condition
+)
+SELECT * FROM cte_name;
+            </pre>
+        </div>
+        
+        <div class="example">
+            <h3>Example:</h3>
+            <div class="code-block">
+                <pre>
+WITH high_salary_employees AS (
+    SELECT *
+    FROM employees
+    WHERE salary > 70000
+)
+SELECT 
+    department_id, 
+    COUNT(*) AS high_earners_count
+FROM high_salary_employees
+GROUP BY department_id;
+                </pre>
+            </div>
+            <p>This query counts the number of high-earning employees in each department using a CTE.</p>
+        </div>
+
+        <h2>UNION and UNION ALL</h2>
+        
+        <p>
+            UNION and UNION ALL combine the results of two or more SELECT statements.
+        </p>
+        
+        <div class="code-block">
+            <pre>
+SELECT column1, column2 FROM table1
+UNION [ALL]
+SELECT column1, column2 FROM table2;
+            </pre>
+        </div>
+        
+        <ul>
+            <li><strong>UNION</strong> - Combines results and removes duplicates</li>
+            <li><strong>UNION ALL</strong> - Combines results and keeps duplicates (faster)</li>
+        </ul>
+        
+        <div class="example">
+            <h3>Example:</h3>
+            <div class="code-block">
+                <pre>
+SELECT employee_id, first_name, last_name, 'Current' AS status
+FROM current_employees
+UNION
+SELECT employee_id, first_name, last_name, 'Former' AS status
+FROM former_employees;
+                </pre>
+            </div>
+            <p>This query combines lists of current and former employees into a single result set.</p>
+        </div>
+
+        <h2>Best Practices for Writing SQL Queries</h2>
+        
+        <ul>
+            <li><strong>Be specific with column selection</strong> - Avoid SELECT * in production code</li>
+            <li><strong>Use appropriate indexing</strong> - Ensure frequently queried columns are indexed</li>
+            <li><strong>Limit result sets</strong> - Use LIMIT/TOP when you don't need all records</li>
+            <li><strong>Use table aliases</strong> - Especially with multiple tables to improve readability</li>
+            <li><strong>Format your SQL</strong> - Use consistent indentation and line breaks</li>
+            <li><strong>Comment complex queries</strong> - Explain the purpose and logic</li>
+            <li><strong>Use parameters</strong> - Avoid concatenating strings to prevent SQL injection</li>
+            <li><strong>Test with realistic data volumes</strong> - A query that works well with small datasets might perform poorly at scale</li>
+        </ul>
+
+        <div class="note">
+            <p><strong>Performance Tip:</strong> Always consider the execution plan of your queries, especially for complex ones or those running on large datasets. Most database systems provide tools to analyze query performance.</p>
+        </div>
+    </div>
+</body>
+</html>

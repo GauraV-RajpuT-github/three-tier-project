@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: three-tier
+  labels:
+    role: frontend
+    env: demo
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 25%
+  selector:
+    matchLabels:
+      role: frontend
+  template:
+    metadata:
+      labels:
+        role: frontend
+    spec:
+      imagePullSecrets:
+      - name: ecr-registry-secret
+      containers:
+      - name: frontend
+        image: 407622020962.dkr.ecr.us-east-1.amazonaws.com/frontend:latest  # have to change to the image of your frontend service
+        imagePullPolicy: Always
+        env:
+          - name: PORT
+            value: "3001"
+          - name: REACT_APP_BACKEND_URL
+            value: "http://syntaxshiksha.com/api/tasks"  #domain have to be changed to the domain of your backend service
+        ports:
+        - containerPort: 3001

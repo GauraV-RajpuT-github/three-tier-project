@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #FF8C00;
+            border-bottom: 2px solid #FFA500;
+            padding-bottom: 10px;
+        }
+
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        li {
+            margin: 10px 0;
+            position: relative;
+        }
+
+        li:before {
+            content: "•";
+            color: #FFA500;
+            font-weight: bold;
+            position: absolute;
+            left: -15px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Object-Oriented Programming (OOP)</h2>
+
+    <p>Object-Oriented Programming is a programming paradigm based on the concept of "objects", which can contain data and code. The four main principles of OOP are encapsulation, inheritance, polymorphism, and abstraction.</p>
+
+    <h2>Classes and Objects</h2>
+    <p>A class is a blueprint for creating objects. An object is an instance of a class.</p>
+
+    <pre><code>// Class definition
+class Car {
+private:
+    // Data members (attributes)
+    string brand;
+    string model;
+    int year;
+
+public:
+    // Constructor
+    Car(string b, string m, int y) {
+        brand = b;
+        model = m;
+        year = y;
+    }
+
+    // Member functions (methods)
+    void displayInfo() {
+        cout << year << " " << brand << " " << model << endl;
+    }
+
+    void accelerate() {
+        cout << "The " << brand << " " << model << " is accelerating!" << endl;
+    }
+};
+
+// Creating objects
+Car myCar("Toyota", "Corolla", 2020);
+Car yourCar("Honda", "Civic", 2019);
+
+// Using objects
+myCar.displayInfo();  // Output: 2020 Toyota Corolla
+yourCar.accelerate();  // Output: The Honda Civic is accelerating!</code></pre>
+
+    <h2>Encapsulation</h2>
+    <p>Encapsulation is the bundling of data and methods that operate on the data into a single unit (class) and restricting access to some of the object's components.</p>
+
+    <pre><code>class BankAccount {
+private:
+    // Private data members
+    double balance;
+    string accountNumber;
+
+public:
+    // Public methods to access and modify private data
+    BankAccount(string accNum, double initialBalance) {
+        accountNumber = accNum;
+        balance = initialBalance;
+    }
+
+    void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+        }
+    }
+
+    bool withdraw(double amount) {
+        if (amount > 0 && balance >= amount) {
+            balance -= amount;
+            return true;
+        }
+        return false;
+    }
+
+    double getBalance() {
+        return balance;
+    }
+
+    string getAccountNumber() {
+        return accountNumber;
+    }
+};</code></pre>
+
+    <h2>Inheritance</h2>
+    <p>Inheritance allows a class (derived class) to inherit attributes and methods from another class (base class).</p>
+
+    <pre><code>// Base class
+class Vehicle {
+protected:
+    string brand;
+    int year;
+
+public:
+    Vehicle(string b, int y) : brand(b), year(y) {}
+
+    void displayInfo() {
+        cout << year << " " << brand << endl;
+    }
+};
+
+// Derived class
+class Car : public Vehicle {
+private:
+    int doors;
+
+public:
+    Car(string b, int y, int d) : Vehicle(b, y), doors(d) {}
+
+    void displayCarInfo() {
+        displayInfo();
+        cout << "Doors: " << doors << endl;
+    }
+};
+
+// Creating and using a derived class object
+Car myCar("Toyota", 2020, 4);
+myCar.displayCarInfo();
+// Output:
+// 2020 Toyota
+// Doors: 4</code></pre>
+
+    <h2>Polymorphism</h2>
+    <p>Polymorphism allows objects of different classes to be treated as objects of a common base class. It enables one interface to be used for a general class of actions.</p>
+
+    <h3>Function Overriding</h3>
+    <pre><code>// Base class
+class Shape {
+public:
+    virtual void draw() {
+        cout << "Drawing a shape" << endl;
+    }
+};
+
+// Derived classes
+class Circle : public Shape {
+public:
+    void draw() override {
+        cout << "Drawing a circle" << endl;
+    }
+};
+
+class Rectangle : public Shape {
+public:
+    void draw() override {
+        cout << "Drawing a rectangle" << endl;
+    }
+};
+
+// Polymorphic behavior
+Shape* shape1 = new Circle();
+Shape* shape2 = new Rectangle();
+
+shape1->draw();  // Output: Drawing a circle
+shape2->draw();  // Output: Drawing a rectangle
+
+// Clean up
+delete shape1;
+delete shape2;</code></pre>
+
+    <h2>Abstraction</h2>
+    <p>Abstraction means hiding complex implementation details and showing only the necessary features of an object.</p>
+
+    <pre><code>// Abstract class
+class AbstractEmployee {
+protected:
+    string name;
+    double payRate;
+
+public:
+    AbstractEmployee(string n, double p) : name(n), payRate(p) {}
+
+    // Pure virtual function (makes this an abstract class)
+    virtual double calculatePay() = 0;
+
+    string getName() {
+        return name;
+    }
+};
+
+// Concrete derived classes
+class HourlyEmployee : public AbstractEmployee {
+private:
+    int hoursWorked;
+
+public:
+    HourlyEmployee(string n, double p, int h) : AbstractEmployee(n, p), hoursWorked(h) {}
+
+    double calculatePay() override {
+        return payRate * hoursWorked;
+    }
+};
+
+class SalariedEmployee : public AbstractEmployee {
+public:
+    SalariedEmployee(string n, double p) : AbstractEmployee(n, p) {}
+
+    double calculatePay() override {
+        return payRate;
+    }
+};
+
+// Using abstraction
+HourlyEmployee emp1("John", 15.0, 40);
+SalariedEmployee emp2("Jane", 50000.0);
+
+cout << emp1.getName() << " earns $" << emp1.calculatePay() << endl;
+cout << emp2.getName() << " earns $" << emp2.calculatePay() << endl;</code></pre>
+
+    <h2>Constructors and Destructors</h2>
+    <p>Constructors initialize objects when they are created. Destructors clean up resources when objects are destroyed.</p>
+
+    <pre><code>class Resource {
+private:
+    int* data;
+
+public:
+    // Constructor
+    Resource() {
+        cout << "Resource acquired" << endl;
+        data = new int[100];  // Allocate memory
+    }
+
+    // Destructor
+    ~Resource() {
+        cout << "Resource released" << endl;
+        delete[] data;  // Free memory
+    }
+};
+
+// Constructor called when object is created
+Resource res;
+
+// Destructor called when object goes out of scope</code></pre>
+
+    <h2>Key points to remember:</h2>
+    <ul>
+        <li>Use private access for data members to enforce encapsulation</li>
+        <li>Implement public methods to provide controlled access to private data</li>
+        <li>Use inheritance to model "is-a" relationships</li>
+        <li>Use virtual functions for polymorphic behavior</li>
+        <li>Always define destructors for classes that manage resources</li>
+        <li>Consider using the "Rule of Three" (if you need a destructor, you probably need a copy constructor and copy assignment operator)</li>
+    </ul>
+</body>
+
+</html>

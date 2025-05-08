@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Object-Oriented Programming</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        pre {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 15px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #e83e8c;
+        }
+        .output {
+            background-color: #f1f1f1;
+            border-left: 4px solid #4CAF50;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+        .tip {
+            background-color: #e6f7ff;
+            border-left: 4px solid #1890ff;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Object-Oriented Programming in Python</h1>
+
+    <h2>Introduction to OOP</h2>
+    <p>Object-Oriented Programming (OOP) is a programming paradigm that uses objects and classes to structure code. Python is a multi-paradigm language that fully supports OOP principles.</p>
+    
+    <h3>Key OOP Concepts:</h3>
+    <ul>
+        <li><strong>Classes:</strong> Blueprints for creating objects</li>
+        <li><strong>Objects:</strong> Instances of classes</li>
+        <li><strong>Attributes:</strong> Data stored inside a class or instance</li>
+        <li><strong>Methods:</strong> Functions defined in a class</li>
+        <li><strong>Inheritance:</strong> Mechanism to reuse code between classes</li>
+        <li><strong>Encapsulation:</strong> Restricting access to methods and variables</li>
+        <li><strong>Polymorphism:</strong> Using a single interface with different underlying forms</li>
+    </ul>
+
+    <h2>Creating Classes and Objects</h2>
+    <p>A class is defined using the <code>class</code> keyword:</p>
+    
+    <pre><code>class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+    
+    def introduce(self):
+        return f"Hello, my name is {self.name} and I am {self.age} years old."
+
+# Creating an object (instance)
+person1 = Person("Alice", 30)
+print(person1.introduce())</code></pre>
+    
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Hello, my name is Alice and I am 30 years old.</p>
+    </div>
+
+    <h3>The <code>__init__</code> Method</h3>
+    <p>The <code>__init__</code> method is a special method (constructor) that is automatically called when a new object is created. It initializes the object's attributes.</p>
+
+    <h3>The <code>self</code> Parameter</h3>
+    <p>The <code>self</code> parameter refers to the instance of the class and is used to access variables and methods associated with the instance.</p>
+
+    <h2>Class Variables vs. Instance Variables</h2>
+    <pre><code>class Student:
+    # Class variable
+    school = "Python High School"
+    
+    def __init__(self, name, grade):
+        # Instance variables
+        self.name = name
+        self.grade = grade
+
+student1 = Student("Bob", "A")
+student2 = Student("Charlie", "B")
+
+print(student1.school)  # Accessing class variable
+print(student2.school)
+print(student1.name)    # Accessing instance variable</code></pre>
+    
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Python High School<br>
+        Python High School<br>
+        Bob</p>
+    </div>
+
+    <h2>Inheritance</h2>
+    <p>Inheritance allows a class to inherit attributes and methods from another class:</p>
+    
+    <pre><code>class Animal:
+    def __init__(self, species):
+        self.species = species
+    
+    def make_sound(self):
+        print("Some generic sound")
+
+class Dog(Animal):
+    def __init__(self, name):
+        # Call the parent class constructor
+        super().__init__("Canine")
+        self.name = name
+    
+    # Override the parent method
+    def make_sound(self):
+        print("Woof!")
+
+dog = Dog("Rex")
+print(f"{dog.name} is a {dog.species}")
+dog.make_sound()</code></pre>
+    
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Rex is a Canine<br>
+        Woof!</p>
+    </div>
+
+    <h2>Multiple Inheritance</h2>
+    <p>Python supports multiple inheritance, allowing a class to inherit from multiple parent classes:</p>
+    
+    <pre><code>class Flyable:
+    def fly(self):
+        print("Flying...")
+
+class Swimmable:
+    def swim(self):
+        print("Swimming...")
+
+class Duck(Flyable, Swimmable):
+    def quack(self):
+        print("Quack!")
+
+duck = Duck()
+duck.fly()
+duck.swim()
+duck.quack()</code></pre>
+    
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Flying...<br>
+        Swimming...<br>
+        Quack!</p>
+    </div>
+
+    <h2>Encapsulation</h2>
+    <p>Encapsulation is about restricting access to certain attributes and methods. Python uses naming conventions for this purpose:</p>
+    
+    <pre><code>class BankAccount:
+    def __init__(self, owner, balance=0):
+        self.owner = owner        # Public attribute
+        self._balance = balance   # Protected attribute (convention)
+        self.__id = 12345         # Private attribute
+    
+    def deposit(self, amount):
+        self._balance += amount
+        return self._balance
+    
+    def withdraw(self, amount):
+        if amount <= self._balance:
+            self._balance -= amount
+            return True
+        return False
+    
+    def get_balance(self):
+        return self._balance
+
+account = BankAccount("John")
+account.deposit(1000)
+print(f"Balance: ${account.get_balance()}")
+# print(account.__id)  # This would raise an AttributeError</code></pre>
+    
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Balance: $1000</p>
+    </div>
+
+    <h2>Polymorphism</h2>
+    <p>Polymorphism allows objects of different classes to be treated as objects of a common superclass:</p>
+    
+    <pre><code>class Shape:
+    def area(self):
+        pass
+
+class Rectangle(Shape):
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+    
+    def area(self):
+        return self.width * self.height
+
+class Circle(Shape):
+    def __init__(self, radius):
+        self.radius = radius
+    
+    def area(self):
+        return 3.14 * self.radius * self.radius
+
+shapes = [Rectangle(5, 4), Circle(7)]
+for shape in shapes:
+    print(f"Area: {shape.area()}")</code></pre>
+    
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Area: 20<br>
+        Area: 153.86</p>
+    </div>
+
+    <h2>Special Methods</h2>
+    <p>Python classes can implement special methods (also called dunder methods) to customize behavior:</p>
+    
+    <pre><code>class Book:
+    def __init__(self, title, author, pages):
+        self.title = title
+        self.author = author
+        self.pages = pages
+    
+    def __str__(self):
+        return f"{self.title} by {self.author}"
+    
+    def __len__(self):
+        return self.pages
+    
+    def __del__(self):
+        print(f"Book {self.title} has been deleted")
+
+book = Book("Python Mastery", "John Doe", 350)
+print(book)          # Calls __str__
+print(len(book))     # Calls __len__
+del book             # Calls __del__</code></pre>
+    
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Python Mastery by John Doe<br>
+        350<br>
+        Book Python Mastery has been deleted</p>
+    </div>
+
+    <div class="tip">
+        <p><strong>Best Practice:</strong> Follow the principle of composition over inheritance when possible. This means favoring object composition (having instances of other classes as attributes) over inheritance for reusing code.</p>
+    </div>
+
+    <h2>Property Decorators</h2>
+    <p>Python provides property decorators for implementing getters, setters, and deleters:</p>
+    
+    <pre><code>class Temperature:
+    def __init__(self, celsius=0):
+        self._celsius = celsius
+    
+    @property
+    def celsius(self):
+        return self._celsius
+    
+    @celsius.setter
+    def celsius(self, value):
+        if value < -273.15:
+            raise ValueError("Temperature below absolute zero!")
+        self._celsius = value
+    
+    @property
+    def fahrenheit(self):
+        return self._celsius * 9/5 + 32
+    
+    @fahrenheit.setter
+    def fahrenheit(self, value):
+        self.celsius = (value - 32) * 5/9
+
+temp = Temperature(25)
+print(f"{temp.celsius}°C = {temp.fahrenheit}°F")
+temp.fahrenheit = 68
+print(f"{temp.celsius}°C = {temp.fahrenheit}°F")</code></pre>
+    
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        25°C = 77.0°F<br>
+        20.0°C = 68.0°F</p>
+    </div>
+</body>
+</html>

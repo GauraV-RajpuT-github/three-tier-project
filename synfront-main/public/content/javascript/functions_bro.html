@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #FF8C00;
+            border-bottom: 2px solid #FFA500;
+            padding-bottom: 10px;
+        }
+
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            border: 1px solid #ddd;
+        }
+
+        code {
+            font-family: Consolas, Monaco, 'Andale Mono', monospace;
+            background-color: #f5f5f5;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        .note {
+            background-color: #fff8dc;
+            border-left: 4px solid #ffeb3b;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .bro-highlight {
+            background-color: #FFE4B5;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Functions in JavaScript - Bro Style! 🔥</h2>
+
+    <p>Aye bro! Aaj hum JavaScript ke <span class="bro-highlight">functions</span> ke baare mein baat karenge. Functions matlab code ke reusable pieces - ek baar likho, hazaar baar use karo! Ye coding life ko easy banate hain, bilkul ready-to-eat food ki tarah! 🍕</p>
+
+    <h3>Function Declaration - Function Ko Define Karna</h3>
+    <p>JavaScript mein functions define karne ke kai tarike hain:</p>
+
+    <h4>Function Declaration - Purana Tarika</h4>
+    <pre><code>// Syntax
+function functionName(parameter1, parameter2, ...) {
+    // function body
+    return value;  // optional
+}
+
+// Example
+function greet(name) {
+    return `Hello, ${name} bro!`;
+}
+
+console.log(greet("Rahul"));  // Output: "Hello, Rahul bro!"</code></pre>
+
+    <h4>Function Expression - Variable Mein Store Karna</h4>
+    <pre><code>// Syntax
+const functionName = function(parameter1, parameter2, ...) {
+    // function body
+    return value;  // optional
+};
+
+// Example
+const greet = function(name) {
+    return `Hello, ${name} bro!`;
+};
+
+console.log(greet("Rahul"));  // Output: "Hello, Rahul bro!"</code></pre>
+
+    <h4>Arrow Functions - Modern Cool Tarika (ES6)</h4>
+    <pre><code>// Syntax
+const functionName = (parameter1, parameter2, ...) => {
+    // function body
+    return value;  // optional
+};
+
+// Example
+const greet = (name) => {
+    return `Hello, ${name} bro!`;
+};
+
+// Shorter syntax for single expressions - One-liner!
+const greet = name => `Hello, ${name} bro!`;
+
+console.log(greet("Rahul"));  // Output: "Hello, Rahul bro!"</code></pre>
+
+    <div class="note">
+        <strong>Note bro:</strong> Arrow functions normal functions se thode alag hain:
+        <ul>
+            <li>Inke paas apna <code>this</code> nahi hota (parent ka <code>this</code> use karte hain)</li>
+            <li>Inko <code>new</code> keyword ke saath use nahi kar sakte</li>
+            <li>Inke paas <code>arguments</code> object nahi hota</li>
+            <li>Inke paas apna <code>super</code> ya <code>new.target</code> nahi hota</li>
+        </ul>
+        Par bro, zyada tension mat lo - jab zaroorat padegi tab samajh jaoge! 😎
+    </div>
+
+    <h3>Function Parameters - Function Ko Data Pass Karna</h3>
+    <p>Functions ko data pass karne ke liye parameters use karte hain - jaise ki biryani mein masale!</p>
+
+    <h4>Default Parameters - Default Values</h4>
+    <pre><code>// Syntax
+function functionName(parameter1 = defaultValue1, parameter2 = defaultValue2, ...) {
+    // function body
+}
+
+// Example
+function greet(name = "Stranger") {
+    return `Hello, ${name} bro!`;
+}
+
+console.log(greet());        // Output: "Hello, Stranger bro!"
+console.log(greet("Rahul"));  // Output: "Hello, Rahul bro!"</code></pre>
+
+    <h4>Rest Parameters - Multiple Arguments</h4>
+    <pre><code>// Syntax
+function functionName(...parameterName) {
+    // function body
+}
+
+// Example
+function addAllNumbers(...numbers) {
+    return numbers.reduce((total, num) => total + num, 0);
+}
+
+console.log(addAllNumbers(1, 2, 3, 4, 5));  // Output: 15
+console.log(addAllNumbers(10, 20, 30));     // Output: 60</code></pre>
+
+    <h3>Function Return - Function Se Value Wapas Lena</h3>
+    <p>Functions <code>return</code> statement ke through value wapas kar sakte hain. Agar koi return statement nahi hai, toh function <code>undefined</code> return karta hai.</p>
+
+    <pre><code>// Example with return
+function multiply(a, b) {
+    return a * b;  // Value ko wapas karta hai
+}
+
+console.log(multiply(5, 3));  // Output: 15
+
+// Example without return
+function logMessage(message) {
+    console.log(message);
+    // No return statement, so it returns undefined
+}
+
+const result = logMessage("Kya scene hai bro?");
+console.log(result);  // Output: undefined</code></pre>
+
+    <h3>Function Scope - Function Ka Private Area</h3>
+    <p>Function ke andar define kiye gaye variables bahar se access nahi kiye ja sakte. Ye function scope kehlaata hai - jaise ki ghar ke andar ki baatein ghar ke andar hi rehti hain!</p>
+
+    <pre><code>// Example
+function myFunction() {
+    const localVar = "Main sirf function ke andar available hoon";
+    console.log(localVar);  // Accessible
+}
+
+myFunction();
+// console.log(localVar);  // Error: localVar is not defined - bahar se access nahi kar sakte!</code></pre>
+
+    <h3>Closures - Function Ke Andar Function</h3>
+    <p>Closure ek aisa function hai jo apne outer function ke variables ko access kar sakta hai, even after outer function return ho chuka ho. Ye thoda magic jaisa hai! 🪄</p>
+
+    <pre><code>// Example
+function createCounter() {
+    let count = 0;  // Private variable
+    
+    return function() {
+        count++;  // Outer function ke variable ko access kar raha hai
+        return count;
+    };
+}
+
+const counter = createCounter();
+console.log(counter());  // Output: 1
+console.log(counter());  // Output: 2
+console.log(counter());  // Output: 3</code></pre>
+
+    <h3>Immediately Invoked Function Expressions (IIFE) - Turant Execute Hone Wale Functions</h3>
+    <p>IIFE ek aisa function hai jo define hote hi execute ho jata hai - jaise ki instant noodles! 🍜</p>
+
+    <pre><code>// Syntax
+(function() {
+    // code
+})();
+
+// Example
+(function() {
+    const message = "IIFE se hello bro!";
+    console.log(message);
+})();  // Output: "IIFE se hello bro!"</code></pre>
+
+    <h3>Higher-Order Functions - Smart Functions</h3>
+    <p>Higher-order functions wo functions hain jo doosre functions ko as arguments lete hain ya phir functions return karte hain. Ye functions ke boss hain! 😎</p>
+
+    <h4>Functions as Arguments - Functions Ko Parameters Ke Tarah Use Karna</h4>
+    <pre><code>// Example
+function executeOperation(x, y, operation) {
+    return operation(x, y);
+}
+
+function add(a, b) {
+    return a + b;
+}
+
+function multiply(a, b) {
+    return a * b;
+}
+
+console.log(executeOperation(5, 3, add));      // Output: 8
+console.log(executeOperation(5, 3, multiply));  // Output: 15</code></pre>
+
+    <h4>Functions Returning Functions - Functions Jo Functions Return Karte Hain</h4>
+    <pre><code>// Example
+function createMultiplier(factor) {
+    return function(number) {
+        return number * factor;
+    };
+}
+
+const double = createMultiplier(2);  // 2 se multiply karne wala function
+const triple = createMultiplier(3);  // 3 se multiply karne wala function
+
+console.log(double(5));  // Output: 10
+console.log(triple(5));  // Output: 15</code></pre>
+
+    <h3>Common Built-in Higher-Order Functions - JavaScript Ke Ready-Made Smart Functions</h3>
+    <p>JavaScript arrays ke saath kuch built-in higher-order functions aate hain jo life bahut easy bana dete hain:</p>
+
+    <h4>Array.prototype.map() - Har Element Par Function Apply Karna</h4>
+    <pre><code>// Har element par function apply karke new array banata hai
+const numbers = [1, 2, 3, 4, 5];
+const doubled = numbers.map(num => num * 2);
+console.log(doubled);  // Output: [2, 4, 6, 8, 10]</code></pre>
+
+    <h4>Array.prototype.filter() - Elements Ko Filter Karna</h4>
+    <pre><code>// Condition pass karne wale elements ko new array mein rakhta hai
+const numbers = [1, 2, 3, 4, 5];
+const evenNumbers = numbers.filter(num => num % 2 === 0);
+console.log(evenNumbers);  // Output: [2, 4]</code></pre>
+
+    <h4>Array.prototype.reduce() - Array Ko Single Value Mein Convert Karna</h4>
+    <pre><code>// Har element ko process karke ek single value return karta hai
+const numbers = [1, 2, 3, 4, 5];
+const sum = numbers.reduce((total, num) => total + num, 0);
+console.log(sum);  // Output: 15</code></pre>
+
+    <h4>Array.prototype.forEach() - Har Element Par Function Run Karna</h4>
+    <pre><code>// Har element par function run karta hai, kuch return nahi karta
+const numbers = [1, 2, 3, 4, 5];
+numbers.forEach(num => console.log(`Number: ${num}`));
+// Output:
+// Number: 1
+// Number: 2
+// Number: 3
+// Number: 4
+// Number: 5</code></pre>
+
+    <h3>Recursion - Function Ka Khud Ko Call Karna</h3>
+    <p>Recursion tab hota hai jab ek function khud ko call karta hai - jaise infinity mirror effect! 🪞</p>
+
+    <pre><code>// Example: Factorial calculate karna
+function factorial(n) {
+    // Base case - rukne ki condition
+    if (n <= 1) {
+        return 1;
+    }
+    // Recursive case - khud ko call karna
+    return n * factorial(n - 1);
+}
+
+console.log(factorial(5));  // Output: 120 (5 * 4 * 3 * 2 * 1)</code></pre>
+
+    <h3>Yaad Rakhne Wali Baatein</h3>
+    <ul>
+        <li>Functions code ke reusable pieces hain - ek baar likho, baar-baar use karo</li>
+        <li>Functions define karne ke 3 tarike hain: function declarations, function expressions, aur arrow functions</li>
+        <li>Arrow functions modern aur concise hain, lekin <code>this</code> ke mamle mein alag behave karte hain</li>
+        <li>Functions parameters le sakte hain aur values return kar sakte hain</li>
+        <li>Function ke andar define kiye gaye variables bahar se access nahi kiye ja sakte</li>
+        <li>Closures se functions apne outer scope ke variables ko access kar sakte hain</li>
+        <li>Higher-order functions doosre functions ko as arguments lete hain ya functions return karte hain</li>
+        <li>Array methods jaise <code>map()</code>, <code>filter()</code>, <code>reduce()</code> aur <code>forEach()</code> higher-order functions hain</li>
+        <li>Recursion tab hota hai jab function khud ko call karta hai</li>
+    </ul>
+
+    <p>Ab toh JavaScript functions mein pro ban gaye ho bro! Koi confusion ho toh console.log() karke check kar lena. Happy coding! 🚀</p>
+</body>
+
+</html>

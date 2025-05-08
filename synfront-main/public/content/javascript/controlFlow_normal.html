@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #FF8C00;
+            border-bottom: 2px solid #FFA500;
+            padding-bottom: 10px;
+        }
+
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            border: 1px solid #ddd;
+        }
+
+        code {
+            font-family: Consolas, Monaco, 'Andale Mono', monospace;
+            background-color: #f5f5f5;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        .note {
+            background-color: #fff8dc;
+            border-left: 4px solid #ffeb3b;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Control Flow in JavaScript</h2>
+
+    <p>Control flow structures in JavaScript allow you to control the order in which statements are executed in your code based on certain conditions or to repeat blocks of code multiple times.</p>
+
+    <h3>Conditional Statements</h3>
+    <p>Conditional statements are used to perform different actions based on different conditions.</p>
+
+    <h4>if...else Statement</h4>
+    <p>The <code>if...else</code> statement is used to execute a block of code if a specified condition is true, and another block of code if the condition is false.</p>
+
+    <pre><code>// Basic if statement
+if (condition) {
+    // code to be executed if the condition is true
+}
+
+// if...else statement
+if (condition) {
+    // code to be executed if the condition is true
+} else {
+    // code to be executed if the condition is false
+}
+
+// if...else if...else statement
+if (condition1) {
+    // code to be executed if condition1 is true
+} else if (condition2) {
+    // code to be executed if condition1 is false and condition2 is true
+} else {
+    // code to be executed if both condition1 and condition2 are false
+}</code></pre>
+
+    <p>Example:</p>
+    <pre><code>const hour = new Date().getHours();
+let greeting;
+
+if (hour < 12) {
+    greeting = "Good morning";
+} else if (hour < 18) {
+    greeting = "Good afternoon";
+} else {
+    greeting = "Good evening";
+}
+
+console.log(greeting);</code></pre>
+
+    <h4>Ternary Operator</h4>
+    <p>The ternary operator is a shorthand way of writing an <code>if...else</code> statement. It takes three operands: a condition, a result for <code>true</code>, and a result for <code>false</code>.</p>
+
+    <pre><code>// Syntax
+condition ? expressionIfTrue : expressionIfFalse;
+
+// Example
+const age = 20;
+const canVote = age >= 18 ? "Yes" : "No";
+console.log(canVote);  // Output: "Yes"</code></pre>
+
+    <h4>switch Statement</h4>
+    <p>The <code>switch</code> statement is used to perform different actions based on different conditions. It's often used as an alternative to multiple <code>if...else if</code> statements.</p>
+
+    <pre><code>// Syntax
+switch (expression) {
+    case value1:
+        // code to be executed if expression === value1
+        break;
+    case value2:
+        // code to be executed if expression === value2
+        break;
+    // more cases...
+    default:
+        // code to be executed if expression doesn't match any cases
+}
+
+// Example
+const day = new Date().getDay();
+let dayName;
+
+switch (day) {
+    case 0:
+        dayName = "Sunday";
+        break;
+    case 1:
+        dayName = "Monday";
+        break;
+    case 2:
+        dayName = "Tuesday";
+        break;
+    case 3:
+        dayName = "Wednesday";
+        break;
+    case 4:
+        dayName = "Thursday";
+        break;
+    case 5:
+        dayName = "Friday";
+        break;
+    case 6:
+        dayName = "Saturday";
+        break;
+    default:
+        dayName = "Unknown";
+}
+
+console.log(`Today is ${dayName}`);</code></pre>
+
+    <div class="note">
+        <strong>Note:</strong> The <code>break</code> statement is important in <code>switch</code> cases. Without it, the execution will "fall through" to the next case, even if the case condition doesn't match.
+    </div>
+
+    <h3>Loops</h3>
+    <p>Loops are used to execute a block of code multiple times.</p>
+
+    <h4>for Loop</h4>
+    <p>The <code>for</code> loop repeats a block of code as long as a specified condition is true.</p>
+
+    <pre><code>// Syntax
+for (initialization; condition; increment/decrement) {
+    // code to be executed
+}
+
+// Example: Print numbers from 1 to 5
+for (let i = 1; i <= 5; i++) {
+    console.log(i);
+}
+// Output: 1, 2, 3, 4, 5</code></pre>
+
+    <h4>for...of Loop</h4>
+    <p>The <code>for...of</code> loop iterates over iterable objects like arrays, strings, etc.</p>
+
+    <pre><code>// Syntax
+for (variable of iterable) {
+    // code to be executed
+}
+
+// Example: Iterate over an array
+const fruits = ["apple", "banana", "cherry"];
+for (const fruit of fruits) {
+    console.log(fruit);
+}
+// Output: "apple", "banana", "cherry"</code></pre>
+
+    <h4>for...in Loop</h4>
+    <p>The <code>for...in</code> loop iterates over the enumerable properties of an object.</p>
+
+    <pre><code>// Syntax
+for (variable in object) {
+    // code to be executed
+}
+
+// Example: Iterate over object properties
+const person = {
+    name: "John",
+    age: 30,
+    job: "Developer"
+};
+
+for (const key in person) {
+    console.log(`${key}: ${person[key]}`);
+}
+// Output: "name: John", "age: 30", "job: Developer"</code></pre>
+
+    <div class="note">
+        <strong>Note:</strong> <code>for...in</code> should not be used to iterate over arrays if the index order is important, as it iterates over all enumerable properties, not just numeric indices.
+    </div>
+
+    <h4>while Loop</h4>
+    <p>The <code>while</code> loop executes a block of code as long as a specified condition is true.</p>
+
+    <pre><code>// Syntax
+while (condition) {
+    // code to be executed
+}
+
+// Example: Print numbers from 1 to 5
+let i = 1;
+while (i <= 5) {
+    console.log(i);
+    i++;
+}
+// Output: 1, 2, 3, 4, 5</code></pre>
+
+    <h4>do...while Loop</h4>
+    <p>The <code>do...while</code> loop is similar to the <code>while</code> loop, but it executes the code block once before checking the condition.</p>
+
+    <pre><code>// Syntax
+do {
+    // code to be executed
+} while (condition);
+
+// Example: Print numbers from 1 to 5
+let j = 1;
+do {
+    console.log(j);
+    j++;
+} while (j <= 5);
+// Output: 1, 2, 3, 4, 5</code></pre>
+
+    <h3>Loop Control Statements</h3>
+    <p>JavaScript provides statements to control the flow of loops.</p>
+
+    <h4>break Statement</h4>
+    <p>The <code>break</code> statement terminates the current loop or switch statement and transfers control to the statement following the terminated statement.</p>
+
+    <pre><code>// Example: Break when i is 3
+for (let i = 1; i <= 5; i++) {
+    if (i === 3) {
+        break;
+    }
+    console.log(i);
+}
+// Output: 1, 2</code></pre>
+
+    <h4>continue Statement</h4>
+    <p>The <code>continue</code> statement skips the current iteration of a loop and continues with the next iteration.</p>
+
+    <pre><code>// Example: Skip when i is 3
+for (let i = 1; i <= 5; i++) {
+    if (i === 3) {
+        continue;
+    }
+    console.log(i);
+}
+// Output: 1, 2, 4, 5</code></pre>
+
+    <h3>Error Handling</h3>
+    <p>JavaScript provides mechanisms to handle runtime errors gracefully.</p>
+
+    <h4>try...catch...finally Statement</h4>
+    <p>The <code>try...catch...finally</code> statement is used to handle exceptions (errors) that might occur during the execution of a block of code.</p>
+
+    <pre><code>// Syntax
+try {
+    // code that may throw an error
+} catch (error) {
+    // code to handle the error
+} finally {
+    // code that will run regardless of whether an error occurred
+}
+
+// Example
+try {
+    // Attempt to access a property of an undefined variable
+    console.log(nonExistentVariable.property);
+} catch (error) {
+    console.error("An error occurred:", error.message);
+} finally {
+    console.log("This will always execute");
+}</code></pre>
+
+    <h4>throw Statement</h4>
+    <p>The <code>throw</code> statement is used to generate custom errors.</p>
+
+    <pre><code>// Example
+function divide(a, b) {
+    if (b === 0) {
+        throw new Error("Division by zero is not allowed");
+    }
+    return a / b;
+}
+
+try {
+    console.log(divide(10, 0));
+} catch (error) {
+    console.error(error.message);  // Output: "Division by zero is not allowed"
+}</code></pre>
+
+    <h3>Key Points to Remember</h3>
+    <ul>
+        <li>Use <code>if...else</code> statements for simple conditions</li>
+        <li>Use <code>switch</code> statements when comparing a value against multiple possible values</li>
+        <li>Use the ternary operator for simple conditional assignments</li>
+        <li>Choose the appropriate loop based on your needs:
+            <ul>
+                <li><code>for</code> loop: when you know how many times you want to loop</li>
+                <li><code>while</code> loop: when you don't know how many times you need to loop</li>
+                <li><code>for...of</code> loop: for iterating over array elements</li>
+                <li><code>for...in</code> loop: for iterating over object properties</li>
+            </ul>
+        </li>
+        <li>Use <code>break</code> to exit a loop early</li>
+        <li>Use <code>continue</code> to skip the current iteration</li>
+        <li>Always use <code>try...catch</code> blocks when working with code that might throw errors</li>
+    </ul>
+</body>
+
+</html>

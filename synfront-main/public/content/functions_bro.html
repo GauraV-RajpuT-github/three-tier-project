@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .content-container {
+            font-family: 'Comic Sans MS', cursive;
+            line-height: 1.6;
+            color: #333;
+            padding: 0 30px;
+        }
+
+        .content-container h2 {
+            color: #333;
+            font-size: 28px;
+            margin: 30px 0;
+            padding-bottom: 10px;
+            border-bottom: none;
+            text-shadow: 1px 1px 2px rgba(255, 140, 0, 0.2);
+        }
+
+        .content-container h3 {
+            color: #FF8C00;
+            font-size: 22px;
+            margin: 25px 0 15px 0;
+        }
+
+        .content-container pre {
+            background-color: #fff8f0;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 25px 0;
+            border: 2px solid #FFD700;
+            box-shadow: 0 2px 4px rgba(255, 140, 0, 0.1);
+            font-size: 15px;
+        }
+
+        .content-container code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #FF4500;
+        }
+
+        .content-container ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 25px 0;
+        }
+
+        .content-container li {
+            margin: 15px 0;
+            position: relative;
+            padding-left: 25px;
+            font-size: 16px;
+        }
+
+        .content-container li:before {
+            content: "🔥";
+            position: absolute;
+            left: 0;
+        }
+
+        .content-container p {
+            margin: 20px 0;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .content-container code {
+            background-color: #fff8f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content-container">
+        <h2>Functions - Code ke Reusable Pieces! 🧩</h2>
+
+        <p>Bhai, functions matlab code ke reusable pieces! Ek baar likho, hazaar baar use karo! Ekdum ready-made masala ki tarah! 👨‍🍳</p>
+
+        <h2>Function Declaration aur Definition - Pehchaan aur Banao! 📝</h2>
+        <p>Function ki do cheezein hoti hain - declaration (prototype) aur definition:</p>
+
+        <pre><code>// Function declaration (prototype) - Batao kya hai
+returnType functionName(parameterType1 parameter1, parameterType2 parameter2);
+
+// Function definition - Banao kya karega
+returnType functionName(parameterType1 parameter1, parameterType2 parameter2) {
+    // Function body - Andar ka maal
+    // Kaam karne wala code
+    return value; // Kuch value return karo
+}</code></pre>
+
+        <p>Simple function ka example dekho:</p>
+        <pre><code>// Do numbers add karne wala function
+int add(int a, int b) {
+    return a + b;  // Bas dono ko jod do!
+}
+
+// Function use kaise karte hain
+int result = add(5, 3);  // result = 8 ho jayega</code></pre>
+
+        <h2>Function Parameters - Input Dena! 📥</h2>
+        <p>Functions ko parameters de sakte hain, matlab input values:</p>
+
+        <h3>Pass by Value - Copy Bhejo! 📋</h3>
+        <pre><code>void modifyValue(int x) {
+    x = x * 2;  // Sirf copy modify hogi, original nahi
+}
+
+int main() {
+    int num = 10;
+    modifyValue(num);  // num abhi bhi 10 hi rahega
+    return 0;
+}</code></pre>
+
+        <h3>Pass by Reference - Original Bhejo! 🔗</h3>
+        <pre><code>void modifyValue(int &x) {
+    x = x * 2;  // Original value modify hogi
+}
+
+int main() {
+    int num = 10;
+    modifyValue(num);  // num ab 20 ho jayega
+    return 0;
+}</code></pre>
+
+        <h2>Return Values - Kuch Wapas Bhejo! 📤</h2>
+        <p>Functions return statement se values wapas bhej sakte hain:</p>
+
+        <pre><code>int getSquare(int x) {
+    return x * x;  // Square value return karo
+}
+
+double calculateAverage(int a, int b, int c) {
+    return (a + b + c) / 3.0;  // Average return karo
+}</code></pre>
+
+        <h2>Void Functions - Kuch Return Nahi Karte! 🚫</h2>
+        <p>Jo functions kuch return nahi karte, unka return type void hota hai:</p>
+
+        <pre><code>void printMessage(string message) {
+    cout << message << endl;  // Bas print karo, kuch return nahi
+    // Return statement ki zaroorat nahi
+}</code></pre>
+
+        <h2>Default Parameters - Default Values! 🎛️</h2>
+        <p>Functions mein default parameter values set kar sakte hain:</p>
+
+        <pre><code>void setVolume(int level = 50) {  // Default value 50 hai
+    cout << "Volume set to: " << level << endl;
+}
+
+int main() {
+    setVolume();     // Default value use hogi: "Volume set to: 50"
+    setVolume(75);   // Custom value use hogi: "Volume set to: 75"
+    return 0;
+}</code></pre>
+
+        <h2>Function Overloading - Same Name, Different Parameters! 🎭</h2>
+        <p>C++ mein same name ke multiple functions bana sakte hain, bas parameters alag hone chahiye:</p>
+
+        <pre><code>int add(int a, int b) {  // Integer version
+    return a + b;
+}
+
+double add(double a, double b) {  // Double version
+    return a + b;
+}
+
+int main() {
+    int sum1 = add(5, 3);         // Int wala function call hoga
+    double sum2 = add(3.5, 2.7);  // Double wala function call hoga
+    return 0;
+}</code></pre>
+
+        <h2>Inline Functions - Speed Boost! ⚡</h2>
+        <p>Inline functions chote aur frequent functions ke liye performance improve karte hain:</p>
+
+        <pre><code>inline int getMax(int a, int b) {  // Compiler isko optimize karega
+    return (a > b) ? a : b;
+}</code></pre>
+
+        <h2>Recursive Functions - Khud Ko Call Karne Wale! 🔄</h2>
+        <p>Recursive functions woh hote hain jo khud ko hi call karte hain:</p>
+
+        <pre><code>int factorial(int n) {
+    if (n <= 1) {
+        return 1;  // Base case - rukne ki condition
+    } else {
+        return n * factorial(n - 1);  // Recursive call
+    }
+}
+
+int main() {
+    int result = factorial(5);  // 5! = 5 * 4 * 3 * 2 * 1 = 120
+    return 0;
+}</code></pre>
+
+        <h2>Function Pointers - Functions ke Addresses! 👉</h2>
+        <p>Function pointers variables hain jo functions ke addresses store karte hain:</p>
+
+        <pre><code>int add(int a, int b) {
+    return a + b;
+}
+
+int subtract(int a, int b) {
+    return a - b;
+}
+
+int main() {
+    // Function pointer declare karo
+    int (*operation)(int, int);
+    
+    // Function address assign karo
+    operation = add;
+    cout << operation(5, 3) << endl;  // Output: 8
+    
+    // Function change karo
+    operation = subtract;
+    cout << operation(5, 3) << endl;  // Output: 2
+    
+    return 0;
+}</code></pre>
+
+        <h2>Yaad Rakhne Wali Baatein! 🧠</h2>
+        <ul>
+            <li>Functions ka ek clear purpose hona chahiye, jaise ek tool ek kaam ke liye! 🔨</li>
+            <li>Function aur parameter names meaningful rakho, taaki code samajhne mein aasan ho! 📝</li>
+            <li>Functions chote aur focused rakho, jyada bade functions ko break karo! 🧩</li>
+            <li>Bade objects ke liye pass by reference use karo, performance ke liye! 🚀</li>
+            <li>Function declarations (prototypes) header files mein rakho! 📋</li>
+            <li>Function definitions source files mein rakho! 📂</li>
+        </ul>
+    </div>
+</body>
+
+</html>

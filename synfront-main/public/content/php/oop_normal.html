@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP Object-Oriented Programming</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #4F5B93;
+        }
+        pre {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 15px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #8892BF;
+        }
+        .output {
+            background-color: #f1f1f1;
+            border-left: 4px solid #4CAF50;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+        .tip {
+            background-color: #e6f7ff;
+            border-left: 4px solid #1890ff;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>PHP Object-Oriented Programming</h1>
+
+    <h2>Introduction to OOP</h2>
+    <p>Object-Oriented Programming (OOP) is a programming paradigm based on the concept of "objects", which can contain data and code: data in the form of fields (attributes or properties), and code in the form of procedures (methods).</p>
+    
+    <p>PHP has been an object-oriented language since PHP 5. OOP helps organize code into reusable, self-contained units, making it easier to maintain and extend.</p>
+
+    <h2>Classes and Objects</h2>
+    <h3>Defining a Class</h3>
+    <p>A class is a blueprint for creating objects. It defines properties (attributes) and methods (functions) that the objects will have:</p>
+    
+    <pre><code>&lt;?php
+// Define a class
+class Car {
+    // Properties (attributes)
+    public $brand;
+    public $color;
+    public $year;
+    
+    // Methods (functions)
+    public function startEngine() {
+        return "The $this->brand is starting...";
+    }
+    
+    public function drive() {
+        return "The $this->color $this->brand is driving.";
+    }
+}
+?&gt;</code></pre>
+
+    <h3>Creating Objects</h3>
+    <p>Objects are instances of classes. You create an object using the <code>new</code> keyword:</p>
+    
+    <pre><code>&lt;?php
+// Create an object (instance of the Car class)
+$myCar = new Car();
+
+// Set property values
+$myCar->brand = "Toyota";
+$myCar->color = "Blue";
+$myCar->year = 2022;
+
+// Call methods
+echo $myCar->startEngine();  // Outputs: The Toyota is starting...
+echo "&lt;br&gt;";
+echo $myCar->drive();  // Outputs: The Blue Toyota is driving.
+?&gt;</code></pre>
+
+    <h2>Constructor and Destructor</h2>
+    <p>Constructors and destructors are special methods that are automatically called when an object is created or destroyed.</p>
+    
+    <h3>Constructor</h3>
+    <p>The constructor method <code>__construct()</code> is called when an object is created. It's commonly used to initialize properties:</p>
+    
+    <pre><code>&lt;?php
+class Car {
+    public $brand;
+    public $color;
+    public $year;
+    
+    // Constructor
+    public function __construct($brand, $color, $year) {
+        $this->brand = $brand;
+        $this->color = $color;
+        $this->year = $year;
+        echo "A new $this->color $this->brand has been created.&lt;br&gt;";
+    }
+    
+    public function getInfo() {
+        return "Car: $this->year $this->color $this->brand";
+    }
+}
+
+// Create objects using the constructor
+$car1 = new Car("Toyota", "Blue", 2022);  // Outputs: A new Blue Toyota has been created.
+$car2 = new Car("Honda", "Red", 2021);    // Outputs: A new Red Honda has been created.
+
+echo $car1->getInfo();  // Outputs: Car: 2022 Blue Toyota
+?&gt;</code></pre>
+
+    <h3>Destructor</h3>
+    <p>The destructor method <code>__destruct()</code> is called when an object is destroyed (when all references to the object are removed or when the script ends):</p>
+    
+    <pre><code>&lt;?php
+class Car {
+    public $brand;
+    
+    public function __construct($brand) {
+        $this->brand = $brand;
+        echo "The $this->brand has been created.&lt;br&gt;";
+    }
+    
+    public function __destruct() {
+        echo "The $this->brand has been destroyed.&lt;br&gt;";
+    }
+}
+
+// Create and destroy objects
+$car1 = new Car("Toyota");  // Outputs: The Toyota has been created.
+$car2 = new Car("Honda");   // Outputs: The Honda has been created.
+
+// Explicitly destroy $car1
+unset($car1);  // Outputs: The Toyota has been destroyed.
+
+// $car2 will be destroyed automatically when the script ends
+?&gt;</code></pre>
+
+    <h2>Access Modifiers</h2>
+    <p>Access modifiers control the visibility of properties and methods. PHP provides three access modifiers:</p>
+    <ul>
+        <li><code>public</code>: Accessible from anywhere</li>
+        <li><code>protected</code>: Accessible within the class and its child classes</li>
+        <li><code>private</code>: Accessible only within the class</li>
+    </ul>
+    
+    <pre><code>&lt;?php
+class Car {
+    public $brand;          // Accessible from anywhere
+    protected $engine;      // Accessible within this class and child classes
+    private $serialNumber;  // Accessible only within this class
+    
+    public function __construct($brand, $engine, $serialNumber) {
+        $this->brand = $brand;
+        $this->engine = $engine;
+        $this->serialNumber = $serialNumber;
+    }
+    
+    public function getInfo() {
+        // Can access all properties here
+        return "Brand: $this->brand, Engine: $this->engine, S/N: $this->serialNumber";
+    }
+    
+    protected function getEngine() {
+        return $this->engine;
+    }
+    
+    private function getSerialNumber() {
+        return $this->serialNumber;
+    }
+}
+
+$car = new Car("Toyota", "V6", "ABC123");
+
+echo $car->brand;  // Works fine: Outputs: Toyota
+// echo $car->engine;  // Error: Cannot access protected property
+// echo $car->serialNumber;  // Error: Cannot access private property
+
+echo $car->getInfo();  // Works fine: Outputs: Brand: Toyota, Engine: V6, S/N: ABC123
+// echo $car->getEngine();  // Error: Cannot access protected method
+// echo $car->getSerialNumber();  // Error: Cannot access private method
+?&gt;</code></pre>
+
+    <h2>Inheritance</h2>
+    <p>Inheritance allows a class to inherit properties and methods from another class. The child class (subclass) can override or extend the functionality of the parent class (superclass).</p>
+    
+    <pre><code>&lt;?php
+// Parent class
+class Vehicle {
+    public $brand;
+    protected $year;
+    
+    public function __construct($brand, $year) {
+        $this->brand = $brand;
+        $this->year = $year;
+    }
+    
+    public function getInfo() {
+        return "Vehicle: $this->year $this->brand";
+    }
+    
+    public function startEngine() {
+        return "The engine is starting...";
+    }
+}
+
+// Child class inheriting from Vehicle
+class Car extends Vehicle {
+    private $model;
+    
+    public function __construct($brand, $year, $model) {
+        // Call parent constructor
+        parent::__construct($brand, $year);
+        $this->model = $model;
+    }
+    
+    // Override parent method
+    public function getInfo() {
+        return "Car: $this->year $this->brand $this->model";
+    }
+    
+    // Add new method
+    public function drive() {
+        return "The $this->brand $this->model is driving.";
+    }
+}
+
+// Create a Car object
+$car = new Car("Toyota", 2022, "Corolla");
+
+echo $car->getInfo();  // Outputs: Car: 2022 Toyota Corolla
+echo "&lt;br&gt;";
+echo $car->startEngine();  // Inherited method, Outputs: The engine is starting...
+echo "&lt;br&gt;";
+echo $car->drive();  // New method, Outputs: The Toyota Corolla is driving.
+?&gt;</code></pre>
+
+    <h2>Abstract Classes and Methods</h2>
+    <p>Abstract classes cannot be instantiated directly and may contain abstract methods (methods without implementation). Classes that extend an abstract class must implement all its abstract methods.</p>
+    
+    <pre><code>&lt;?php
+// Abstract class
+abstract class Vehicle {
+    protected $brand;
+    
+    public function __construct($brand) {
+        $this->brand = $brand;
+    }
+    
+    // Regular method with implementation
+    public function getBrand() {
+        return $this->brand;
+    }
+    
+    // Abstract method (no implementation)
+    abstract public function startEngine();
+    
+    // Another abstract method
+    abstract public function getInfo();
+}
+
+// Concrete class implementing the abstract class
+class Car extends Vehicle {
+    private $model;
+    
+    public function __construct($brand, $model) {
+        parent::__construct($brand);
+        $this->model = $model;
+    }
+    
+    // Implement the abstract methods
+    public function startEngine() {
+        return "The $this->brand $this->model's engine is starting...";
+    }
+    
+    public function getInfo() {
+        return "Car: $this->brand $this->model";
+    }
+}
+
+// $vehicle = new Vehicle("Generic");  // Error: Cannot instantiate abstract class
+
+$car = new Car("Toyota", "Corolla");
+echo $car->getBrand();  // Inherited method, Outputs: Toyota
+echo "&lt;br&gt;";
+echo $car->startEngine();  // Implemented method, Outputs: The Toyota Corolla's engine is starting...
+echo "&lt;br&gt;";
+echo $car->getInfo();  // Implemented method, Outputs: Car: Toyota Corolla
+?&gt;</code></pre>
+
+    <h2>Interfaces</h2>
+    <p>Interfaces define a contract for classes without implementing any methods. A class that implements an interface must implement all its methods.</p>
+    
+    <pre><code>&lt;?php
+// Define an interface
+interface Vehicle {
+    public function startEngine();
+    public function stopEngine();
+    public function drive();
+}
+
+// Another interface
+interface Chargeable {
+    public function charge();
+}
+
+// Class implementing a single interface
+class Car implements Vehicle {
+    private $brand;
+    
+    public function __construct($brand) {
+        $this->brand = $brand;
+    }
+    
+    public function startEngine() {
+        return "The $this->brand's engine is starting...";
+    }
+    
+    public function stopEngine() {
+        return "The $this->brand's engine is stopping...";
+    }
+    
+    public function drive() {
+        return "The $this->brand is driving.";
+    }
+}
+
+// Class implementing multiple interfaces
+class ElectricCar implements Vehicle, Chargeable {
+    private $brand;
+    
+    public function __construct($brand) {
+        $this->brand = $brand;
+    }
+    
+    public function startEngine() {
+        return "The $this->brand's electric motor is powering up...";
+    }
+    
+    public function stopEngine() {
+        return "The $this->brand's electric motor is powering down...";
+    }
+    
+    public function drive() {
+        return "The $this->brand is driving silently.";
+    }
+    
+    public function charge() {
+        return "The $this->brand is charging...";
+    }
+}
+
+$car = new Car("Toyota");
+echo $car->startEngine();  // Outputs: The Toyota's engine is starting...
+echo "&lt;br&gt;";
+
+$electricCar = new ElectricCar("Tesla");
+echo $electricCar->startEngine();  // Outputs: The Tesla's electric motor is powering up...
+echo "&lt;br&gt;";
+echo $electricCar->charge();  // Outputs: The Tesla is charging...
+?&gt;</code></pre>
+
+    <h2>Traits</h2>
+    <p>Traits provide a mechanism for code reuse in single inheritance languages like PHP. A trait is similar to a class, but it's only intended to group functionality in a fine-grained and consistent way.</p>
+    
+    <pre><code>&lt;?php
+// Define a trait
+trait Logger {
+    public function log($message) {
+        echo "Logging: $message&lt;br&gt;";
+    }
+}
+
+// Another trait
+trait Timestamp {
+    public function getTimestamp() {
+        return date('Y-m-d H:i:s');
+    }
+}
+
+// Class using traits
+class User {
+    use Logger, Timestamp;
+    
+    private $name;
+    
+    public function __construct($name) {
+        $this->name = $name;
+        $this->log("User $name created at " . $this->getTimestamp());
+    }
+    
+    public function getName() {
+        return $this->name;
+    }
+}
+
+$user = new User("John");  // Outputs: Logging: User John created at 2023-04-14 15:30:45
+echo $user->getName();  // Outputs: John
+?&gt;</code></pre>
+
+    <h2>Static Properties and Methods</h2>
+    <p>Static properties and methods belong to the class itself, not to any specific instance of the class. They can be accessed without creating an object of the class.</p>
+    
+    <pre><code>&lt;?php
+class MathHelper {
+    // Static property
+    public static $pi = 3.14159;
+    
+    // Static method
+    public static function square($number) {
+        return $number * $number;
+    }
+    
+    // Static method using static property
+    public static function getCircleArea($radius) {
+        return self::$pi * self::square($radius);
+    }
+}
+
+// Access static property
+echo MathHelper::$pi;  // Outputs: 3.14159
+echo "&lt;br&gt;";
+
+// Call static methods
+echo MathHelper::square(4);  // Outputs: 16
+echo "&lt;br&gt;";
+echo MathHelper::getCircleArea(5);  // Outputs: 78.53975
+?&gt;</code></pre>
+
+    <h2>Method Chaining</h2>
+    <p>Method chaining allows you to call multiple methods in a single statement by returning <code>$this</code> from each method:</p>
+    
+    <pre><code>&lt;?php
+class Car {
+    private $brand;
+    private $color;
+    private $year;
+    
+    public function setBrand($brand) {
+        $this->brand = $brand;
+        return $this;  // Return $this for method chaining
+    }
+    
+    public function setColor($color) {
+        $this->color = $color;
+        return $this;  // Return $this for method chaining
+    }
+    
+    public function setYear($year) {
+        $this->year = $year;
+        return $this;  // Return $this for method chaining
+    }
+    
+    public function getInfo() {
+        return "Car: $this->year $this->color $this->brand";
+    }
+}
+
+// Use method chaining
+$car = new Car();
+echo $car->setBrand("Toyota")
+         ->setColor("Blue")
+         ->setYear(2022)
+         ->getInfo();  // Outputs: Car: 2022 Blue Toyota
+?&gt;</code></pre>
+
+    <h2>Magic Methods</h2>
+    <p>PHP provides several "magic methods" that have special functionality in classes. These methods start with a double underscore (__). We've already seen __construct() and __destruct(). Here are some other commonly used magic methods:</p>
+    
+    <pre><code>&lt;?php
+class Person {
+    private $data = [];
+    
+    // Called when setting inaccessible or non-existent properties
+    public function __set($name, $value) {
+        $this->data[$name] = $value;
+    }
+    
+    // Called when getting inaccessible or non-existent properties
+    public function __get($name) {
+        if (array_key_exists($name, $this->data)) {
+            return $this->data[$name];
+        }
+        return null;
+    }
+    
+    // Called when isset() is used on inaccessible or non-existent properties
+    public function __isset($name) {
+        return isset($this->data[$name]);
+    }
+    
+    // Called when unset() is used on inaccessible or non-existent properties
+    public function __unset($name) {
+        unset($this->data[$name]);
+    }
+    
+    // Called when the object is treated as a string
+    public function __toString() {
+        return "Person: " . json_encode($this->data);
+    }
+    
+    // Called when the object is serialized
+    public function __sleep() {
+        return ['data'];  // Return the properties to be serialized
+    }
+    
+    // Called when the object is unserialized
+    public function __wakeup() {
+        // Initialization after unserialization
+    }
+    
+    // Called when invoking the object as a function
+    public function __invoke($arg) {
+        return "Invoked with argument: $arg";
+    }
+}
+
+$person = new Person();
+
+// __set and __get
+$person->name = "John";  // Calls __set
+$person->age = 30;       // Calls __set
+echo $person->name;      // Calls __get, Outputs: John
+echo "&lt;br&gt;";
+
+// __isset and __unset
+echo isset($person->name) ? "Name is set" : "Name is not set";  // Calls __isset, Outputs: Name is set
+echo "&lt;br&gt;";
+unset($person->name);  // Calls __unset
+echo isset($person->name) ? "Name is set" : "Name is not set";  // Calls __isset, Outputs: Name is not set
+echo "&lt;br&gt;";
+
+// __toString
+echo $person;  // Calls __toString, Outputs: Person: {"age":30}
+echo "&lt;br&gt;";
+
+// __invoke
+echo $person("Hello");  // Calls __invoke, Outputs: Invoked with argument: Hello
+?&gt;</code></pre>
+
+    <h2>Namespaces</h2>
+    <p>Namespaces help organize code and avoid naming conflicts. They're especially useful in large projects or when using third-party libraries.</p>
+    
+    <pre><code>&lt;?php
+// File: Vehicle.php
+namespace Vehicles;
+
+class Car {
+    public function drive() {
+        return "The car is driving.";
+    }
+}
+
+// File: Animal.php
+namespace Animals;
+
+class Cat {
+    public function meow() {
+        return "Meow!";
+    }
+}
+
+// File: main.php
+require_once 'Vehicle.php';
+require_once 'Animal.php';
+
+// Use fully qualified class names
+$car = new Vehicles\Car();
+$cat = new Animals\Cat();
+
+echo $car->drive();  // Outputs: The car is driving.
+echo "&lt;br&gt;";
+echo $cat->meow();   // Outputs: Meow!
+
+// Or use the 'use' statement
+use Vehicles\Car;
+use Animals\Cat as Animal;  // With alias
+
+$car2 = new Car();
+$cat2 = new Animal();
+
+echo $car2->drive();  // Outputs: The car is driving.
+echo "&lt;br&gt;";
+echo $cat2->meow();   // Outputs: Meow!
+?&gt;</code></pre>
+
+    <h2>Autoloading Classes</h2>
+    <p>Instead of manually including class files with require or include, you can use autoloading to automatically load class files when they're needed.</p>
+    
+    <pre><code>&lt;?php
+// Simple autoloader
+spl_autoload_register(function ($className) {
+    $file = str_replace('\\', '/', $className) . '.php';
+    if (file_exists($file)) {
+        require_once $file;
+    }
+});
+
+// Now you can use classes without explicitly requiring their files
+$car = new Vehicles\Car();  // Automatically loads Vehicles/Car.php
+echo $car->drive();
+?&gt;</code></pre>
+
+    <h2>Type Hinting</h2>
+    <p>Type hinting allows you to specify the expected data type for a function parameter or return value. This helps catch errors early and makes your code more robust.</p>
+    
+    <pre><code>&lt;?php
+class Car {
+    private $brand;
+    
+    public function __construct(string $brand) {
+        $this->brand = $brand;
+    }
+    
+    public function getBrand(): string {
+        return $this->brand;
+    }
+}
+
+class Driver {
+    private $name;
+    
+    public function __construct(string $name) {
+        $this->name = $name;
+    }
+    
+    public function drive(Car $car): string {
+        return "$this->name is driving a " . $car->getBrand();
+    }
+}
+
+$car = new Car("Toyota");
+$driver = new Driver("John");
+
+echo $driver->drive($car);  // Outputs: John is driving a Toyota
+// echo $driver->drive("Toyota");  // Error: Argument 1 must be an instance of Car
+?&gt;</code></pre>
+
+    <h2>Final Keyword</h2>
+    <p>The <code>final</code> keyword prevents a class from being inherited or a method from being overridden.</p>
+    
+    <pre><code>&lt;?php
+// Final class cannot be inherited
+final class FinalClass {
+    public function someMethod() {
+        return "This is a method in a final class.";
+    }
+}
+
+// This would cause an error
+// class ChildClass extends FinalClass { }
+
+class RegularClass {
+    // Final method cannot be overridden
+    final public function finalMethod() {
+        return "This is a final method.";
+    }
+    
+    public function regularMethod() {
+        return "This is a regular method.";
+    }
+}
+
+class ChildClass extends RegularClass {
+    // This would cause an error
+    // public function finalMethod() { }
+    
+    // This is fine
+    public function regularMethod() {
+        return "This is an overridden method.";
+    }
+}
+
+$regular = new RegularClass();
+echo $regular->finalMethod();  // Outputs: This is a final method.
+echo "&lt;br&gt;";
+
+$child = new ChildClass();
+echo $child->finalMethod();    // Outputs: This is a final method.
+echo "&lt;br&gt;";
+echo $child->regularMethod();  // Outputs: This is an overridden method.
+?&gt;</code></pre>
+
+    <h2>Design Patterns</h2>
+    <p>Design patterns are reusable solutions to common problems in software design. Here's an example of the Singleton pattern, which ensures a class has only one instance:</p>
+    
+    <pre><code>&lt;?php
+class Database {
+    // Private static instance
+    private static $instance = null;
+    
+    // Private constructor to prevent direct instantiation
+    private function __construct() {
+        echo "Database connection established.&lt;br&gt;";
+    }
+    
+    // Private clone method to prevent cloning
+    private function __clone() { }
+    
+    // Private wakeup method to prevent unserialization
+    private function __wakeup() { }
+    
+    // Public static method to get the instance
+    public static function getInstance() {
+        if (self::$instance === null) {
+            self::$instance = new self();
+        }
+        return self::$instance;
+    }
+    
+    public function query($sql) {
+        return "Executing query: $sql";
+    }
+}
+
+// Get the singleton instance
+$db1 = Database::getInstance();  // Outputs: Database connection established.
+echo $db1->query("SELECT * FROM users");  // Outputs: Executing query: SELECT * FROM users
+echo "&lt;br&gt;";
+
+// Get the instance again (no new connection is established)
+$db2 = Database::getInstance();
+echo $db2->query("SELECT * FROM products");  // Outputs: Executing query: SELECT * FROM products
+echo "&lt;br&gt;";
+
+// Both variables reference the same instance
+var_dump($db1 === $db2);  // Outputs: bool(true)
+?&gt;</code></pre>
+
+    <h2>Best Practices</h2>
+    <ul>
+        <li><strong>Single Responsibility Principle:</strong> A class should have only one reason to change.</li>
+        <li><strong>Open/Closed Principle:</strong> Classes should be open for extension but closed for modification.</li>
+        <li><strong>Liskov Substitution Principle:</strong> Objects of a superclass should be replaceable with objects of a subclass without affecting the correctness of the program.</li>
+        <li><strong>Interface Segregation Principle:</strong> Many client-specific interfaces are better than one general-purpose interface.</li>
+        <li><strong>Dependency Inversion Principle:</strong> Depend on abstractions, not on concretions.</li>
+        <li><strong>Use Meaningful Names:</strong> Choose descriptive names for classes, methods, and properties.</li>
+        <li><strong>Keep Classes Focused:</strong> Each class should have a single, well-defined purpose.</li>
+        <li><strong>Favor Composition Over Inheritance:</strong> Use composition (has-a relationship) instead of inheritance (is-a relationship) when appropriate.</li>
+        <li><strong>Use Type Hinting:</strong> Specify parameter and return types to make your code more robust.</li>
+        <li><strong>Document Your Code:</strong> Use PHPDoc comments to document your classes, methods, and properties.</li>
+    </ul>
+</body>
+</html>

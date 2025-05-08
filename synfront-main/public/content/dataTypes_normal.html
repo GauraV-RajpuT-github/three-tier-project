@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #FF8C00;
+            border-bottom: 2px solid #FFA500;
+            padding-bottom: 10px;
+        }
+
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        li {
+            margin: 10px 0;
+            position: relative;
+        }
+
+        li:before {
+            content: "•";
+            color: #FFA500;
+            font-weight: bold;
+            position: absolute;
+            left: -15px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f5f5f5;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Data Types and Variables</h2>
+
+    <p>In C++, data types specify what kind of data a variable can hold, and variables are used to store and manipulate data.</p>
+
+    <h2>Basic Data Types</h2>
+    <p>C++ has several built-in data types:</p>
+
+    <table>
+        <tr>
+            <th>Data Type</th>
+            <th>Description</th>
+            <th>Size (bytes)</th>
+            <th>Example</th>
+        </tr>
+        <tr>
+            <td>int</td>
+            <td>Integer values</td>
+            <td>4</td>
+            <td><code>int age = 25;</code></td>
+        </tr>
+        <tr>
+            <td>float</td>
+            <td>Single precision floating point</td>
+            <td>4</td>
+            <td><code>float price = 19.99f;</code></td>
+        </tr>
+        <tr>
+            <td>double</td>
+            <td>Double precision floating point</td>
+            <td>8</td>
+            <td><code>double pi = 3.14159265359;</code></td>
+        </tr>
+        <tr>
+            <td>char</td>
+            <td>Single character</td>
+            <td>1</td>
+            <td><code>char grade = 'A';</code></td>
+        </tr>
+        <tr>
+            <td>bool</td>
+            <td>Boolean value (true/false)</td>
+            <td>1</td>
+            <td><code>bool isActive = true;</code></td>
+        </tr>
+    </table>
+
+    <h2>Variable Declaration and Initialization</h2>
+    <p>Variables must be declared before they can be used:</p>
+
+    <pre><code>// Declaration
+int count;
+
+// Declaration with initialization
+int age = 25;
+float salary = 50000.50;
+char initial = 'J';
+bool isEmployed = true;</code></pre>
+
+    <h2>Type Modifiers</h2>
+    <p>Type modifiers can be used to modify the size and range of data types:</p>
+
+    <ul>
+        <li><code>short</code>: Reduces the size of an integer</li>
+        <li><code>long</code>: Increases the size of an integer or double</li>
+        <li><code>signed</code>: Allows positive and negative values (default)</li>
+        <li><code>unsigned</code>: Allows only positive values</li>
+    </ul>
+
+    <pre><code>short int smallNumber = 32767;
+long int bigNumber = 2147483647;
+unsigned int positiveOnly = 4294967295;</code></pre>
+
+    <h2>Constants</h2>
+    <p>Constants are variables whose values cannot be changed after initialization:</p>
+
+    <pre><code>const double PI = 3.14159;
+const int MAX_USERS = 100;</code></pre>
+
+    <h2>Type Conversion</h2>
+    <p>C++ supports both implicit and explicit type conversion:</p>
+
+    <pre><code>// Implicit conversion
+int x = 10;
+double y = x;  // int to double
+
+// Explicit conversion (casting)
+double a = 3.14;
+int b = (int)a;  // double to int, b = 3
+int c = static_cast&lt;int&gt;(a);  // Modern C++ casting</code></pre>
+
+    <h2>Key points to remember:</h2>
+    <ul>
+        <li>Always initialize variables before using them</li>
+        <li>Choose the appropriate data type for your needs</li>
+        <li>Be aware of potential data loss during type conversion</li>
+        <li>Use constants for values that should not change</li>
+        <li>Variable names are case-sensitive and should be descriptive</li>
+    </ul>
+</body>
+
+</html>

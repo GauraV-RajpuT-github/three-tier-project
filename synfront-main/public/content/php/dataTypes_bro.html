@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP Data Types and Variables - Bro Mode</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #4F5B93;
+        }
+        pre {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 15px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #8892BF;
+        }
+        .output {
+            background-color: #f1f1f1;
+            border-left: 4px solid #4CAF50;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+        .tip {
+            background-color: #e6f7ff;
+            border-left: 4px solid #1890ff;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h1>PHP Data Types and Variables - Bro Mode 😎</h1>
+
+    <h2>Variables Kya Hote Hai? 🤔</h2>
+    <p>Bro, PHP mein variables data store karne ke liye use hote hai. PHP loosely typed language hai, matlab variable banate time data type declare karne ki zaroorat nahi hai. Kuch bhi store kar sakte ho - string, number, kuch bhi!</p>
+    
+    <pre><code>&lt;?php
+// Variables declare aur assign kaise karte hai
+$name = "Rahul";
+$age = 25;
+$height = 1.75;
+$isStudent = true;
+
+// Variables ko output kaise karte hai
+echo "Name: " . $name . "&lt;br&gt;";
+echo "Age: " . $age . "&lt;br&gt;";
+echo "Height: " . $height . " meters&lt;br&gt;";
+echo "Is Student: " . ($isStudent ? "Haan" : "Nahi");
+?&gt;</code></pre>
+
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Name: Rahul<br>
+        Age: 25<br>
+        Height: 1.75 meters<br>
+        Is Student: Haan</p>
+    </div>
+
+    <h2>PHP Data Types 📊</h2>
+    <p>Bro, PHP mein ye data types hote hai:</p>
+    
+    <table>
+        <tr>
+            <th>Data Type</th>
+            <th>Description</th>
+            <th>Example</th>
+        </tr>
+        <tr>
+            <td>String</td>
+            <td>Text ya characters</td>
+            <td><code>$name = "Rahul";</code></td>
+        </tr>
+        <tr>
+            <td>Integer</td>
+            <td>Bina decimal wala number</td>
+            <td><code>$age = 25;</code></td>
+        </tr>
+        <tr>
+            <td>Float</td>
+            <td>Decimal wala number</td>
+            <td><code>$height = 1.75;</code></td>
+        </tr>
+        <tr>
+            <td>Boolean</td>
+            <td>True ya false</td>
+            <td><code>$isStudent = true;</code></td>
+        </tr>
+        <tr>
+            <td>Array</td>
+            <td>Multiple values ek variable mein</td>
+            <td><code>$colors = ["red", "green", "blue"];</code></td>
+        </tr>
+        <tr>
+            <td>Object</td>
+            <td>Classes ke instances</td>
+            <td><code>$person = new Person();</code></td>
+        </tr>
+        <tr>
+            <td>NULL</td>
+            <td>Koi value nahi</td>
+            <td><code>$result = null;</code></td>
+        </tr>
+        <tr>
+            <td>Resource</td>
+            <td>External resource ka reference</td>
+            <td><code>$file = fopen("file.txt", "r");</code></td>
+        </tr>
+    </table>
+
+    <h2>Data Type Kaise Check Kare? 🧐</h2>
+    <p>Bro, PHP mein data type check karne ke liye kai functions hai:</p>
+    
+    <pre><code>&lt;?php
+$name = "Rahul";
+$age = 25;
+$height = 1.75;
+$isStudent = true;
+$colors = ["red", "green", "blue"];
+$person = null;
+
+// Data types check karo
+echo "Variable \$name ka type hai " . gettype($name) . "&lt;br&gt;";
+echo "Variable \$age ka type hai " . gettype($age) . "&lt;br&gt;";
+echo "Variable \$height ka type hai " . gettype($height) . "&lt;br&gt;";
+echo "Variable \$isStudent ka type hai " . gettype($isStudent) . "&lt;br&gt;";
+echo "Variable \$colors ka type hai " . gettype($colors) . "&lt;br&gt;";
+echo "Variable \$person ka type hai " . gettype($person) . "&lt;br&gt;";
+
+// Type-specific checking functions
+echo "Kya \$name string hai? " . (is_string($name) ? "Haan" : "Nahi") . "&lt;br&gt;";
+echo "Kya \$age integer hai? " . (is_int($age) ? "Haan" : "Nahi") . "&lt;br&gt;";
+echo "Kya \$height float hai? " . (is_float($height) ? "Haan" : "Nahi") . "&lt;br&gt;";
+echo "Kya \$isStudent boolean hai? " . (is_bool($isStudent) ? "Haan" : "Nahi") . "&lt;br&gt;";
+echo "Kya \$colors array hai? " . (is_array($colors) ? "Haan" : "Nahi") . "&lt;br&gt;";
+echo "Kya \$person null hai? " . (is_null($person) ? "Haan" : "Nahi") . "&lt;br&gt;";
+?&gt;</code></pre>
+
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Variable $name ka type hai string<br>
+        Variable $age ka type hai integer<br>
+        Variable $height ka type hai double<br>
+        Variable $isStudent ka type hai boolean<br>
+        Variable $colors ka type hai array<br>
+        Variable $person ka type hai NULL<br>
+        Kya $name string hai? Haan<br>
+        Kya $age integer hai? Haan<br>
+        Kya $height float hai? Haan<br>
+        Kya $isStudent boolean hai? Haan<br>
+        Kya $colors array hai? Haan<br>
+        Kya $person null hai? Haan</p>
+    </div>
+
+    <h2>Type Casting - Data Type Convert Karna 🔄</h2>
+    <p>Bro, PHP mein ek data type se dusre mein convert karne ke liye type casting use karte hai:</p>
+    
+    <pre><code>&lt;?php
+// String to integer
+$strNumber = "123";
+$intNumber = (int)$strNumber;
+echo "String \"$strNumber\" ko integer mein convert kiya: $intNumber&lt;br&gt;";
+
+// Integer to string
+$num = 456;
+$strNum = (string)$num;
+echo "Integer $num ko string mein convert kiya: \"$strNum\"&lt;br&gt;";
+
+// Float to integer (decimal part hat jata hai)
+$floatNum = 7.89;
+$intNum = (int)$floatNum;
+echo "Float $floatNum ko integer mein convert kiya: $intNum&lt;br&gt;";
+
+// Boolean to integer
+$bool = true;
+$intBool = (int)$bool;
+echo "Boolean true ko integer mein convert kiya: $intBool&lt;br&gt;";
+
+// String to array
+$str = "Hello";
+$arr = (array)$str;
+echo "String \"$str\" ko array mein convert kiya: ";
+print_r($arr);
+echo "&lt;br&gt;";
+?&gt;</code></pre>
+
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        String "123" ko integer mein convert kiya: 123<br>
+        Integer 456 ko string mein convert kiya: "456"<br>
+        Float 7.89 ko integer mein convert kiya: 7<br>
+        Boolean true ko integer mein convert kiya: 1<br>
+        String "Hello" ko array mein convert kiya: Array ( [0] => Hello )</p>
+    </div>
+
+    <h2>String Data Type 📝</h2>
+    <p>Bro, string matlab characters ka sequence. PHP mein strings single quotes, double quotes, ya heredoc syntax se create kar sakte hai:</p>
+    
+    <pre><code>&lt;?php
+// Single quotes
+$singleQuoted = 'Ye single-quoted string hai';
+
+// Double quotes (variable interpolation allow karta hai)
+$name = "Rahul";
+$doubleQuoted = "Hello, $name bhai!";
+
+// Heredoc syntax
+$heredoc = <<<EOD
+Ye heredoc string hai.
+Multiple lines mein likh sakte hai
+aur $name ka naam bhi include kar sakte hai.
+EOD;
+
+// Nowdoc syntax (heredoc jaisa but variable interpolation nahi karta)
+$nowdoc = <<<'EOD'
+Ye nowdoc string hai.
+Multiple lines mein likh sakte hai
+lekin $name ka naam process nahi hoga.
+EOD;
+
+echo $singleQuoted . "&lt;br&gt;";
+echo $doubleQuoted . "&lt;br&gt;";
+echo $heredoc . "&lt;br&gt;";
+echo $nowdoc . "&lt;br&gt;";
+?&gt;</code></pre>
+
+    <h3>String Functions 🛠️</h3>
+    <p>Bro, PHP mein strings ke saath kaam karne ke liye bahut saare built-in functions hai:</p>
+    
+    <pre><code>&lt;?php
+$str = "Hello, World!";
+
+// String length
+echo "Length: " . strlen($str) . "&lt;br&gt;";
+
+// Word count
+echo "Word count: " . str_word_count($str) . "&lt;br&gt;";
+
+// String ko reverse karo
+echo "Reversed: " . strrev($str) . "&lt;br&gt;";
+
+// Substring ki position find karo
+echo "Position of 'World': " . strpos($str, "World") . "&lt;br&gt;";
+
+// String ka part replace karo
+echo "Replaced: " . str_replace("World", "PHP", $str) . "&lt;br&gt;";
+
+// Uppercase/lowercase mein convert karo
+echo "Uppercase: " . strtoupper($str) . "&lt;br&gt;";
+echo "Lowercase: " . strtolower($str) . "&lt;br&gt;";
+
+// Substring nikalo
+echo "Substring: " . substr($str, 0, 5) . "&lt;br&gt;";
+?&gt;</code></pre>
+
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Length: 13<br>
+        Word count: 2<br>
+        Reversed: !dlroW ,olleH<br>
+        Position of 'World': 7<br>
+        Replaced: Hello, PHP!<br>
+        Uppercase: HELLO, WORLD!<br>
+        Lowercase: hello, world!<br>
+        Substring: Hello</p>
+    </div>
+
+    <h2>Numeric Data Types 🔢</h2>
+    <p>Bro, PHP mein do numeric data types hai: integers aur floating-point numbers (floats).</p>
+    
+    <h3>Integers</h3>
+    <p>Integer matlab bina decimal point wala number. Positive, negative, ya zero ho sakta hai:</p>
+    
+    <pre><code>&lt;?php
+// Decimal (base 10)
+$decimal = 42;
+
+// Hexadecimal (base 16)
+$hex = 0x2A;  // 42 in decimal
+
+// Octal (base 8)
+$octal = 052;  // 42 in decimal
+
+// Binary (base 2)
+$binary = 0b101010;  // 42 in decimal
+
+echo "Decimal: $decimal&lt;br&gt;";
+echo "Hexadecimal: $hex&lt;br&gt;";
+echo "Octal: $octal&lt;br&gt;";
+echo "Binary: $binary&lt;br&gt;";
+
+// Integer size
+echo "Maximum integer value: " . PHP_INT_MAX . "&lt;br&gt;";
+echo "Minimum integer value: " . PHP_INT_MIN . "&lt;br&gt;";
+echo "Integer size: " . PHP_INT_SIZE . " bytes&lt;br&gt;";
+?&gt;</code></pre>
+
+    <h3>Floats</h3>
+    <p>Bro, float (ya double) matlab decimal point wala number ya exponential form mein number:</p>
+    
+    <pre><code>&lt;?php
+// Regular float
+$float1 = 3.14;
+
+// Scientific notation
+$float2 = 3.14e2;  // 3.14 * 10^2 = 314
+
+echo "Float 1: $float1&lt;br&gt;";
+echo "Float 2: $float2&lt;br&gt;";
+
+// Float precision issues
+$a = 0.1;
+$b = 0.2;
+$c = $a + $b;
+echo "0.1 + 0.2 = $c&lt;br&gt;";  // Exactly 0.3 nahi hoga floating-point precision ki wajah se
+
+// Floats ko safely compare karna
+$epsilon = 0.00001;
+echo "Kya 0.1 + 0.2 aur 0.3 equal hai? " . 
+    (abs($c - 0.3) < $epsilon ? "Haan" : "Nahi") . "&lt;br&gt;";
+?&gt;</code></pre>
+
+    <div class="tip">
+        <p><strong>Pro Tip:</strong> Bro, floating-point numbers binary mein represent hote hai, isliye kuch decimal values exactly represent nahi ho sakte. Floats ke saath kaam karte time hamesha appropriate comparison methods use karo.</p>
+    </div>
+
+    <h2>Boolean Data Type ✅</h2>
+    <p>Bro, boolean matlab true ya false value:</p>
+    
+    <pre><code>&lt;?php
+$isTrue = true;
+$isFalse = false;
+
+echo "Is true: " . ($isTrue ? "Haan" : "Nahi") . "&lt;br&gt;";
+echo "Is false: " . ($isFalse ? "Haan" : "Nahi") . "&lt;br&gt;";
+
+// Ye values false ke tarah interpret hoti hai
+echo "Empty string is false: " . ('' ? "Nahi" : "Haan") . "&lt;br&gt;";
+echo "0 is false: " . (0 ? "Nahi" : "Haan") . "&lt;br&gt;";
+echo "'0' is false: " . ('0' ? "Nahi" : "Haan") . "&lt;br&gt;";
+echo "null is false: " . (null ? "Nahi" : "Haan") . "&lt;br&gt;";
+echo "Empty array is false: " . ([] ? "Nahi" : "Haan") . "&lt;br&gt;";
+
+// Ye values true ke tarah interpret hoti hai
+echo "Non-empty string is true: " . ('hello' ? "Haan" : "Nahi") . "&lt;br&gt;";
+echo "Non-zero number is true: " . (42 ? "Haan" : "Nahi") . "&lt;br&gt;";
+echo "Non-empty array is true: " . ([1, 2, 3] ? "Haan" : "Nahi") . "&lt;br&gt;";
+?&gt;</code></pre>
+
+    <h2>NULL Data Type 🚫</h2>
+    <p>Bro, NULL matlab variable jisme koi value nahi hai:</p>
+    
+    <pre><code>&lt;?php
+$var = null;
+
+echo "Is null: " . (is_null($var) ? "Haan" : "Nahi") . "&lt;br&gt;";
+echo "Is set: " . (isset($var) ? "Haan" : "Nahi") . "&lt;br&gt;";
+
+// Variable ko unset karna
+$name = "Rahul";
+echo "Name before unset: " . $name . "&lt;br&gt;";
+unset($name);
+echo "Is name set after unset: " . (isset($name) ? "Haan" : "Nahi") . "&lt;br&gt;";
+?&gt;</code></pre>
+
+    <h2>Array Data Type 📚</h2>
+    <p>Bro, array ek data structure hai jo ek variable mein multiple values store kar sakta hai. PHP mein indexed aur associative dono arrays support karta hai:</p>
+    
+    <pre><code>&lt;?php
+// Indexed array
+$fruits = ["Apple", "Banana", "Cherry"];
+echo "First fruit: " . $fruits[0] . "&lt;br&gt;";
+echo "Second fruit: " . $fruits[1] . "&lt;br&gt;";
+echo "Third fruit: " . $fruits[2] . "&lt;br&gt;";
+
+// Associative array
+$person = [
+    "name" => "Rahul",
+    "age" => 25,
+    "city" => "Mumbai"
+];
+echo "Name: " . $person["name"] . "&lt;br&gt;";
+echo "Age: " . $person["age"] . "&lt;br&gt;";
+echo "City: " . $person["city"] . "&lt;br&gt;";
+
+// Multidimensional array
+$employees = [
+    ["Rahul", "Sharma", "Manager"],
+    ["Priya", "Patel", "Developer"],
+    ["Amit", "Kumar", "Designer"]
+];
+echo "First employee: " . $employees[0][0] . " " . $employees[0][1] . 
+    " (" . $employees[0][2] . ")&lt;br&gt;";
+
+// Array functions
+echo "Number of fruits: " . count($fruits) . "&lt;br&gt;";
+sort($fruits);
+echo "Sorted fruits: ";
+print_r($fruits);
+echo "&lt;br&gt;";
+
+// Check karo ki key exist karti hai ya nahi
+echo "Kya 'age' key exist karti hai? " . (array_key_exists("age", $person) ? "Haan" : "Nahi") . "&lt;br&gt;";
+
+// Check karo ki value exist karti hai ya nahi
+echo "Kya 'Banana' fruits mein hai? " . (in_array("Banana", $fruits) ? "Haan" : "Nahi") . "&lt;br&gt;";
+?&gt;</code></pre>
+
+    <h2>Object Data Type 🧩</h2>
+    <p>Bro, objects classes ke instances hote hai jinme properties aur methods ho sakte hai:</p>
+    
+    <pre><code>&lt;?php
+// Class define karo
+class Person {
+    // Properties
+    public $name;
+    public $age;
+    
+    // Constructor
+    function __construct($name, $age) {
+        $this->name = $name;
+        $this->age = $age;
+    }
+    
+    // Method
+    function introduce() {
+        return "Hi, main " . $this->name . " hun aur meri age " . $this->age . " hai.";
+    }
+}
+
+// Object create karo
+$person = new Person("Rahul", 25);
+
+// Properties access karo
+echo "Name: " . $person->name . "&lt;br&gt;";
+echo "Age: " . $person->age . "&lt;br&gt;";
+
+// Method call karo
+echo "Introduction: " . $person->introduce() . "&lt;br&gt;";
+?&gt;</code></pre>
+
+    <h2>Variable Scope 🔍</h2>
+    <p>Bro, variable ka scope determine karta hai ki use kahan access kiya ja sakta hai. PHP mein teen variable scopes hai:</p>
+    
+    <h3>Local Scope</h3>
+    <p>Function ke andar declare kiye gaye variables local scope rakhte hai aur sirf us function ke andar access kiye ja sakte hai:</p>
+    
+    <pre><code>&lt;?php
+function test() {
+    $localVar = "Main local hun";
+    echo "Function ke andar: $localVar&lt;br&gt;";
+}
+
+test();
+// Ye error cause karega:
+// echo "Function ke bahar: $localVar&lt;br&gt;";
+?&gt;</code></pre>
+
+    <h3>Global Scope</h3>
+    <p>Function ke bahar declare kiye gaye variables global scope rakhte hai lekin by default function ke andar accessible nahi hote:</p>
+    
+    <pre><code>&lt;?php
+$globalVar = "Main global hun";
+
+function testGlobal() {
+    // Ye kaam nahi karega:
+    // echo "Function ke andar: $globalVar&lt;br&gt;";
+    
+    // Global variables access karne ke liye, global keyword use karo:
+    global $globalVar;
+    echo "Function ke andar with global keyword: $globalVar&lt;br&gt;";
+    
+    // Ya fir $GLOBALS array use karo:
+    echo "Function ke andar with GLOBALS array: " . $GLOBALS['globalVar'] . "&lt;br&gt;";
+}
+
+echo "Function ke bahar: $globalVar&lt;br&gt;";
+testGlobal();
+?&gt;</code></pre>
+
+    <h3>Static Scope</h3>
+    <p>Static variables function calls ke beech apni value retain karte hai:</p>
+    
+    <pre><code>&lt;?php
+function counter() {
+    static $count = 0;
+    $count++;
+    echo "Count: $count&lt;br&gt;";
+}
+
+counter();  // Output: Count: 1
+counter();  // Output: Count: 2
+counter();  // Output: Count: 3
+?&gt;</code></pre>
+
+    <h2>Constants 🗿</h2>
+    <p>Bro, constants aise identifiers hai jo simple values store karte hai aur script execution ke dauraan change nahi ho sakte:</p>
+    
+    <pre><code>&lt;?php
+// Constant define karo
+define("PI", 3.14159);
+
+// Constant use karo
+echo "PI ki value: " . PI . "&lt;br&gt;";
+
+// Constants define karne ka ek aur tarika (PHP 5.3+)
+const APP_NAME = "My PHP App";
+const APP_VERSION = "1.0.0";
+
+echo "App name: " . APP_NAME . "&lt;br&gt;";
+echo "App version: " . APP_VERSION . "&lt;br&gt;";
+
+// Predefined constants
+echo "PHP version: " . PHP_VERSION . "&lt;br&gt;";
+echo "Operating system: " . PHP_OS . "&lt;br&gt;";
+?&gt;</code></pre>
+
+    <div class="tip">
+        <p><strong>Pro Tip:</strong> Bro, constants use karo aise values ke liye jo application mein change nahi honi chahiye, jaise configuration settings, database connection details, ya mathematical constants.</p>
+    </div>
+
+    <h2>Conclusion 🏁</h2>
+    <p>Bro, ab tum PHP ke data types aur variables ke baare mein sab kuch jaan gaye ho! Ye knowledge tumhe powerful aur dynamic web applications banane mein help karega. Next step mein, hum control flow (if, for, while) ke baare mein seekhenge. Keep coding! 🚀</p>
+</body>
+</html>

@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setting Up Python Environment - Bro Mode</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        h1 {
+            color: #2b5b84;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #3776ab;
+            font-size: 1.8em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        h3 {
+            color: #4a8cc2;
+            font-size: 1.4em;
+            margin-top: 25px;
+        }
+        p {
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f5f5f5;
+            padding: 3px 6px;
+            border-radius: 3px;
+            font-size: 0.9em;
+            border: 1px solid #e0e0e0;
+        }
+        pre {
+            background-color: #f8f8f8;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            padding: 15px;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        pre code {
+            background-color: transparent;
+            border: none;
+            padding: 0;
+        }
+        .note {
+            background-color: #e7f3fe;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .warning {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .step {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .step-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background-color: #3776ab;
+            color: white;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        ul, ol {
+            margin-bottom: 20px;
+            padding-left: 25px;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        .download-btn {
+            display: inline-block;
+            background-color: #3776ab;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .download-btn:hover {
+            background-color: #2b5b84;
+        }
+        .bro-tip {
+            background-color: #ffecb3;
+            border-left: 4px solid #ffa000;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+            font-style: italic;
+        }
+        .emoji {
+            font-size: 1.2em;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Python Setup Karna Seekho! 🐍</h1>
+    
+    <p>Arre bhai, Python programming mein aapka swagat hai! Yeh ek mast language hai jo bahut easy hai seekhne mein. Lekin code likhne se pehle, humein apna development environment set karna hoga. Tension mat lo, main step-by-step bataunga kaise Python install karte hain aur coding shuru karte hain!</p>
+    
+    <div class="bro-tip">
+        <span class="emoji">💡</span> <strong>Bro Tip:</strong> Python ke do major versions hain - Python 2 aur Python 3. Python 2 ka time khatam ho gaya hai (January 1, 2020 ko), toh hum sirf Python 3 use karenge. Purane version pe time waste mat karo!
+    </div>
+
+    <h2>Python Install Karna 🔧</h2>
+    
+    <h3>Windows Pe Install Karna</h3>
+    
+    <div class="step">
+        <span class="step-number">1</span>
+        <strong>Python Installer Download Karo:</strong>
+        <p><a href="https://www.python.org/downloads/" target="_blank">Python ki official website</a> pe jao aur latest version download karo Windows ke liye.</p>
+    </div>
+    
+    <div class="step">
+        <span class="step-number">2</span>
+        <strong>Installer Run Karo:</strong>
+        <p>Downloaded file ko open karo aur dhyan se "Add Python to PATH" wale box ko check karo, phir "Install Now" pe click karo. Agar yeh step miss kiya toh baad mein bahut pareshani hogi, so dhyan se!</p>
+    </div>
+    
+    <div class="step">
+        <span class="step-number">3</span>
+        <strong>Installation Check Karo:</strong>
+        <p>Command Prompt kholo aur yeh command type karo:</p>
+        <pre><code>python --version</code></pre>
+        <p>Agar sab sahi hai toh Python ka version number dikhega. Agar error aaye toh installation mein kuch gadbad hai!</p>
+    </div>
+
+    <h3>macOS Pe Install Karna</h3>
+    
+    <div class="step">
+        <span class="step-number">1</span>
+        <strong>Homebrew Se Install Karo (Recommended):</strong>
+        <p>Agar tumhare paas Homebrew installed hai, toh bas yeh command run karo:</p>
+        <pre><code>brew install python</code></pre>
+        <p>Itna simple! 🍺</p>
+    </div>
+    
+    <div class="step">
+        <span class="step-number">2</span>
+        <strong>Official Installer Se Install Karo:</strong>
+        <p>Ya phir, <a href="https://www.python.org/downloads/" target="_blank">Python website</a> se macOS installer download karke install kar sakte ho.</p>
+    </div>
+    
+    <div class="step">
+        <span class="step-number">3</span>
+        <strong>Installation Check Karo:</strong>
+        <p>Terminal kholo aur run karo:</p>
+        <pre><code>python3 --version</code></pre>
+    </div>
+
+    <h3>Linux Pe Install Karna</h3>
+    
+    <div class="step">
+        <span class="step-number">1</span>
+        <strong>Package Manager Se Install Karo:</strong>
+        <p>Bhai Linux mein toh mostly Python pre-installed aata hai. Agar nahi hai toh package manager se install kar sakte ho.</p>
+        <p>Ubuntu/Debian ke liye:</p>
+        <pre><code>sudo apt update
+sudo apt install python3 python3-pip</code></pre>
+        <p>Fedora ke liye:</p>
+        <pre><code>sudo dnf install python3 python3-pip</code></pre>
+    </div>
+    
+    <div class="step">
+        <span class="step-number">2</span>
+        <strong>Installation Check Karo:</strong>
+        <p>Terminal kholo aur run karo:</p>
+        <pre><code>python3 --version</code></pre>
+    </div>
+
+    <h2>Code Editor Setup Karna 💻</h2>
+    
+    <p>Bhai, Python code toh kisi bhi text editor mein likh sakte ho, lekin ek achha code editor ya IDE use karne se productivity next level pe pahunch jayegi. Yeh rahi kuch best options:</p>
+    
+    <h3>Visual Studio Code (Beginners Ke Liye Best Hai)</h3>
+    
+    <div class="step">
+        <span class="step-number">1</span>
+        <strong>VS Code Download Karo:</strong>
+        <p><a href="https://code.visualstudio.com/" target="_blank">VS Code website</a> se apne system ke liye version download karo.</p>
+    </div>
+    
+    <div class="step">
+        <span class="step-number">2</span>
+        <strong>Python Extension Install Karo:</strong>
+        <p>VS Code kholo, Extensions icon pe click karo (left side mein) aur "Python" search karo. Microsoft wala Python extension install karo. Bas itna sa kaam hai!</p>
+    </div>
+    
+    <div class="bro-tip">
+        <span class="emoji">🔥</span> <strong>Bro Tip:</strong> VS Code mein "Python: Select Interpreter" command run karke apne system ke Python ko select karo. Command palette open karne ke liye Ctrl+Shift+P (Windows/Linux) ya Cmd+Shift+P (Mac) press karo.
+    </div>
+
+    <h3>PyCharm (Pro Developers Ke Liye)</h3>
+    
+    <p>PyCharm ek full-featured IDE hai jo specifically Python development ke liye banaya gaya hai.</p>
+    
+    <div class="step">
+        <span class="step-number">1</span>
+        <strong>PyCharm Download Karo:</strong>
+        <p><a href="https://www.jetbrains.com/pycharm/download/" target="_blank">JetBrains website</a> se Community (free) ya Professional edition download karo.</p>
+    </div>
+    
+    <div class="step">
+        <span class="step-number">2</span>
+        <strong>Install Karke Setup Karo:</strong>
+        <p>Installation instructions follow karo aur PyCharm first time open karne pe new Python project create karo.</p>
+    </div>
+    
+    <div class="bro-tip">
+        <span class="emoji">💪</span> <strong>Bro Tip:</strong> PyCharm thoda heavy hai but features ka baap hai! Agar serious Python development karna hai toh isse better kuch nahi.
+    </div>
+
+    <h2>Virtual Environments Banana 🧪</h2>
+    
+    <p>Bhai virtual environments bahut important cheez hai! Yeh alag-alag projects ke liye isolated environments create karta hai, jisse dependencies ka jhanjhat nahi hota.</p>
+    
+    <h3>venv Use Karna (Built-in Hai)</h3>
+    
+    <div class="step">
+        <span class="step-number">1</span>
+        <strong>Virtual Environment Create Karo:</strong>
+        <p>Apne project directory mein jao aur yeh command run karo:</p>
+        <pre><code># Windows
+python -m venv venv
+
+# macOS/Linux
+python3 -m venv venv</code></pre>
+        <p>Yeh 'venv' naam ka folder create karega jisme saara environment ka saman hoga.</p>
+    </div>
+    
+    <div class="step">
+        <span class="step-number">2</span>
+        <strong>Virtual Environment Activate Karo:</strong>
+        <p>Windows ke liye:</p>
+        <pre><code>venv\Scripts\activate</code></pre>
+        <p>macOS/Linux ke liye:</p>
+        <pre><code>source venv/bin/activate</code></pre>
+        <p>Activate hone pe command prompt/terminal mein (venv) dikhai dega.</p>
+    </div>
+    
+    <div class="step">
+        <span class="step-number">3</span>
+        <strong>Packages Install Karo:</strong>
+        <p>Virtual environment activate hone ke baad, pip se packages install kar sakte ho:</p>
+        <pre><code>pip install package_name</code></pre>
+    </div>
+    
+    <div class="bro-tip">
+        <span class="emoji">🚀</span> <strong>Bro Tip:</strong> Har project ke liye alag virtual environment banao! Isse packages ka version conflict nahi hoga aur project clean rahega.
+    </div>
+
+    <h3>Anaconda/Miniconda Use Karna</h3>
+    
+    <p>Anaconda data science aur machine learning ke liye bahut popular hai. Isme saare important packages pre-installed aate hain.</p>
+    
+    <div class="step">
+        <span class="step-number">1</span>
+        <strong>Anaconda Download Karke Install Karo:</strong>
+        <p><a href="https://www.anaconda.com/products/individual" target="_blank">Anaconda website</a> se apne system ke liye version download karo.</p>
+    </div>
+    
+    <div class="step">
+        <span class="step-number">2</span>
+        <strong>Conda Environment Create Karo:</strong>
+        <pre><code>conda create --name myenv python=3.9</code></pre>
+        <p>Yeh 'myenv' naam ka environment create karega Python 3.9 ke saath.</p>
+    </div>
+    
+    <div class="step">
+        <span class="step-number">3</span>
+        <strong>Environment Activate Karo:</strong>
+        <pre><code># Windows/macOS/Linux
+conda activate myenv</code></pre>
+    </div>
+    
+    <div class="bro-tip">
+        <span class="emoji">🧠</span> <strong>Bro Tip:</strong> Agar data science, machine learning ya scientific computing karna hai toh Anaconda best option hai! Saare important packages ek saath mil jayenge.
+    </div>
+
+    <h2>First Python Program Likhna 🎉</h2>
+    
+    <p>Ab time aa gaya hai apna pehla Python program likhne ka! Chalo ek simple "Hello, World!" program se shuruat karte hain.</p>
+    
+    <div class="step">
+        <span class="step-number">1</span>
+        <strong>New File Create Karo:</strong>
+        <p>Apne code editor mein ek new file create karo aur use <code>hello.py</code> naam se save karo.</p>
+    </div>
+    
+    <div class="step">
+        <span class="step-number">2</span>
+        <strong>Code Likho:</strong>
+        <p>File mein yeh line likho:</p>
+        <pre><code>print("Hello, World! Mera first Python program!")</code></pre>
+    </div>
+    
+    <div class="step">
+        <span class="step-number">3</span>
+        <strong>Program Run Karo:</strong>
+        <p>Terminal ya command prompt mein, apne file wale directory mein jao aur run karo:</p>
+        <pre><code># Windows
+python hello.py
+
+# macOS/Linux
+python3 hello.py</code></pre>
+        <p>Terminal mein "Hello, World! Mera first Python program!" print ho jayega. Congrats! 🎊</p>
+    </div>
+    
+    <div class="bro-tip">
+        <span class="emoji">😎</span> <strong>Bro Tip:</strong> VS Code mein Python file open karke right-click karke "Run Python File in Terminal" option se bhi run kar sakte ho. Ya phir top-right corner mein play button bhi hota hai!
+    </div>
+
+    <h2>pip Se Packages Install Karna 📦</h2>
+    
+    <p>pip Python ka package installer hai. Isse PyPI (Python Package Index) aur doosre repositories se packages install kar sakte ho.</p>
+    
+    <h3>Basic pip Commands</h3>
+    
+    <ul>
+        <li><strong>Package Install Karna:</strong>
+            <pre><code>pip install package_name</code></pre>
+        </li>
+        <li><strong>Specific Version Install Karna:</strong>
+            <pre><code>pip install package_name==1.0.0</code></pre>
+        </li>
+        <li><strong>Package Upgrade Karna:</strong>
+            <pre><code>pip install --upgrade package_name</code></pre>
+        </li>
+        <li><strong>Package Uninstall Karna:</strong>
+            <pre><code>pip uninstall package_name</code></pre>
+        </li>
+        <li><strong>Installed Packages List Dekhna:</strong>
+            <pre><code>pip list</code></pre>
+        </li>
+        <li><strong>Requirements File Generate Karna:</strong>
+            <pre><code>pip freeze > requirements.txt</code></pre>
+        </li>
+        <li><strong>Requirements File Se Install Karna:</strong>
+            <pre><code>pip install -r requirements.txt</code></pre>
+        </li>
+    </ul>
+    
+    <div class="bro-tip">
+        <span class="emoji">💯</span> <strong>Bro Tip:</strong> Project ke liye requirements.txt file zaroor banao! Isse doosre log bhi aasani se tumhara project run kar payenge. Teamwork mein yeh bahut important hai!
+    </div>
+
+    <h2>Conclusion 🏁</h2>
+    
+    <p>Badhai ho bhai! Tumne successfully apna Python development environment set kar liya hai. Ab tum Python programming seekhne aur apne khud ke applications banane ke liye ready ho!</p>
+    
+    <div class="note">
+        <strong>Next Steps:</strong> Agle section mein Python syntax aur basic programming concepts ke bare mein seekhenge. Get ready for some serious coding! 🚀
+    </div>
+    
+    <div class="bro-tip">
+        <span class="emoji">🔥</span> <strong>Final Bro Tip:</strong> Regular practice se hi coding mein expert banoge. Har din thoda time Python programming ke liye nikalo, chahe 30 minutes hi sahi. Consistency is the key to success!
+    </div>
+</body>
+</html>

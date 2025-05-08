@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .content-container {
+            font-family: 'Comic Sans MS', cursive;
+            line-height: 1.6;
+            color: #333;
+            padding: 0 30px;
+        }
+
+        .content-container h2 {
+            color: #333;
+            font-size: 28px;
+            margin: 30px 0;
+            padding-bottom: 10px;
+            border-bottom: none;
+            text-shadow: 1px 1px 2px rgba(255, 140, 0, 0.2);
+        }
+
+        .content-container pre {
+            background-color: #fff8f0;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 25px 0;
+            border: 2px solid #FFD700;
+            box-shadow: 0 2px 4px rgba(255, 140, 0, 0.1);
+            font-size: 15px;
+        }
+
+        .content-container code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #FF4500;
+        }
+
+        .content-container ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 25px 0;
+        }
+
+        .content-container li {
+            margin: 15px 0;
+            position: relative;
+            padding-left: 25px;
+            font-size: 16px;
+        }
+
+        .content-container li:before {
+            content: "🔥";
+            position: absolute;
+            left: 0;
+        }
+
+        .content-container p {
+            margin: 20px 0;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .content-container code {
+            background-color: #fff8f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 15px;
+        }
+
+        .content-container table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(255, 140, 0, 0.1);
+        }
+
+        .content-container th, .content-container td {
+            border: 1px solid #FFD700;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .content-container th {
+            background-color: #FFA500;
+            color: white;
+            font-weight: bold;
+        }
+
+        .content-container tr:nth-child(even) {
+            background-color: #fff8f0;
+        }
+
+        .content-container tr:hover {
+            background-color: #FFE4B5;
+        }
+
+        .content-container ol {
+            list-style-type: none;
+            counter-reset: my-counter;
+            padding-left: 0;
+        }
+
+        .content-container ol li {
+            counter-increment: my-counter;
+            position: relative;
+            padding-left: 35px;
+            margin: 15px 0;
+        }
+
+        .content-container ol li::before {
+            content: counter(my-counter);
+            background-color: #FF8C00;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 50%;
+            padding: 3px 8px;
+            position: absolute;
+            left: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content-container">
+        <h2>Data Types aur Variables - Java ke Dabbo! 📦</h2>
+
+        <p>Bhai, Java mein data types aur variables samajhna ekdum zaroori hai! Yeh woh boxes hain jisme hum apna data store karte hain! 🎁</p>
+
+        <h2>Variables Kya Hote Hain? 🤔</h2>
+        <p>Variable ek aisa box hai jisme hum koi value store kar sakte hain. Java mein variable use karne ke liye:</p>
+        <ol>
+            <li>Pehle declare karo (type aur name batao) - box banao aur label lagao! 📋</li>
+            <li>Phir initialize karo (value assign karo) - box mein saman rakho! 🧳</li>
+        </ol>
+
+        <pre><code>// Declaration - box banaya
+int age;
+
+// Initialization - box mein value daali
+age = 25;
+
+// Ek hi line mein dono kaam
+int height = 180;  // Smart move! 😎</code></pre>
+
+        <h2>Primitive Data Types - Basic Boxes! 📦</h2>
+        <p>Java mein 8 primitive data types hain - yeh simple values store karte hain:</p>
+
+        <table>
+            <tr>
+                <th>Data Type</th>
+                <th>Size</th>
+                <th>Range</th>
+                <th>Example</th>
+            </tr>
+            <tr>
+                <td>byte</td>
+                <td>8 bits</td>
+                <td>-128 to 127</td>
+                <td><code>byte b = 100;</code></td>
+            </tr>
+            <tr>
+                <td>short</td>
+                <td>16 bits</td>
+                <td>-32,768 to 32,767</td>
+                <td><code>short s = 1000;</code></td>
+            </tr>
+            <tr>
+                <td>int</td>
+                <td>32 bits</td>
+                <td>-2^31 to 2^31-1</td>
+                <td><code>int i = 100000;</code></td>
+            </tr>
+            <tr>
+                <td>long</td>
+                <td>64 bits</td>
+                <td>-2^63 to 2^63-1</td>
+                <td><code>long l = 100000L;</code></td>
+            </tr>
+            <tr>
+                <td>float</td>
+                <td>32 bits</td>
+                <td>Decimal numbers</td>
+                <td><code>float f = 3.14f;</code></td>
+            </tr>
+            <tr>
+                <td>double</td>
+                <td>64 bits</td>
+                <td>Bade decimal numbers</td>
+                <td><code>double d = 3.14159;</code></td>
+            </tr>
+            <tr>
+                <td>char</td>
+                <td>16 bits</td>
+                <td>Single characters</td>
+                <td><code>char c = 'A';</code></td>
+            </tr>
+            <tr>
+                <td>boolean</td>
+                <td>1 bit</td>
+                <td>true ya false</td>
+                <td><code>boolean b = true;</code></td>
+            </tr>
+        </table>
+
+        <h2>Reference Data Types - Fancy Boxes! 🎀</h2>
+        <p>Reference types objects ke addresses store karte hain - yeh actual boxes ke pate hain! 🏠</p>
+        <ul>
+            <li>Classes (jaise <code>String</code>, <code>Scanner</code>) - pre-made fancy boxes! 🏢</li>
+            <li>Arrays - boxes ka collection! 📚</li>
+            <li>Interfaces - contracts! 📜</li>
+            <li>Enum - fixed options ka list! 📋</li>
+        </ul>
+
+        <pre><code>// String (reference type) - text ka box
+String name = "Bhai";
+
+// Array (reference type) - boxes ka collection
+int[] numbers = {1, 2, 3, 4, 5};  // 5 boxes ek saath!</code></pre>
+
+        <h2>Type Conversion - Box Badalna! 🔄</h2>
+        <p>Java mein do tarah se data types convert hote hain:</p>
+
+        <h3>Implicit Conversion (Widening) - Automatic Upgrade! ⬆️</h3>
+        <p>Chote box se bade box mein automatic conversion:</p>
+        <pre><code>byte b = 100;  // Chota box
+int i = b;    // Bada box - automatic conversion ho gaya!</code></pre>
+
+        <h3>Explicit Conversion (Narrowing) - Manual Downgrade! ⬇️</h3>
+        <p>Bade box se chote box mein manual conversion (casting):</p>
+        <pre><code>double d = 100.25;     // Bada box
+int i = (int)d;        // Chota box - manually cast karna pada
+                      // i ki value 100 hogi, .25 gayab! 💨</code></pre>
+
+        <h2>Constants - Fixed Boxes! 🔒</h2>
+        <p>Constants woh variables hain jinki value kabhi change nahi ho sakti. Java mein <code>final</code> keyword se constants banate hain:</p>
+
+        <pre><code>final double PI = 3.14159;      // Yeh value kabhi change nahi hogi
+final int MAX_USERS = 100;      // Isko lock kar diya gaya hai!</code></pre>
+
+        <h2>Variable Scope - Kahan Tak Chalta Hai? 🗺️</h2>
+        <p>Variable ka scope batata hai ki woh kahan-kahan accessible hai:</p>
+
+        <h3>Class Variables (Static Fields) - Sabke Liye Common! 🌍</h3>
+        <pre><code>public class MyClass {
+    static int classVar = 10;  // Class variable - sabke liye same!
+}</code></pre>
+
+        <h3>Instance Variables (Non-static Fields) - Har Object Ka Apna! 🏠</h3>
+        <pre><code>public class MyClass {
+    int instanceVar = 20;  // Instance variable - har object ka personal!
+}</code></pre>
+
+        <h3>Local Variables - Method ke Andar! 🏢</h3>
+        <pre><code>public void myMethod() {
+    int localVar = 30;  // Local variable - sirf is method mein available!
+}</code></pre>
+
+        <h3>Block Variables - Curly Braces ke Andar! 🧱</h3>
+        <pre><code>public void myMethod() {
+    if (true) {
+        int blockVar = 40;  // Block variable - sirf in curly braces ke andar!
+    }
+    // blockVar yahan available nahi hai - out of scope! 🚫
+}</code></pre>
+
+        <h2>Yaad Rakhne Wali Baatein! 🧠</h2>
+        <ul>
+            <li>Java statically-typed language hai - har variable ka type pehle se declare karna padta hai! 📝</li>
+            <li>Primitive types actual values store karte hain, reference types addresses store karte hain! 🏠</li>
+            <li>Memory bachane ke liye sahi data type choose karo - int ke liye byte use mat karo! 💾</li>
+            <li>Type conversion mein data loss ho sakta hai - dhyan rakhna! ⚠️</li>
+            <li>Jo values change nahi honi chahiye, unhe <code>final</code> banao! 🔒</li>
+            <li>Variable scope samajho - galat jagah variable access karne ki koshish mat karo! 🚫</li>
+            <li>Class aur instance variables ko Java default values de deta hai, par local variables ko explicitly initialize karna padta hai! ⚙️</li>
+        </ul>
+    </div>
+</body>
+
+</html>

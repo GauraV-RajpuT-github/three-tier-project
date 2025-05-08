@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Data Types and Variables - Bro Mode</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #2b5b84;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #3776ab;
+            font-size: 1.8em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        h3 {
+            color: #4a8cc2;
+            font-size: 1.4em;
+            margin-top: 25px;
+        }
+        p {
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f5f5f5;
+            padding: 3px 6px;
+            border-radius: 3px;
+            font-size: 0.9em;
+            border: 1px solid #e0e0e0;
+        }
+        pre {
+            background-color: #f8f8f8;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            padding: 15px;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        pre code {
+            background-color: transparent;
+            border: none;
+            padding: 0;
+            display: block;
+            line-height: 1.5;
+        }
+        .note {
+            background-color: #e7f3fe;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .bro-tip {
+            background-color: #ffecb3;
+            border-left: 4px solid #ffa000;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+            font-style: italic;
+        }
+        .emoji {
+            font-size: 1.2em;
+            margin-right: 5px;
+        }
+        .example {
+            background-color: #f1f8e9;
+            border-left: 4px solid #8bc34a;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .output {
+            background-color: #f0f0f0;
+            border-left: 4px solid #9e9e9e;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>Python Data Types aur Variables Samajho 🚀</h1>
+    
+    <p>Bhai, Python ek dynamically typed language hai, matlab variable banate time uska type declare karne ki zaroorat nahi hai. Python khud samajh jata hai ki variable ka type kya hona chahiye. Chalo dekhte hain Python mein kaise variables aur data types use karte hain!</p>
+
+    <h2>Variables in Python 📦</h2>
+    
+    <p>Python mein variable ek naam hai jo memory location ko represent karta hai. C++ ya Java ki tarah explicit declaration ki zaroorat nahi hai - bas value assign karo aur ho gaya!</p>
+    
+    <h3>Variable Names Ke Rules</h3>
+    <ul>
+        <li>Variable names mein letters, numbers, aur underscore (_) ho sakte hain</li>
+        <li>Variable name letter ya underscore se start hona chahiye</li>
+        <li>Number se start nahi kar sakte</li>
+        <li>Variable names case-sensitive hote hain (age, Age, aur AGE teen alag variables hain)</li>
+        <li>Python keywords use nahi kar sakte (jaise <code>if</code>, <code>for</code>, <code>class</code>, etc.)</li>
+    </ul>
+    
+    <div class="example">
+        <h4>Example: Sahi aur Galat Variable Names</h4>
+        <pre><code># Sahi variable names
+name = "Rahul"
+age = 25
+_id = 12345
+user_name = "rahul_sharma"
+userName = "rahul_sharma"
+NAME = "RAHUL"
+name2 = "Rahul Sharma"
+
+# Galat variable names
+2name = "Rahul"  # Number se start nahi kar sakte
+user-name = "rahul_sharma"  # Hyphen allowed nahi hai
+class = "Python"  # 'class' ek Python keyword hai</code></pre>
+    </div>
+    
+    <div class="bro-tip">
+        <span class="emoji">💡</span> <strong>Bro Tip:</strong> Variable names meaningful rakho! <code>x</code>, <code>y</code>, <code>z</code> ki jagah <code>user_age</code>, <code>total_marks</code> jaise names use karo. Baad mein code samajhna aasan hoga!
+    </div>
+    
+    <h3>Dynamic Typing 🔄</h3>
+    <p>Python mein ek variable ka type runtime mein change ho sakta hai - yahi dynamic typing hai!</p>
+    
+    <div class="example">
+        <h4>Example: Dynamic Typing</h4>
+        <pre><code>x = 10  # x ek integer hai
+print(x, type(x))
+
+x = "Hello"  # Ab x ek string ban gaya
+print(x, type(x))
+
+x = [1, 2, 3]  # Ab x ek list ban gaya
+print(x, type(x))</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            10 &lt;class 'int'&gt;<br>
+            Hello &lt;class 'str'&gt;<br>
+            [1, 2, 3] &lt;class 'list'&gt;
+        </div>
+    </div>
+    
+    <div class="bro-tip">
+        <span class="emoji">⚠️</span> <strong>Bro Tip:</strong> Dynamic typing mast feature hai, lekin iska misuse mat karo! Ek variable ka type baar-baar change karna code ko confusing bana deta hai.
+    </div>
+
+    <h2>Python Ke Basic Data Types 📊</h2>
+    
+    <h3>1. Numbers (Numeric Types) 🔢</h3>
+    
+    <h4>Integers (int)</h4>
+    <p>Integers matlab whole numbers, jaise 5, -10, 0, 1000 etc.</p>
+    
+    <div class="example">
+        <h4>Example: Integers</h4>
+        <pre><code>a = 10
+b = -5
+c = 0
+bada_number = 1234567890123456789012345678901234567890  # Python mein size limit nahi hai!
+
+print(a, type(a))
+print(bada_number)</code></pre>
+    </div>
+    
+    <h4>Floating-Point Numbers (float)</h4>
+    <p>Float matlab decimal point wale numbers, jaise 3.14, -0.5, 2.0 etc.</p>
+    
+    <div class="example">
+        <h4>Example: Floating-Point Numbers</h4>
+        <pre><code>a = 10.5
+b = -0.25
+c = 1.0
+d = 1.5e2  # Scientific notation: 1.5 * 10^2 = 150.0
+e = 1.5e-2  # Scientific notation: 1.5 * 10^-2 = 0.015
+
+print(a, type(a))
+print(d, e)</code></pre>
+    </div>
+    
+    <div class="bro-tip">
+        <span class="emoji">🧮</span> <strong>Bro Tip:</strong> Float arithmetic mein kabhi-kabhi precision issues ho sakte hain. Jaise <code>0.1 + 0.2</code> exactly <code>0.3</code> nahi hoga, kyunki computer binary mein calculate karta hai. Financial calculations ke liye <code>decimal</code> module use karo!
+    </div>
+    
+    <h3>2. Boolean (bool) ✅❌</h3>
+    <p>Boolean values sirf do ho sakti hain: <code>True</code> ya <code>False</code>. Conditions check karne ke liye use hoti hain.</p>
+    
+    <div class="example">
+        <h4>Example: Boolean Values</h4>
+        <pre><code>a = True
+b = False
+c = (5 > 3)  # True hoga
+d = (5 == 6)  # False hoga
+
+print(a, type(a))
+print(c, d)
+print(a and b)  # Logical AND: False
+print(a or b)   # Logical OR: True
+print(not a)    # Logical NOT: False</code></pre>
+    </div>
+    
+    <h3>3. Strings (str) 📝</h3>
+    <p>String matlab text data. Single quotes, double quotes, ya triple quotes mein likha ja sakta hai.</p>
+    
+    <div class="example">
+        <h4>Example: Strings</h4>
+        <pre><code># String banane ke tarike
+a = 'Hello'
+b = "World"
+c = '''Yeh ek
+multi-line string hai'''
+d = """Yeh bhi
+multi-line string hai"""
+
+print(a, type(a))
+print(a + " " + b)  # String concatenation: "Hello World"
+print(a * 3)  # String repetition: "HelloHelloHello"
+print(len(a))  # String length: 5
+print(a[0])  # First character: "H"
+print(a[1:4])  # Slicing (characters from index 1 to 3): "ell"
+print(a.upper())  # String method: "HELLO"</code></pre>
+    </div>
+    
+    <div class="bro-tip">
+        <span class="emoji">🔤</span> <strong>Bro Tip:</strong> Python mein strings immutable hain, matlab ek baar create hone ke baad change nahi ho sakti. <code>s[0] = 'X'</code> error dega! Naya string banana padega change karne ke liye.
+    </div>
+    
+    <h3>4. None Type 🚫</h3>
+    <p><code>None</code> Python mein "kuch nahi" ko represent karta hai. Null value ya absence of value ke liye use hota hai.</p>
+    
+    <div class="example">
+        <h4>Example: None Value</h4>
+        <pre><code>a = None
+print(a, type(a))
+
+def kuch_nahi():
+    pass  # Function kuch return nahi karta
+
+result = kuch_nahi()
+print(result is None)  # True</code></pre>
+    </div>
+
+    <h2>Collection Data Types 📚</h2>
+    
+    <h3>1. Lists 📋</h3>
+    <p>Lists ordered, mutable collections hain. Square brackets <code>[]</code> mein define kiye jate hain.</p>
+    
+    <div class="example">
+        <h4>Example: Lists</h4>
+        <pre><code># List banane ke tarike
+fruits = ["apple", "banana", "cherry"]
+mixed = [1, "hello", 3.14, True]
+empty_list = []
+nested_list = [1, [2, 3], 4]
+
+print(fruits, type(fruits))
+print(len(fruits))  # List length: 3
+print(fruits[0])  # First element: "apple"
+print(fruits[-1])  # Last element: "cherry"
+
+# Lists mutable hain - change kar sakte hain
+fruits[0] = "orange"
+print(fruits)  # ["orange", "banana", "cherry"]
+
+# List methods
+fruits.append("mango")  # Add item at end
+print(fruits)  # ["orange", "banana", "cherry", "mango"]
+
+fruits.remove("cherry")  # Remove item
+print(fruits)  # ["orange", "banana", "mango"]
+
+popped = fruits.pop()  # Remove & return last item
+print(popped, fruits)  # "mango" ["orange", "banana"]</code></pre>
+    </div>
+    
+    <div class="bro-tip">
+        <span class="emoji">🔥</span> <strong>Bro Tip:</strong> Lists Python mein most versatile data structure hain! Jab bhi multiple items store karne hon aur order matter karta ho, list use karo.
+    </div>
+    
+    <h3>2. Tuples 📌</h3>
+    <p>Tuples lists ki tarah hain, lekin immutable (change nahi kar sakte). Parentheses <code>()</code> mein define kiye jate hain.</p>
+    
+    <div class="example">
+        <h4>Example: Tuples</h4>
+        <pre><code># Tuple banane ke tarike
+coordinates = (10, 20)
+person = ("Rahul", 25, "Delhi")
+single_item_tuple = (1,)  # Comma zaroori hai!
+empty_tuple = ()
+
+print(coordinates, type(coordinates))
+print(person[0])  # "Rahul"
+
+# Tuple unpacking
+name, age, city = person
+print(name, age, city)  # "Rahul" 25 "Delhi"</code></pre>
+    </div>
+    
+    <div class="bro-tip">
+        <span class="emoji">🔒</span> <strong>Bro Tip:</strong> Tuples ka use tab karo jab data change nahi hona chahiye, jaise coordinates, database records, ya function se multiple values return karna ho.
+    </div>
+    
+    <h3>3. Sets 🎯</h3>
+    <p>Sets unordered collections of unique items hain. Curly braces <code>{}</code> mein define kiye jate hain.</p>
+    
+    <div class="example">
+        <h4>Example: Sets</h4>
+        <pre><code># Set banane ke tarike
+fruits = {"apple", "banana", "cherry"}
+duplicates = {"apple", "banana", "apple", "cherry"}  # Duplicates automatically remove ho jate hain
+empty_set = set()  # {} se empty dictionary banta hai, empty set nahi!
+
+print(fruits, type(fruits))
+print(duplicates)  # {"apple", "banana", "cherry"}
+
+# Set operations
+a = {1, 2, 3, 4}
+b = {3, 4, 5, 6}
+
+print(a.union(b))  # {1, 2, 3, 4, 5, 6}
+print(a.intersection(b))  # {3, 4}
+print(a.difference(b))  # {1, 2}</code></pre>
+    </div>
+    
+    <div class="bro-tip">
+        <span class="emoji">💪</span> <strong>Bro Tip:</strong> Sets ka best use duplicates remove karne ke liye hota hai. Aur membership testing (checking if item is in set) lists se much faster hota hai!
+    </div>
+    
+    <h3>4. Dictionaries (dict) 📖</h3>
+    <p>Dictionaries key-value pairs store karte hain. Curly braces <code>{}</code> mein key:value format mein define kiye jate hain.</p>
+    
+    <div class="example">
+        <h4>Example: Dictionaries</h4>
+        <pre><code># Dictionary banane ke tarike
+person = {"name": "Rahul", "age": 25, "city": "Delhi"}
+marks = {"math": 90, "science": 85, "history": 95}
+empty_dict = {}
+
+print(person, type(person))
+print(person["name"])  # "Rahul"
+
+# Safe way to access
+print(person.get("gender"))  # None
+print(person.get("gender", "Not specified"))  # "Not specified"
+
+# Dictionary update
+person["email"] = "rahul@example.com"  # Add new key-value
+print(person)
+
+# Dictionary methods
+keys = person.keys()
+values = person.values()
+items = person.items()
+print(keys)
+print(values)
+
+# Iterate through dictionary
+for key, value in person.items():
+    print(key, value)</code></pre>
+    </div>
+    
+    <div class="bro-tip">
+        <span class="emoji">🗝️</span> <strong>Bro Tip:</strong> Dictionaries real-world data represent karne ke liye perfect hain! JSON data handle karne mein, configuration store karne mein, ya kisi bhi key-value data ke liye use karo.
+    </div>
+
+    <h2>Type Conversion 🔄</h2>
+    
+    <p>Python mein ek type se doosre type mein convert karna bahut easy hai:</p>
+    
+    <div class="example">
+        <h4>Example: Type Conversion</h4>
+        <pre><code># int() conversion
+print(int(3.14))  # 3 (truncates, round nahi karta)
+print(int("10"))  # 10
+print(int(True))  # 1
+
+# float() conversion
+print(float(5))  # 5.0
+print(float("3.14"))  # 3.14
+
+# str() conversion
+print(str(42))  # "42"
+print(str(3.14))  # "3.14"
+
+# bool() conversion
+print(bool(1))  # True (non-zero numbers)
+print(bool(0))  # False (zero)
+print(bool("hello"))  # True (non-empty strings)
+print(bool(""))  # False (empty string)
+print(bool([]))  # False (empty collections)</code></pre>
+    </div>
+    
+    <div class="bro-tip">
+        <span class="emoji">🧙‍♂️</span> <strong>Bro Tip:</strong> Type conversion user input handle karne mein bahut useful hai! <code>input()</code> hamesha string return karta hai, so numeric values ke liye <code>int()</code> ya <code>float()</code> use karo.
+    </div>
+
+    <h2>Conclusion 🏁</h2>
+    
+    <p>Bhai, ab tum Python ke data types aur variables ke baare mein samajh gaye ho! Yeh basics hai programming ka, so inhe achhe se practice karo.</p>
+    
+    <div class="note">
+        <strong>Next Steps:</strong> Ab hum Control Flow (if-else statements, loops) ke baare mein seekhenge. Get ready for some serious coding! 🚀
+    </div>
+    
+    <div class="bro-tip">
+        <span class="emoji">🔥</span> <strong>Final Bro Tip:</strong> Python Interactive Shell (REPL) mein data types experiment karke seekho! Terminal ya command prompt mein bas <code>python</code> type karo aur different data types ke saath khelo. Hands-on practice se concepts clear honge!
+    </div>
+</body>
+</html>

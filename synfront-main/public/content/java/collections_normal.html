@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #FF8C00;
+            border-bottom: 2px solid #FFA500;
+            padding-bottom: 10px;
+        }
+
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        li {
+            margin: 10px 0;
+            position: relative;
+        }
+
+        li:before {
+            content: "•";
+            color: #FFA500;
+            font-weight: bold;
+            position: absolute;
+            left: -15px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f5f5f5;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .hierarchy-diagram {
+            width: 100%;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            margin: 20px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Collections Framework in Java</h2>
+
+    <p>The Java Collections Framework is a unified architecture for representing and manipulating collections of objects. It contains interfaces, implementations, and algorithms to work with groups of objects.</p>
+
+    <div class="hierarchy-diagram">
+        <pre>
+                                Collection
+                                    |
+            +-----------------------+------------------------+
+            |                       |                        |
+           List                    Set                     Queue
+            |                       |                        |
+  +---------+--------+    +--------+--------+      +--------+--------+
+  |         |        |    |        |        |      |        |        |
+ArrayList LinkedList Vector HashSet TreeSet  ...  PriorityQueue  Deque
+                                                                   |
+                                                           +-------+------+
+                                                           |              |
+                                                      ArrayDeque     LinkedList
+        </pre>
+    </div>
+
+    <h2>Collection Interfaces</h2>
+
+    <h3>Collection</h3>
+    <p>The root interface in the collection hierarchy. A collection represents a group of objects, known as its elements.</p>
+
+    <h3>List</h3>
+    <p>An ordered collection (sequence) that can contain duplicate elements. The user can access elements by their integer index.</p>
+
+    <h3>Set</h3>
+    <p>A collection that cannot contain duplicate elements. Models the mathematical set abstraction.</p>
+
+    <h3>Queue</h3>
+    <p>A collection designed for holding elements prior to processing. Besides basic Collection operations, queues provide additional insertion, extraction, and inspection operations.</p>
+
+    <h3>Deque</h3>
+    <p>A double-ended queue that supports element insertion and removal at both ends.</p>
+
+    <h3>Map</h3>
+    <p>An object that maps keys to values. A map cannot contain duplicate keys; each key can map to at most one value.</p>
+
+    <h2>Common Implementations</h2>
+
+    <table>
+        <tr>
+            <th>Interface</th>
+            <th>Implementation</th>
+            <th>Characteristics</th>
+        </tr>
+        <tr>
+            <td rowspan="3">List</td>
+            <td>ArrayList</td>
+            <td>Resizable array implementation. Fast for random access but slow for insertions and deletions in the middle.</td>
+        </tr>
+        <tr>
+            <td>LinkedList</td>
+            <td>Doubly-linked list implementation. Fast for insertions and deletions but slow for random access.</td>
+        </tr>
+        <tr>
+            <td>Vector</td>
+            <td>Legacy synchronized implementation. Similar to ArrayList but thread-safe.</td>
+        </tr>
+        <tr>
+            <td rowspan="2">Set</td>
+            <td>HashSet</td>
+            <td>Hash table implementation. No guaranteed order but offers constant-time performance for basic operations.</td>
+        </tr>
+        <tr>
+            <td>TreeSet</td>
+            <td>Sorted set implementation using a tree. Elements are ordered using their natural ordering or a comparator.</td>
+        </tr>
+        <tr>
+            <td rowspan="3">Map</td>
+            <td>HashMap</td>
+            <td>Hash table implementation. No guaranteed order but offers constant-time performance for basic operations.</td>
+        </tr>
+        <tr>
+            <td>TreeMap</td>
+            <td>Sorted map implementation using a tree. Keys are ordered using their natural ordering or a comparator.</td>
+        </tr>
+        <tr>
+            <td>LinkedHashMap</td>
+            <td>Hash table and linked list implementation. Maintains insertion order.</td>
+        </tr>
+        <tr>
+            <td rowspan="2">Queue</td>
+            <td>PriorityQueue</td>
+            <td>Priority heap implementation. Elements are ordered by their natural ordering or a comparator.</td>
+        </tr>
+        <tr>
+            <td>ArrayDeque</td>
+            <td>Resizable array implementation. Can be used as both a queue and a stack.</td>
+        </tr>
+    </table>
+
+    <h2>Working with Collections</h2>
+
+    <h3>ArrayList Example</h3>
+    <pre><code>import java.util.ArrayList;
+import java.util.List;
+
+public class ArrayListExample {
+    public static void main(String[] args) {
+        // Create an ArrayList
+        List&lt;String&gt; fruits = new ArrayList&lt;&gt;();
+        
+        // Add elements
+        fruits.add("Apple");
+        fruits.add("Banana");
+        fruits.add("Orange");
+        
+        // Access elements
+        System.out.println("First fruit: " + fruits.get(0));
+        
+        // Iterate through elements
+        System.out.println("All fruits:");
+        for (String fruit : fruits) {
+            System.out.println(fruit);
+        }
+        
+        // Check if an element exists
+        boolean containsBanana = fruits.contains("Banana");
+        System.out.println("Contains Banana? " + containsBanana);
+        
+        // Remove an element
+        fruits.remove("Banana");
+        
+        // Get the size
+        System.out.println("Number of fruits: " + fruits.size());
+    }
+}</code></pre>
+
+    <h3>HashSet Example</h3>
+    <pre><code>import java.util.HashSet;
+import java.util.Set;
+
+public class HashSetExample {
+    public static void main(String[] args) {
+        // Create a HashSet
+        Set&lt;String&gt; uniqueFruits = new HashSet&lt;&gt;();
+        
+        // Add elements
+        uniqueFruits.add("Apple");
+        uniqueFruits.add("Banana");
+        uniqueFruits.add("Orange");
+        uniqueFruits.add("Apple");  // Duplicate, won't be added
+        
+        // Iterate through elements
+        System.out.println("All unique fruits:");
+        for (String fruit : uniqueFruits) {
+            System.out.println(fruit);
+        }
+        
+        // Check if an element exists
+        boolean containsBanana = uniqueFruits.contains("Banana");
+        System.out.println("Contains Banana? " + containsBanana);
+        
+        // Remove an element
+        uniqueFruits.remove("Banana");
+        
+        // Get the size
+        System.out.println("Number of unique fruits: " + uniqueFruits.size());
+    }
+}</code></pre>
+
+    <h3>HashMap Example</h3>
+    <pre><code>import java.util.HashMap;
+import java.util.Map;
+
+public class HashMapExample {
+    public static void main(String[] args) {
+        // Create a HashMap
+        Map&lt;String, Double&gt; fruitPrices = new HashMap&lt;&gt;();
+        
+        // Add key-value pairs
+        fruitPrices.put("Apple", 1.99);
+        fruitPrices.put("Banana", 0.59);
+        fruitPrices.put("Orange", 1.29);
+        
+        // Access a value by key
+        Double applePrice = fruitPrices.get("Apple");
+        System.out.println("Apple price: $" + applePrice);
+        
+        // Iterate through key-value pairs
+        System.out.println("All fruit prices:");
+        for (Map.Entry&lt;String, Double&gt; entry : fruitPrices.entrySet()) {
+            System.out.println(entry.getKey() + ": $" + entry.getValue());
+        }
+        
+        // Check if a key exists
+        boolean containsBanana = fruitPrices.containsKey("Banana");
+        System.out.println("Price available for Banana? " + containsBanana);
+        
+        // Remove a key-value pair
+        fruitPrices.remove("Banana");
+        
+        // Get the size
+        System.out.println("Number of fruits with prices: " + fruitPrices.size());
+    }
+}</code></pre>
+
+    <h2>Collections Utility Class</h2>
+    <p>The Collections class provides static methods for operating on collections:</p>
+
+    <pre><code>import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class CollectionsUtilityExample {
+    public static void main(String[] args) {
+        List&lt;Integer&gt; numbers = new ArrayList&lt;&gt;();
+        numbers.add(5);
+        numbers.add(2);
+        numbers.add(8);
+        numbers.add(1);
+        
+        // Sort the list
+        Collections.sort(numbers);
+        System.out.println("Sorted numbers: " + numbers);  // [1, 2, 5, 8]
+        
+        // Binary search (on sorted list)
+        int index = Collections.binarySearch(numbers, 5);
+        System.out.println("Index of 5: " + index);  // 2
+        
+        // Find min and max
+        int min = Collections.min(numbers);
+        int max = Collections.max(numbers);
+        System.out.println("Min: " + min + ", Max: " + max);  // Min: 1, Max: 8
+        
+        // Reverse the list
+        Collections.reverse(numbers);
+        System.out.println("Reversed: " + numbers);  // [8, 5, 2, 1]
+        
+        // Shuffle the list
+        Collections.shuffle(numbers);
+        System.out.println("Shuffled: " + numbers);  // Random order
+        
+        // Create an unmodifiable list
+        List&lt;Integer&gt; unmodifiableList = Collections.unmodifiableList(numbers);
+        // unmodifiableList.add(10);  // This would throw UnsupportedOperationException
+        
+        // Create a synchronized list
+        List&lt;Integer&gt; synchronizedList = Collections.synchronizedList(new ArrayList&lt;&gt;());
+        // Now the list is thread-safe
+    }
+}</code></pre>
+
+    <h2>Choosing the Right Collection</h2>
+
+    <table>
+        <tr>
+            <th>If you need...</th>
+            <th>Use...</th>
+        </tr>
+        <tr>
+            <td>Ordered collection with fast random access</td>
+            <td>ArrayList</td>
+        </tr>
+        <tr>
+            <td>Fast insertions/deletions in the middle</td>
+            <td>LinkedList</td>
+        </tr>
+        <tr>
+            <td>No duplicates and fast lookup</td>
+            <td>HashSet</td>
+        </tr>
+        <tr>
+            <td>No duplicates and sorted elements</td>
+            <td>TreeSet</td>
+        </tr>
+        <tr>
+            <td>Key-value pairs with fast lookup</td>
+            <td>HashMap</td>
+        </tr>
+        <tr>
+            <td>Key-value pairs with sorted keys</td>
+            <td>TreeMap</td>
+        </tr>
+        <tr>
+            <td>FIFO (First-In-First-Out) behavior</td>
+            <td>Queue (LinkedList or ArrayDeque)</td>
+        </tr>
+        <tr>
+            <td>LIFO (Last-In-First-Out) behavior</td>
+            <td>Stack or Deque (ArrayDeque)</td>
+        </tr>
+        <tr>
+            <td>Elements ordered by priority</td>
+            <td>PriorityQueue</td>
+        </tr>
+    </table>
+
+    <h2>Key points to remember:</h2>
+    <ul>
+        <li>The Collections Framework provides a unified architecture for working with groups of objects</li>
+        <li>Choose the appropriate collection based on your specific requirements (ordering, duplicates, access patterns)</li>
+        <li>ArrayList is generally faster for random access, while LinkedList is faster for insertions and deletions</li>
+        <li>Sets do not allow duplicates, while Lists do</li>
+        <li>Maps store key-value pairs and provide fast lookups by key</li>
+        <li>The Collections utility class provides useful methods for operating on collections</li>
+        <li>Most collection implementations are not thread-safe by default; use synchronized wrappers or concurrent collections for multi-threaded environments</li>
+        <li>Always use generics with collections to ensure type safety</li>
+    </ul>
+</body>
+
+</html>

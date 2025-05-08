@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #FF8C00;
+            border-bottom: 2px solid #FFA500;
+            padding-bottom: 10px;
+        }
+
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            border: 1px solid #ddd;
+        }
+
+        code {
+            font-family: Consolas, Monaco, 'Andale Mono', monospace;
+            background-color: #f5f5f5;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        .note {
+            background-color: #fff8dc;
+            border-left: 4px solid #ffeb3b;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .bro-highlight {
+            background-color: #FFE4B5;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Arrays and Objects in JavaScript - Bro Style! 🔥</h2>
+
+    <p>Aye bro! Aaj hum JavaScript ke <span class="bro-highlight">Arrays aur Objects</span> ke baare mein baat karenge. Ye dono JavaScript ke sabse powerful data structures hain - agar inko samajh liya, toh aadhi game jeet gaye! 🏆</p>
+
+    <h3>Arrays - Data Ki List</h3>
+    <p>Arrays matlab data ki ordered list - bilkul shopping list ki tarah! Ismein kuch bhi store kar sakte ho - numbers, strings, objects, yahan tak ki doosre arrays bhi!</p>
+
+    <h4>Arrays Kaise Banate Hain?</h4>
+    <pre><code>// Array literal syntax (best tarika)
+const fruits = ["apple", "banana", "orange"];
+
+// Array constructor (purana tarika)
+const numbers = new Array(1, 2, 3, 4, 5);
+
+// Khaali array
+const emptyArray = [];
+
+// Mixed data types wala array
+const mixedArray = [1, "hello", true, null, { name: "Rahul" }, [1, 2, 3]];</code></pre>
+
+    <h4>Array Elements Ko Access Karna</h4>
+    <pre><code>const fruits = ["apple", "banana", "orange"];
+
+// Index se access karna (0 se start hota hai)
+console.log(fruits[0]);  // Output: "apple"
+console.log(fruits[1]);  // Output: "banana"
+console.log(fruits[2]);  // Output: "orange"
+
+// Length property
+console.log(fruits.length);  // Output: 3
+
+// Last element access karna
+console.log(fruits[fruits.length - 1]);  // Output: "orange"</code></pre>
+
+    <h4>Arrays Ko Modify Karna</h4>
+    <pre><code>const fruits = ["apple", "banana", "orange"];
+
+// Element ko change karna
+fruits[1] = "grape";
+console.log(fruits);  // Output: ["apple", "grape", "orange"]
+
+// End mein elements add karna
+fruits.push("kiwi");
+console.log(fruits);  // Output: ["apple", "grape", "orange", "kiwi"]
+
+// Last element ko remove karna
+const lastFruit = fruits.pop();
+console.log(lastFruit);  // Output: "kiwi"
+console.log(fruits);     // Output: ["apple", "grape", "orange"]
+
+// Beginning mein elements add karna
+fruits.unshift("strawberry");
+console.log(fruits);  // Output: ["strawberry", "apple", "grape", "orange"]
+
+// First element ko remove karna
+const firstFruit = fruits.shift();
+console.log(firstFruit);  // Output: "strawberry"
+console.log(fruits);      // Output: ["apple", "grape", "orange"]</code></pre>
+
+    <h4>Common Array Methods - Useful Functions</h4>
+    <p>Bro, ye kuch mast array methods hain jo tumhari life easy kar denge:</p>
+
+    <ul>
+        <li><code>concat()</code> - Do ya zyada arrays ko jodta hai</li>
+        <li><code>slice()</code> - Array ka ek piece return karta hai</li>
+        <li><code>splice()</code> - Array ko modify karta hai (elements add/remove/replace)</li>
+        <li><code>indexOf()</code> - Element ka index batata hai</li>
+        <li><code>includes()</code> - Batata hai ki element array mein hai ya nahi</li>
+        <li><code>join()</code> - Array ke elements ko string mein convert karta hai</li>
+        <li><code>reverse()</code> - Array ko ulta kar deta hai</li>
+        <li><code>sort()</code> - Array ko sort karta hai</li>
+    </ul>
+
+    <h4>Arrays Par Loop Lagana</h4>
+    <pre><code>const fruits = ["apple", "banana", "orange"];
+
+// for loop (old school)
+for (let i = 0; i < fruits.length; i++) {
+    console.log(`${i}: ${fruits[i]}`);
+}
+
+// for...of loop (modern aur clean)
+for (const fruit of fruits) {
+    console.log(fruit);
+}
+
+// forEach method (callback function use karta hai)
+fruits.forEach(function(fruit, index) {
+    console.log(`${index}: ${fruit}`);
+});</code></pre>
+
+    <h4>Array Transformation Methods - Data Ko Transform Karna</h4>
+    <pre><code>const numbers = [1, 2, 3, 4, 5];
+
+// map: har element par function apply karke new array banata hai
+const doubled = numbers.map(function(num) {
+    return num * 2;
+});
+console.log(doubled);  // Output: [2, 4, 6, 8, 10]
+
+// filter: condition pass karne wale elements se new array banata hai
+const evenNumbers = numbers.filter(function(num) {
+    return num % 2 === 0;
+});
+console.log(evenNumbers);  // Output: [2, 4]
+
+// reduce: array ko single value mein convert karta hai
+const sum = numbers.reduce(function(total, num) {
+    return total + num;
+}, 0);
+console.log(sum);  // Output: 15
+
+// find: pehla element jo condition satisfy kare
+const firstEven = numbers.find(function(num) {
+    return num % 2 === 0;
+});
+console.log(firstEven);  // Output: 2
+
+// some: check karta hai ki koi bhi element condition satisfy karta hai ya nahi
+const hasEven = numbers.some(function(num) {
+    return num % 2 === 0;
+});
+console.log(hasEven);  // Output: true
+
+// every: check karta hai ki sab elements condition satisfy karte hain ya nahi
+const allEven = numbers.every(function(num) {
+    return num % 2 === 0;
+});
+console.log(allEven);  // Output: false</code></pre>
+
+    <div class="note">
+        <strong>Pro tip bro:</strong> Arrow functions use karke code ko aur bhi clean bana sakte ho:
+        <pre><code>const doubled = numbers.map(num => num * 2);
+const evenNumbers = numbers.filter(num => num % 2 === 0);
+const sum = numbers.reduce((total, num) => total + num, 0);</code></pre>
+    </div>
+
+    <h3>Objects - Key-Value Pairs</h3>
+    <p>Objects matlab key-value pairs ka collection - bilkul dictionary ki tarah! Ismein data ko naam dekar store karte hain. Real-world entities ko represent karne ke liye perfect hai!</p>
+
+    <h4>Objects Kaise Banate Hain?</h4>
+    <pre><code>// Object literal syntax (best tarika)
+const person = {
+    firstName: "Rahul",
+    lastName: "Sharma",
+    age: 25,
+    isEmployed: true
+};
+
+// Object constructor (purana tarika)
+const car = new Object();
+car.make = "Maruti";
+car.model = "Swift";
+car.year = 2020;
+
+// Khaali object
+const emptyObject = {};</code></pre>
+
+    <h4>Object Properties Ko Access Karna</h4>
+    <pre><code>const person = {
+    firstName: "Rahul",
+    lastName: "Sharma",
+    age: 25
+};
+
+// Dot notation (simple tarika)
+console.log(person.firstName);  // Output: "Rahul"
+
+// Bracket notation (dynamic property names ke liye useful)
+console.log(person["lastName"]);  // Output: "Sharma"
+
+const propertyName = "age";
+console.log(person[propertyName]);  // Output: 25</code></pre>
+
+    <h4>Objects Ko Modify Karna</h4>
+    <pre><code>const person = {
+    firstName: "Rahul",
+    lastName: "Sharma"
+};
+
+// Properties add karna
+person.age = 25;
+person["isEmployed"] = true;
+
+// Properties update karna
+person.firstName = "Rohit";
+
+// Properties delete karna
+delete person.isEmployed;
+
+console.log(person);  // Output: { firstName: "Rohit", lastName: "Sharma", age: 25 }</code></pre>
+
+    <h4>Object Methods - Objects Mein Functions</h4>
+    <pre><code>const person = {
+    firstName: "Rahul",
+    lastName: "Sharma",
+    // Method definition
+    getFullName: function() {
+        return `${this.firstName} ${this.lastName}`;
+    },
+    // Shorthand method definition (ES6)
+    greet() {
+        return `Hello bro, myself ${this.getFullName()}`;
+    }
+};
+
+console.log(person.getFullName());  // Output: "Rahul Sharma"
+console.log(person.greet());        // Output: "Hello bro, myself Rahul Sharma"</code></pre>
+
+    <h4>Object Properties Ke Saath Kaam Karna</h4>
+    <pre><code>const person = {
+    firstName: "Rahul",
+    lastName: "Sharma",
+    age: 25
+};
+
+// Check karna ki property exist karti hai ya nahi
+console.log("firstName" in person);  // Output: true
+console.log(person.hasOwnProperty("gender"));  // Output: false
+
+// Saare keys nikalna
+const keys = Object.keys(person);
+console.log(keys);  // Output: ["firstName", "lastName", "age"]
+
+// Saare values nikalna
+const values = Object.values(person);
+console.log(values);  // Output: ["Rahul", "Sharma", 25]
+
+// Saare entries (key-value pairs) nikalna
+const entries = Object.entries(person);
+console.log(entries);  // Output: [["firstName", "Rahul"], ["lastName", "Sharma"], ["age", 25]]</code></pre>
+
+    <h4>Objects Par Loop Lagana</h4>
+    <pre><code>const person = {
+    firstName: "Rahul",
+    lastName: "Sharma",
+    age: 25
+};
+
+// for...in loop (objects ke liye best)
+for (const key in person) {
+    if (person.hasOwnProperty(key)) {  // Prototype chain se bachne ke liye
+        console.log(`${key}: ${person[key]}`);
+    }
+}
+
+// Object.keys() use karke
+Object.keys(person).forEach(function(key) {
+    console.log(`${key}: ${person[key]}`);
+});
+
+// Object.entries() use karke (modern tarika)
+Object.entries(person).forEach(function([key, value]) {
+    console.log(`${key}: ${value}`);
+});</code></pre>
+
+    <h4>Object Destructuring - Object Se Values Extract Karna</h4>
+    <pre><code>const person = {
+    firstName: "Rahul",
+    lastName: "Sharma",
+    age: 25,
+    address: {
+        street: "123 Main St",
+        city: "Delhi",
+        country: "India"
+    }
+};
+
+// Basic destructuring
+const { firstName, lastName } = person;
+console.log(firstName);  // Output: "Rahul"
+console.log(lastName);   // Output: "Sharma"
+
+// Naye variable names ke saath destructuring
+const { firstName: fName, lastName: lName } = person;
+console.log(fName);  // Output: "Rahul"
+console.log(lName);  // Output: "Sharma"
+
+// Nested destructuring
+const { address: { city, country } } = person;
+console.log(city);     // Output: "Delhi"
+console.log(country);  // Output: "India"
+
+// Default values
+const { gender = "Unknown" } = person;
+console.log(gender);  // Output: "Unknown"</code></pre>
+
+    <h4>Spread Operator With Objects - Objects Ko Copy/Merge Karna</h4>
+    <pre><code>const person = {
+    firstName: "Rahul",
+    lastName: "Sharma"
+};
+
+// Naya object banao with additional properties
+const employee = {
+    ...person,
+    jobTitle: "Software Engineer",
+    company: "TechCorp"
+};
+console.log(employee);
+// Output: { firstName: "Rahul", lastName: "Sharma", jobTitle: "Software Engineer", company: "TechCorp" }
+
+// Multiple objects ko merge karna
+const personalInfo = { age: 25, gender: "Male" };
+const contactInfo = { email: "rahul@example.com", phone: "123-456-7890" };
+
+const completeInfo = { ...person, ...personalInfo, ...contactInfo };
+console.log(completeInfo);
+// Output: { firstName: "Rahul", lastName: "Sharma", age: 25, gender: "Male", email: "rahul@example.com", phone: "123-456-7890" }</code></pre>
+
+    <h3>Maps and Sets - Special Collections</h3>
+    <p>JavaScript mein kuch special collections bhi hain jo specific use cases ke liye bahut useful hain:</p>
+
+    <h4>Map - Advanced Object</h4>
+    <p>Map ek aisa collection hai jisme key-value pairs hote hain, par keys kisi bhi type ke ho sakte hain (objects bhi)!</p>
+
+    <pre><code>// Map banao
+const userRoles = new Map();
+
+// Entries add karo
+userRoles.set("Rahul", "Admin");
+userRoles.set("Priya", "Editor");
+userRoles.set("Amit", "Subscriber");
+
+// Values get karo
+console.log(userRoles.get("Rahul"));  // Output: "Admin"
+
+// Check karo ki key exist karti hai ya nahi
+console.log(userRoles.has("Priya"));  // Output: true
+
+// Map ka size
+console.log(userRoles.size);  // Output: 3
+
+// Entry delete karo
+userRoles.delete("Amit");
+
+// Map par iterate karo
+for (const [user, role] of userRoles) {
+    console.log(`${user} is a ${role}`);
+}</code></pre>
+
+    <h4>Set - Unique Values Ka Collection</h4>
+    <p>Set ek aisa collection hai jisme sirf unique values hoti hain - duplicates automatically remove ho jate hain!</p>
+
+    <pre><code>// Set banao
+const uniqueNumbers = new Set([1, 2, 3, 4, 4, 5, 5]);  // Duplicates automatically remove ho jayenge
+
+// Values add karo
+uniqueNumbers.add(6);
+uniqueNumbers.add(1);  // Ignore ho jayega kyunki 1 already exists
+
+// Check karo ki value exist karti hai ya nahi
+console.log(uniqueNumbers.has(3));  // Output: true
+
+// Set ka size
+console.log(uniqueNumbers.size);  // Output: 6
+
+// Value delete karo
+uniqueNumbers.delete(4);
+
+// Set par iterate karo
+for (const num of uniqueNumbers) {
+    console.log(num);
+}</code></pre>
+
+    <h3>Yaad Rakhne Wali Baatein</h3>
+    <ul>
+        <li>Arrays ordered collections hain jo index se access hote hain - jab order matter karta ho tab use karo</li>
+        <li>Objects unordered key-value pairs hain - jab data ko naam se access karna ho tab use karo</li>
+        <li>Array methods jaise <code>map()</code>, <code>filter()</code>, aur <code>reduce()</code> data transformation ke liye bahut powerful hain</li>
+        <li>Object destructuring aur spread operator (...) objects ke saath kaam karne ko easy banate hain</li>
+        <li>Maps objects ki tarah hain par keys kisi bhi type ke ho sakte hain aur insertion order maintain karte hain</li>
+        <li>Sets unique values store karne ke liye perfect hain</li>
+        <li>Arrow functions use karke array methods ko aur bhi clean aur concise bana sakte ho</li>
+    </ul>
+
+    <p>Ab toh JavaScript arrays aur objects mein master ban gaye ho bro! Koi confusion ho toh console.log() karke check kar lena. Happy coding! 🚀</p>
+</body>
+
+</html>

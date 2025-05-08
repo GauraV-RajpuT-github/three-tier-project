@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Transactions</title>
+    <style>
+        .content-container {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 100%;
+        }
+        h1 {
+            color: #004085;
+            border-bottom: 2px solid #004085;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #004085;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #0062cc;
+        }
+        .code-block {
+            background-color: #f8f9fa;
+            border-left: 4px solid #004085;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .note {
+            background-color: #e7f3fe;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .warning {
+            background-color: #ffecb3;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .example {
+            background-color: #f0f4c3;
+            border-left: 4px solid #cddc39;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #004085;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="content-container">
+        <h1>SQL Transactions</h1>
+        
+        <p>
+            A transaction in SQL is a sequence of operations performed as a single logical unit of work. Transactions are essential for maintaining database integrity, especially when multiple related changes need to be made together.
+        </p>
+
+        <h2>Why Use Transactions?</h2>
+        
+        <p>
+            Transactions ensure that database operations are processed reliably, maintaining data integrity even in the face of errors, system failures, or concurrent access. They provide the following benefits:
+        </p>
+        
+        <ul>
+            <li><strong>Atomicity</strong> - All operations within a transaction succeed or fail together</li>
+            <li><strong>Consistency</strong> - The database remains in a consistent state before and after the transaction</li>
+            <li><strong>Isolation</strong> - Transactions operate independently of each other</li>
+            <li><strong>Durability</strong> - Once a transaction is committed, its effects are permanent</li>
+        </ul>
+        
+        <p>
+            These four properties are often referred to as ACID properties.
+        </p>
+
+        <h2>Basic Transaction Syntax</h2>
+        
+        <p>
+            The basic structure of a transaction in SQL is as follows:
+        </p>
+        
+        <div class="code-block">
+            <pre>
+-- Start a transaction
+BEGIN TRANSACTION; -- or just BEGIN; or START TRANSACTION; (depending on the database system)
+
+-- SQL operations
+-- (INSERT, UPDATE, DELETE statements)
+
+-- If all operations succeed
+COMMIT;
+
+-- If an error occurs
+ROLLBACK;
+            </pre>
+        </div>
+        
+        <div class="example">
+            <h3>Example: Bank Transfer</h3>
+            <p>A classic example of a transaction is transferring money from one bank account to another:</p>
+            <div class="code-block">
+                <pre>
+BEGIN TRANSACTION;
+
+-- Deduct money from the first account
+UPDATE accounts 
+SET balance = balance - 1000 
+WHERE account_id = 123;
+
+-- Add money to the second account
+UPDATE accounts 
+SET balance = balance + 1000 
+WHERE account_id = 456;
+
+-- If both operations succeed, make the changes permanent
+COMMIT;
+                </pre>
+            </div>
+            <p>If either UPDATE fails, the entire transaction should be rolled back to prevent money from being deducted without being added to the other account, or vice versa.</p>
+        </div>
+
+        <h2>Transaction States</h2>
+        
+        <p>
+            A transaction can be in one of several states:
+        </p>
+        
+        <ul>
+            <li><strong>Active</strong> - The transaction has begun but has not yet completed</li>
+            <li><strong>Partially Committed</strong> - The transaction has executed its final operation but is not yet committed</li>
+            <li><strong>Committed</strong> - The transaction has completed successfully, and its effects are now permanent</li>
+            <li><strong>Failed</strong> - The transaction cannot proceed due to errors</li>
+            <li><strong>Aborted/Rolled Back</strong> - The transaction has been rolled back, and its effects have been undone</li>
+        </ul>
+
+        <h2>ACID Properties in Detail</h2>
+        
+        <h3>Atomicity</h3>
+        
+        <p>
+            Atomicity ensures that all operations within a transaction are treated as a single unit. Either all operations are performed, or none are. This prevents partial updates that could leave the database in an inconsistent state.
+        </p>
+        
+        <div class="example">
+            <h3>Example:</h3>
+            <p>Consider an e-commerce order process that involves:</p>
+            <ol>
+                <li>Updating inventory</li>
+                <li>Creating an order record</li>
+                <li>Processing payment</li>
+            </ol>
+            <p>Atomicity ensures that either all three steps complete successfully, or none of them do. This prevents scenarios like charging a customer but not creating their order.</p>
+        </div>
+
+        <h3>Consistency</h3>
+        
+        <p>
+            Consistency ensures that a transaction can only bring the database from one valid state to another. Any data written to the database must adhere to all defined rules, including constraints, cascades, and triggers.
+        </p>
+        
+        <div class="example">
+            <h3>Example:</h3>
+            <p>If a database has a rule that an employee's salary cannot be negative, a transaction attempting to set a negative salary will be rolled back, preserving consistency.</p>
+        </div>
+
+        <h3>Isolation</h3>
+        
+        <p>
+            Isolation ensures that concurrent transactions execute as if they were running sequentially. This prevents interference between transactions running at the same time.
+        </p>
+        
+        <div class="example">
+            <h3>Example:</h3>
+            <p>If two users are trying to book the last seat on a flight simultaneously, isolation ensures that only one booking succeeds and the other fails, rather than both succeeding and overcommitting the flight.</p>
+        </div>
+
+        <h3>Durability</h3>
+        
+        <p>
+            Durability ensures that once a transaction has been committed, it will remain committed even in the case of a system failure. This is typically achieved by storing the transaction in non-volatile memory.
+        </p>
+        
+        <div class="example">
+            <h3>Example:</h3>
+            <p>If a power outage occurs immediately after a bank transfer transaction is committed, the transfer will still be recorded when the system comes back online.</p>
+        </div>
+
+        <h2>Transaction Isolation Levels</h2>
+        
+        <p>
+            SQL provides different isolation levels that control how transactions interact with each other. These levels represent trade-offs between data consistency and performance.
+        </p>
+        
+        <table>
+            <tr>
+                <th>Isolation Level</th>
+                <th>Dirty Read</th>
+                <th>Non-repeatable Read</th>
+                <th>Phantom Read</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>READ UNCOMMITTED</td>
+                <td>Possible</td>
+                <td>Possible</td>
+                <td>Possible</td>
+                <td>Lowest isolation level. Transactions can see uncommitted changes made by other transactions.</td>
+            </tr>
+            <tr>
+                <td>READ COMMITTED</td>
+                <td>Prevented</td>
+                <td>Possible</td>
+                <td>Possible</td>
+                <td>Transactions can only see committed changes made by other transactions.</td>
+            </tr>
+            <tr>
+                <td>REPEATABLE READ</td>
+                <td>Prevented</td>
+                <td>Prevented</td>
+                <td>Possible</td>
+                <td>Ensures that if a transaction reads a row, it will see the same data if it reads that row again.</td>
+            </tr>
+            <tr>
+                <td>SERIALIZABLE</td>
+                <td>Prevented</td>
+                <td>Prevented</td>
+                <td>Prevented</td>
+                <td>Highest isolation level. Transactions are completely isolated from each other.</td>
+            </tr>
+        </table>
+        
+        <h3>Common Concurrency Issues</h3>
+        
+        <ul>
+            <li><strong>Dirty Read</strong> - Reading uncommitted changes from another transaction</li>
+            <li><strong>Non-repeatable Read</strong> - Getting different results when reading the same row twice in the same transaction</li>
+            <li><strong>Phantom Read</strong> - Getting different results when executing the same query twice in the same transaction due to another transaction inserting or deleting rows</li>
+        </ul>
+        
+        <div class="code-block">
+            <pre>
+-- Set the transaction isolation level (SQL Server example)
+SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+
+BEGIN TRANSACTION;
+-- SQL operations
+COMMIT;
+            </pre>
+        </div>
+
+        <div class="note">
+            <p><strong>Note:</strong> The default isolation level varies by database system. For example, SQL Server uses READ COMMITTED by default, while MySQL's InnoDB uses REPEATABLE READ.</p>
+        </div>
+
+        <h2>Error Handling in Transactions</h2>
+        
+        <p>
+            Proper error handling is crucial when working with transactions to ensure that errors are caught and handled appropriately.
+        </p>
+        
+        <h3>SQL Server Example</h3>
+        
+        <div class="code-block">
+            <pre>
+BEGIN TRY
+    BEGIN TRANSACTION;
+    
+    -- SQL operations
+    
+    COMMIT TRANSACTION;
+END TRY
+BEGIN CATCH
+    IF @@TRANCOUNT > 0
+        ROLLBACK TRANSACTION;
+    
+    -- Error handling code
+    DECLARE @ErrorMessage NVARCHAR(4000) = ERROR_MESSAGE();
+    DECLARE @ErrorSeverity INT = ERROR_SEVERITY();
+    DECLARE @ErrorState INT = ERROR_STATE();
+    
+    RAISERROR(@ErrorMessage, @ErrorSeverity, @ErrorState);
+END CATCH;
+            </pre>
+        </div>
+        
+        <h3>PostgreSQL Example</h3>
+        
+        <div class="code-block">
+            <pre>
+DO $$
+BEGIN
+    BEGIN
+        -- SQL operations
+        
+        -- Simulate an error
+        -- RAISE EXCEPTION 'An error occurred';
+        
+        COMMIT;
+    EXCEPTION WHEN OTHERS THEN
+        ROLLBACK;
+        RAISE;
+    END;
+END $$;
+            </pre>
+        </div>
+
+        <h2>Savepoints</h2>
+        
+        <p>
+            Savepoints allow you to create checkpoints within a transaction that you can roll back to without rolling back the entire transaction.
+        </p>
+        
+        <div class="code-block">
+            <pre>
+BEGIN TRANSACTION;
+
+-- First operation
+INSERT INTO customers (name, email) VALUES ('John Doe', 'john@example.com');
+
+-- Create a savepoint
+SAVE TRANSACTION CustomerInserted; -- SQL Server syntax
+-- or SAVEPOINT CustomerInserted; -- PostgreSQL, MySQL, Oracle syntax
+
+-- Second operation
+INSERT INTO orders (customer_id, product_id, quantity) VALUES (SCOPE_IDENTITY(), 123, 5);
+
+-- If there's a problem with the order
+ROLLBACK TRANSACTION CustomerInserted; -- SQL Server syntax
+-- or ROLLBACK TO SAVEPOINT CustomerInserted; -- PostgreSQL, MySQL, Oracle syntax
+
+-- Continue with alternative operations
+-- ...
+
+COMMIT TRANSACTION;
+            </pre>
+        </div>
+
+        <h2>Implicit vs. Explicit Transactions</h2>
+        
+        <h3>Implicit Transactions</h3>
+        
+        <p>
+            By default, most database systems execute individual SQL statements as implicit transactions. Each statement is automatically committed upon successful completion.
+        </p>
+        
+        <div class="code-block">
+            <pre>
+-- This INSERT is an implicit transaction
+INSERT INTO customers (name, email) VALUES ('John Doe', 'john@example.com');
+-- Automatically committed if successful
+            </pre>
+        </div>
+        
+        <h3>Explicit Transactions</h3>
+        
+        <p>
+            Explicit transactions are manually started, committed, or rolled back by the developer.
+        </p>
+        
+        <div class="code-block">
+            <pre>
+-- This is an explicit transaction
+BEGIN TRANSACTION;
+INSERT INTO customers (name, email) VALUES ('John Doe', 'john@example.com');
+UPDATE customer_counts SET total = total + 1;
+COMMIT;
+            </pre>
+        </div>
+        
+        <div class="note">
+            <p><strong>Note:</strong> Some database systems offer an "autocommit" setting that controls whether statements are implicitly committed. You can typically turn this off to require explicit transactions.</p>
+        </div>
+
+        <h2>Deadlocks</h2>
+        
+        <p>
+            A deadlock occurs when two or more transactions are waiting for each other to release locks, resulting in a standstill where none can proceed.
+        </p>
+        
+        <div class="example">
+            <h3>Deadlock Scenario:</h3>
+            <ol>
+                <li>Transaction A locks row 1 and needs to access row 2</li>
+                <li>Transaction B locks row 2 and needs to access row 1</li>
+                <li>Both transactions are now waiting for each other, creating a deadlock</li>
+            </ol>
+        </div>
+        
+        <h3>Preventing Deadlocks</h3>
+        
+        <ul>
+            <li><strong>Access objects in the same order</strong> - Always lock tables or rows in a consistent order</li>
+            <li><strong>Keep transactions short</strong> - Minimize the time locks are held</li>
+            <li><strong>Use appropriate isolation levels</strong> - Higher isolation levels increase the likelihood of deadlocks</li>
+            <li><strong>Use deadlock detection</strong> - Most database systems automatically detect and resolve deadlocks by rolling back one of the transactions</li>
+        </ul>
+
+        <h2>Best Practices for Transactions</h2>
+        
+        <ul>
+            <li><strong>Keep transactions short</strong> - Long-running transactions hold locks longer and increase the chance of conflicts</li>
+            <li><strong>Only include necessary operations</strong> - Don't include operations that don't need to be part of the atomic unit</li>
+            <li><strong>Handle errors properly</strong> - Always include error handling to ensure transactions are rolled back when necessary</li>
+            <li><strong>Choose appropriate isolation levels</strong> - Balance consistency requirements with performance needs</li>
+            <li><strong>Be aware of locks</strong> - Understand how your database system implements locking and how your transactions might affect other users</li>
+            <li><strong>Test with concurrency</strong> - Test your transactions under concurrent load to identify potential issues</li>
+        </ul>
+
+        <div class="warning">
+            <p><strong>Warning:</strong> Avoid nesting transactions if possible, as the behavior can vary between database systems and may not work as expected. Some systems only commit when the outermost transaction commits, while others may treat nested transactions as savepoints.</p>
+        </div>
+
+        <h2>Transactions in Different Database Systems</h2>
+        
+        <h3>MySQL</h3>
+        
+        <div class="code-block">
+            <pre>
+START TRANSACTION;
+-- SQL operations
+COMMIT;
+-- or
+ROLLBACK;
+            </pre>
+        </div>
+        
+        <h3>PostgreSQL</h3>
+        
+        <div class="code-block">
+            <pre>
+BEGIN;
+-- SQL operations
+COMMIT;
+-- or
+ROLLBACK;
+            </pre>
+        </div>
+        
+        <h3>SQL Server</h3>
+        
+        <div class="code-block">
+            <pre>
+BEGIN TRANSACTION;
+-- SQL operations
+COMMIT TRANSACTION;
+-- or
+ROLLBACK TRANSACTION;
+            </pre>
+        </div>
+        
+        <h3>Oracle</h3>
+        
+        <div class="code-block">
+            <pre>
+-- Transactions are implicit in Oracle
+-- No explicit BEGIN statement is needed
+-- SQL operations
+COMMIT;
+-- or
+ROLLBACK;
+            </pre>
+        </div>
+
+        <div class="note">
+            <p><strong>Note:</strong> Always refer to the documentation for your specific database system, as there may be subtle differences in transaction behavior and syntax.</p>
+        </div>
+    </div>
+</body>
+</html>

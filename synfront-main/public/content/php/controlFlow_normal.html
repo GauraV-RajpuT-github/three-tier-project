@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP Control Flow</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #4F5B93;
+        }
+        pre {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 15px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #8892BF;
+        }
+        .output {
+            background-color: #f1f1f1;
+            border-left: 4px solid #4CAF50;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+        .tip {
+            background-color: #e6f7ff;
+            border-left: 4px solid #1890ff;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>PHP Control Flow</h1>
+
+    <h2>Introduction to Control Flow</h2>
+    <p>Control flow statements allow you to control the execution of your code based on certain conditions. PHP provides several control flow structures:</p>
+    <ul>
+        <li>Conditional statements (if, else, elseif, switch)</li>
+        <li>Loops (for, while, do-while, foreach)</li>
+        <li>Jump statements (break, continue, return)</li>
+    </ul>
+
+    <h2>Conditional Statements</h2>
+    
+    <h3>If Statement</h3>
+    <p>The <code>if</code> statement executes a block of code if a specified condition is true:</p>
+    
+    <pre><code>&lt;?php
+$age = 20;
+
+if ($age >= 18) {
+    echo "You are an adult.";
+}
+?&gt;</code></pre>
+
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        You are an adult.</p>
+    </div>
+
+    <h3>If-Else Statement</h3>
+    <p>The <code>if-else</code> statement executes one block of code if a condition is true and another block if the condition is false:</p>
+    
+    <pre><code>&lt;?php
+$age = 15;
+
+if ($age >= 18) {
+    echo "You are an adult.";
+} else {
+    echo "You are a minor.";
+}
+?&gt;</code></pre>
+
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        You are a minor.</p>
+    </div>
+
+    <h3>If-Elseif-Else Statement</h3>
+    <p>The <code>if-elseif-else</code> statement allows you to test multiple conditions:</p>
+    
+    <pre><code>&lt;?php
+$score = 85;
+
+if ($score >= 90) {
+    echo "Grade: A";
+} elseif ($score >= 80) {
+    echo "Grade: B";
+} elseif ($score >= 70) {
+    echo "Grade: C";
+} elseif ($score >= 60) {
+    echo "Grade: D";
+} else {
+    echo "Grade: F";
+}
+?&gt;</code></pre>
+
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Grade: B</p>
+    </div>
+
+    <h3>Nested If Statements</h3>
+    <p>You can place an <code>if</code> statement inside another <code>if</code> statement:</p>
+    
+    <pre><code>&lt;?php
+$age = 25;
+$hasLicense = true;
+
+if ($age >= 18) {
+    echo "You are an adult. ";
+    
+    if ($hasLicense) {
+        echo "You can drive.";
+    } else {
+        echo "You need a license to drive.";
+    }
+} else {
+    echo "You are a minor. You cannot drive.";
+}
+?&gt;</code></pre>
+
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        You are an adult. You can drive.</p>
+    </div>
+
+    <h3>Switch Statement</h3>
+    <p>The <code>switch</code> statement is used to perform different actions based on different conditions:</p>
+    
+    <pre><code>&lt;?php
+$day = "Monday";
+
+switch ($day) {
+    case "Monday":
+        echo "It's the start of the work week.";
+        break;
+    case "Tuesday":
+    case "Wednesday":
+    case "Thursday":
+        echo "It's a work day.";
+        break;
+    case "Friday":
+        echo "It's almost the weekend.";
+        break;
+    case "Saturday":
+    case "Sunday":
+        echo "It's the weekend!";
+        break;
+    default:
+        echo "Invalid day.";
+}
+?&gt;</code></pre>
+
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        It's the start of the work week.</p>
+    </div>
+
+    <div class="tip">
+        <p><strong>Important:</strong> Don't forget the <code>break</code> statement in each case. Without it, PHP will continue executing the statements in the following cases.</p>
+    </div>
+
+    <h3>Ternary Operator</h3>
+    <p>The ternary operator is a shorthand for the <code>if-else</code> statement:</p>
+    
+    <pre><code>&lt;?php
+$age = 20;
+
+// Syntax: condition ? expression_if_true : expression_if_false
+$status = ($age >= 18) ? "adult" : "minor";
+echo "You are an $status.";
+
+// Nested ternary operators (use with caution for readability)
+$score = 85;
+$grade = ($score >= 90) ? "A" : (($score >= 80) ? "B" : (($score >= 70) ? "C" : (($score >= 60) ? "D" : "F")));
+echo "Grade: $grade";
+?&gt;</code></pre>
+
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        You are an adult.<br>
+        Grade: B</p>
+    </div>
+
+    <h3>Null Coalescing Operator</h3>
+    <p>The null coalescing operator (<code>??</code>) returns its first operand if it exists and is not NULL; otherwise, it returns its second operand:</p>
+    
+    <pre><code>&lt;?php
+// Assume $_GET['user'] is not set
+$username = $_GET['user'] ?? 'Guest';
+echo "Hello, $username";
+
+// Chaining the null coalescing operator
+$username = $_GET['user'] ?? $_POST['user'] ?? 'Guest';
+echo "Hello, $username";
+?&gt;</code></pre>
+
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Hello, Guest<br>
+        Hello, Guest</p>
+    </div>
+
+    <h2>Loops</h2>
+    <p>Loops are used to execute a block of code repeatedly.</p>
+    
+    <h3>For Loop</h3>
+    <p>The <code>for</code> loop is used when you know in advance how many times the script should run:</p>
+    
+    <pre><code>&lt;?php
+// Syntax: for (initialization; condition; increment/decrement)
+for ($i = 1; $i <= 5; $i++) {
+    echo "Number: $i&lt;br&gt;";
+}
+?&gt;</code></pre>
+
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Number: 1<br>
+        Number: 2<br>
+        Number: 3<br>
+        Number: 4<br>
+        Number: 5</p>
+    </div>
+
+    <h3>While Loop</h3>
+    <p>The <code>while</code> loop executes a block of code as long as the specified condition is true:</p>
+    
+    <pre><code>&lt;?php
+$i = 1;
+while ($i <= 5) {
+    echo "Number: $i&lt;br&gt;";
+    $i++;
+}
+?&gt;</code></pre>
+
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Number: 1<br>
+        Number: 2<br>
+        Number: 3<br>
+        Number: 4<br>
+        Number: 5</p>
+    </div>
+
+    <h3>Do-While Loop</h3>
+    <p>The <code>do-while</code> loop is similar to the <code>while</code> loop, but it will always execute the block of code once before checking the condition:</p>
+    
+    <pre><code>&lt;?php
+$i = 1;
+do {
+    echo "Number: $i&lt;br&gt;";
+    $i++;
+} while ($i <= 5);
+
+// Even if the condition is false initially, the code executes once
+$j = 10;
+do {
+    echo "This will be printed once even though j > 5.";
+} while ($j <= 5);
+?&gt;</code></pre>
+
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Number: 1<br>
+        Number: 2<br>
+        Number: 3<br>
+        Number: 4<br>
+        Number: 5<br>
+        This will be printed once even though j > 5.</p>
+    </div>
+
+    <h3>Foreach Loop</h3>
+    <p>The <code>foreach</code> loop is used to iterate over arrays:</p>
+    
+    <pre><code>&lt;?php
+// Indexed array
+$colors = ["red", "green", "blue"];
+
+foreach ($colors as $color) {
+    echo "Color: $color&lt;br&gt;";
+}
+
+// Associative array
+$person = [
+    "name" => "John",
+    "age" => 30,
+    "city" => "New York"
+];
+
+foreach ($person as $key => $value) {
+    echo "$key: $value&lt;br&gt;";
+}
+?&gt;</code></pre>
+
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Color: red<br>
+        Color: green<br>
+        Color: blue<br>
+        name: John<br>
+        age: 30<br>
+        city: New York</p>
+    </div>
+
+    <h2>Jump Statements</h2>
+    <p>Jump statements are used to alter the flow of a loop or a conditional statement.</p>
+    
+    <h3>Break Statement</h3>
+    <p>The <code>break</code> statement is used to terminate the execution of a loop or a switch statement:</p>
+    
+    <pre><code>&lt;?php
+// Break in a for loop
+for ($i = 1; $i <= 10; $i++) {
+    if ($i == 6) {
+        break;  // Exit the loop when i equals 6
+    }
+    echo "Number: $i&lt;br&gt;";
+}
+
+// Break in a switch statement
+$fruit = "apple";
+switch ($fruit) {
+    case "apple":
+        echo "It's an apple.";
+        break;  // Exit the switch statement
+    case "banana":
+        echo "It's a banana.";
+        break;
+    default:
+        echo "It's something else.";
+}
+?&gt;</code></pre>
+
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Number: 1<br>
+        Number: 2<br>
+        Number: 3<br>
+        Number: 4<br>
+        Number: 5<br>
+        It's an apple.</p>
+    </div>
+
+    <h3>Continue Statement</h3>
+    <p>The <code>continue</code> statement is used to skip the current iteration of a loop and continue with the next iteration:</p>
+    
+    <pre><code>&lt;?php
+// Skip even numbers
+for ($i = 1; $i <= 10; $i++) {
+    if ($i % 2 == 0) {
+        continue;  // Skip the rest of the loop body for even numbers
+    }
+    echo "Odd number: $i&lt;br&gt;";
+}
+?&gt;</code></pre>
+
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Odd number: 1<br>
+        Odd number: 3<br>
+        Odd number: 5<br>
+        Odd number: 7<br>
+        Odd number: 9</p>
+    </div>
+
+    <h3>Return Statement</h3>
+    <p>The <code>return</code> statement is used to exit a function and return a value:</p>
+    
+    <pre><code>&lt;?php
+function add($a, $b) {
+    return $a + $b;  // Return the sum and exit the function
+    echo "This line will never be executed.";
+}
+
+$result = add(5, 3);
+echo "Result: $result";
+?&gt;</code></pre>
+
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Result: 8</p>
+    </div>
+
+    <h2>Alternative Syntax for Control Structures</h2>
+    <p>PHP provides an alternative syntax for control structures, which is particularly useful when mixing PHP with HTML:</p>
+    
+    <pre><code>&lt;?php
+$user_logged_in = true;
+?&gt;
+
+&lt;!-- Alternative syntax for if-else --&gt;
+&lt;?php if ($user_logged_in): ?&gt;
+    &lt;h2&gt;Welcome, User!&lt;/h2&gt;
+    &lt;p&gt;You are logged in.&lt;/p&gt;
+&lt;?php else: ?&gt;
+    &lt;h2&gt;Welcome, Guest!&lt;/h2&gt;
+    &lt;p&gt;Please log in.&lt;/p&gt;
+&lt;?php endif; ?&gt;
+
+&lt;!-- Alternative syntax for foreach --&gt;
+&lt;?php
+$fruits = ["Apple", "Banana", "Cherry"];
+?&gt;
+&lt;ul&gt;
+    &lt;?php foreach ($fruits as $fruit): ?&gt;
+        &lt;li&gt;&lt;?php echo $fruit; ?&gt;&lt;/li&gt;
+    &lt;?php endforeach; ?&gt;
+&lt;/ul&gt;
+
+&lt;!-- Alternative syntax for switch --&gt;
+&lt;?php
+$day = "Monday";
+switch ($day):
+    case "Monday":
+        echo "It's Monday.";
+        break;
+    case "Tuesday":
+        echo "It's Tuesday.";
+        break;
+    default:
+        echo "It's another day.";
+endswitch;
+?&gt;</code></pre>
+
+    <h2>Practical Examples</h2>
+    
+    <h3>Form Validation</h3>
+    <p>Using control flow for form validation:</p>
+    
+    <pre><code>&lt;?php
+// Check if the form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Initialize error array
+    $errors = [];
+    
+    // Validate name
+    if (empty($_POST["name"])) {
+        $errors[] = "Name is required";
+    } elseif (strlen($_POST["name"]) < 3) {
+        $errors[] = "Name must be at least 3 characters";
+    }
+    
+    // Validate email
+    if (empty($_POST["email"])) {
+        $errors[] = "Email is required";
+    } elseif (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
+        $errors[] = "Invalid email format";
+    }
+    
+    // Display errors or success message
+    if (!empty($errors)) {
+        echo "&lt;ul&gt;";
+        foreach ($errors as $error) {
+            echo "&lt;li&gt;$error&lt;/li&gt;";
+        }
+        echo "&lt;/ul&gt;";
+    } else {
+        echo "Form submitted successfully!";
+    }
+}
+?&gt;
+
+&lt;form method="post" action="&lt;?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?&gt;"&gt;
+    &lt;label for="name"&gt;Name:&lt;/label&gt;
+    &lt;input type="text" id="name" name="name"&gt;&lt;br&gt;&lt;br&gt;
+    
+    &lt;label for="email"&gt;Email:&lt;/label&gt;
+    &lt;input type="email" id="email" name="email"&gt;&lt;br&gt;&lt;br&gt;
+    
+    &lt;input type="submit" value="Submit"&gt;
+&lt;/form&gt;</code></pre>
+
+    <h3>Pagination</h3>
+    <p>Using control flow for pagination:</p>
+    
+    <pre><code>&lt;?php
+// Sample data (in a real application, this would come from a database)
+$items = [];
+for ($i = 1; $i <= 100; $i++) {
+    $items[] = "Item $i";
+}
+
+// Pagination settings
+$items_per_page = 10;
+$total_items = count($items);
+$total_pages = ceil($total_items / $items_per_page);
+
+// Get current page from query string
+$current_page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+
+// Ensure current page is valid
+if ($current_page < 1) {
+    $current_page = 1;
+} elseif ($current_page > $total_pages) {
+    $current_page = $total_pages;
+}
+
+// Calculate start index for items on the current page
+$start_index = ($current_page - 1) * $items_per_page;
+
+// Get items for the current page
+$current_items = array_slice($items, $start_index, $items_per_page);
+
+// Display items
+echo "&lt;h3&gt;Page $current_page of $total_pages&lt;/h3&gt;";
+echo "&lt;ul&gt;";
+foreach ($current_items as $item) {
+    echo "&lt;li&gt;$item&lt;/li&gt;";
+}
+echo "&lt;/ul&gt;";
+
+// Display pagination links
+echo "&lt;div&gt;";
+if ($current_page > 1) {
+    echo "&lt;a href='?page=" . ($current_page - 1) . "'&gt;Previous&lt;/a&gt; ";
+}
+
+for ($i = 1; $i <= $total_pages; $i++) {
+    if ($i == $current_page) {
+        echo "&lt;strong&gt;$i&lt;/strong&gt; ";
+    } else {
+        echo "&lt;a href='?page=$i'&gt;$i&lt;/a&gt; ";
+    }
+}
+
+if ($current_page < $total_pages) {
+    echo "&lt;a href='?page=" . ($current_page + 1) . "'&gt;Next&lt;/a&gt;";
+}
+echo "&lt;/div&gt;";
+?&gt;</code></pre>
+
+    <h2>Best Practices</h2>
+    <ul>
+        <li><strong>Keep it simple:</strong> Avoid deeply nested control structures as they can make your code hard to read and maintain.</li>
+        <li><strong>Use meaningful variable names:</strong> This makes your conditions more readable.</li>
+        <li><strong>Consider using switch instead of multiple if-elseif:</strong> When comparing a single variable against multiple values, a switch statement is often clearer.</li>
+        <li><strong>Be careful with loop conditions:</strong> Ensure that your loops will eventually terminate to avoid infinite loops.</li>
+        <li><strong>Use the alternative syntax:</strong> When mixing PHP with HTML, the alternative syntax for control structures can make your code more readable.</li>
+        <li><strong>Always use curly braces:</strong> Even for single-line blocks, using curly braces makes your code more maintainable and less prone to errors.</li>
+    </ul>
+</body>
+</html>

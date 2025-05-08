@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Functions</title>
+    <style>
+        .content-container {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 100%;
+        }
+        h1 {
+            color: #004085;
+            border-bottom: 2px solid #004085;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #004085;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #0062cc;
+        }
+        .code-block {
+            background-color: #f8f9fa;
+            border-left: 4px solid #004085;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .note {
+            background-color: #e7f3fe;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .example {
+            background-color: #f0f4c3;
+            border-left: 4px solid #cddc39;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #004085;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="content-container">
+        <h1>SQL Functions</h1>
+        
+        <p>
+            SQL functions are built-in methods that perform operations on data and return a result. They are essential tools for data manipulation, calculation, and transformation in SQL queries. Functions allow you to perform complex operations with concise syntax.
+        </p>
+
+        <h2>Types of SQL Functions</h2>
+        
+        <p>
+            SQL functions can be broadly categorized into several types:
+        </p>
+        
+        <ol>
+            <li><strong>Aggregate Functions</strong> - Operate on a set of values and return a single value</li>
+            <li><strong>Scalar Functions</strong> - Operate on a single value and return a single value</li>
+            <li><strong>Date and Time Functions</strong> - Manipulate date and time values</li>
+            <li><strong>String Functions</strong> - Manipulate string values</li>
+            <li><strong>Numeric Functions</strong> - Perform mathematical operations</li>
+            <li><strong>Conversion Functions</strong> - Convert data from one type to another</li>
+            <li><strong>User-Defined Functions</strong> - Custom functions created by users</li>
+        </ol>
+
+        <h2>Aggregate Functions</h2>
+        
+        <p>
+            Aggregate functions perform calculations on a set of values and return a single value. They are commonly used with the GROUP BY clause.
+        </p>
+        
+        <table>
+            <tr>
+                <th>Function</th>
+                <th>Description</th>
+                <th>Example</th>
+            </tr>
+            <tr>
+                <td>COUNT()</td>
+                <td>Counts the number of rows or non-NULL values</td>
+                <td>COUNT(*), COUNT(column_name)</td>
+            </tr>
+            <tr>
+                <td>SUM()</td>
+                <td>Calculates the sum of values</td>
+                <td>SUM(salary)</td>
+            </tr>
+            <tr>
+                <td>AVG()</td>
+                <td>Calculates the average of values</td>
+                <td>AVG(price)</td>
+            </tr>
+            <tr>
+                <td>MIN()</td>
+                <td>Finds the minimum value</td>
+                <td>MIN(age)</td>
+            </tr>
+            <tr>
+                <td>MAX()</td>
+                <td>Finds the maximum value</td>
+                <td>MAX(score)</td>
+            </tr>
+            <tr>
+                <td>GROUP_CONCAT()</td>
+                <td>Concatenates values from multiple rows (MySQL)</td>
+                <td>GROUP_CONCAT(name)</td>
+            </tr>
+            <tr>
+                <td>STRING_AGG()</td>
+                <td>Concatenates values from multiple rows (SQL Server, PostgreSQL)</td>
+                <td>STRING_AGG(name, ',')</td>
+            </tr>
+        </table>
+        
+        <div class="example">
+            <h3>Example:</h3>
+            <div class="code-block">
+                <pre>
+-- Calculate sales statistics by product category
+SELECT 
+    category,
+    COUNT(*) AS product_count,
+    AVG(price) AS average_price,
+    MIN(price) AS lowest_price,
+    MAX(price) AS highest_price,
+    SUM(stock_quantity) AS total_inventory
+FROM products
+GROUP BY category;
+                </pre>
+            </div>
+        </div>
+
+        <h2>Scalar Functions</h2>
+        
+        <h3>String Functions</h3>
+        
+        <table>
+            <tr>
+                <th>Function</th>
+                <th>Description</th>
+                <th>Example</th>
+            </tr>
+            <tr>
+                <td>CONCAT()</td>
+                <td>Combines two or more strings</td>
+                <td>CONCAT('Hello', ' ', 'World')</td>
+            </tr>
+            <tr>
+                <td>SUBSTRING() / SUBSTR()</td>
+                <td>Extracts a portion of a string</td>
+                <td>SUBSTRING('Hello World', 1, 5)</td>
+            </tr>
+            <tr>
+                <td>LENGTH() / LEN()</td>
+                <td>Returns the length of a string</td>
+                <td>LENGTH('Hello')</td>
+            </tr>
+            <tr>
+                <td>UPPER() / UCASE()</td>
+                <td>Converts a string to uppercase</td>
+                <td>UPPER('hello')</td>
+            </tr>
+            <tr>
+                <td>LOWER() / LCASE()</td>
+                <td>Converts a string to lowercase</td>
+                <td>LOWER('HELLO')</td>
+            </tr>
+            <tr>
+                <td>TRIM()</td>
+                <td>Removes leading and trailing spaces</td>
+                <td>TRIM('  Hello  ')</td>
+            </tr>
+            <tr>
+                <td>REPLACE()</td>
+                <td>Replaces occurrences of a substring</td>
+                <td>REPLACE('Hello World', 'World', 'SQL')</td>
+            </tr>
+        </table>
+        
+        <div class="example">
+            <h3>Example:</h3>
+            <div class="code-block">
+                <pre>
+-- Format customer names and extract area codes from phone numbers
+SELECT 
+    customer_id,
+    CONCAT(UPPER(SUBSTRING(first_name, 1, 1)), LOWER(SUBSTRING(first_name, 2))) AS formatted_first_name,
+    SUBSTRING(phone_number, 1, 3) AS area_code
+FROM customers;
+                </pre>
+            </div>
+        </div>
+
+        <h3>Numeric Functions</h3>
+        
+        <table>
+            <tr>
+                <th>Function</th>
+                <th>Description</th>
+                <th>Example</th>
+            </tr>
+            <tr>
+                <td>ROUND()</td>
+                <td>Rounds a number to a specified precision</td>
+                <td>ROUND(123.456, 2)</td>
+            </tr>
+            <tr>
+                <td>CEIL() / CEILING()</td>
+                <td>Rounds a number up to the nearest integer</td>
+                <td>CEIL(123.45)</td>
+            </tr>
+            <tr>
+                <td>FLOOR()</td>
+                <td>Rounds a number down to the nearest integer</td>
+                <td>FLOOR(123.45)</td>
+            </tr>
+            <tr>
+                <td>ABS()</td>
+                <td>Returns the absolute value</td>
+                <td>ABS(-123)</td>
+            </tr>
+            <tr>
+                <td>MOD()</td>
+                <td>Returns the remainder of a division</td>
+                <td>MOD(10, 3)</td>
+            </tr>
+            <tr>
+                <td>POWER() / POW()</td>
+                <td>Raises a number to a specified power</td>
+                <td>POWER(2, 3)</td>
+            </tr>
+            <tr>
+                <td>SQRT()</td>
+                <td>Returns the square root</td>
+                <td>SQRT(16)</td>
+            </tr>
+        </table>
+        
+        <div class="example">
+            <h3>Example:</h3>
+            <div class="code-block">
+                <pre>
+-- Calculate discounted prices and round to 2 decimal places
+SELECT 
+    product_name,
+    price,
+    discount_percentage,
+    ROUND(price * (1 - discount_percentage / 100), 2) AS discounted_price
+FROM products;
+                </pre>
+            </div>
+        </div>
+
+        <h3>Date and Time Functions</h3>
+        
+        <table>
+            <tr>
+                <th>Function</th>
+                <th>Description</th>
+                <th>Example</th>
+            </tr>
+            <tr>
+                <td>NOW() / CURRENT_TIMESTAMP()</td>
+                <td>Returns the current date and time</td>
+                <td>NOW()</td>
+            </tr>
+            <tr>
+                <td>CURDATE() / CURRENT_DATE()</td>
+                <td>Returns the current date</td>
+                <td>CURDATE()</td>
+            </tr>
+            <tr>
+                <td>CURTIME() / CURRENT_TIME()</td>
+                <td>Returns the current time</td>
+                <td>CURTIME()</td>
+            </tr>
+            <tr>
+                <td>YEAR()</td>
+                <td>Extracts the year from a date</td>
+                <td>YEAR('2023-04-15')</td>
+            </tr>
+            <tr>
+                <td>MONTH()</td>
+                <td>Extracts the month from a date</td>
+                <td>MONTH('2023-04-15')</td>
+            </tr>
+            <tr>
+                <td>DAY()</td>
+                <td>Extracts the day from a date</td>
+                <td>DAY('2023-04-15')</td>
+            </tr>
+            <tr>
+                <td>DATEDIFF()</td>
+                <td>Calculates the difference between two dates</td>
+                <td>DATEDIFF('2023-04-15', '2023-04-10')</td>
+            </tr>
+            <tr>
+                <td>DATE_ADD() / DATEADD()</td>
+                <td>Adds a time interval to a date</td>
+                <td>DATE_ADD('2023-04-15', INTERVAL 10 DAY)</td>
+            </tr>
+            <tr>
+                <td>DATE_SUB() / DATESUB()</td>
+                <td>Subtracts a time interval from a date</td>
+                <td>DATE_SUB('2023-04-15', INTERVAL 10 DAY)</td>
+            </tr>
+            <tr>
+                <td>DATE_FORMAT()</td>
+                <td>Formats a date as a string (MySQL)</td>
+                <td>DATE_FORMAT('2023-04-15', '%d/%m/%Y')</td>
+            </tr>
+            <tr>
+                <td>FORMAT()</td>
+                <td>Formats a date as a string (SQL Server)</td>
+                <td>FORMAT(GETDATE(), 'dd/MM/yyyy')</td>
+            </tr>
+        </table>
+        
+        <div class="example">
+            <h3>Example:</h3>
+            <div class="code-block">
+                <pre>
+-- Calculate order statistics and age
+SELECT 
+    customer_id,
+    COUNT(*) AS order_count,
+    MIN(order_date) AS first_order,
+    MAX(order_date) AS last_order,
+    DATEDIFF(MAX(order_date), MIN(order_date)) AS days_between_orders
+FROM orders
+GROUP BY customer_id;
+                </pre>
+            </div>
+        </div>
+
+        <h3>Conversion Functions</h3>
+        
+        <table>
+            <tr>
+                <th>Function</th>
+                <th>Description</th>
+                <th>Example</th>
+            </tr>
+            <tr>
+                <td>CAST()</td>
+                <td>Converts a value to a specified data type</td>
+                <td>CAST('123' AS INT)</td>
+            </tr>
+            <tr>
+                <td>CONVERT()</td>
+                <td>Converts a value to a specified data type (SQL Server, MySQL)</td>
+                <td>CONVERT(INT, '123')</td>
+            </tr>
+            <tr>
+                <td>TO_CHAR() / TO_VARCHAR()</td>
+                <td>Converts a value to a string (PostgreSQL, Oracle)</td>
+                <td>TO_CHAR(123)</td>
+            </tr>
+            <tr>
+                <td>TO_DATE()</td>
+                <td>Converts a string to a date (PostgreSQL, Oracle)</td>
+                <td>TO_DATE('2023-04-15', 'YYYY-MM-DD')</td>
+            </tr>
+            <tr>
+                <td>TO_NUMBER()</td>
+                <td>Converts a string to a number (PostgreSQL, Oracle)</td>
+                <td>TO_NUMBER('123.45')</td>
+            </tr>
+        </table>
+        
+        <div class="example">
+            <h3>Example:</h3>
+            <div class="code-block">
+                <pre>
+-- Convert string values to appropriate data types for calculation
+SELECT 
+    product_id,
+    CAST(price_string AS DECIMAL(10,2)) AS price,
+    CAST(quantity_string AS INT) AS quantity,
+    CAST(price_string AS DECIMAL(10,2)) * CAST(quantity_string AS INT) AS total_value
+FROM imported_products;
+                </pre>
+            </div>
+        </div>
+
+        <h3>Conditional Functions</h3>
+        
+        <table>
+            <tr>
+                <th>Function</th>
+                <th>Description</th>
+                <th>Example</th>
+            </tr>
+            <tr>
+                <td>CASE</td>
+                <td>Evaluates conditions and returns a value when the first condition is met</td>
+                <td>CASE WHEN condition THEN result END</td>
+            </tr>
+            <tr>
+                <td>COALESCE()</td>
+                <td>Returns the first non-NULL value in a list</td>
+                <td>COALESCE(value1, value2, ...)</td>
+            </tr>
+            <tr>
+                <td>NULLIF()</td>
+                <td>Returns NULL if two expressions are equal, otherwise returns the first expression</td>
+                <td>NULLIF(expr1, expr2)</td>
+            </tr>
+            <tr>
+                <td>IFNULL() / NVL()</td>
+                <td>Returns a specified value if the expression is NULL</td>
+                <td>IFNULL(expression, replacement)</td>
+            </tr>
+        </table>
+        
+        <div class="example">
+            <h3>Example:</h3>
+            <div class="code-block">
+                <pre>
+-- Categorize products by price range and handle missing values
+SELECT 
+    product_name,
+    price,
+    CASE 
+        WHEN price < 10 THEN 'Budget'
+        WHEN price BETWEEN 10 AND 50 THEN 'Mid-range'
+        WHEN price > 50 THEN 'Premium'
+        ELSE 'Uncategorized'
+    END AS price_category,
+    COALESCE(description, 'No description available') AS product_description
+FROM products;
+                </pre>
+            </div>
+        </div>
+
+        <h2>Window Functions</h2>
+        
+        <p>
+            Window functions perform calculations across a set of table rows that are related to the current row. They are similar to aggregate functions but do not cause rows to become grouped into a single output row.
+        </p>
+        
+        <table>
+            <tr>
+                <th>Function</th>
+                <th>Description</th>
+                <th>Example</th>
+            </tr>
+            <tr>
+                <td>ROW_NUMBER()</td>
+                <td>Assigns a unique sequential integer to rows</td>
+                <td>ROW_NUMBER() OVER (ORDER BY column)</td>
+            </tr>
+            <tr>
+                <td>RANK()</td>
+                <td>Assigns a rank with gaps to rows</td>
+                <td>RANK() OVER (ORDER BY column)</td>
+            </tr>
+            <tr>
+                <td>DENSE_RANK()</td>
+                <td>Assigns a rank without gaps to rows</td>
+                <td>DENSE_RANK() OVER (ORDER BY column)</td>
+            </tr>
+            <tr>
+                <td>NTILE()</td>
+                <td>Divides rows into a specified number of groups</td>
+                <td>NTILE(4) OVER (ORDER BY column)</td>
+            </tr>
+            <tr>
+                <td>LAG()</td>
+                <td>Accesses data from a previous row</td>
+                <td>LAG(column, 1) OVER (ORDER BY column)</td>
+            </tr>
+            <tr>
+                <td>LEAD()</td>
+                <td>Accesses data from a subsequent row</td>
+                <td>LEAD(column, 1) OVER (ORDER BY column)</td>
+            </tr>
+            <tr>
+                <td>FIRST_VALUE()</td>
+                <td>Returns the first value in an ordered set</td>
+                <td>FIRST_VALUE(column) OVER (ORDER BY column)</td>
+            </tr>
+            <tr>
+                <td>LAST_VALUE()</td>
+                <td>Returns the last value in an ordered set</td>
+                <td>LAST_VALUE(column) OVER (ORDER BY column)</td>
+            </tr>
+        </table>
+        
+        <div class="example">
+            <h3>Example:</h3>
+            <div class="code-block">
+                <pre>
+-- Calculate sales rankings and running totals
+SELECT 
+    product_id,
+    product_name,
+    category,
+    sales_amount,
+    ROW_NUMBER() OVER (ORDER BY sales_amount DESC) AS overall_rank,
+    RANK() OVER (PARTITION BY category ORDER BY sales_amount DESC) AS category_rank,
+    SUM(sales_amount) OVER (PARTITION BY category ORDER BY sales_amount DESC) AS running_total
+FROM product_sales;
+                </pre>
+            </div>
+        </div>
+
+        <h2>User-Defined Functions</h2>
+        
+        <p>
+            User-defined functions (UDFs) allow you to create custom functions to perform operations not available through built-in functions. The syntax varies by database system.
+        </p>
+        
+        <h3>Creating a Scalar UDF in SQL Server</h3>
+        
+        <div class="code-block">
+            <pre>
+CREATE FUNCTION dbo.CalculateAge(@birthDate DATE)
+RETURNS INT
+AS
+BEGIN
+    DECLARE @age INT;
+    SET @age = DATEDIFF(YEAR, @birthDate, GETDATE()) - 
+               CASE 
+                   WHEN (MONTH(@birthDate) > MONTH(GETDATE())) OR 
+                        (MONTH(@birthDate) = MONTH(GETDATE()) AND DAY(@birthDate) > DAY(GETDATE()))
+                   THEN 1
+                   ELSE 0
+               END;
+    RETURN @age;
+END;
+            </pre>
+        </div>
+        
+        <h3>Creating a Table-Valued UDF in SQL Server</h3>
+        
+        <div class="code-block">
+            <pre>
+CREATE FUNCTION dbo.GetProductsByCategory(@categoryName VARCHAR(50))
+RETURNS TABLE
+AS
+RETURN
+(
+    SELECT 
+        product_id,
+        product_name,
+        price
+    FROM products
+    WHERE category = @categoryName
+);
+            </pre>
+        </div>
+        
+        <h3>Using UDFs</h3>
+        
+        <div class="code-block">
+            <pre>
+-- Using a scalar UDF
+SELECT 
+    customer_id,
+    first_name,
+    last_name,
+    birth_date,
+    dbo.CalculateAge(birth_date) AS age
+FROM customers;
+
+-- Using a table-valued UDF
+SELECT * FROM dbo.GetProductsByCategory('Electronics');
+            </pre>
+        </div>
+
+        <div class="note">
+            <p><strong>Note:</strong> The syntax for creating and using UDFs varies significantly between database systems. Always refer to the documentation for your specific database system.</p>
+        </div>
+
+        <h2>Function Performance Considerations</h2>
+        
+        <ul>
+            <li><strong>Avoid functions in WHERE clauses</strong> - They can prevent the use of indexes</li>
+            <li><strong>Use built-in functions when possible</strong> - They are generally more optimized than UDFs</li>
+            <li><strong>Be cautious with UDFs in large queries</strong> - They can significantly impact performance</li>
+            <li><strong>Consider indexing computed columns</strong> - If you frequently use a function on a column in queries</li>
+            <li><strong>Test with realistic data volumes</strong> - Functions that work well with small datasets might perform poorly at scale</li>
+        </ul>
+
+        <h2>Function Compatibility</h2>
+        
+        <p>
+            Function availability and syntax can vary significantly between database systems. Here are some common differences:
+        </p>
+        
+        <table>
+            <tr>
+                <th>Database</th>
+                <th>String Concatenation</th>
+                <th>Current Date</th>
+                <th>Substring</th>
+            </tr>
+            <tr>
+                <td>MySQL</td>
+                <td>CONCAT(str1, str2)</td>
+                <td>CURDATE()</td>
+                <td>SUBSTRING(str, pos, len)</td>
+            </tr>
+            <tr>
+                <td>SQL Server</td>
+                <td>str1 + str2</td>
+                <td>GETDATE()</td>
+                <td>SUBSTRING(str, pos, len)</td>
+            </tr>
+            <tr>
+                <td>PostgreSQL</td>
+                <td>str1 || str2</td>
+                <td>CURRENT_DATE</td>
+                <td>SUBSTRING(str FROM pos FOR len)</td>
+            </tr>
+            <tr>
+                <td>Oracle</td>
+                <td>str1 || str2</td>
+                <td>SYSDATE</td>
+                <td>SUBSTR(str, pos, len)</td>
+            </tr>
+            <tr>
+                <td>SQLite</td>
+                <td>str1 || str2</td>
+                <td>DATE('now')</td>
+                <td>SUBSTR(str, pos, len)</td>
+            </tr>
+        </table>
+        
+        <div class="note">
+            <p><strong>Tip:</strong> When working with multiple database systems, consider creating abstraction layers or using database-agnostic libraries to handle function differences.</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #FF8C00;
+            border-bottom: 2px solid #FFA500;
+            padding-bottom: 10px;
+        }
+
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        li {
+            margin: 10px 0;
+            position: relative;
+        }
+
+        li:before {
+            content: "•";
+            color: #FFA500;
+            font-weight: bold;
+            position: absolute;
+            left: -15px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Methods in Java</h2>
+
+    <p>In Java, methods (also known as functions in other programming languages) are blocks of code that perform specific tasks and can be reused throughout your program. Methods help organize code, improve reusability, and make programs easier to maintain.</p>
+
+    <h2>Method Declaration</h2>
+    <p>A method declaration in Java consists of several parts:</p>
+
+    <pre><code>access_modifier return_type method_name(parameter_list) {
+    // Method body
+    // Code to be executed
+    return value; // Optional, required if return type is not void
+}</code></pre>
+
+    <p>Let's break down each component:</p>
+    <ul>
+        <li><strong>Access Modifier:</strong> Determines the visibility of the method (e.g., public, private, protected, default)</li>
+        <li><strong>Return Type:</strong> Specifies the data type of the value returned by the method (or void if no value is returned)</li>
+        <li><strong>Method Name:</strong> A unique identifier for the method</li>
+        <li><strong>Parameter List:</strong> Input values that the method accepts (can be empty)</li>
+        <li><strong>Method Body:</strong> The actual code that performs the task</li>
+        <li><strong>Return Statement:</strong> Returns a value to the caller (required if the return type is not void)</li>
+    </ul>
+
+    <h2>Method Examples</h2>
+
+    <h3>Method with No Parameters and No Return Value</h3>
+    <pre><code>public void greet() {
+    System.out.println("Hello, World!");
+}</code></pre>
+
+    <h3>Method with Parameters and No Return Value</h3>
+    <pre><code>public void greetPerson(String name) {
+    System.out.println("Hello, " + name + "!");
+}</code></pre>
+
+    <h3>Method with Parameters and Return Value</h3>
+    <pre><code>public int add(int a, int b) {
+    return a + b;
+}</code></pre>
+
+    <h2>Calling Methods</h2>
+    <p>To use a method, you need to call it from your code:</p>
+
+    <pre><code>public class MethodExample {
+    public static void main(String[] args) {
+        // Create an object of the class
+        MethodExample example = new MethodExample();
+        
+        // Call methods
+        example.greet();
+        example.greetPerson("John");
+        
+        int sum = example.add(5, 3);
+        System.out.println("Sum: " + sum);
+    }
+    
+    public void greet() {
+        System.out.println("Hello, World!");
+    }
+    
+    public void greetPerson(String name) {
+        System.out.println("Hello, " + name + "!");
+    }
+    
+    public int add(int a, int b) {
+        return a + b;
+    }
+}</code></pre>
+
+    <h2>Static Methods</h2>
+    <p>Static methods belong to the class rather than an instance of the class. They can be called without creating an object of the class:</p>
+
+    <pre><code>public class MathUtils {
+    public static int add(int a, int b) {
+        return a + b;
+    }
+    
+    public static void main(String[] args) {
+        // Call static method without creating an object
+        int sum = MathUtils.add(5, 3);
+        System.out.println("Sum: " + sum);
+    }
+}</code></pre>
+
+    <h2>Method Overloading</h2>
+    <p>Method overloading allows you to define multiple methods with the same name but different parameters:</p>
+
+    <pre><code>public class Calculator {
+    // Method with two int parameters
+    public int add(int a, int b) {
+        return a + b;
+    }
+    
+    // Overloaded method with three int parameters
+    public int add(int a, int b, int c) {
+        return a + b + c;
+    }
+    
+    // Overloaded method with double parameters
+    public double add(double a, double b) {
+        return a + b;
+    }
+    
+    public static void main(String[] args) {
+        Calculator calc = new Calculator();
+        
+        System.out.println(calc.add(5, 3));         // Calls first method
+        System.out.println(calc.add(5, 3, 2));      // Calls second method
+        System.out.println(calc.add(5.5, 3.5));     // Calls third method
+    }
+}</code></pre>
+
+    <h2>Method Parameters</h2>
+
+    <h3>Passing Primitive Types</h3>
+    <p>When you pass primitive types to a method, a copy of the value is passed (pass-by-value):</p>
+
+    <pre><code>public void modifyValue(int x) {
+    x = x + 10;  // Modifies the local copy, not the original
+}
+
+public static void main(String[] args) {
+    int num = 5;
+    modifyValue(num);
+    System.out.println(num);  // Still prints 5
+}</code></pre>
+
+    <h3>Passing Reference Types</h3>
+    <p>When you pass objects to a method, a copy of the reference is passed, allowing you to modify the object's state:</p>
+
+    <pre><code>public void modifyArray(int[] arr) {
+    arr[0] = 100;  // Modifies the actual array
+}
+
+public static void main(String[] args) {
+    int[] numbers = {1, 2, 3};
+    modifyArray(numbers);
+    System.out.println(numbers[0]);  // Prints 100
+}</code></pre>
+
+    <h2>Variable Arguments (Varargs)</h2>
+    <p>Java allows methods to accept a variable number of arguments using the varargs feature:</p>
+
+    <pre><code>public int sum(int... numbers) {
+    int total = 0;
+    for (int num : numbers) {
+        total += num;
+    }
+    return total;
+}
+
+public static void main(String[] args) {
+    Calculator calc = new Calculator();
+    
+    System.out.println(calc.sum(1, 2));          // 3
+    System.out.println(calc.sum(1, 2, 3));       // 6
+    System.out.println(calc.sum(1, 2, 3, 4));    // 10
+}</code></pre>
+
+    <h2>Recursion</h2>
+    <p>Recursion is when a method calls itself. It's useful for solving problems that can be broken down into smaller, similar subproblems:</p>
+
+    <pre><code>public int factorial(int n) {
+    // Base case
+    if (n == 0 || n == 1) {
+        return 1;
+    }
+    // Recursive case
+    return n * factorial(n - 1);
+}
+
+public static void main(String[] args) {
+    Calculator calc = new Calculator();
+    System.out.println(calc.factorial(5));  // 5! = 5 * 4 * 3 * 2 * 1 = 120
+}</code></pre>
+
+    <h2>Key points to remember:</h2>
+    <ul>
+        <li>Methods help organize code and promote reusability</li>
+        <li>Method names should be verbs and follow camelCase convention</li>
+        <li>Methods can have different access modifiers to control visibility</li>
+        <li>Static methods belong to the class and can be called without creating an object</li>
+        <li>Method overloading allows multiple methods with the same name but different parameters</li>
+        <li>Java passes primitive types by value and reference types by reference</li>
+        <li>Use varargs when you need to accept a variable number of arguments</li>
+        <li>Recursion is powerful but can lead to stack overflow if not properly implemented</li>
+        <li>Every Java application must have a <code>main</code> method as its entry point</li>
+    </ul>
+</body>
+
+</html>

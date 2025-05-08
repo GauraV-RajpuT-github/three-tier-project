@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Transactions - Bro Mode</title>
+    <style>
+        .content-container {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 100%;
+        }
+        h1 {
+            color: #004085;
+            border-bottom: 2px solid #004085;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #004085;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #0062cc;
+        }
+        .code-block {
+            background-color: #f8f9fa;
+            border-left: 4px solid #004085;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .note {
+            background-color: #e7f3fe;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .bro-tip {
+            background-color: #ffe0b2;
+            border-left: 4px solid #ff9800;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .warning {
+            background-color: #ffecb3;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .example {
+            background-color: #f0f4c3;
+            border-left: 4px solid #cddc39;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #004085;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="content-container">
+        <h1>SQL Transactions - All or Nothing, Bro!</h1>
+        
+        <p>
+            What's up, data warriors! 🔥 Today we're diving into SQL transactions - the ultimate safety net for your database operations. Think of transactions like a spotter for your database lifts - they make sure you don't drop the bar and crush your data! Let's get it! 💪
+        </p>
+
+        <h2>Why Transactions Are Like Your Gym Buddy</h2>
+        
+        <p>
+            Imagine you're transferring money between bank accounts. You need to:
+        </p>
+        
+        <ol>
+            <li>Take money from one account</li>
+            <li>Add it to another account</li>
+        </ol>
+        
+        <p>
+            What happens if your system crashes after step 1 but before step 2? The money just vanishes! That's like dropping a weight mid-rep - someone's getting hurt!
+        </p>
+        
+        <p>
+            Transactions prevent this disaster by making sure either BOTH steps complete successfully, or NEITHER happens at all. It's the "all or nothing" principle - just like how you either complete your set or you don't!
+        </p>
+
+        <h2>The ACID Test - Not What You're Thinking, Bro</h2>
+        
+        <p>
+            Transactions follow the ACID principles - and no, it's not that kind of acid. It stands for:
+        </p>
+        
+        <ul>
+            <li><strong>Atomicity</strong> - Like a proper rep, it's all or nothing</li>
+            <li><strong>Consistency</strong> - Your database stays balanced, like your macros</li>
+            <li><strong>Isolation</strong> - Transactions don't mess with each other, like good gym etiquette</li>
+            <li><strong>Durability</strong> - Once committed, it stays committed (unlike some gym bros in January)</li>
+        </ul>
+        
+        <div class="bro-tip">
+            <p><strong>Bro Tip:</strong> Remember ACID with this: "Always Complete It Deliberately" - just like your workout routine!</p>
+        </div>
+
+        <h2>Basic Transaction Syntax - The Proper Form</h2>
+        
+        <div class="code-block">
+            <pre>
+-- Start your transaction (like stepping up to the squat rack)
+BEGIN TRANSACTION;
+
+-- Do your operations (the actual lift)
+UPDATE accounts SET balance = balance - 1000 WHERE account_id = 123; -- Take money out
+UPDATE accounts SET balance = balance + 1000 WHERE account_id = 456; -- Put money in
+
+-- If everything went well, lock in those gains!
+COMMIT;
+
+-- If something went wrong, drop the weight safely
+ROLLBACK;
+            </pre>
+        </div>
+        
+        <div class="example">
+            <h3>Real Talk Example: Protein Shake Purchase</h3>
+            <div class="code-block">
+                <pre>
+BEGIN TRANSACTION;
+
+-- Customer buys a protein shake
+UPDATE customer_accounts 
+SET credits = credits - 5.99 
+WHERE customer_id = 789;
+
+-- Add the purchase to order history
+INSERT INTO orders (customer_id, product_id, price) 
+VALUES (789, 42, 5.99);
+
+-- Update inventory
+UPDATE products 
+SET stock = stock - 1 
+WHERE product_id = 42;
+
+-- Everything worked? Lock it in!
+COMMIT;
+                </pre>
+            </div>
+            <p>If any of these steps fail (maybe the customer is broke or the shake is out of stock), the whole transaction gets rolled back - no partial updates, no inconsistent data, no problems!</p>
+        </div>
+
+        <h2>ACID Properties - The Pillars of Strength</h2>
+        
+        <h3>Atomicity - The All-or-Nothing Principle</h3>
+        
+        <p>
+            Atomicity means your transaction is indivisible - like a proper rep. You either complete the entire transaction, or it's like it never happened at all. There's no such thing as a half-rep in transaction world!
+        </p>
+        
+        <div class="example">
+            <h3>Example:</h3>
+            <p>When you're buying concert tickets online, the system needs to:</p>
+            <ol>
+                <li>Check if seats are available</li>
+                <li>Reserve the seats</li>
+                <li>Process your payment</li>
+                <li>Issue the tickets</li>
+            </ol>
+            <p>Atomicity ensures you don't get charged without getting tickets, or get tickets without being charged. It's all or nothing, bro!</p>
+        </div>
+
+        <h3>Consistency - Keeping Your Database Balanced</h3>
+        
+        <p>
+            Consistency is like maintaining proper form. Your database has rules (like "account balances can't be negative" or "each order must have a customer"), and transactions must respect these rules. If a transaction would break the rules, it gets rolled back.
+        </p>
+        
+        <div class="bro-tip">
+            <p><strong>Bro Science:</strong> Just like how proper form prevents injuries, consistency prevents corrupted data!</p>
+        </div>
+
+        <h3>Isolation - Respect the Personal Space</h3>
+        
+        <p>
+            Isolation means transactions don't interfere with each other, even when running simultaneously. It's like gym etiquette - don't mess with someone else's workout!
+        </p>
+        
+        <div class="example">
+            <h3>Example:</h3>
+            <p>Two bros are trying to book the last bench press at the same time. Isolation ensures only one succeeds, rather than both thinking they got it and showing up to an awkward confrontation.</p>
+        </div>
+
+        <h3>Durability - Gains That Last</h3>
+        
+        <p>
+            Once a transaction is committed, it's permanent - like muscle memory. Even if the database crashes immediately after, your changes won't be lost when it comes back online.
+        </p>
+        
+        <div class="bro-tip">
+            <p><strong>Bro Tip:</strong> Durability is achieved by writing to non-volatile storage (disk) before confirming the commit. It's like taking a gym selfie - proof that it happened!</p>
+        </div>
+
+        <h2>Transaction Isolation Levels - How Much Personal Space?</h2>
+        
+        <p>
+            Different workouts need different amounts of space. Similarly, transactions can have different isolation levels:
+        </p>
+        
+        <table>
+            <tr>
+                <th>Isolation Level</th>
+                <th>What It Means</th>
+                <th>Bro Analogy</th>
+            </tr>
+            <tr>
+                <td>READ UNCOMMITTED</td>
+                <td>Can see other transactions' uncommitted changes</td>
+                <td>Using equipment before someone's finished their set - rude!</td>
+            </tr>
+            <tr>
+                <td>READ COMMITTED</td>
+                <td>Can only see committed changes</td>
+                <td>Waiting until someone rerack their weights before using the equipment</td>
+            </tr>
+            <tr>
+                <td>REPEATABLE READ</td>
+                <td>Sees the same data each time it reads the same row</td>
+                <td>Having a dedicated squat rack that no one else can adjust during your workout</td>
+            </tr>
+            <tr>
+                <td>SERIALIZABLE</td>
+                <td>Complete isolation from other transactions</td>
+                <td>Having the entire gym to yourself - no interference!</td>
+            </tr>
+        </table>
+        
+        <div class="code-block">
+            <pre>
+-- Set your isolation level (SQL Server example)
+SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+
+BEGIN TRANSACTION;
+-- Do your thing
+COMMIT;
+            </pre>
+        </div>
+        
+        <div class="bro-tip">
+            <p><strong>Bro Wisdom:</strong> Higher isolation = more consistent results but lower performance (more waiting). It's like the trade-off between perfect form and lifting heavier weights!</p>
+        </div>
+
+        <h2>Common Transaction Problems - When Your Lift Goes Wrong</h2>
+        
+        <h3>Dirty Reads - Peeking at Unfinished Work</h3>
+        
+        <p>
+            A dirty read happens when one transaction sees changes made by another transaction that hasn't committed yet. It's like judging someone's physique mid-bulk before they've had a chance to cut!
+        </p>
+        
+        <div class="example">
+            <h3>Example:</h3>
+            <p>Transaction A updates a price to $50 but hasn't committed. Transaction B reads the price as $50 and makes decisions based on it. Then Transaction A rolls back, and the price is actually still $40. Transaction B is now working with bad data!</p>
+        </div>
+
+        <h3>Non-repeatable Reads - The Moving Target</h3>
+        
+        <p>
+            This happens when a transaction reads the same row twice and gets different results because another transaction modified it in between. It's like setting up for a bench press, looking away, and finding someone changed your weights!
+        </p>
+
+        <h3>Phantom Reads - The Ghost Gains</h3>
+        
+        <p>
+            A phantom read occurs when a transaction runs the same query twice and gets different rows because another transaction added or removed rows that match the query. It's like counting the number of free treadmills, then when you go to use one, finding they're all taken!
+        </p>
+
+        <h2>Deadlocks - When Bros Block Each Other</h2>
+        
+        <p>
+            A deadlock is when two transactions are waiting for each other to release locks, so neither can proceed. It's like when two bros are each using one of the dumbbells from a pair, and both refuse to give theirs up until they get the other one!
+        </p>
+        
+        <div class="example">
+            <h3>Classic Deadlock Scenario:</h3>
+            <ol>
+                <li>Transaction A locks row 1 and needs row 2</li>
+                <li>Transaction B locks row 2 and needs row 1</li>
+                <li>Both are now stuck waiting forever</li>
+            </ol>
+        </div>
+        
+        <div class="bro-tip">
+            <p><strong>How to Avoid Deadlocks:</strong></p>
+            <ul>
+                <li>Always lock resources in the same order (like always loading plates on the bar from heaviest to lightest)</li>
+                <li>Keep transactions short (like super-sets instead of marathon workouts)</li>
+                <li>Don't hold locks while doing slow operations (don't sit on equipment while checking your phone)</li>
+            </ul>
+        </div>
+
+        <h2>Error Handling - When Your Lift Fails</h2>
+        
+        <p>
+            Just like having a spotter for heavy lifts, you need error handling for your transactions:
+        </p>
+        
+        <div class="code-block">
+            <pre>
+-- SQL Server style
+BEGIN TRY
+    BEGIN TRANSACTION;
+    
+    -- Attempt your operations
+    UPDATE accounts SET balance = balance - 1000 WHERE account_id = 123;
+    UPDATE accounts SET balance = balance + 1000 WHERE account_id = 456;
+    
+    COMMIT TRANSACTION;
+END TRY
+BEGIN CATCH
+    -- Something went wrong, roll it back!
+    IF @@TRANCOUNT > 0
+        ROLLBACK TRANSACTION;
+    
+    -- Let everyone know what happened
+    PRINT 'Transaction failed: ' + ERROR_MESSAGE();
+END CATCH;
+            </pre>
+        </div>
+
+        <h2>Savepoints - The Deload Strategy</h2>
+        
+        <p>
+            Savepoints let you create checkpoints within a transaction that you can roll back to without rolling back the entire thing. It's like having a spotter who can help you rack the weight at different points in your rep if needed.
+        </p>
+        
+        <div class="code-block">
+            <pre>
+BEGIN TRANSACTION;
+
+-- First exercise
+INSERT INTO workout_log (exercise, reps, weight) VALUES ('Bench Press', 12, 225);
+
+-- Create a savepoint after bench
+SAVE TRANSACTION BenchCompleted; -- SQL Server syntax
+-- or SAVEPOINT BenchCompleted; -- PostgreSQL, MySQL syntax
+
+-- Second exercise
+INSERT INTO workout_log (exercise, reps, weight) VALUES ('Squat', 10, 315);
+
+-- Oops, injured during squats! Roll back just the squats
+ROLLBACK TRANSACTION BenchCompleted; -- SQL Server
+-- or ROLLBACK TO SAVEPOINT BenchCompleted; -- PostgreSQL, MySQL
+
+-- Try a different exercise instead
+INSERT INTO workout_log (exercise, reps, weight) VALUES ('Leg Press', 15, 400);
+
+-- Commit what worked
+COMMIT;
+            </pre>
+        </div>
+
+        <h2>Transaction Best Practices - Perfect Form</h2>
+        
+        <ul>
+            <li><strong>Keep transactions short</strong> - Like HIIT workouts, short and intense is better than long and dragging</li>
+            <li><strong>Only include what's necessary</strong> - Don't include your cardio in your strength transaction</li>
+            <li><strong>Always use error handling</strong> - Never lift heavy without a spotter</li>
+            <li><strong>Be mindful of locks</strong> - Don't hog equipment others need</li>
+            <li><strong>Test with concurrent users</strong> - Make sure your code works during peak gym hours, not just when it's empty</li>
+            <li><strong>Choose appropriate isolation levels</strong> - Not every lift needs a power cage; sometimes a simple bench is enough</li>
+        </ul>
+
+        <div class="warning">
+            <p><strong>Bro Warning:</strong> Avoid nesting transactions if possible - it's like trying to do bicep curls while squatting. It might technically work in some databases, but it's confusing and prone to errors!</p>
+        </div>
+
+        <h2>Different Database Systems, Different Gym Equipment</h2>
+        
+        <p>
+            Just like how different gyms have different equipment, different database systems have slightly different transaction syntax:
+        </p>
+        
+        <table>
+            <tr>
+                <th>Database</th>
+                <th>Start Transaction</th>
+                <th>Commit</th>
+                <th>Rollback</th>
+            </tr>
+            <tr>
+                <td>MySQL</td>
+                <td>START TRANSACTION;</td>
+                <td>COMMIT;</td>
+                <td>ROLLBACK;</td>
+            </tr>
+            <tr>
+                <td>PostgreSQL</td>
+                <td>BEGIN;</td>
+                <td>COMMIT;</td>
+                <td>ROLLBACK;</td>
+            </tr>
+            <tr>
+                <td>SQL Server</td>
+                <td>BEGIN TRANSACTION;</td>
+                <td>COMMIT TRANSACTION;</td>
+                <td>ROLLBACK TRANSACTION;</td>
+            </tr>
+            <tr>
+                <td>Oracle</td>
+                <td>(implicit)</td>
+                <td>COMMIT;</td>
+                <td>ROLLBACK;</td>
+            </tr>
+        </table>
+        
+        <div class="bro-tip">
+            <p><strong>Final Bro Wisdom:</strong> Transactions are like proper form in the gym - they take a little extra effort up front, but they prevent serious injuries to your data and make sure your database stays swole and healthy. Don't skip transaction day, bro! 💪</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #FF8C00;
+            border-bottom: 2px solid #FFA500;
+            padding-bottom: 10px;
+        }
+
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        li {
+            margin: 10px 0;
+            position: relative;
+        }
+
+        li:before {
+            content: "•";
+            color: #FFA500;
+            font-weight: bold;
+            position: absolute;
+            left: -15px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Setting Up Your Environment</h2>
+
+    <p>To start writing C++ code, you need to set up your development environment. Here are the tools you need:</p>
+
+    <ul>
+        <li>Visual Studio Code with the C++ extension</li>
+        <li>g++ compiler for compiling C++ code</li>
+    </ul>
+
+    <p>Once your environment is set up, you can write your first C++ program:</p>
+
+    <pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    cout &lt;&lt; "Hello, World!" &lt;&lt; endl;
+    return 0;
+}</code></pre>
+
+    <p>This program outputs "Hello, World!" to the console. The <code>#include</code> directive includes the
+        Input-Output stream library, and <code>cout</code> is used to display the output.</p>
+
+    <h2>Key points to remember:</h2>
+    <ul>
+        <li>Always include necessary header files</li>
+        <li>The main() function is the entry point of your program</li>
+        <li>Use cout for output and cin for input</li>
+        <li>End each statement with a semicolon</li>
+    </ul>
+</body>
+
+</html>

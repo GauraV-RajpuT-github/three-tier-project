@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic SQL Commands - Bro Mode</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #004085;
+        }
+        pre {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 15px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #004085;
+        }
+        .output {
+            background-color: #f1f1f1;
+            border-left: 4px solid #4CAF50;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+        .tip {
+            background-color: #e6f7ff;
+            border-left: 4px solid #1890ff;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .keyword {
+            color: #0066cc;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Basic SQL Commands - Bro Mode 🚀</h1>
+
+    <h2>SQL Syntax Basics</h2>
+    <p>Yo bro! SQL (Structured Query Language) is how you talk to databases. It's like the universal language for data manipulation. Let's learn how to speak SQL like a boss!</p>
+
+    <div class="tip">
+        <p><strong>Pro Tip:</strong> SQL commands aren't case-sensitive, but most devs write SQL keywords in ALL CAPS to make them stand out. It's like SHOUTING the important parts!</p>
+    </div>
+
+    <h2>Database Operations</h2>
+    <h3>Creating a Database</h3>
+    <p>Wanna create a new database? Just use the <span class="keyword">CREATE DATABASE</span> command:</p>
+    <pre><code>CREATE DATABASE database_name;</code></pre>
+    <p>Example:</p>
+    <pre><code>CREATE DATABASE school;</code></pre>
+
+    <h3>Selecting a Database</h3>
+    <p>To tell the system which database you wanna work with:</p>
+    <pre><code>-- MySQL, SQL Server
+USE database_name;
+
+-- PostgreSQL
+\\c database_name</code></pre>
+    <p>Example:</p>
+    <pre><code>USE school;</code></pre>
+
+    <h3>Dropping a Database</h3>
+    <p>Need to delete a database? The <span class="keyword">DROP DATABASE</span> command has your back:</p>
+    <pre><code>DROP DATABASE database_name;</code></pre>
+    <p>Example:</p>
+    <pre><code>DROP DATABASE old_school;</code></pre>
+
+    <div class="tip">
+        <p><strong>Warning Bro:</strong> <span class="keyword">DROP DATABASE</span> is like deleting your entire Instagram account - everything's gone forever! Use it only when you're 100% sure.</p>
+    </div>
+
+    <h2>Table Operations</h2>
+    <h3>Creating a Table</h3>
+    <p>Tables are where all your data lives. Create one like this:</p>
+    <pre><code>CREATE TABLE table_name (
+    column1 datatype constraints,
+    column2 datatype constraints,
+    ...
+);</code></pre>
+    <p>Example:</p>
+    <pre><code>CREATE TABLE students (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    email VARCHAR(100) UNIQUE,
+    date_of_birth DATE,
+    enrollment_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);</code></pre>
+
+    <h3>Altering a Table</h3>
+    <p>Need to change your table? <span class="keyword">ALTER TABLE</span> is your go-to command:</p>
+    <pre><code>-- Add a column
+ALTER TABLE table_name ADD column_name datatype constraints;
+
+-- Modify a column
+ALTER TABLE table_name MODIFY column_name new_datatype new_constraints;
+
+-- Drop a column
+ALTER TABLE table_name DROP COLUMN column_name;</code></pre>
+    <p>Examples:</p>
+    <pre><code>-- Add a phone number column
+ALTER TABLE students ADD phone_number VARCHAR(20);
+
+-- Change the size of the email column
+ALTER TABLE students MODIFY email VARCHAR(150) UNIQUE;
+
+-- Remove the date_of_birth column
+ALTER TABLE students DROP COLUMN date_of_birth;</code></pre>
+
+    <h3>Dropping a Table</h3>
+    <p>Wanna delete a table? Just drop it like it's hot:</p>
+    <pre><code>DROP TABLE table_name;</code></pre>
+    <p>Example:</p>
+    <pre><code>DROP TABLE old_students;</code></pre>
+
+    <div class="tip">
+        <p><strong>Warning Bro:</strong> <span class="keyword">DROP TABLE</span> permanently deletes the table and all its data. It's like accidentally deleting all your vacation photos - they're gone for good!</p>
+    </div>
+
+    <h2>Data Manipulation</h2>
+    <h3>Inserting Data</h3>
+    <p>Time to add some data to your tables:</p>
+    <pre><code>-- Insert a single record
+INSERT INTO table_name (column1, column2, ...) VALUES (value1, value2, ...);
+
+-- Insert multiple records at once
+INSERT INTO table_name (column1, column2, ...) 
+VALUES 
+    (value1, value2, ...),
+    (value1, value2, ...),
+    ...;</code></pre>
+    <p>Examples:</p>
+    <pre><code>-- Insert a single student
+INSERT INTO students (first_name, last_name, email) 
+VALUES ('Rahul', 'Sharma', 'rahul.sharma@example.com');
+
+-- Insert multiple students at once
+INSERT INTO students (first_name, last_name, email) 
+VALUES 
+    ('Priya', 'Patel', 'priya.patel@example.com'),
+    ('Amit', 'Kumar', 'amit.kumar@example.com'),
+    ('Neha', 'Singh', 'neha.singh@example.com');</code></pre>
+
+    <h3>Selecting Data</h3>
+    <p>Wanna see your data? <span class="keyword">SELECT</span> is your best friend:</p>
+    <pre><code>-- Get everything from a table
+SELECT * FROM table_name;
+
+-- Get only specific columns
+SELECT column1, column2, ... FROM table_name;
+
+-- Get data with conditions
+SELECT column1, column2, ... FROM table_name WHERE condition;
+
+-- Get data sorted in a specific order
+SELECT column1, column2, ... FROM table_name ORDER BY column_name [ASC|DESC];
+
+-- Get a limited number of records
+SELECT column1, column2, ... FROM table_name LIMIT number;</code></pre>
+    <p>Examples:</p>
+    <pre><code>-- Get all students
+SELECT * FROM students;
+
+-- Get only names and emails
+SELECT first_name, last_name, email FROM students;
+
+-- Get students with last name 'Sharma'
+SELECT * FROM students WHERE last_name = 'Sharma';
+
+-- Get students sorted by last name (A to Z)
+SELECT * FROM students ORDER BY last_name ASC;
+
+-- Get only the first 5 students
+SELECT * FROM students LIMIT 5;</code></pre>
+
+    <h3>Updating Data</h3>
+    <p>Need to change some data? <span class="keyword">UPDATE</span> has got you covered:</p>
+    <pre><code>UPDATE table_name SET column1 = value1, column2 = value2, ... WHERE condition;</code></pre>
+    <p>Example:</p>
+    <pre><code>-- Update a student's email
+UPDATE students SET email = 'new.email@example.com' WHERE id = 1;
+
+-- Update multiple columns at once
+UPDATE students SET first_name = 'Raj', last_name = 'Malhotra' WHERE id = 1;</code></pre>
+
+    <div class="tip">
+        <p><strong>Warning Bro:</strong> If you forget the <span class="keyword">WHERE</span> clause in an <span class="keyword">UPDATE</span> statement, you'll update EVERY SINGLE RECORD in the table! Always use a <span class="keyword">WHERE</span> clause unless you really want to update everything.</p>
+    </div>
+
+    <h3>Deleting Data</h3>
+    <p>Wanna remove some records? <span class="keyword">DELETE</span> is the way to go:</p>
+    <pre><code>DELETE FROM table_name WHERE condition;</code></pre>
+    <p>Example:</p>
+    <pre><code>-- Delete a specific student
+DELETE FROM students WHERE id = 1;
+
+-- Delete all students with last name 'Sharma'
+DELETE FROM students WHERE last_name = 'Sharma';</code></pre>
+
+    <div class="tip">
+        <p><strong>Warning Bro:</strong> If you forget the <span class="keyword">WHERE</span> clause in a <span class="keyword">DELETE</span> statement, you'll delete EVERY RECORD in the table! Always double-check your <span class="keyword">DELETE</span> statements before running them.</p>
+    </div>
+
+    <h2>Filtering Data</h2>
+    <h3>WHERE Clause</h3>
+    <p>The <span class="keyword">WHERE</span> clause is how you filter your data - it's like your search criteria:</p>
+    <pre><code>SELECT column1, column2, ... FROM table_name WHERE condition;</code></pre>
+    <p>Here are the operators you can use in your <span class="keyword">WHERE</span> clause:</p>
+    <table>
+        <tr>
+            <th>Operator</th>
+            <th>What it means</th>
+            <th>Example</th>
+        </tr>
+        <tr>
+            <td>=</td>
+            <td>Equals</td>
+            <td>WHERE age = 30</td>
+        </tr>
+        <tr>
+            <td>></td>
+            <td>Greater than</td>
+            <td>WHERE age > 30</td>
+        </tr>
+        <tr>
+            <td><</td>
+            <td>Less than</td>
+            <td>WHERE age < 30</td>
+        </tr>
+        <tr>
+            <td>>=</td>
+            <td>Greater than or equal</td>
+            <td>WHERE age >= 30</td>
+        </tr>
+        <tr>
+            <td><=</td>
+            <td>Less than or equal</td>
+            <td>WHERE age <= 30</td>
+        </tr>
+        <tr>
+            <td><> or !=</td>
+            <td>Not equal</td>
+            <td>WHERE age <> 30</td>
+        </tr>
+        <tr>
+            <td>BETWEEN</td>
+            <td>Between a range</td>
+            <td>WHERE age BETWEEN 20 AND 30</td>
+        </tr>
+        <tr>
+            <td>LIKE</td>
+            <td>Pattern matching</td>
+            <td>WHERE name LIKE 'R%'</td>
+        </tr>
+        <tr>
+            <td>IN</td>
+            <td>Matches any value in a list</td>
+            <td>WHERE country IN ('India', 'USA', 'UK')</td>
+        </tr>
+        <tr>
+            <td>IS NULL</td>
+            <td>Is empty/null</td>
+            <td>WHERE phone IS NULL</td>
+        </tr>
+        <tr>
+            <td>IS NOT NULL</td>
+            <td>Is not empty/null</td>
+            <td>WHERE phone IS NOT NULL</td>
+        </tr>
+    </table>
+
+    <h3>Logical Operators</h3>
+    <p>Need to combine multiple conditions? Use these logical operators:</p>
+    <table>
+        <tr>
+            <th>Operator</th>
+            <th>What it means</th>
+            <th>Example</th>
+        </tr>
+        <tr>
+            <td>AND</td>
+            <td>Both conditions must be true</td>
+            <td>WHERE age > 20 AND country = 'India'</td>
+        </tr>
+        <tr>
+            <td>OR</td>
+            <td>Either condition can be true</td>
+            <td>WHERE age > 20 OR country = 'India'</td>
+        </tr>
+        <tr>
+            <td>NOT</td>
+            <td>Reverses the condition</td>
+            <td>WHERE NOT country = 'India'</td>
+        </tr>
+    </table>
+
+    <h3>Pattern Matching with LIKE</h3>
+    <p>Need to search for patterns? <span class="keyword">LIKE</span> is your best bet:</p>
+    <table>
+        <tr>
+            <th>Wildcard</th>
+            <th>What it does</th>
+            <th>Example</th>
+        </tr>
+        <tr>
+            <td>%</td>
+            <td>Matches any number of characters</td>
+            <td>WHERE name LIKE 'R%' (names starting with R)<br>WHERE email LIKE '%@gmail.com' (Gmail addresses)</td>
+        </tr>
+        <tr>
+            <td>_</td>
+            <td>Matches exactly one character</td>
+            <td>WHERE name LIKE 'R_j' (Raj, Roj, etc.)</td>
+        </tr>
+    </table>
+
+    <h2>Sorting and Limiting Results</h2>
+    <h3>ORDER BY Clause</h3>
+    <p>Want your results in a specific order? <span class="keyword">ORDER BY</span> is the way to go:</p>
+    <pre><code>-- Sort in ascending order (A to Z, 1 to 10)
+SELECT * FROM table_name ORDER BY column_name;
+
+-- Sort in descending order (Z to A, 10 to 1)
+SELECT * FROM table_name ORDER BY column_name DESC;
+
+-- Sort by multiple columns
+SELECT * FROM table_name ORDER BY column1 ASC, column2 DESC;</code></pre>
+    <p>Examples:</p>
+    <pre><code>-- Sort students by last name (A to Z)
+SELECT * FROM students ORDER BY last_name;
+
+-- Sort students by enrollment date (newest first)
+SELECT * FROM students ORDER BY enrollment_date DESC;
+
+-- Sort students by last name, then by first name
+SELECT * FROM students ORDER BY last_name, first_name;</code></pre>
+
+    <h3>LIMIT Clause</h3>
+    <p>Only want a certain number of results? <span class="keyword">LIMIT</span> is your friend:</p>
+    <pre><code>-- Get a specific number of records
+SELECT * FROM table_name LIMIT number;
+
+-- Get a specific number of records starting from a position
+SELECT * FROM table_name LIMIT offset, count;  -- MySQL syntax
+SELECT * FROM table_name LIMIT count OFFSET offset;  -- PostgreSQL syntax</code></pre>
+    <p>Examples:</p>
+    <pre><code>-- Get the first 5 students
+SELECT * FROM students LIMIT 5;
+
+-- Get 5 students, starting from the 6th student (MySQL)
+SELECT * FROM students LIMIT 5, 5;
+
+-- Get 5 students, starting from the 6th student (PostgreSQL)
+SELECT * FROM students LIMIT 5 OFFSET 5;</code></pre>
+
+    <h2>Aggregate Functions</h2>
+    <p>Need to calculate stuff from your data? These functions have your back:</p>
+    <table>
+        <tr>
+            <th>Function</th>
+            <th>What it does</th>
+            <th>Example</th>
+        </tr>
+        <tr>
+            <td>COUNT()</td>
+            <td>Counts the number of rows</td>
+            <td>SELECT COUNT(*) FROM students;</td>
+        </tr>
+        <tr>
+            <td>SUM()</td>
+            <td>Adds up all the values</td>
+            <td>SELECT SUM(score) FROM exams;</td>
+        </tr>
+        <tr>
+            <td>AVG()</td>
+            <td>Calculates the average</td>
+            <td>SELECT AVG(score) FROM exams;</td>
+        </tr>
+        <tr>
+            <td>MIN()</td>
+            <td>Finds the smallest value</td>
+            <td>SELECT MIN(score) FROM exams;</td>
+        </tr>
+        <tr>
+            <td>MAX()</td>
+            <td>Finds the largest value</td>
+            <td>SELECT MAX(score) FROM exams;</td>
+        </tr>
+    </table>
+
+    <h3>GROUP BY Clause</h3>
+    <p>Want to group your data and calculate stuff for each group? <span class="keyword">GROUP BY</span> is what you need:</p>
+    <pre><code>SELECT column1, aggregate_function(column2)
+FROM table_name
+GROUP BY column1;</code></pre>
+    <p>Example:</p>
+    <pre><code>-- Count how many students have each last name
+SELECT last_name, COUNT(*) AS count
+FROM students
+GROUP BY last_name;</code></pre>
+
+    <h3>HAVING Clause</h3>
+    <p><span class="keyword">HAVING</span> is like <span class="keyword">WHERE</span> but for grouped data:</p>
+    <pre><code>SELECT column1, aggregate_function(column2)
+FROM table_name
+GROUP BY column1
+HAVING condition;</code></pre>
+    <p>Example:</p>
+    <pre><code>-- Find last names that appear more than once
+SELECT last_name, COUNT(*) AS count
+FROM students
+GROUP BY last_name
+HAVING count > 1;</code></pre>
+
+    <h2>Conclusion</h2>
+    <p>Bro, you've just learned the basic SQL commands that'll help you create databases, tables, and manipulate data like a pro! These commands are the foundation of SQL and you'll use them all the time.</p>
+
+    <div class="tip">
+        <p><strong>Pro Tip:</strong> The best way to learn SQL is by doing! Create a database, make some tables, add some data, and start querying. Don't worry about making mistakes - that's how you learn. Just don't practice on production databases! 😉</p>
+    </div>
+</body>
+</html>

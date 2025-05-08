@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Functions - Bro Mode</title>
+    <style>
+        .content-container {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 100%;
+        }
+        h1 {
+            color: #004085;
+            border-bottom: 2px solid #004085;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #004085;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #0062cc;
+        }
+        .code-block {
+            background-color: #f8f9fa;
+            border-left: 4px solid #004085;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .note {
+            background-color: #e7f3fe;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .bro-tip {
+            background-color: #ffe0b2;
+            border-left: 4px solid #ff9800;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .example {
+            background-color: #f0f4c3;
+            border-left: 4px solid #cddc39;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #004085;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="content-container">
+        <h1>SQL Functions - The Power Tools of Your Database</h1>
+        
+        <p>
+            What's up, data warriors! 🔥 Today we're diving into SQL functions - the ultimate power tools for your database workbench. These bad boys let you transform, calculate, and manipulate your data with minimal effort. Let's get those gains! 💪
+        </p>
+
+        <h2>Function Types - Your SQL Arsenal</h2>
+        
+        <p>
+            Think of SQL functions like your gym equipment - different tools for different muscle groups:
+        </p>
+        
+        <ul>
+            <li><strong>Aggregate Functions</strong> - For when you need to crunch a whole set of values into one result (like compound exercises hitting multiple muscles)</li>
+            <li><strong>String Functions</strong> - For text manipulation (because sometimes your data needs a haircut)</li>
+            <li><strong>Numeric Functions</strong> - For math operations (calculating those gains)</li>
+            <li><strong>Date Functions</strong> - For handling time (tracking your progress over time)</li>
+            <li><strong>Conversion Functions</strong> - For changing data types (like converting fat to muscle)</li>
+            <li><strong>Window Functions</strong> - The advanced techniques that separate the pros from the amateurs</li>
+        </ul>
+
+        <h2>Aggregate Functions - Mass Gainers</h2>
+        
+        <p>
+            These functions take a bunch of values and condense them into a single result - like taking all your individual workouts and seeing your total progress.
+        </p>
+        
+        <table>
+            <tr>
+                <th>Function</th>
+                <th>What It Does</th>
+                <th>When To Use It</th>
+            </tr>
+            <tr>
+                <td>COUNT()</td>
+                <td>Counts rows or values</td>
+                <td>When you need to know "how many?"</td>
+            </tr>
+            <tr>
+                <td>SUM()</td>
+                <td>Adds up all values</td>
+                <td>When you need the total (like total weight lifted)</td>
+            </tr>
+            <tr>
+                <td>AVG()</td>
+                <td>Calculates the average</td>
+                <td>When you want the middle ground (average reps per set)</td>
+            </tr>
+            <tr>
+                <td>MIN()</td>
+                <td>Finds the smallest value</td>
+                <td>When you need to know your starting point</td>
+            </tr>
+            <tr>
+                <td>MAX()</td>
+                <td>Finds the largest value</td>
+                <td>When you want to flex your personal best</td>
+            </tr>
+        </table>
+        
+        <div class="example">
+            <h3>Gains Example:</h3>
+            <div class="code-block">
+                <pre>
+-- Get the stats on your product categories
+SELECT 
+    category AS "Muscle Group",
+    COUNT(*) AS "Exercise Count",
+    AVG(price) AS "Average Cost",
+    MAX(price) AS "Premium Option",
+    SUM(stock) AS "Total Inventory"
+FROM products
+GROUP BY category;
+                </pre>
+            </div>
+            <p>This query gives you a complete breakdown of your product categories - how many products, average price, most expensive option, and total inventory. It's like getting your gym stats for each muscle group!</p>
+        </div>
+
+        <div class="bro-tip">
+            <p><strong>Bro Tip:</strong> Aggregate functions ignore NULL values (except COUNT(*)), just like how you ignore the haters. If you want to include NULL values, you need to handle them with COALESCE or IFNULL.</p>
+        </div>
+
+        <h2>String Functions - Text Transformation</h2>
+        
+        <p>
+            String functions are like your grooming kit - they help you clean up, style, and transform text data.
+        </p>
+        
+        <table>
+            <tr>
+                <th>Function</th>
+                <th>What It Does</th>
+                <th>Real Talk Example</th>
+            </tr>
+            <tr>
+                <td>CONCAT()</td>
+                <td>Combines strings together</td>
+                <td>CONCAT(first_name, ' ', last_name) → 'Chad Thundercock'</td>
+            </tr>
+            <tr>
+                <td>UPPER()</td>
+                <td>CONVERTS TO ALL CAPS</td>
+                <td>UPPER('gains') → 'GAINS'</td>
+            </tr>
+            <tr>
+                <td>LOWER()</td>
+                <td>converts to all lowercase</td>
+                <td>LOWER('NEVER SKIP LEG DAY') → 'never skip leg day'</td>
+            </tr>
+            <tr>
+                <td>LENGTH() / LEN()</td>
+                <td>Counts characters</td>
+                <td>LENGTH('biceps') → 6</td>
+            </tr>
+            <tr>
+                <td>SUBSTRING()</td>
+                <td>Extracts part of a string</td>
+                <td>SUBSTRING('NoPain NoGain', 7, 6) → 'NoGain'</td>
+            </tr>
+            <tr>
+                <td>REPLACE()</td>
+                <td>Swaps out text</td>
+                <td>REPLACE('leg day', 'leg', 'arm') → 'arm day'</td>
+            </tr>
+            <tr>
+                <td>TRIM()</td>
+                <td>Removes extra spaces</td>
+                <td>TRIM('  shredded  ') → 'shredded'</td>
+            </tr>
+        </table>
+        
+        <div class="example">
+            <h3>Flex Example:</h3>
+            <div class="code-block">
+                <pre>
+-- Clean up and format user data
+SELECT 
+    user_id,
+    CONCAT(UPPER(SUBSTRING(first_name, 1, 1)), LOWER(SUBSTRING(first_name, 2))) AS clean_first_name,
+    UPPER(last_name) AS last_name,
+    REPLACE(phone, '-', '') AS clean_phone
+FROM users;
+                </pre>
+            </div>
+            <p>This query formats names properly (capitalized first letter), makes last names all caps, and removes hyphens from phone numbers. It's like giving your data a fresh haircut and new gym clothes!</p>
+        </div>
+
+        <h2>Numeric Functions - Math Gainz</h2>
+        
+        <p>
+            These functions help you crunch numbers faster than you count reps.
+        </p>
+        
+        <table>
+            <tr>
+                <th>Function</th>
+                <th>What It Does</th>
+                <th>When To Use It</th>
+            </tr>
+            <tr>
+                <td>ROUND()</td>
+                <td>Rounds to a specified decimal place</td>
+                <td>ROUND(123.456, 2) → 123.46</td>
+            </tr>
+            <tr>
+                <td>CEILING() / CEIL()</td>
+                <td>Rounds up to the next whole number</td>
+                <td>CEILING(123.45) → 124</td>
+            </tr>
+            <tr>
+                <td>FLOOR()</td>
+                <td>Rounds down to the previous whole number</td>
+                <td>FLOOR(123.45) → 123</td>
+            </tr>
+            <tr>
+                <td>ABS()</td>
+                <td>Gets the absolute value (no negatives, bro)</td>
+                <td>ABS(-10) → 10</td>
+            </tr>
+            <tr>
+                <td>POWER()</td>
+                <td>Raises to a power</td>
+                <td>POWER(2, 3) → 8</td>
+            </tr>
+            <tr>
+                <td>SQRT()</td>
+                <td>Square root</td>
+                <td>SQRT(25) → 5</td>
+            </tr>
+        </table>
+        
+        <div class="example">
+            <h3>Gains Calculation Example:</h3>
+            <div class="code-block">
+                <pre>
+-- Calculate discounts and round to nice numbers
+SELECT 
+    product_name,
+    price,
+    discount_percent,
+    ROUND(price * (1 - discount_percent/100), 2) AS sale_price,
+    CEILING(price * quantity * 0.08) AS estimated_tax
+FROM orders;
+                </pre>
+            </div>
+            <p>This query calculates discounted prices with clean decimal places and rounds tax up to the nearest dollar. Clean math for clean gains!</p>
+        </div>
+
+        <h2>Date Functions - Tracking Your Progress</h2>
+        
+        <p>
+            Date functions are like your fitness tracker - they help you measure progress over time and plan your routine.
+        </p>
+        
+        <table>
+            <tr>
+                <th>Function</th>
+                <th>What It Does</th>
+                <th>Example</th>
+            </tr>
+            <tr>
+                <td>NOW() / CURRENT_TIMESTAMP</td>
+                <td>Gets current date and time</td>
+                <td>NOW() → '2023-04-15 14:30:00'</td>
+            </tr>
+            <tr>
+                <td>CURRENT_DATE / GETDATE()</td>
+                <td>Gets current date</td>
+                <td>CURRENT_DATE() → '2023-04-15'</td>
+            </tr>
+            <tr>
+                <td>YEAR() / MONTH() / DAY()</td>
+                <td>Extracts parts of a date</td>
+                <td>YEAR('2023-04-15') → 2023</td>
+            </tr>
+            <tr>
+                <td>DATEDIFF()</td>
+                <td>Calculates time between dates</td>
+                <td>DATEDIFF('day', '2023-01-01', '2023-04-15') → 104</td>
+            </tr>
+            <tr>
+                <td>DATEADD() / DATE_ADD()</td>
+                <td>Adds time to a date</td>
+                <td>DATEADD('day', 30, '2023-04-15') → '2023-05-15'</td>
+            </tr>
+        </table>
+        
+        <div class="example">
+            <h3>Tracking Gains Example:</h3>
+            <div class="code-block">
+                <pre>
+-- Calculate membership stats and renewal dates
+SELECT 
+    member_name,
+    join_date,
+    DATEDIFF(DAY, join_date, CURRENT_DATE) AS days_as_member,
+    DATEADD(YEAR, 1, join_date) AS renewal_date,
+    CASE 
+        WHEN DATEDIFF(DAY, CURRENT_DATE, DATEADD(YEAR, 1, join_date)) <= 30 
+        THEN 'Renewal Soon!' 
+        ELSE 'Good to Go' 
+    END AS renewal_status
+FROM gym_members;
+                </pre>
+            </div>
+            <p>This query calculates how long each member has been with the gym, when they need to renew, and flags anyone who needs to renew in the next 30 days. Perfect for tracking your loyal gym bros!</p>
+        </div>
+
+        <div class="bro-tip">
+            <p><strong>Bro Tip:</strong> Date functions vary A LOT between different database systems. MySQL, SQL Server, PostgreSQL, and Oracle all have their own syntax. Always check the docs for your specific database, or you might pull a muscle!</p>
+        </div>
+
+        <h2>Conditional Functions - Decision Makers</h2>
+        
+        <p>
+            These functions help you make decisions in your queries - like choosing between leg day and chest day.
+        </p>
+        
+        <h3>CASE - The Ultimate If/Then Machine</h3>
+        
+        <div class="code-block">
+            <pre>
+-- Categorize products by price range
+SELECT 
+    product_name,
+    price,
+    CASE 
+        WHEN price < 20 THEN 'Budget'
+        WHEN price BETWEEN 20 AND 50 THEN 'Mid-Range'
+        WHEN price > 50 THEN 'Premium'
+        ELSE 'Uncategorized'
+    END AS price_category
+FROM products;
+            </pre>
+        </div>
+        
+        <h3>COALESCE - The Null Buster</h3>
+        
+        <div class="code-block">
+            <pre>
+-- Use default values when data is missing
+SELECT 
+    product_name,
+    COALESCE(description, 'No description available') AS description,
+    COALESCE(discount, 0) AS discount
+FROM products;
+            </pre>
+        </div>
+        
+        <div class="bro-tip">
+            <p><strong>Bro Tip:</strong> COALESCE is like your spotter - it's there to save you when your data fails to show up. It returns the first non-NULL value in its list of arguments.</p>
+        </div>
+
+        <h2>Window Functions - Advanced Techniques</h2>
+        
+        <p>
+            Window functions are the advanced lifting techniques of SQL - they separate the pros from the amateurs. They let you perform calculations across rows related to the current row without collapsing the results.
+        </p>
+        
+        <table>
+            <tr>
+                <th>Function</th>
+                <th>What It Does</th>
+                <th>When To Use It</th>
+            </tr>
+            <tr>
+                <td>ROW_NUMBER()</td>
+                <td>Assigns a unique number to each row</td>
+                <td>When you need to rank items uniquely</td>
+            </tr>
+            <tr>
+                <td>RANK()</td>
+                <td>Ranks rows with gaps for ties</td>
+                <td>When you're ranking competition results</td>
+            </tr>
+            <tr>
+                <td>DENSE_RANK()</td>
+                <td>Ranks rows without gaps</td>
+                <td>When you want consecutive rankings</td>
+            </tr>
+            <tr>
+                <td>LAG() / LEAD()</td>
+                <td>Access previous/next row values</td>
+                <td>When comparing to previous/next values</td>
+            </tr>
+        </table>
+        
+        <div class="example">
+            <h3>Pro Level Example:</h3>
+            <div class="code-block">
+                <pre>
+-- Rank products by price within each category
+SELECT 
+    category,
+    product_name,
+    price,
+    ROW_NUMBER() OVER (ORDER BY price DESC) AS overall_price_rank,
+    RANK() OVER (PARTITION BY category ORDER BY price DESC) AS category_price_rank,
+    AVG(price) OVER (PARTITION BY category) AS category_avg_price,
+    price - AVG(price) OVER (PARTITION BY category) AS price_vs_category_avg
+FROM products;
+                </pre>
+            </div>
+            <p>This beast of a query ranks products by price overall AND within their category, calculates the average price per category, and shows how each product compares to its category average. It's like getting a complete performance analysis of your entire inventory in one go!</p>
+        </div>
+
+        <h2>Creating Your Own Functions - DIY Gains</h2>
+        
+        <p>
+            Sometimes the built-in functions aren't enough, and you need to create your own custom workout - that's where User-Defined Functions come in.
+        </p>
+        
+        <div class="code-block">
+            <pre>
+-- Create a function to calculate age (SQL Server style)
+CREATE FUNCTION dbo.CalculateAge(@birthDate DATE)
+RETURNS INT
+AS
+BEGIN
+    DECLARE @age INT;
+    SET @age = DATEDIFF(YEAR, @birthDate, GETDATE()) - 
+               CASE 
+                   WHEN (MONTH(@birthDate) > MONTH(GETDATE())) OR 
+                        (MONTH(@birthDate) = MONTH(GETDATE()) AND DAY(@birthDate) > DAY(GETDATE()))
+                   THEN 1
+                   ELSE 0
+               END;
+    RETURN @age;
+END;
+
+-- Use your custom function
+SELECT 
+    member_name,
+    birth_date,
+    dbo.CalculateAge(birth_date) AS age
+FROM gym_members;
+            </pre>
+        </div>
+        
+        <div class="bro-tip">
+            <p><strong>Bro Warning:</strong> User-defined functions can be performance killers if not used carefully. They're like doing bicep curls in the squat rack - technically they work, but there might be better ways to accomplish your goal.</p>
+        </div>
+
+        <h2>Function Performance - Optimizing Your Routine</h2>
+        
+        <p>
+            Just like optimizing your workout for maximum gains, you need to optimize your functions for maximum performance:
+        </p>
+        
+        <ul>
+            <li><strong>Avoid functions in WHERE clauses</strong> - They can prevent the use of indexes (like trying to do cardio while lifting heavy)</li>
+            <li><strong>Use built-in functions when possible</strong> - They're optimized by database pros (like using proper form)</li>
+            <li><strong>Be careful with UDFs</strong> - They can slow things down (like adding too many isolation exercises)</li>
+            <li><strong>Test with realistic data volumes</strong> - What works with 10 rows might fail with 10 million (like how a workout that works for a beginner might not work for advanced lifters)</li>
+        </ul>
+
+        <h2>Database Differences - Different Gyms, Different Equipment</h2>
+        
+        <p>
+            Just like how different gyms have different equipment, different database systems have different function syntax:
+        </p>
+        
+        <table>
+            <tr>
+                <th>Task</th>
+                <th>MySQL</th>
+                <th>SQL Server</th>
+                <th>PostgreSQL</th>
+            </tr>
+            <tr>
+                <td>Concatenate strings</td>
+                <td>CONCAT(str1, str2)</td>
+                <td>str1 + str2</td>
+                <td>str1 || str2</td>
+            </tr>
+            <tr>
+                <td>Current date</td>
+                <td>CURDATE()</td>
+                <td>GETDATE()</td>
+                <td>CURRENT_DATE</td>
+            </tr>
+            <tr>
+                <td>Substring</td>
+                <td>SUBSTRING(str, pos, len)</td>
+                <td>SUBSTRING(str, pos, len)</td>
+                <td>SUBSTRING(str FROM pos FOR len)</td>
+            </tr>
+        </table>
+        
+        <div class="bro-tip">
+            <p><strong>Bro Wisdom:</strong> Learning SQL functions is like learning proper exercise form - it takes practice, but once you master them, you'll be able to transform your data with efficiency and style. Keep grinding those queries, data warrior! 💪</p>
+        </div>
+    </div>
+</body>
+</html>

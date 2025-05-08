@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic SQL Commands</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #004085;
+        }
+        pre {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 15px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #004085;
+        }
+        .output {
+            background-color: #f1f1f1;
+            border-left: 4px solid #4CAF50;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+        .tip {
+            background-color: #e6f7ff;
+            border-left: 4px solid #1890ff;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .keyword {
+            color: #0066cc;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Basic SQL Commands</h1>
+
+    <h2>Introduction to SQL Syntax</h2>
+    <p>SQL (Structured Query Language) is a standardized language used to communicate with relational databases. It allows you to create, read, update, and delete data in a database. In this section, we'll cover the basic SQL commands and syntax.</p>
+
+    <div class="tip">
+        <p><strong>Note:</strong> SQL commands are not case-sensitive, but it's a common convention to write SQL keywords in uppercase to distinguish them from table and column names.</p>
+    </div>
+
+    <h2>Database Operations</h2>
+    <h3>Creating a Database</h3>
+    <p>To create a new database, use the <span class="keyword">CREATE DATABASE</span> statement:</p>
+    <pre><code>CREATE DATABASE database_name;</code></pre>
+    <p>Example:</p>
+    <pre><code>CREATE DATABASE school;</code></pre>
+
+    <h3>Selecting a Database</h3>
+    <p>To select a database to work with, use the <span class="keyword">USE</span> statement (MySQL, SQL Server) or <span class="keyword">\\c</span> command (PostgreSQL):</p>
+    <pre><code>-- MySQL, SQL Server
+USE database_name;
+
+-- PostgreSQL
+\\c database_name</code></pre>
+    <p>Example:</p>
+    <pre><code>USE school;</code></pre>
+
+    <h3>Dropping a Database</h3>
+    <p>To delete a database, use the <span class="keyword">DROP DATABASE</span> statement:</p>
+    <pre><code>DROP DATABASE database_name;</code></pre>
+    <p>Example:</p>
+    <pre><code>DROP DATABASE old_school;</code></pre>
+
+    <div class="tip">
+        <p><strong>Warning:</strong> The <span class="keyword">DROP DATABASE</span> statement permanently deletes the database and all its tables. Use it with caution.</p>
+    </div>
+
+    <h2>Table Operations</h2>
+    <h3>Creating a Table</h3>
+    <p>To create a new table, use the <span class="keyword">CREATE TABLE</span> statement:</p>
+    <pre><code>CREATE TABLE table_name (
+    column1 datatype constraints,
+    column2 datatype constraints,
+    ...
+);</code></pre>
+    <p>Example:</p>
+    <pre><code>CREATE TABLE students (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    email VARCHAR(100) UNIQUE,
+    date_of_birth DATE,
+    enrollment_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);</code></pre>
+
+    <h3>Altering a Table</h3>
+    <p>To modify an existing table, use the <span class="keyword">ALTER TABLE</span> statement:</p>
+    <pre><code>-- Add a column
+ALTER TABLE table_name ADD column_name datatype constraints;
+
+-- Modify a column
+ALTER TABLE table_name MODIFY column_name new_datatype new_constraints;
+
+-- Drop a column
+ALTER TABLE table_name DROP COLUMN column_name;</code></pre>
+    <p>Examples:</p>
+    <pre><code>-- Add a phone number column
+ALTER TABLE students ADD phone_number VARCHAR(20);
+
+-- Change the size of the email column
+ALTER TABLE students MODIFY email VARCHAR(150) UNIQUE;
+
+-- Remove the date_of_birth column
+ALTER TABLE students DROP COLUMN date_of_birth;</code></pre>
+
+    <h3>Dropping a Table</h3>
+    <p>To delete a table, use the <span class="keyword">DROP TABLE</span> statement:</p>
+    <pre><code>DROP TABLE table_name;</code></pre>
+    <p>Example:</p>
+    <pre><code>DROP TABLE old_students;</code></pre>
+
+    <div class="tip">
+        <p><strong>Warning:</strong> The <span class="keyword">DROP TABLE</span> statement permanently deletes the table and all its data. Use it with caution.</p>
+    </div>
+
+    <h2>Data Manipulation</h2>
+    <h3>Inserting Data</h3>
+    <p>To add new records to a table, use the <span class="keyword">INSERT INTO</span> statement:</p>
+    <pre><code>-- Insert a single record
+INSERT INTO table_name (column1, column2, ...) VALUES (value1, value2, ...);
+
+-- Insert multiple records
+INSERT INTO table_name (column1, column2, ...) 
+VALUES 
+    (value1, value2, ...),
+    (value1, value2, ...),
+    ...;</code></pre>
+    <p>Examples:</p>
+    <pre><code>-- Insert a single student
+INSERT INTO students (first_name, last_name, email) 
+VALUES ('John', 'Doe', 'john.doe@example.com');
+
+-- Insert multiple students
+INSERT INTO students (first_name, last_name, email) 
+VALUES 
+    ('Jane', 'Smith', 'jane.smith@example.com'),
+    ('Bob', 'Johnson', 'bob.johnson@example.com'),
+    ('Alice', 'Williams', 'alice.williams@example.com');</code></pre>
+
+    <h3>Selecting Data</h3>
+    <p>To retrieve data from a table, use the <span class="keyword">SELECT</span> statement:</p>
+    <pre><code>-- Select all columns from a table
+SELECT * FROM table_name;
+
+-- Select specific columns
+SELECT column1, column2, ... FROM table_name;
+
+-- Select with a WHERE clause (filtering)
+SELECT column1, column2, ... FROM table_name WHERE condition;
+
+-- Select with sorting
+SELECT column1, column2, ... FROM table_name ORDER BY column_name [ASC|DESC];
+
+-- Select with a limit
+SELECT column1, column2, ... FROM table_name LIMIT number;</code></pre>
+    <p>Examples:</p>
+    <pre><code>-- Select all students
+SELECT * FROM students;
+
+-- Select only names and emails
+SELECT first_name, last_name, email FROM students;
+
+-- Select students with a specific last name
+SELECT * FROM students WHERE last_name = 'Smith';
+
+-- Select students ordered by last name
+SELECT * FROM students ORDER BY last_name ASC;
+
+-- Select the first 5 students
+SELECT * FROM students LIMIT 5;</code></pre>
+
+    <h3>Updating Data</h3>
+    <p>To modify existing records in a table, use the <span class="keyword">UPDATE</span> statement:</p>
+    <pre><code>UPDATE table_name SET column1 = value1, column2 = value2, ... WHERE condition;</code></pre>
+    <p>Example:</p>
+    <pre><code>-- Update a student's email
+UPDATE students SET email = 'new.email@example.com' WHERE id = 1;
+
+-- Update multiple columns
+UPDATE students SET first_name = 'Jonathan', last_name = 'Doeson' WHERE id = 1;</code></pre>
+
+    <div class="tip">
+        <p><strong>Warning:</strong> If you omit the <span class="keyword">WHERE</span> clause in an <span class="keyword">UPDATE</span> statement, all records in the table will be updated. Always use a <span class="keyword">WHERE</span> clause to specify which records to update.</p>
+    </div>
+
+    <h3>Deleting Data</h3>
+    <p>To remove records from a table, use the <span class="keyword">DELETE</span> statement:</p>
+    <pre><code>DELETE FROM table_name WHERE condition;</code></pre>
+    <p>Example:</p>
+    <pre><code>-- Delete a specific student
+DELETE FROM students WHERE id = 1;
+
+-- Delete all students with a specific last name
+DELETE FROM students WHERE last_name = 'Smith';</code></pre>
+
+    <div class="tip">
+        <p><strong>Warning:</strong> If you omit the <span class="keyword">WHERE</span> clause in a <span class="keyword">DELETE</span> statement, all records in the table will be deleted. Always use a <span class="keyword">WHERE</span> clause to specify which records to delete.</p>
+    </div>
+
+    <h2>Filtering Data</h2>
+    <h3>WHERE Clause</h3>
+    <p>The <span class="keyword">WHERE</span> clause is used to filter records based on a condition:</p>
+    <pre><code>SELECT column1, column2, ... FROM table_name WHERE condition;</code></pre>
+    <p>Common operators used in <span class="keyword">WHERE</span> clauses:</p>
+    <table>
+        <tr>
+            <th>Operator</th>
+            <th>Description</th>
+            <th>Example</th>
+        </tr>
+        <tr>
+            <td>=</td>
+            <td>Equal</td>
+            <td>WHERE age = 30</td>
+        </tr>
+        <tr>
+            <td>></td>
+            <td>Greater than</td>
+            <td>WHERE age > 30</td>
+        </tr>
+        <tr>
+            <td><</td>
+            <td>Less than</td>
+            <td>WHERE age < 30</td>
+        </tr>
+        <tr>
+            <td>>=</td>
+            <td>Greater than or equal</td>
+            <td>WHERE age >= 30</td>
+        </tr>
+        <tr>
+            <td><=</td>
+            <td>Less than or equal</td>
+            <td>WHERE age <= 30</td>
+        </tr>
+        <tr>
+            <td><> or !=</td>
+            <td>Not equal</td>
+            <td>WHERE age <> 30</td>
+        </tr>
+        <tr>
+            <td>BETWEEN</td>
+            <td>Between a range</td>
+            <td>WHERE age BETWEEN 20 AND 30</td>
+        </tr>
+        <tr>
+            <td>LIKE</td>
+            <td>Pattern matching</td>
+            <td>WHERE name LIKE 'J%'</td>
+        </tr>
+        <tr>
+            <td>IN</td>
+            <td>Matches any value in a list</td>
+            <td>WHERE country IN ('USA', 'UK', 'Canada')</td>
+        </tr>
+        <tr>
+            <td>IS NULL</td>
+            <td>Is a NULL value</td>
+            <td>WHERE phone IS NULL</td>
+        </tr>
+        <tr>
+            <td>IS NOT NULL</td>
+            <td>Is not a NULL value</td>
+            <td>WHERE phone IS NOT NULL</td>
+        </tr>
+    </table>
+
+    <h3>Logical Operators</h3>
+    <p>Logical operators are used to combine multiple conditions:</p>
+    <table>
+        <tr>
+            <th>Operator</th>
+            <th>Description</th>
+            <th>Example</th>
+        </tr>
+        <tr>
+            <td>AND</td>
+            <td>Returns true if both conditions are true</td>
+            <td>WHERE age > 20 AND country = 'USA'</td>
+        </tr>
+        <tr>
+            <td>OR</td>
+            <td>Returns true if either condition is true</td>
+            <td>WHERE age > 20 OR country = 'USA'</td>
+        </tr>
+        <tr>
+            <td>NOT</td>
+            <td>Returns true if the condition is false</td>
+            <td>WHERE NOT country = 'USA'</td>
+        </tr>
+    </table>
+
+    <h3>Pattern Matching with LIKE</h3>
+    <p>The <span class="keyword">LIKE</span> operator is used for pattern matching with wildcards:</p>
+    <table>
+        <tr>
+            <th>Wildcard</th>
+            <th>Description</th>
+            <th>Example</th>
+        </tr>
+        <tr>
+            <td>%</td>
+            <td>Matches zero or more characters</td>
+            <td>WHERE name LIKE 'J%' (names starting with J)<br>WHERE email LIKE '%@gmail.com' (Gmail addresses)</td>
+        </tr>
+        <tr>
+            <td>_</td>
+            <td>Matches exactly one character</td>
+            <td>WHERE name LIKE 'J_hn' (John, Jahn, etc.)</td>
+        </tr>
+    </table>
+
+    <h2>Sorting and Limiting Results</h2>
+    <h3>ORDER BY Clause</h3>
+    <p>The <span class="keyword">ORDER BY</span> clause is used to sort the result set:</p>
+    <pre><code>-- Sort in ascending order (default)
+SELECT * FROM table_name ORDER BY column_name;
+
+-- Sort in descending order
+SELECT * FROM table_name ORDER BY column_name DESC;
+
+-- Sort by multiple columns
+SELECT * FROM table_name ORDER BY column1 ASC, column2 DESC;</code></pre>
+    <p>Examples:</p>
+    <pre><code>-- Sort students by last name (A to Z)
+SELECT * FROM students ORDER BY last_name;
+
+-- Sort students by enrollment date (newest first)
+SELECT * FROM students ORDER BY enrollment_date DESC;
+
+-- Sort students by last name, then by first name
+SELECT * FROM students ORDER BY last_name, first_name;</code></pre>
+
+    <h3>LIMIT Clause</h3>
+    <p>The <span class="keyword">LIMIT</span> clause is used to restrict the number of records returned:</p>
+    <pre><code>-- Return a limited number of records
+SELECT * FROM table_name LIMIT number;
+
+-- Return a limited number of records with an offset
+SELECT * FROM table_name LIMIT offset, count;  -- MySQL syntax
+SELECT * FROM table_name LIMIT count OFFSET offset;  -- PostgreSQL syntax</code></pre>
+    <p>Examples:</p>
+    <pre><code>-- Get the first 5 students
+SELECT * FROM students LIMIT 5;
+
+-- Get 5 students, starting from the 6th student (MySQL)
+SELECT * FROM students LIMIT 5, 5;
+
+-- Get 5 students, starting from the 6th student (PostgreSQL)
+SELECT * FROM students LIMIT 5 OFFSET 5;</code></pre>
+
+    <h2>Aggregate Functions</h2>
+    <p>Aggregate functions perform calculations on a set of values and return a single value:</p>
+    <table>
+        <tr>
+            <th>Function</th>
+            <th>Description</th>
+            <th>Example</th>
+        </tr>
+        <tr>
+            <td>COUNT()</td>
+            <td>Returns the number of rows</td>
+            <td>SELECT COUNT(*) FROM students;</td>
+        </tr>
+        <tr>
+            <td>SUM()</td>
+            <td>Returns the sum of values</td>
+            <td>SELECT SUM(score) FROM exams;</td>
+        </tr>
+        <tr>
+            <td>AVG()</td>
+            <td>Returns the average of values</td>
+            <td>SELECT AVG(score) FROM exams;</td>
+        </tr>
+        <tr>
+            <td>MIN()</td>
+            <td>Returns the minimum value</td>
+            <td>SELECT MIN(score) FROM exams;</td>
+        </tr>
+        <tr>
+            <td>MAX()</td>
+            <td>Returns the maximum value</td>
+            <td>SELECT MAX(score) FROM exams;</td>
+        </tr>
+    </table>
+
+    <h3>GROUP BY Clause</h3>
+    <p>The <span class="keyword">GROUP BY</span> clause is used with aggregate functions to group the result set by one or more columns:</p>
+    <pre><code>SELECT column1, aggregate_function(column2)
+FROM table_name
+GROUP BY column1;</code></pre>
+    <p>Example:</p>
+    <pre><code>-- Count the number of students by last name
+SELECT last_name, COUNT(*) AS count
+FROM students
+GROUP BY last_name;</code></pre>
+
+    <h3>HAVING Clause</h3>
+    <p>The <span class="keyword">HAVING</span> clause is used to filter groups based on a condition (similar to <span class="keyword">WHERE</span>, but for groups):</p>
+    <pre><code>SELECT column1, aggregate_function(column2)
+FROM table_name
+GROUP BY column1
+HAVING condition;</code></pre>
+    <p>Example:</p>
+    <pre><code>-- Find last names that appear more than once
+SELECT last_name, COUNT(*) AS count
+FROM students
+GROUP BY last_name
+HAVING count > 1;</code></pre>
+
+    <h2>Conclusion</h2>
+    <p>This section covered the basic SQL commands for database and table operations, as well as data manipulation, filtering, sorting, and aggregation. These commands form the foundation of SQL and are used in almost all database operations.</p>
+
+    <div class="tip">
+        <p><strong>Practice Tip:</strong> Try writing SQL queries to create a database, create tables, insert data, and perform various SELECT operations. The best way to learn SQL is through hands-on practice.</p>
+    </div>
+</body>
+</html>

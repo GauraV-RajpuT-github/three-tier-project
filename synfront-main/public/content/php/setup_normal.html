@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP Setup and Environment</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #4F5B93;
+        }
+        pre {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 15px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #8892BF;
+        }
+        .output {
+            background-color: #f1f1f1;
+            border-left: 4px solid #4CAF50;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+        .tip {
+            background-color: #e6f7ff;
+            border-left: 4px solid #1890ff;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Setting Up Your PHP Environment</h1>
+
+    <h2>Introduction to PHP</h2>
+    <p>PHP (PHP: Hypertext Preprocessor) is a widely-used open source server-side scripting language that's especially suited for web development. PHP code is executed on the server, generating HTML that is then sent to the client.</p>
+
+    <h2>Required Software</h2>
+    <p>To start developing with PHP, you'll need the following components:</p>
+    
+    <h3>1. Web Server</h3>
+    <p>PHP works with most web servers, but Apache and Nginx are the most common choices. For development purposes, you can use:</p>
+    <ul>
+        <li><strong>XAMPP</strong>: A free, cross-platform package that includes Apache, MySQL, PHP, and Perl</li>
+        <li><strong>WAMP</strong>: Windows, Apache, MySQL, and PHP package for Windows</li>
+        <li><strong>MAMP</strong>: Mac, Apache, MySQL, and PHP package for macOS</li>
+    </ul>
+
+    <h3>2. PHP Interpreter</h3>
+    <p>The PHP interpreter is included in the packages mentioned above. If you need to install PHP separately, you can download it from the <a href="https://www.php.net/downloads.php" target="_blank">official PHP website</a>.</p>
+
+    <h3>3. Database</h3>
+    <p>Most PHP applications use a database. MySQL or MariaDB are common choices and are included in XAMPP, WAMP, and MAMP.</p>
+
+    <h3>4. Code Editor</h3>
+    <p>A good code editor will make your development experience much better. Some popular choices include:</p>
+    <ul>
+        <li><strong>Visual Studio Code</strong> with PHP extensions</li>
+        <li><strong>PhpStorm</strong> (dedicated PHP IDE)</li>
+        <li><strong>Sublime Text</strong></li>
+        <li><strong>Atom</strong></li>
+    </ul>
+
+    <h2>Installing XAMPP (Recommended for Beginners)</h2>
+    <ol>
+        <li>Download XAMPP from <a href="https://www.apachefriends.org/index.html" target="_blank">https://www.apachefriends.org</a></li>
+        <li>Run the installer and follow the instructions</li>
+        <li>Select the components you want to install (Apache, MySQL, PHP, and phpMyAdmin are recommended)</li>
+        <li>Choose the installation directory (default is fine)</li>
+        <li>Complete the installation</li>
+        <li>Start the XAMPP Control Panel and start the Apache and MySQL services</li>
+    </ol>
+
+    <div class="tip">
+        <p><strong>Tip:</strong> On Windows, you might need to run the XAMPP Control Panel as administrator to avoid permission issues.</p>
+    </div>
+
+    <h2>Verifying Your Installation</h2>
+    <p>To verify that PHP is installed correctly:</p>
+    <ol>
+        <li>Create a file named <code>info.php</code> in your web server's document root (e.g., <code>C:\xampp\htdocs\</code> for XAMPP on Windows)</li>
+        <li>Add the following code to the file:</li>
+    </ol>
+
+    <pre><code>&lt;?php
+phpinfo();
+?&gt;</code></pre>
+
+    <ol start="3">
+        <li>Open a web browser and navigate to <code>http://localhost/info.php</code></li>
+    </ol>
+
+    <p>You should see a page displaying detailed information about your PHP installation.</p>
+
+    <h2>Creating Your First PHP Script</h2>
+    <p>Let's create a simple "Hello, World!" script:</p>
+    <ol>
+        <li>Create a file named <code>hello.php</code> in your web server's document root</li>
+        <li>Add the following code:</li>
+    </ol>
+
+    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;My First PHP Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;
+        &lt;?php
+        echo "Hello, World!";
+        ?&gt;
+    &lt;/h1&gt;
+    &lt;p&gt;The current date and time is: &lt;?php echo date("Y-m-d H:i:s"); ?&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+    <ol start="3">
+        <li>Open a web browser and navigate to <code>http://localhost/hello.php</code></li>
+    </ol>
+
+    <div class="output">
+        <p><strong>Output:</strong></p>
+        <h1>Hello, World!</h1>
+        <p>The current date and time is: 2025-04-14 18:57:00</p>
+    </div>
+
+    <h2>Understanding PHP Syntax Basics</h2>
+    <p>PHP code is enclosed within <code>&lt;?php</code> and <code>?&gt;</code> tags. These tags tell the PHP interpreter to start and stop processing the code as PHP.</p>
+
+    <pre><code>&lt;?php
+// This is a PHP comment
+echo "This is PHP code";  // This outputs text
+// PHP statements end with a semicolon
+?&gt;</code></pre>
+
+    <h2>PHP Configuration</h2>
+    <p>PHP configuration is stored in the <code>php.ini</code> file. Common settings you might want to adjust include:</p>
+    <ul>
+        <li><code>display_errors</code>: Set to "On" during development to see error messages</li>
+        <li><code>error_reporting</code>: Controls which errors are reported</li>
+        <li><code>max_execution_time</code>: Maximum time a script can run</li>
+        <li><code>memory_limit</code>: Maximum memory a script can use</li>
+        <li><code>upload_max_filesize</code>: Maximum file upload size</li>
+    </ul>
+
+    <div class="tip">
+        <p><strong>Tip:</strong> During development, it's helpful to enable error reporting in your PHP scripts:</p>
+        <pre><code>&lt;?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+?&gt;</code></pre>
+    </div>
+
+    <h2>Integrated Development Environments (IDEs)</h2>
+    <p>While a simple text editor works for PHP development, an IDE can significantly improve your productivity with features like:</p>
+    <ul>
+        <li>Syntax highlighting</li>
+        <li>Code completion</li>
+        <li>Error checking</li>
+        <li>Debugging tools</li>
+        <li>Version control integration</li>
+    </ul>
+
+    <p><strong>PhpStorm</strong> is a popular commercial IDE specifically designed for PHP development. <strong>Visual Studio Code</strong> with the PHP extensions is a free alternative that offers many of the same features.</p>
+
+    <h2>Next Steps</h2>
+    <p>Now that you have your PHP environment set up, you're ready to start learning PHP programming. The next topics to explore are:</p>
+    <ul>
+        <li>PHP syntax and basic constructs</li>
+        <li>Variables and data types</li>
+        <li>Control structures (if statements, loops)</li>
+        <li>Functions</li>
+        <li>Working with forms and user input</li>
+        <li>Database connectivity</li>
+    </ul>
+</body>
+</html>

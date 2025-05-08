@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #FF8C00;
+            border-bottom: 2px solid #FFA500;
+            padding-bottom: 10px;
+        }
+
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        li {
+            margin: 10px 0;
+            position: relative;
+        }
+
+        li:before {
+            content: "•";
+            color: #FFA500;
+            font-weight: bold;
+            position: absolute;
+            left: -15px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Setting Up Your Environment</h2>
+
+    <p>To start writing Java code, you need to set up your development environment. Here are the tools you need:</p>
+
+    <ul>
+        <li>Java Development Kit (JDK): The essential software package for Java development that includes the Java Runtime Environment (JRE), compiler, and other tools</li>
+        <li>Integrated Development Environment (IDE): Software that provides comprehensive facilities for Java development</li>
+    </ul>
+
+    <h2>Installing the JDK</h2>
+    <p>Follow these steps to install the JDK:</p>
+
+    <ol>
+        <li>Visit the <a href="https://www.oracle.com/java/technologies/javase-downloads.html" target="_blank">Oracle JDK download page</a> or use <a href="https://adoptopenjdk.net/" target="_blank">AdoptOpenJDK</a> for an open-source alternative</li>
+        <li>Download the latest version of the JDK for your operating system</li>
+        <li>Run the installer and follow the installation instructions</li>
+        <li>Set up the JAVA_HOME environment variable pointing to your JDK installation directory</li>
+        <li>Add the JDK's bin directory to your system's PATH variable</li>
+    </ol>
+
+    <h2>Verifying the Installation</h2>
+    <p>To verify that Java is installed correctly, open a terminal or command prompt and type:</p>
+
+    <pre><code>java -version
+javac -version</code></pre>
+
+    <p>You should see output showing the installed Java version for both commands.</p>
+
+    <h2>Choosing an IDE</h2>
+    <p>Several IDEs are available for Java development:</p>
+
+    <ul>
+        <li>IntelliJ IDEA: A powerful and user-friendly IDE with a free Community Edition</li>
+        <li>Eclipse: A widely used open-source IDE with extensive plugin support</li>
+        <li>NetBeans: A free, open-source IDE that simplifies Java development</li>
+        <li>Visual Studio Code: A lightweight code editor with Java extensions</li>
+    </ul>
+
+    <h2>Your First Java Program</h2>
+    <p>Once your environment is set up, you can write your first Java program:</p>
+
+    <pre><code>public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}</code></pre>
+
+    <p>Save this code in a file named <code>HelloWorld.java</code>. To compile and run the program:</p>
+
+    <pre><code>// Compile the program
+javac HelloWorld.java
+
+// Run the program
+java HelloWorld</code></pre>
+
+    <p>You should see the output: <code>Hello, World!</code></p>
+
+    <h2>Understanding the Hello World Program</h2>
+    <ul>
+        <li><code>public class HelloWorld</code>: Defines a class named HelloWorld. In Java, every application must contain at least one class, and the class name must match the filename.</li>
+        <li><code>public static void main(String[] args)</code>: The main method is the entry point of a Java application. The Java runtime starts execution from this method.</li>
+        <li><code>System.out.println("Hello, World!");</code>: Outputs the text "Hello, World!" to the console.</li>
+    </ul>
+
+    <h2>Key points to remember:</h2>
+    <ul>
+        <li>Java is case-sensitive; <code>HelloWorld</code> and <code>helloworld</code> are different identifiers</li>
+        <li>Every Java application must have a <code>main</code> method as its entry point</li>
+        <li>Java source files must have the <code>.java</code> extension</li>
+        <li>The compiled bytecode files have the <code>.class</code> extension</li>
+        <li>The class name must match the filename (e.g., <code>HelloWorld.java</code> contains a class named <code>HelloWorld</code>)</li>
+    </ul>
+</body>
+
+</html>

@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Control Flow - Bro Mode</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #2b5b84;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #3776ab;
+            font-size: 1.8em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        h3 {
+            color: #4a8cc2;
+            font-size: 1.4em;
+            margin-top: 25px;
+        }
+        p {
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f5f5f5;
+            padding: 3px 6px;
+            border-radius: 3px;
+            font-size: 0.9em;
+            border: 1px solid #e0e0e0;
+        }
+        pre {
+            background-color: #f8f8f8;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            padding: 15px;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        pre code {
+            background-color: transparent;
+            border: none;
+            padding: 0;
+            display: block;
+            line-height: 1.5;
+        }
+        .note {
+            background-color: #e7f3fe;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .bro-tip {
+            background-color: #ffecb3;
+            border-left: 4px solid #ffa000;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+            font-style: italic;
+        }
+        .emoji {
+            font-size: 1.2em;
+            margin-right: 5px;
+        }
+        .example {
+            background-color: #f1f8e9;
+            border-left: 4px solid #8bc34a;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .warning {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .output {
+            background-color: #f0f0f0;
+            border-left: 4px solid #9e9e9e;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>Python Control Flow Samajho 🚦</h1>
+    
+    <p>Bhai, control flow matlab program mein code ka execution flow control karna. Isse hum decide kar sakte hain ki konsa code kab execute hoga. Python mein control flow ke liye conditionals (if-else), loops (for, while), aur exception handling jaisi cheezein use hoti hain. Chalo inhe detail mein samajhte hain!</p>
+
+    <h2>Conditional Statements 🔀</h2>
+    
+    <p>Conditional statements se hum code ko conditions ke basis par execute kar sakte hain. Matlab, agar condition true hai to kuch code chalao, warna kuch aur.</p>
+    
+    <h3>if Statement</h3>
+    <p><code>if</code> statement ka use tab karte hain jab humein koi code sirf tab execute karna ho jab condition true ho.</p>
+    
+    <div class="example">
+        <h4>Example: if Statement</h4>
+        <pre><code>umar = 20
+
+if umar >= 18:
+    print("Aap adult ho.")
+    print("Aap vote de sakte ho.")</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            Aap adult ho.<br>
+            Aap vote de sakte ho.
+        </div>
+    </div>
+    
+    <div class="bro-tip">
+        <span class="emoji">💡</span> <strong>Bro Tip:</strong> Python mein indentation (spaces) bahut important hai! Har <code>if</code> statement ke baad colon <code>:</code> lagao aur uske baad wale code ko indent karo (4 spaces). Indentation se hi Python samajhta hai ki konsa code if block ke andar hai.
+    </div>
+    
+    <h3>if-else Statement</h3>
+    <p><code>if-else</code> statement se hum do options create kar sakte hain - agar condition true hai to kuch karo, warna kuch aur karo.</p>
+    
+    <div class="example">
+        <h4>Example: if-else Statement</h4>
+        <pre><code>umar = 15
+
+if umar >= 18:
+    print("Aap adult ho.")
+    print("Aap vote de sakte ho.")
+else:
+    print("Aap minor ho.")
+    print("Aap abhi vote nahi de sakte.")</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            Aap minor ho.<br>
+            Aap abhi vote nahi de sakte.
+        </div>
+    </div>
+    
+    <h3>if-elif-else Statement</h3>
+    <p><code>if-elif-else</code> statement se hum multiple conditions check kar sakte hain ek ke baad ek.</p>
+    
+    <div class="example">
+        <h4>Example: if-elif-else Statement</h4>
+        <pre><code>marks = 75
+
+if marks >= 90:
+    grade = 'A'
+elif marks >= 80:
+    grade = 'B'
+elif marks >= 70:
+    grade = 'C'
+elif marks >= 60:
+    grade = 'D'
+else:
+    grade = 'F'
+
+print(f"Aapka grade {grade} hai")</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            Aapka grade C hai
+        </div>
+    </div>
+    
+    <div class="bro-tip">
+        <span class="emoji">🔥</span> <strong>Bro Tip:</strong> <code>elif</code> ka matlab "else if" hota hai. Jitne chahe utne <code>elif</code> use kar sakte ho. Python conditions ko upar se neeche check karta hai aur jaise hi koi condition true milti hai, wahi block execute hota hai aur baaki skip ho jate hain.
+    </div>
+    
+    <h3>Nested if Statements</h3>
+    <p>Ek <code>if</code> statement ke andar doosra <code>if</code> statement bhi likh sakte hain. Ise nested if statements kehte hain.</p>
+    
+    <div class="example">
+        <h4>Example: Nested if Statements</h4>
+        <pre><code>umar = 25
+license_hai = True
+
+if umar >= 18:
+    print("Aap driving ke liye old enough ho.")
+    if license_hai:
+        print("Aap legally drive kar sakte ho.")
+    else:
+        print("Pehle license banwao bhai.")
+else:
+    print("Aap driving ke liye too young ho.")</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            Aap driving ke liye old enough ho.<br>
+            Aap legally drive kar sakte ho.
+        </div>
+    </div>
+    
+    <h3>Ternary Operator (One-liner if-else)</h3>
+    <p>Python mein ek line mein if-else likhne ka shortcut hai, jise ternary operator kehte hain.</p>
+    
+    <div class="example">
+        <h4>Example: Ternary Operator</h4>
+        <pre><code>umar = 20
+status = "adult" if umar >= 18 else "minor"
+print(status)
+
+# Yeh same hai:
+# if umar >= 18:
+#     status = "adult"
+# else:
+#     status = "minor"</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            adult
+        </div>
+    </div>
+    
+    <div class="bro-tip">
+        <span class="emoji">👌</span> <strong>Bro Tip:</strong> Ternary operator simple conditions ke liye best hai. Complex logic ke liye normal if-else use karo, warna code confusing ho jayega.
+    </div>
+
+    <h2>Loops (Repetition) 🔄</h2>
+    
+    <p>Loops ka use code ko baar-baar execute karne ke liye karte hain. Python mein do main types ke loops hain: <code>for</code> loops aur <code>while</code> loops.</p>
+    
+    <h3>for Loop</h3>
+    <p><code>for</code> loop ka use kisi sequence (list, tuple, string, range) ke har item par iterate karne ke liye karte hain.</p>
+    
+    <div class="example">
+        <h4>Example: for Loop with a List</h4>
+        <pre><code>fruits = ["apple", "banana", "cherry"]
+
+for fruit in fruits:
+    print(fruit)</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            apple<br>
+            banana<br>
+            cherry
+        </div>
+    </div>
+    
+    <div class="example">
+        <h4>Example: for Loop with range()</h4>
+        <pre><code># range(5) generates numbers from 0 to 4
+for i in range(5):
+    print(i)
+
+# range(start, stop) generates numbers from start to stop-1
+for i in range(2, 6):
+    print(i)
+
+# range(start, stop, step) generates numbers with step
+for i in range(1, 10, 2):  # 1 se start, 10 se pehle tak, har 2 number par
+    print(i)</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            0<br>
+            1<br>
+            2<br>
+            3<br>
+            4<br>
+            2<br>
+            3<br>
+            4<br>
+            5<br>
+            1<br>
+            3<br>
+            5<br>
+            7<br>
+            9
+        </div>
+    </div>
+    
+    <div class="bro-tip">
+        <span class="emoji">🔢</span> <strong>Bro Tip:</strong> <code>range()</code> function bahut useful hai loops mein! Yaad rakho, <code>range(n)</code> 0 se n-1 tak numbers generate karta hai, n include nahi hota.
+    </div>
+    
+    <h3>while Loop</h3>
+    <p><code>while</code> loop tab tak code execute karta hai jab tak condition true hai.</p>
+    
+    <div class="example">
+        <h4>Example: while Loop</h4>
+        <pre><code>count = 0
+
+while count < 5:
+    print(count)
+    count += 1  # Increment karna mat bhoolna!</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            0<br>
+            1<br>
+            2<br>
+            3<br>
+            4
+        </div>
+    </div>
+    
+    <div class="warning">
+        <span class="emoji">⚠️</span> <strong>Warning:</strong> While loop mein condition update karna kabhi mat bhoolna! Agar condition kabhi false nahi hogi to loop hamesha chalte rahega (infinite loop) aur program hang ho jayega.
+    </div>
+    
+    <h3>Loop Control Statements</h3>
+    <p>Python mein loops ko control karne ke liye kuch special statements hain:</p>
+    
+    <h4>break Statement</h4>
+    <p><code>break</code> statement loop ko turant terminate kar deta hai aur control loop ke bahar wale code par chala jata hai.</p>
+    
+    <div class="example">
+        <h4>Example: break Statement</h4>
+        <pre><code>for i in range(10):
+    if i == 5:
+        break  # Loop se bahar nikal jao jab i = 5 ho
+    print(i)</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            0<br>
+            1<br>
+            2<br>
+            3<br>
+            4
+        </div>
+    </div>
+    
+    <div class="bro-tip">
+        <span class="emoji">🚪</span> <strong>Bro Tip:</strong> <code>break</code> ka use tab karo jab aapko specific condition milne par loop se turant bahar nikalna ho. Jaise ki search karte time jab item mil jaye.
+    </div>
+    
+    <h4>continue Statement</h4>
+    <p><code>continue</code> statement current iteration ko skip karke loop ke next iteration par chala jata hai.</p>
+    
+    <div class="example">
+        <h4>Example: continue Statement</h4>
+        <pre><code>for i in range(10):
+    if i % 2 == 0:  # Even numbers ko skip karo
+        continue
+    print(i)</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            1<br>
+            3<br>
+            5<br>
+            7<br>
+            9
+        </div>
+    </div>
+    
+    <div class="bro-tip">
+        <span class="emoji">⏭️</span> <strong>Bro Tip:</strong> <code>continue</code> ka use tab karo jab aapko kuch specific items ko process nahi karna ho, lekin loop chalate rehna ho.
+    </div>
+    
+    <h4>else Clause in Loops</h4>
+    <p>Python mein loops ke saath <code>else</code> clause bhi use kar sakte hain, jo tab execute hota hai jab loop normally complete ho jaye (break se nahi).</p>
+    
+    <div class="example">
+        <h4>Example: else Clause in for Loop</h4>
+        <pre><code># Loop normally complete hota hai, else execute hota hai
+for i in range(5):
+    print(i)
+else:
+    print("Loop normally complete hua")
+
+# Loop break se terminate hota hai, else execute nahi hota
+for i in range(5):
+    if i == 3:
+        break
+    print(i)
+else:
+    print("Yeh print nahi hoga")</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            0<br>
+            1<br>
+            2<br>
+            3<br>
+            4<br>
+            Loop normally complete hua<br>
+            0<br>
+            1<br>
+            2
+        </div>
+    </div>
+    
+    <div class="bro-tip">
+        <span class="emoji">🤔</span> <strong>Bro Tip:</strong> Loop ke saath <code>else</code> thoda confusing lag sakta hai, lekin yeh useful hai jab aapko pata karna ho ki loop normally complete hua ya <code>break</code> se terminate hua.
+    </div>
+    
+    <h3>Nested Loops</h3>
+    <p>Ek loop ke andar doosra loop likh sakte hain. Ise nested loops kehte hain. Inner loop outer loop ke har iteration par poora execute hota hai.</p>
+    
+    <div class="example">
+        <h4>Example: Nested Loops</h4>
+        <pre><code># Multiplication table print karna
+for i in range(1, 4):
+    for j in range(1, 4):
+        print(f"{i} × {j} = {i * j}")
+    print("-----")</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            1 × 1 = 1<br>
+            1 × 2 = 2<br>
+            1 × 3 = 3<br>
+            -----<br>
+            2 × 1 = 2<br>
+            2 × 2 = 4<br>
+            2 × 3 = 6<br>
+            -----<br>
+            3 × 1 = 3<br>
+            3 × 2 = 6<br>
+            3 × 3 = 9<br>
+            -----
+        </div>
+    </div>
+    
+    <div class="bro-tip">
+        <span class="emoji">⏱️</span> <strong>Bro Tip:</strong> Nested loops powerful hain, lekin inse program slow bhi ho sakta hai. 3 se zyada nested loops use karne se pehle sochna ki koi better approach hai ya nahi.
+    </div>
+    
+    <h3>Pro Loop Techniques</h3>
+    <p>Python mein loops ko aur powerful banane ke liye kuch special functions hain:</p>
+    
+    <h4>enumerate()</h4>
+    <p><code>enumerate()</code> function iterable ke items ke saath unka index bhi provide karta hai.</p>
+    
+    <div class="example">
+        <h4>Example: enumerate()</h4>
+        <pre><code>fruits = ["apple", "banana", "cherry"]
+
+for index, fruit in enumerate(fruits):
+    print(f"{index}: {fruit}")</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            0: apple<br>
+            1: banana<br>
+            2: cherry
+        </div>
+    </div>
+    
+    <h4>zip()</h4>
+    <p><code>zip()</code> function multiple lists ko parallel iterate karne ke liye use hota hai.</p>
+    
+    <div class="example">
+        <h4>Example: zip()</h4>
+        <pre><code>names = ["Rahul", "Priya", "Amit"]
+ages = [25, 22, 28]
+
+for name, age in zip(names, ages):
+    print(f"{name} ki age {age} hai")</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            Rahul ki age 25 hai<br>
+            Priya ki age 22 hai<br>
+            Amit ki age 28 hai
+        </div>
+    </div>
+    
+    <div class="bro-tip">
+        <span class="emoji">🔗</span> <strong>Bro Tip:</strong> <code>zip()</code> function related data ko combine karne ke liye perfect hai. Lekin dhyan rahe, agar lists ki length different hai to shortest list ke hisaab se zip hoga.
+    </div>
+    
+    <h4>List Comprehensions</h4>
+    <p>List comprehensions ek line mein list create karne ka shortcut hai.</p>
+    
+    <div class="example">
+        <h4>Example: List Comprehensions</h4>
+        <pre><code># Squares ki list banao
+squares = [x**2 for x in range(1, 6)]
+print(squares)
+
+# Even numbers ki list banao
+evens = [x for x in range(10) if x % 2 == 0]
+print(evens)
+
+# Nested list comprehension
+matrix = [[i*j for j in range(1, 4)] for i in range(1, 4)]
+print(matrix)</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            [1, 4, 9, 16, 25]<br>
+            [0, 2, 4, 6, 8]<br>
+            [[1, 2, 3], [2, 4, 6], [3, 6, 9]]
+        </div>
+    </div>
+    
+    <div class="bro-tip">
+        <span class="emoji">🚀</span> <strong>Bro Tip:</strong> List comprehensions normal for loops se faster hote hain aur code bhi compact ho jata hai. Lekin zyada complex logic ke liye normal for loop hi use karo, warna code readable nahi rahega.
+    </div>
+
+    <h2>Exception Handling 🛡️</h2>
+    
+    <p>Exception handling se hum errors ko gracefully handle kar sakte hain, taki program crash na ho.</p>
+    
+    <h3>try-except Statement</h3>
+    <p><code>try-except</code> statement ka use potential errors wale code ko handle karne ke liye karte hain.</p>
+    
+    <div class="example">
+        <h4>Example: Basic try-except</h4>
+        <pre><code>try:
+    # Code jisme error ho sakta hai
+    num = int(input("Ek number daalo: "))
+    result = 10 / num
+    print(f"10 / {num} = {result}")
+except:
+    # Error handle karne ke liye code
+    print("Kuch gadbad ho gayi!")</code></pre>
+    </div>
+    
+    <h3>Specific Exceptions Handle Karna</h3>
+    <p>Alag-alag types ke errors ko alag tarah se handle kar sakte hain.</p>
+    
+    <div class="example">
+        <h4>Example: Handling Specific Exceptions</h4>
+        <pre><code>try:
+    num = int(input("Ek number daalo: "))
+    result = 10 / num
+    print(f"10 / {num} = {result}")
+except ValueError:
+    print("Bhai number daal, text nahi!")
+except ZeroDivisionError:
+    print("Zero se divide nahi kar sakte!")
+except:
+    print("Koi aur error ho gaya!")</code></pre>
+    </div>
+    
+    <div class="bro-tip">
+        <span class="emoji">🛡️</span> <strong>Bro Tip:</strong> Specific exceptions handle karna better hai than general <code>except</code> block use karna. Isse aapko pata chalta hai ki exactly kya error hua aur usko specifically handle kar sakte ho.
+    </div>
+    
+    <h3>try-except-else-finally Statement</h3>
+    <p><code>try-except</code> ke saath optional <code>else</code> aur <code>finally</code> clauses bhi use kar sakte hain:</p>
+    <ul>
+        <li><code>else</code> tab execute hota hai jab <code>try</code> block mein koi error nahi hota.</li>
+        <li><code>finally</code> hamesha execute hota hai, chahe error ho ya na ho.</li>
+    </ul>
+    
+    <div class="example">
+        <h4>Example: try-except-else-finally</h4>
+        <pre><code>try:
+    num = int(input("Ek number daalo: "))
+    result = 10 / num
+except ValueError:
+    print("Bhai number daal, text nahi!")
+except ZeroDivisionError:
+    print("Zero se divide nahi kar sakte!")
+else:
+    # Yeh tab execute hota hai jab koi error nahi hota
+    print(f"10 / {num} = {result}")
+finally:
+    # Yeh hamesha execute hota hai
+    print("Program khatam!")</code></pre>
+    </div>
+    
+    <div class="bro-tip">
+        <span class="emoji">🧹</span> <strong>Bro Tip:</strong> <code>finally</code> block ka use resources clean up karne ke liye karo, jaise files close karna ya database connections band karna. Yeh guarantee deta hai ki cleanup code hamesha run hoga, chahe error ho ya na ho.
+    </div>
+    
+    <h3>Raising Exceptions</h3>
+    <p>Khud se bhi exceptions raise kar sakte hain <code>raise</code> statement se.</p>
+    
+    <div class="example">
+        <h4>Example: Raising Exceptions</h4>
+        <pre><code>def validate_age(age):
+    if age < 0:
+        raise ValueError("Age negative nahi ho sakti")
+    if age > 120:
+        raise ValueError("Itni badi age? Jhoot mat bolo!")
+    return age
+
+try:
+    user_age = int(input("Apni age batao: "))
+    validated_age = validate_age(user_age)
+    print(f"Aapki age {validated_age} hai")
+except ValueError as e:
+    print(f"Error: {e}")</code></pre>
+    </div>
+    
+    <div class="bro-tip">
+        <span class="emoji">🚨</span> <strong>Bro Tip:</strong> <code>raise</code> ka use tab karo jab aapko pata ho ki current situation mein program aage nahi badh sakta. User ko clear error message do taki woh samajh sake ki kya problem hai.
+    </div>
+
+    <h2>with Statement (Context Managers) 🔒</h2>
+    
+    <p><code>with</code> statement ka use resources (jaise files) ko automatically manage karne ke liye karte hain, taki unhe manually close karna na pade.</p>
+    
+    <div class="example">
+        <h4>Example: File Handling with Context Manager</h4>
+        <pre><code># Without context manager
+file = open("example.txt", "w")
+try:
+    file.write("Hello, World!")
+finally:
+    file.close()
+
+# With context manager (much better!)
+with open("example.txt", "w") as file:
+    file.write("Hello, World!")
+# File automatically close ho jayegi</code></pre>
+    </div>
+    
+    <div class="bro-tip">
+        <span class="emoji">🔐</span> <strong>Bro Tip:</strong> Hamesha <code>with</code> statement use karo file operations ke liye. Isse file automatically close ho jayegi, chahe code normally execute ho ya error aaye. Resource leaks se bachne ka best tarika hai yeh!
+    </div>
+
+    <h2>Conclusion 🏁</h2>
+    
+    <p>Bhai, ab tumne Python ke control flow ko master kar liya hai! Conditionals, loops, aur exception handling - yeh sab programming ki backbone hain. Inke bina complex programs banana impossible hai.</p>
+    
+    <div class="note">
+        <strong>Next Steps:</strong> Ab hum Functions ke baare mein seekhenge, jisse code ko reusable blocks mein organize kar sakte hain. Get ready for some serious coding! 🚀
+    </div>
+    
+    <div class="bro-tip">
+        <span class="emoji">💯</span> <strong>Final Bro Tip:</strong> Control flow concepts ko achhe se practice karo. Chote-chote programs banao jo if-else, loops, aur exception handling use karte hon. Real mastery practice se hi aati hai!
+    </div>
+</body>
+</html>

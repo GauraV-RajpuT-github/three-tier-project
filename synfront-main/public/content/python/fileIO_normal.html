@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python File I/O Operations</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        pre {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 15px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #e83e8c;
+        }
+        .output {
+            background-color: #f1f1f1;
+            border-left: 4px solid #4CAF50;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+        .tip {
+            background-color: #e6f7ff;
+            border-left: 4px solid #1890ff;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Python File I/O Operations</h1>
+
+    <h2>Introduction to File I/O</h2>
+    <p>File Input/Output (I/O) operations allow you to read from and write to files on your computer. Python provides built-in functions and methods to handle file operations efficiently.</p>
+    
+    <h3>Why File I/O is Important:</h3>
+    <ul>
+        <li>Persistent data storage</li>
+        <li>Processing large datasets</li>
+        <li>Configuration management</li>
+        <li>Log file handling</li>
+        <li>Data exchange between programs</li>
+    </ul>
+
+    <h2>Opening and Closing Files</h2>
+    <p>The <code>open()</code> function is used to open files in Python. It returns a file object that provides methods for reading and writing.</p>
+    
+    <pre><code># Basic syntax
+file = open('filename.txt', 'mode')
+# Operations on the file
+file.close()  # Always close files when done
+
+# Better approach using context manager (with statement)
+with open('filename.txt', 'mode') as file:
+    # Operations on the file
+    pass  # File is automatically closed when the block ends</code></pre>
+
+    <h3>File Opening Modes:</h3>
+    <ul>
+        <li><code>'r'</code>: Read (default) - opens file for reading</li>
+        <li><code>'w'</code>: Write - opens file for writing (creates new file or truncates existing file)</li>
+        <li><code>'a'</code>: Append - opens file for appending (writes to end of file)</li>
+        <li><code>'x'</code>: Exclusive creation - creates a new file, fails if file already exists</li>
+        <li><code>'b'</code>: Binary mode - add to mode for binary files (e.g., 'rb', 'wb')</li>
+        <li><code>'t'</code>: Text mode (default) - add to mode for text files</li>
+        <li><code>'+'</code>: Update mode - allows reading and writing to the same file</li>
+    </ul>
+
+    <div class="tip">
+        <p><strong>Best Practice:</strong> Always use the <code>with</code> statement when working with files. It ensures that files are properly closed, even if an exception occurs.</p>
+    </div>
+
+    <h2>Reading from Files</h2>
+    <p>Python provides several methods to read data from files:</p>
+    
+    <h3>Reading the Entire File:</h3>
+    <pre><code># Read entire file as a single string
+with open('example.txt', 'r') as file:
+    content = file.read()
+    print(content)
+
+# Read entire file as a list of lines
+with open('example.txt', 'r') as file:
+    lines = file.readlines()
+    for line in lines:
+        print(line.strip())  # strip() removes the newline character</code></pre>
+
+    <h3>Reading Line by Line:</h3>
+    <pre><code># Method 1: Using readline()
+with open('example.txt', 'r') as file:
+    line = file.readline()
+    while line:
+        print(line.strip())
+        line = file.readline()
+
+# Method 2: Iterating over the file object (more efficient)
+with open('example.txt', 'r') as file:
+    for line in file:
+        print(line.strip())</code></pre>
+
+    <h3>Reading Specific Amount of Data:</h3>
+    <pre><code>with open('example.txt', 'r') as file:
+    # Read first 10 characters
+    chunk = file.read(10)
+    print(chunk)</code></pre>
+
+    <h2>Writing to Files</h2>
+    <p>Python provides methods to write data to files:</p>
+    
+    <h3>Writing Text:</h3>
+    <pre><code># Write a string to a file (creates new file or overwrites existing)
+with open('output.txt', 'w') as file:
+    file.write('Hello, World!\n')
+    file.write('This is a new line.')
+
+# Append to an existing file
+with open('output.txt', 'a') as file:
+    file.write('\nThis line is appended.')</code></pre>
+
+    <h3>Writing Multiple Lines:</h3>
+    <pre><code>lines = ['First line', 'Second line', 'Third line']
+
+# Method 1: Using write()
+with open('output.txt', 'w') as file:
+    for line in lines:
+        file.write(line + '\n')
+
+# Method 2: Using writelines()
+with open('output.txt', 'w') as file:
+    # Add newline characters to each string
+    file.writelines(line + '\n' for line in lines)</code></pre>
+
+    <h2>File Positions</h2>
+    <p>You can control the position of the file pointer using <code>seek()</code> and <code>tell()</code> methods:</p>
+    
+    <pre><code>with open('example.txt', 'r') as file:
+    # Get current position
+    position = file.tell()
+    print(f"Current position: {position}")
+    
+    # Read first 5 characters
+    content = file.read(5)
+    print(f"Read: {content}")
+    
+    # Get new position
+    position = file.tell()
+    print(f"New position: {position}")
+    
+    # Move to the beginning of the file
+    file.seek(0)
+    print(f"After seek(0): {file.tell()}")
+    
+    # Move to the 10th byte in the file
+    file.seek(10)
+    print(f"After seek(10): {file.tell()}")</code></pre>
+
+    <h2>Working with Binary Files</h2>
+    <p>Binary files contain non-text data such as images, audio, or compiled programs. Use binary mode ('b') when working with these files:</p>
+    
+    <pre><code># Reading a binary file (e.g., an image)
+with open('image.jpg', 'rb') as file:
+    binary_data = file.read()
+    print(f"File size: {len(binary_data)} bytes")
+
+# Writing to a binary file
+with open('copy.jpg', 'wb') as file:
+    file.write(binary_data)</code></pre>
+
+    <h2>File and Directory Management</h2>
+    <p>Python's <code>os</code> and <code>shutil</code> modules provide functions for file and directory operations:</p>
+    
+    <pre><code>import os
+import shutil
+
+# Check if a file exists
+if os.path.exists('example.txt'):
+    print('File exists')
+
+# Get file information
+if os.path.isfile('example.txt'):
+    size = os.path.getsize('example.txt')
+    print(f"File size: {size} bytes")
+    print(f"Last modified: {os.path.getmtime('example.txt')}")
+
+# Create a directory
+os.makedirs('new_directory', exist_ok=True)
+
+# List files in a directory
+files = os.listdir('.')
+print(files)
+
+# Rename a file
+os.rename('old_name.txt', 'new_name.txt')
+
+# Delete a file
+os.remove('file_to_delete.txt')
+
+# Copy a file
+shutil.copy('source.txt', 'destination.txt')
+
+# Move a file
+shutil.move('source.txt', 'new_location/source.txt')
+
+# Delete a directory and its contents
+shutil.rmtree('directory_to_delete')</code></pre>
+
+    <h2>Working with CSV Files</h2>
+    <p>CSV (Comma-Separated Values) is a common format for storing tabular data. Python's <code>csv</code> module makes it easy to work with CSV files:</p>
+    
+    <pre><code>import csv
+
+# Reading a CSV file
+with open('data.csv', 'r', newline='') as file:
+    csv_reader = csv.reader(file)
+    # Skip header row
+    header = next(csv_reader)
+    print(f"Headers: {header}")
+    
+    # Read data rows
+    for row in csv_reader:
+        print(row)
+
+# Writing to a CSV file
+data = [
+    ['Name', 'Age', 'Country'],
+    ['Alice', 28, 'USA'],
+    ['Bob', 32, 'Canada'],
+    ['Charlie', 25, 'UK']
+]
+
+with open('output.csv', 'w', newline='') as file:
+    csv_writer = csv.writer(file)
+    # Write multiple rows at once
+    csv_writer.writerows(data)</code></pre>
+
+    <h2>Working with JSON Files</h2>
+    <p>JSON (JavaScript Object Notation) is a lightweight data interchange format. Python's <code>json</code> module provides functions to encode and decode JSON data:</p>
+    
+    <pre><code>import json
+
+# Python dictionary
+data = {
+    'name': 'John',
+    'age': 30,
+    'city': 'New York',
+    'languages': ['Python', 'JavaScript', 'C++'],
+    'is_programmer': True
+}
+
+# Writing JSON to a file
+with open('data.json', 'w') as file:
+    json.dump(data, file, indent=4)  # indent for pretty formatting
+
+# Reading JSON from a file
+with open('data.json', 'r') as file:
+    loaded_data = json.load(file)
+    print(loaded_data)</code></pre>
+
+    <h2>File I/O with Context Managers</h2>
+    <p>You can create your own context managers for custom file handling:</p>
+    
+    <pre><code>class MyFileHandler:
+    def __init__(self, filename, mode):
+        self.filename = filename
+        self.mode = mode
+        self.file = None
+    
+    def __enter__(self):
+        self.file = open(self.filename, self.mode)
+        return self.file
+    
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        if self.file:
+            self.file.close()
+        # Return False to propagate exceptions, True to suppress them
+        return False
+
+# Using the custom context manager
+with MyFileHandler('example.txt', 'r') as file:
+    content = file.read()
+    print(content)</code></pre>
+
+    <div class="tip">
+        <p><strong>Security Note:</strong> Be careful when working with files in production environments. Always validate file paths and handle exceptions properly to prevent security vulnerabilities like path traversal attacks.</p>
+    </div>
+</body>
+</html>

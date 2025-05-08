@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Object-Oriented Programming - Bro Mode</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        pre {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 15px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #e83e8c;
+        }
+        .output {
+            background-color: #f1f1f1;
+            border-left: 4px solid #4CAF50;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+        .tip {
+            background-color: #e6f7ff;
+            border-left: 4px solid #1890ff;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Object-Oriented Programming in Python - Bro Mode 😎</h1>
+
+    <h2>OOP Kya Hai? 🤔</h2>
+    <p>Bro, OOP matlab Object-Oriented Programming! Ye programming ka ek style hai jisme hum sab kuch "objects" ke form mein sochte hai. Real life ki tarah - har cheez ek object hai with properties and behaviors!</p>
+    
+    <h3>OOP ke main concepts:</h3>
+    <ul>
+        <li><strong>Classes:</strong> Objects banane ke liye blueprints</li>
+        <li><strong>Objects:</strong> Classes ke instances</li>
+        <li><strong>Attributes:</strong> Object ki properties</li>
+        <li><strong>Methods:</strong> Object ke functions</li>
+        <li><strong>Inheritance:</strong> Parent class se properties lena</li>
+        <li><strong>Encapsulation:</strong> Data ko secure rakhna</li>
+        <li><strong>Polymorphism:</strong> Ek hi method, different behaviors</li>
+    </ul>
+
+    <h2>Class aur Object Kaise Banate Hai? 🏗️</h2>
+    <p>Bro, class banane ke liye <code>class</code> keyword use karte hai:</p>
+    
+    <pre><code>class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+    
+    def introduce(self):
+        return f"Yo! Main {self.name} hun, {self.age} saal ka!"
+
+# Object banaya
+dost = Person("Rahul", 25)
+print(dost.introduce())</code></pre>
+    
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Yo! Main Rahul hun, 25 saal ka!</p>
+    </div>
+
+    <h3><code>__init__</code> Method Kya Hai?</h3>
+    <p>Bro, <code>__init__</code> constructor hai - jab bhi new object banate hai, ye automatically call hota hai. Isme hum object ki initial properties set karte hai.</p>
+
+    <h3><code>self</code> Parameter Kya Hai?</h3>
+    <p>Bro, <code>self</code> matlab "khud" - ye object ko refer karta hai. Isse hum object ke variables aur methods access kar sakte hai.</p>
+
+    <h2>Class Variables vs. Instance Variables 🔄</h2>
+    <pre><code>class Student:
+    # Class variable - sabke liye same
+    school = "Coding Wala School"
+    
+    def __init__(self, name, grade):
+        # Instance variables - har student ke liye alag
+        self.name = name
+        self.grade = grade
+
+topper = Student("Riya", "A+")
+backbencher = Student("Vicky", "C")
+
+print(topper.school)      # Class variable
+print(backbencher.school)
+print(topper.name)        # Instance variable
+print(backbencher.name)</code></pre>
+    
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Coding Wala School<br>
+        Coding Wala School<br>
+        Riya<br>
+        Vicky</p>
+    </div>
+
+    <h2>Inheritance - Baap Ka Maal Beta Ka 😂</h2>
+    <p>Bro, inheritance matlab parent class se properties aur methods inherit karna:</p>
+    
+    <pre><code>class Animal:
+    def __init__(self, species):
+        self.species = species
+    
+    def sound(self):
+        print("Koi awaaz")
+
+class Dog(Animal):
+    def __init__(self, name):
+        # Parent class ko call kiya
+        super().__init__("Kutta")
+        self.name = name
+    
+    # Parent method ko override kiya
+    def sound(self):
+        print("Bhow Bhow!")
+
+tommy = Dog("Tommy")
+print(f"{tommy.name} ek {tommy.species} hai")
+tommy.sound()</code></pre>
+    
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Tommy ek Kutta hai<br>
+        Bhow Bhow!</p>
+    </div>
+
+    <h2>Multiple Inheritance - Double Dhamaka! 💥</h2>
+    <p>Bro, Python mein ek child class multiple parents se inherit kar sakta hai:</p>
+    
+    <pre><code>class Flyable:
+    def fly(self):
+        print("Udaan bharta hun!")
+
+class Swimmable:
+    def swim(self):
+        print("Tairta hun!")
+
+class Duck(Flyable, Swimmable):
+    def quack(self):
+        print("Quack Quack!")
+
+donald = Duck()
+donald.fly()    # Flyable se
+donald.swim()   # Swimmable se
+donald.quack()  # Khud ka</code></pre>
+    
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Udaan bharta hun!<br>
+        Tairta hun!<br>
+        Quack Quack!</p>
+    </div>
+
+    <h2>Encapsulation - Data Ko Safe Rakhna 🔒</h2>
+    <p>Bro, encapsulation matlab data ko private rakhna. Python mein naming conventions se hota hai:</p>
+    
+    <pre><code>class BankAccount:
+    def __init__(self, owner, balance=0):
+        self.owner = owner        # Public - koi bhi access kar sakta hai
+        self._balance = balance   # Protected - sirf warning hai
+        self.__id = 12345         # Private - bahar se access nahi kar sakte
+    
+    def deposit(self, amount):
+        self._balance += amount
+        return self._balance
+    
+    def get_balance(self):
+        return self._balance
+
+account = BankAccount("Raj")
+account.deposit(5000)
+print(f"Balance: ₹{account.get_balance()}")
+# print(account.__id)  # Error aayega!</code></pre>
+    
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Balance: ₹5000</p>
+    </div>
+
+    <h2>Polymorphism - Ek Cheez, Alag Alag Behavior 🦎</h2>
+    <p>Bro, polymorphism matlab different classes ke objects ko same tarike se use karna:</p>
+    
+    <pre><code>class Shape:
+    def area(self):
+        pass
+
+class Rectangle(Shape):
+    def __init__(self, length, width):
+        self.length = length
+        self.width = width
+    
+    def area(self):
+        return self.length * self.width
+
+class Circle(Shape):
+    def __init__(self, radius):
+        self.radius = radius
+    
+    def area(self):
+        return 3.14 * self.radius * self.radius
+
+shapes = [Rectangle(5, 4), Circle(7)]
+for shape in shapes:
+    print(f"Area: {shape.area()}")</code></pre>
+    
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Area: 20<br>
+        Area: 153.86</p>
+    </div>
+
+    <h2>Special Methods - Dunder Methods 🔮</h2>
+    <p>Bro, Python mein special methods hote hai jo double underscore se start aur end hote hai:</p>
+    
+    <pre><code>class Book:
+    def __init__(self, title, author, pages):
+        self.title = title
+        self.author = author
+        self.pages = pages
+    
+    def __str__(self):
+        return f"{self.title} by {self.author}"
+    
+    def __len__(self):
+        return self.pages
+    
+    def __del__(self):
+        print(f"Book {self.title} delete ho gaya!")
+
+book = Book("Python Seekho", "Raj Kumar", 200)
+print(book)          # __str__ call hoga
+print(len(book))     # __len__ call hoga
+del book             # __del__ call hoga</code></pre>
+    
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Python Seekho by Raj Kumar<br>
+        200<br>
+        Book Python Seekho delete ho gaya!</p>
+    </div>
+
+    <div class="tip">
+        <p><strong>Pro Tip:</strong> Bro, inheritance se better hai composition use karna - matlab dusre objects ko as attributes rakhna. Isse code flexible rehta hai!</p>
+    </div>
+
+    <h2>Property Decorators - Getters aur Setters 🎀</h2>
+    <p>Bro, Python mein property decorators se getters aur setters implement kar sakte hai:</p>
+    
+    <pre><code>class Temperature:
+    def __init__(self, celsius=0):
+        self._celsius = celsius
+    
+    @property
+    def celsius(self):
+        return self._celsius
+    
+    @celsius.setter
+    def celsius(self, value):
+        if value < -273.15:
+            raise ValueError("Bhai, absolute zero se neeche temperature nahi ho sakta!")
+        self._celsius = value
+    
+    @property
+    def fahrenheit(self):
+        return self._celsius * 9/5 + 32
+    
+    @fahrenheit.setter
+    def fahrenheit(self, value):
+        self.celsius = (value - 32) * 5/9
+
+temp = Temperature(25)
+print(f"{temp.celsius}°C = {temp.fahrenheit}°F")
+temp.fahrenheit = 68
+print(f"{temp.celsius}°C = {temp.fahrenheit}°F")</code></pre>
+    
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        25°C = 77.0°F<br>
+        20.0°C = 68.0°F</p>
+    </div>
+
+    <h2>Conclusion 🏁</h2>
+    <p>Bro, OOP ek powerful concept hai! Classes aur objects se code organize karna, reuse karna, aur real-world problems solve karna easy ho jata hai. Ab tum bhi pro programmer ban sakte ho! 🚀</p>
+</body>
+</html>

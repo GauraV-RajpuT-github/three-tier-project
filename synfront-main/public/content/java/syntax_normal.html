@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #FF8C00;
+            border-bottom: 2px solid #FFA500;
+            padding-bottom: 10px;
+        }
+
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        li {
+            margin: 10px 0;
+            position: relative;
+        }
+
+        li:before {
+            content: "•";
+            color: #FFA500;
+            font-weight: bold;
+            position: absolute;
+            left: -15px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Basic Syntax and Structure</h2>
+
+    <p>Java programs follow a specific structure and syntax. Understanding these fundamentals is essential for writing correct code.</p>
+
+    <h2>Program Structure</h2>
+    <p>A basic Java program consists of:</p>
+
+    <pre><code>// This is a simple Java program
+
+public class HelloWorld {
+    public static void main(String[] args) {
+        // Your code goes here
+        System.out.println("Hello, World!");
+    }
+}</code></pre>
+
+    <p>Let's break down the components:</p>
+    <ul>
+        <li><code>public class HelloWorld</code>: Defines a class named HelloWorld. The class name must match the filename (HelloWorld.java).</li>
+        <li><code>public static void main(String[] args)</code>: The main method, which is the entry point of the program. The Java Virtual Machine (JVM) calls this method when the program starts.</li>
+        <li><code>System.out.println("Hello, World!");</code>: Outputs text to the console.</li>
+    </ul>
+
+    <h2>Comments</h2>
+    <p>Comments are used to explain code and are ignored by the compiler:</p>
+
+    <pre><code>// This is a single-line comment
+
+/* This is a
+   multi-line comment */
+
+/**
+ * This is a documentation comment (Javadoc)
+ * Used to generate documentation for your code
+ */</code></pre>
+
+    <h2>Statements and Semicolons</h2>
+    <p>In Java, statements are terminated with semicolons:</p>
+
+    <pre><code>int x = 5;  // Declaration statement
+System.out.println(x);  // Output statement
+x = x + 1;  // Assignment statement</code></pre>
+
+    <h2>Blocks of Code</h2>
+    <p>Blocks are defined using curly braces and group multiple statements:</p>
+
+    <pre><code>if (x > 0) {
+    System.out.println("Positive");
+    x = 0;
+}</code></pre>
+
+    <h2>Identifiers</h2>
+    <p>Identifiers are names used for classes, variables, and methods:</p>
+    <ul>
+        <li>Must begin with a letter, underscore (_), or dollar sign ($)</li>
+        <li>Subsequent characters can be letters, digits, underscores, or dollar signs</li>
+        <li>Cannot use Java reserved keywords</li>
+        <li>Case-sensitive (age, Age, and AGE are different identifiers)</li>
+    </ul>
+
+    <h2>Naming Conventions</h2>
+    <p>Java follows specific naming conventions:</p>
+    <ul>
+        <li>Classes: Start with uppercase letter, use CamelCase (e.g., <code>HelloWorld</code>)</li>
+        <li>Methods and variables: Start with lowercase letter, use camelCase (e.g., <code>firstName</code>)</li>
+        <li>Constants: All uppercase with underscores (e.g., <code>MAX_VALUE</code>)</li>
+        <li>Packages: All lowercase, use reverse domain name convention (e.g., <code>com.example.project</code>)</li>
+    </ul>
+
+    <h2>Package Declaration</h2>
+    <p>Packages are used to organize classes and avoid naming conflicts:</p>
+
+    <pre><code>package com.example.myproject;
+
+public class MyClass {
+    // Class content
+}</code></pre>
+
+    <h2>Import Statements</h2>
+    <p>Import statements allow you to use classes from other packages:</p>
+
+    <pre><code>import java.util.ArrayList;
+import java.util.Scanner;
+// Or import all classes from a package
+import java.util.*;</code></pre>
+
+    <h2>Key points to remember:</h2>
+    <ul>
+        <li>Java is case-sensitive</li>
+        <li>Class names should match file names</li>
+        <li>Every Java application must have a <code>main</code> method</li>
+        <li>Statements end with semicolons</li>
+        <li>Code blocks are enclosed in curly braces {}</li>
+        <li>Follow Java naming conventions for readability</li>
+        <li>Use packages to organize your code</li>
+        <li>Import statements should be placed after the package declaration and before the class declaration</li>
+    </ul>
+</body>
+
+</html>

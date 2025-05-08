@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .content-container {
+            font-family: 'Comic Sans MS', cursive;
+            line-height: 1.6;
+            color: #333;
+            padding: 0 30px;
+        }
+
+        .content-container h2 {
+            color: #333;
+            font-size: 28px;
+            margin: 30px 0;
+            padding-bottom: 10px;
+            border-bottom: none;
+            text-shadow: 1px 1px 2px rgba(255, 140, 0, 0.2);
+        }
+
+        .content-container h3 {
+            color: #FF8C00;
+            font-size: 22px;
+            margin: 25px 0 15px 0;
+        }
+
+        .content-container pre {
+            background-color: #fff8f0;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 25px 0;
+            border: 2px solid #FFD700;
+            box-shadow: 0 2px 4px rgba(255, 140, 0, 0.1);
+            font-size: 15px;
+        }
+
+        .content-container code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #FF4500;
+        }
+
+        .content-container ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 25px 0;
+        }
+
+        .content-container li {
+            margin: 15px 0;
+            position: relative;
+            padding-left: 25px;
+            font-size: 16px;
+        }
+
+        .content-container li:before {
+            content: "🔥";
+            position: absolute;
+            left: 0;
+        }
+
+        .content-container p {
+            margin: 20px 0;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .content-container code {
+            background-color: #fff8f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content-container">
+        <h2>Object-Oriented Programming - Mast Cheez Hai Bhai! 🚀</h2>
+
+        <p>Bhai, OOP matlab Object-Oriented Programming ek aisa tarika hai jisme hum code ko objects ke form mein organize karte hain! Bilkul duniya ki tarah - har cheez ek object hai! 🌍</p>
+
+        <h2>Classes aur Objects - Blueprint aur Usse Bani Cheezein! 📝</h2>
+        <p>Class matlab blueprint hai, aur object us blueprint se bani cheez! Jaise building ka blueprint vs actual building!</p>
+
+        <pre><code>// Class definition - Blueprint banaya
+class Car {
+private:
+    // Data members (attributes) - Car ki properties
+    string brand;
+    string model;
+    int year;
+
+public:
+    // Constructor - Car banane ka tarika
+    Car(string b, string m, int y) {
+        brand = b;
+        model = m;
+        year = y;
+    }
+
+    // Member functions (methods) - Car kya kar sakti hai
+    void displayInfo() {
+        cout << year << " " << brand << " " << model << endl;
+    }
+
+    void accelerate() {
+        cout << "The " << brand << " " << model << " is accelerating!" << endl;
+    }
+};
+
+// Creating objects - Actual cars bana li
+Car myCar("Toyota", "Corolla", 2020);  // Meri car
+Car yourCar("Honda", "Civic", 2019);   // Teri car
+
+// Using objects - Cars ko use kiya
+myCar.displayInfo();  // Output: 2020 Toyota Corolla
+yourCar.accelerate();  // Output: The Honda Civic is accelerating!</code></pre>
+
+        <h2>Encapsulation - Data ko Secure Rakho! 🔒</h2>
+        <p>Encapsulation matlab data aur methods ko ek unit mein band karke kuch data ko private rakhna! Bilkul bank locker ki tarah - sirf authorized functions access kar sakte hain!</p>
+
+        <pre><code>class BankAccount {
+private:
+    // Private data members - Ye secret hai bhai!
+    double balance;
+    string accountNumber;
+
+public:
+    // Public methods - Inke through hi data access hoga
+    BankAccount(string accNum, double initialBalance) {
+        accountNumber = accNum;
+        balance = initialBalance;
+    }
+
+    void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;  // Paise jama karo
+        }
+    }
+
+    bool withdraw(double amount) {
+        if (amount > 0 && balance >= amount) {
+            balance -= amount;  // Paise nikalo
+            return true;
+        }
+        return false;  // Balance kam hai bhai!
+    }
+
+    double getBalance() {
+        return balance;  // Balance check karo
+    }
+
+    string getAccountNumber() {
+        return accountNumber;
+    }
+};</code></pre>
+
+        <h2>Inheritance - Properties Inherit Karna! 👨‍👦</h2>
+        <p>Inheritance matlab ek class dusre class ki properties inherit kar sakti hai! Bilkul baap se bete ko properties milne ki tarah!</p>
+
+        <pre><code>// Base class - Parent class (Baap)
+class Vehicle {
+protected:
+    string brand;
+    int year;
+
+public:
+    Vehicle(string b, int y) : brand(b), year(y) {}
+
+    void displayInfo() {
+        cout << year << " " << brand << endl;
+    }
+};
+
+// Derived class - Child class (Beta)
+class Car : public Vehicle {
+private:
+    int doors;
+
+public:
+    Car(string b, int y, int d) : Vehicle(b, y), doors(d) {}  // Baap ke properties + apni property
+
+    void displayCarInfo() {
+        displayInfo();  // Baap ka method use kiya
+        cout << "Doors: " << doors << endl;  // Apna extra info add kiya
+    }
+};
+
+// Creating and using a derived class object
+Car myCar("Toyota", 2020, 4);
+myCar.displayCarInfo();
+// Output:
+// 2020 Toyota
+// Doors: 4</code></pre>
+
+        <h2>Polymorphism - Ek Cheez, Multiple Forms! 🦎</h2>
+        <p>Polymorphism matlab ek interface, multiple implementations! Jaise remote control ek hai, par TV, AC, Music system sab control kar sakta hai!</p>
+
+        <h3>Function Overriding - Baap ka Method Override Karna! 🔄</h3>
+        <pre><code>// Base class - Parent
+class Shape {
+public:
+    virtual void draw() {
+        cout << "Drawing a shape" << endl;  // General drawing
+    }
+};
+
+// Derived classes - Children
+class Circle : public Shape {
+public:
+    void draw() override {
+        cout << "Drawing a circle" << endl;  // Circle specific drawing
+    }
+};
+
+class Rectangle : public Shape {
+public:
+    void draw() override {
+        cout << "Drawing a rectangle" << endl;  // Rectangle specific drawing
+    }
+};
+
+// Polymorphic behavior - Ek tarah se call, alag alag kaam
+Shape* shape1 = new Circle();
+Shape* shape2 = new Rectangle();
+
+shape1->draw();  // Output: Drawing a circle
+shape2->draw();  // Output: Drawing a rectangle
+
+// Clean up - Memory free karo
+delete shape1;
+delete shape2;</code></pre>
+
+        <h2>Abstraction - Complex Cheezein Hide Karo! 🙈</h2>
+        <p>Abstraction matlab complex implementation details ko hide karke sirf zaruri features dikhana! Jaise car chalane ke liye engine kaise kaam karta hai janna zaruri nahi!</p>
+
+        <pre><code>// Abstract class - Incomplete blueprint
+class AbstractEmployee {
+protected:
+    string name;
+    double payRate;
+
+public:
+    AbstractEmployee(string n, double p) : name(n), payRate(p) {}
+
+    // Pure virtual function - Ye implement karna compulsory hai!
+    virtual double calculatePay() = 0;
+
+    string getName() {
+        return name;
+    }
+};
+
+// Concrete derived classes - Complete blueprints
+class HourlyEmployee : public AbstractEmployee {
+private:
+    int hoursWorked;
+
+public:
+    HourlyEmployee(string n, double p, int h) : AbstractEmployee(n, p), hoursWorked(h) {}
+
+    double calculatePay() override {
+        return payRate * hoursWorked;  // Hourly calculation
+    }
+};
+
+class SalariedEmployee : public AbstractEmployee {
+public:
+    SalariedEmployee(string n, double p) : AbstractEmployee(n, p) {}
+
+    double calculatePay() override {
+        return payRate;  // Fixed salary
+    }
+};
+
+// Using abstraction
+HourlyEmployee emp1("John", 15.0, 40);
+SalariedEmployee emp2("Jane", 50000.0);
+
+cout << emp1.getName() << " earns $" << emp1.calculatePay() << endl;
+cout << emp2.getName() << " earns $" << emp2.calculatePay() << endl;</code></pre>
+
+        <h2>Constructors aur Destructors - Birth aur Death! 🔄</h2>
+        <p>Constructors object create hone par initialize karte hain, aur Destructors object destroy hone par cleanup karte hain!</p>
+
+        <pre><code>class Resource {
+private:
+    int* data;
+
+public:
+    // Constructor - Birth time pe resources allocate karo
+    Resource() {
+        cout << "Resource acquired" << endl;
+        data = new int[100];  // Memory allocate kari
+    }
+
+    // Destructor - Death time pe resources free karo
+    ~Resource() {
+        cout << "Resource released" << endl;
+        delete[] data;  // Memory free kari
+    }
+};
+
+// Constructor called when object is created
+Resource res;  // "Resource acquired" print hoga
+
+// Destructor called when object goes out of scope
+// Function/block khatam hone par "Resource released" print hoga</code></pre>
+
+        <h2>Yaad Rakhne Wali Baatein! 🧠</h2>
+        <ul>
+            <li>Data members ko private rakho - security first! 🔒</li>
+            <li>Public methods se controlled access provide karo - backdoor nahi, front door se entry! 🚪</li>
+            <li>Inheritance "is-a" relationship ke liye use karo - Car is a Vehicle! 🚗</li>
+            <li>Polymorphism ke liye virtual functions use karo - flexibility ke liye! 🤸‍♂️</li>
+            <li>Resources manage karne wale classes mein destructor zarur define karo - memory leaks se bacho! 💧</li>
+            <li>"Rule of Three" follow karo - agar destructor chahiye, toh copy constructor aur copy assignment operator bhi chahiye! 3️⃣</li>
+        </ul>
+    </div>
+</body>
+
+</html>

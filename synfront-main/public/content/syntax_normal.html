@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #FF8C00;
+            border-bottom: 2px solid #FFA500;
+            padding-bottom: 10px;
+        }
+
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        li {
+            margin: 10px 0;
+            position: relative;
+        }
+
+        li:before {
+            content: "•";
+            color: #FFA500;
+            font-weight: bold;
+            position: absolute;
+            left: -15px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Basic Syntax and Structure</h2>
+
+    <p>C++ programs follow a specific structure and syntax. Understanding these fundamentals is essential for writing correct code.</p>
+
+    <h2>Program Structure</h2>
+    <p>A basic C++ program consists of:</p>
+
+    <pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    // Your code goes here
+    cout << "Hello, World!" << endl;
+    return 0;
+}</code></pre>
+
+    <p>Let's break down the components:</p>
+    <ul>
+        <li><code>#include &lt;iostream&gt;</code>: Includes the input/output stream library</li>
+        <li><code>using namespace std;</code>: Allows us to use elements from the standard namespace without prefixing</li>
+        <li><code>int main()</code>: The main function, where program execution begins</li>
+        <li><code>return 0;</code>: Indicates successful program termination</li>
+    </ul>
+
+    <h2>Comments</h2>
+    <p>Comments are used to explain code and are ignored by the compiler:</p>
+
+    <pre><code>// This is a single-line comment
+
+/* This is a
+   multi-line comment */</code></pre>
+
+    <h2>Statements and Semicolons</h2>
+    <p>In C++, statements are terminated with semicolons:</p>
+
+    <pre><code>int x = 5;  // Declaration statement
+cout << x;  // Output statement
+x = x + 1;  // Assignment statement</code></pre>
+
+    <h2>Blocks of Code</h2>
+    <p>Blocks are defined using curly braces and group multiple statements:</p>
+
+    <pre><code>if (x > 0) {
+    cout << "Positive";
+    x = 0;
+}</code></pre>
+
+    <h2>Key points to remember:</h2>
+    <ul>
+        <li>Every C++ program must have a main() function</li>
+        <li>Statements end with semicolons</li>
+        <li>Code blocks are enclosed in curly braces {}</li>
+        <li>C++ is case-sensitive (e.g., 'Variable' and 'variable' are different)</li>
+        <li>Whitespace (spaces, tabs, newlines) is generally ignored by the compiler</li>
+    </ul>
+</body>
+
+</html>

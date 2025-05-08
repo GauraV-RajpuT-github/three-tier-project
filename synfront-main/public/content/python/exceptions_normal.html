@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Exception Handling</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        pre {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 15px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #e83e8c;
+        }
+        .output {
+            background-color: #f1f1f1;
+            border-left: 4px solid #4CAF50;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+        .tip {
+            background-color: #e6f7ff;
+            border-left: 4px solid #1890ff;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+        .warning {
+            background-color: #fff2e8;
+            border-left: 4px solid #fa541c;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Python Exception Handling</h1>
+
+    <h2>Introduction to Exceptions</h2>
+    <p>Exceptions are events that occur during the execution of a program that disrupt the normal flow of instructions. Python provides a robust mechanism for handling these exceptions to prevent program crashes.</p>
+    
+    <h3>Why Exception Handling is Important:</h3>
+    <ul>
+        <li>Prevents program crashes</li>
+        <li>Allows graceful error recovery</li>
+        <li>Improves program reliability</li>
+        <li>Separates error-handling code from normal code</li>
+        <li>Provides meaningful error messages to users</li>
+    </ul>
+
+    <h2>Common Exceptions in Python</h2>
+    <p>Python has many built-in exceptions. Here are some of the most common ones:</p>
+    
+    <ul>
+        <li><code>SyntaxError</code>: Invalid syntax</li>
+        <li><code>NameError</code>: Variable not defined</li>
+        <li><code>TypeError</code>: Operation on inappropriate type</li>
+        <li><code>ValueError</code>: Operation on appropriate type but inappropriate value</li>
+        <li><code>IndexError</code>: Index out of range</li>
+        <li><code>KeyError</code>: Key not found in dictionary</li>
+        <li><code>FileNotFoundError</code>: File not found</li>
+        <li><code>ZeroDivisionError</code>: Division by zero</li>
+        <li><code>ImportError</code>: Module not found</li>
+        <li><code>AttributeError</code>: Attribute not found</li>
+    </ul>
+
+    <h2>Basic Exception Handling</h2>
+    <p>The <code>try</code>-<code>except</code> block is the fundamental construct for exception handling in Python:</p>
+    
+    <pre><code>try:
+    # Code that might raise an exception
+    result = 10 / 0
+except ZeroDivisionError:
+    # Code to handle the exception
+    print("Error: Division by zero")
+
+# Program continues execution
+print("Program continues")</code></pre>
+    
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Error: Division by zero<br>
+        Program continues</p>
+    </div>
+
+    <h2>Handling Multiple Exceptions</h2>
+    <p>You can handle different exceptions with different handlers:</p>
+    
+    <pre><code>try:
+    num = int(input("Enter a number: "))
+    result = 100 / num
+    print(f"Result: {result}")
+except ValueError:
+    print("Error: Please enter a valid number")
+except ZeroDivisionError:
+    print("Error: Cannot divide by zero")
+
+# You can also catch multiple exceptions with a single handler
+try:
+    # Some code that might raise exceptions
+    pass
+except (ValueError, TypeError, ZeroDivisionError):
+    print("An error occurred")</code></pre>
+
+    <h2>The <code>else</code> Clause</h2>
+    <p>The <code>else</code> clause executes if no exceptions are raised in the <code>try</code> block:</p>
+    
+    <pre><code>try:
+    num = int(input("Enter a number: "))
+    result = 100 / num
+except ValueError:
+    print("Error: Please enter a valid number")
+except ZeroDivisionError:
+    print("Error: Cannot divide by zero")
+else:
+    # This executes if no exceptions occurred
+    print(f"Result: {result}")
+    print("No exceptions occurred")</code></pre>
+
+    <h2>The <code>finally</code> Clause</h2>
+    <p>The <code>finally</code> clause always executes, regardless of whether an exception occurred:</p>
+    
+    <pre><code>try:
+    file = open("example.txt", "r")
+    content = file.read()
+except FileNotFoundError:
+    print("Error: File not found")
+finally:
+    # This always executes, even if an exception occurred
+    # Great for cleanup operations like closing files
+    if 'file' in locals() and not file.closed:
+        file.close()
+        print("File closed")</code></pre>
+
+    <h2>Getting Exception Information</h2>
+    <p>You can capture the exception object to get more information about it:</p>
+    
+    <pre><code>try:
+    x = 10 / 0
+except ZeroDivisionError as e:
+    print(f"Error: {e}")
+    print(f"Error type: {type(e).__name__}")
+    
+    # For detailed debugging
+    import traceback
+    traceback.print_exc()</code></pre>
+    
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Error: division by zero<br>
+        Error type: ZeroDivisionError<br>
+        Traceback (most recent call last):<br>
+        &nbsp;&nbsp;File "&lt;stdin&gt;", line 2, in &lt;module&gt;<br>
+        ZeroDivisionError: division by zero</p>
+    </div>
+
+    <h2>Raising Exceptions</h2>
+    <p>You can raise exceptions explicitly using the <code>raise</code> statement:</p>
+    
+    <pre><code>def validate_age(age):
+    if age < 0:
+        raise ValueError("Age cannot be negative")
+    if age > 120:
+        raise ValueError("Age is too high")
+    return age
+
+try:
+    user_age = int(input("Enter your age: "))
+    validated_age = validate_age(user_age)
+    print(f"Your age is {validated_age}")
+except ValueError as e:
+    print(f"Error: {e}")</code></pre>
+
+    <h2>Re-raising Exceptions</h2>
+    <p>You can catch an exception, perform some actions, and then re-raise it:</p>
+    
+    <pre><code>try:
+    # Some code that might raise an exception
+    x = 1 / 0
+except ZeroDivisionError:
+    print("Logging the error...")
+    # Re-raise the exception
+    raise</code></pre>
+
+    <h2>Custom Exceptions</h2>
+    <p>You can create your own exception classes by inheriting from the built-in <code>Exception</code> class:</p>
+    
+    <pre><code>class InsufficientFundsError(Exception):
+    """Raised when a withdrawal exceeds the available balance"""
+    def __init__(self, balance, amount):
+        self.balance = balance
+        self.amount = amount
+        self.deficit = amount - balance
+        message = f"Cannot withdraw ${amount}. Balance is ${balance}, deficit is ${self.deficit}"
+        super().__init__(message)
+
+class BankAccount:
+    def __init__(self, balance=0):
+        self.balance = balance
+        
+    def withdraw(self, amount):
+        if amount > self.balance:
+            raise InsufficientFundsError(self.balance, amount)
+        self.balance -= amount
+        return self.balance
+
+# Using the custom exception
+try:
+    account = BankAccount(100)
+    account.withdraw(150)
+except InsufficientFundsError as e:
+    print(f"Error: {e}")
+    print(f"You need ${e.deficit} more to complete this transaction")</code></pre>
+    
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Error: Cannot withdraw $150. Balance is $100, deficit is $50<br>
+        You need $50 more to complete this transaction</p>
+    </div>
+
+    <h2>Context Managers and the <code>with</code> Statement</h2>
+    <p>The <code>with</code> statement provides a clean way to handle resources that need setup and cleanup:</p>
+    
+    <pre><code># Without context manager
+try:
+    file = open("example.txt", "r")
+    content = file.read()
+finally:
+    file.close()
+
+# With context manager
+with open("example.txt", "r") as file:
+    content = file.read()
+# File is automatically closed when the block exits</code></pre>
+
+    <h2>Creating Custom Context Managers</h2>
+    <p>You can create your own context managers using the <code>__enter__</code> and <code>__exit__</code> methods:</p>
+    
+    <pre><code>class DatabaseConnection:
+    def __init__(self, connection_string):
+        self.connection_string = connection_string
+        self.connection = None
+    
+    def __enter__(self):
+        print(f"Connecting to database: {self.connection_string}")
+        # In a real scenario, this would establish a database connection
+        self.connection = "Connected"
+        return self.connection
+    
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        print("Closing database connection")
+        # In a real scenario, this would close the connection
+        self.connection = None
+        # Return False to propagate exceptions, True to suppress them
+        return False
+
+# Using the custom context manager
+try:
+    with DatabaseConnection("mysql://localhost:3306/mydb") as conn:
+        print(f"Connection status: {conn}")
+        # Simulate an error
+        raise ValueError("Database query failed")
+except ValueError as e:
+    print(f"Caught exception: {e}")</code></pre>
+    
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Connecting to database: mysql://localhost:3306/mydb<br>
+        Connection status: Connected<br>
+        Closing database connection<br>
+        Caught exception: Database query failed</p>
+    </div>
+
+    <h2>The <code>contextlib</code> Module</h2>
+    <p>Python's <code>contextlib</code> module provides utilities for working with context managers:</p>
+    
+    <pre><code>from contextlib import contextmanager
+
+@contextmanager
+def file_manager(filename, mode):
+    try:
+        file = open(filename, mode)
+        yield file
+    finally:
+        file.close()
+
+# Using the context manager
+with file_manager("example.txt", "r") as file:
+    content = file.read()
+    print(content)</code></pre>
+
+    <h2>Exception Handling Best Practices</h2>
+    
+    <div class="tip">
+        <h3>Do:</h3>
+        <ul>
+            <li>Be specific about which exceptions you catch</li>
+            <li>Keep the try block as small as possible</li>
+            <li>Use finally for cleanup operations</li>
+            <li>Document the exceptions your functions can raise</li>
+            <li>Use custom exceptions for domain-specific errors</li>
+            <li>Provide meaningful error messages</li>
+        </ul>
+    </div>
+    
+    <div class="warning">
+        <h3>Don't:</h3>
+        <ul>
+            <li>Use <code>except:</code> without specifying an exception type (catches all exceptions, including KeyboardInterrupt)</li>
+            <li>Silence exceptions without handling them properly</li>
+            <li>Use exceptions for flow control in normal situations</li>
+            <li>Catch exceptions you don't know how to handle</li>
+        </ul>
+    </div>
+
+    <h2>Debugging with <code>pdb</code></h2>
+    <p>Python's built-in debugger <code>pdb</code> can be useful when dealing with exceptions:</p>
+    
+    <pre><code>import pdb
+
+def divide(a, b):
+    try:
+        return a / b
+    except ZeroDivisionError:
+        pdb.set_trace()  # Start the debugger
+        # Now you can inspect variables, call functions, etc.
+        return None
+
+result = divide(10, 0)</code></pre>
+
+    <h2>Assertions</h2>
+    <p>Assertions are a debugging aid that tests a condition and raises an <code>AssertionError</code> if the condition is false:</p>
+    
+    <pre><code>def calculate_average(numbers):
+    assert len(numbers) > 0, "Cannot calculate average of empty list"
+    return sum(numbers) / len(numbers)
+
+try:
+    avg = calculate_average([])
+except AssertionError as e:
+    print(f"Error: {e}")</code></pre>
+    
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Error: Cannot calculate average of empty list</p>
+    </div>
+
+    <div class="tip">
+        <p><strong>Note:</strong> Assertions can be disabled with the <code>-O</code> flag when running Python, so don't use them for input validation in production code. Use explicit checks and raise appropriate exceptions instead.</p>
+    </div>
+</body>
+</html>

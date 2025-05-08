@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP Functions - Bro Mode</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #4F5B93;
+        }
+        pre {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 15px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #8892BF;
+        }
+        .output {
+            background-color: #f1f1f1;
+            border-left: 4px solid #4CAF50;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+        .tip {
+            background-color: #e6f7ff;
+            border-left: 4px solid #1890ff;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>PHP Functions - Bro Mode 🚀</h1>
+
+    <h2>Functions Kya Hote Hai? 🤔</h2>
+    <p>Bro, functions basically code ke reusable blocks hote hai. Matlab ek baar likho, hazaar baar use karo! Functions se code organize hota hai, readable banta hai, aur duplication kam hoti hai. PHP mein bahut saare built-in functions hai, aur tum apne khud ke bhi bana sakte ho.</p>
+
+    <h2>Functions Kaise Define Karte Hai? 📝</h2>
+    <p>PHP mein function define karne ke liye, <code>function</code> keyword ke baad function ka naam aur parentheses likhte hai:</p>
+    
+    <pre><code>&lt;?php
+// Basic function definition
+function sayHello() {
+    echo "Hello, World!";
+}
+
+// Function ko call karo
+sayHello();  // Output: Hello, World!
+?&gt;</code></pre>
+
+    <h2>Function Parameters 📦</h2>
+    <p>Bro, functions parameters (ya arguments) accept kar sakte hai, jo function ko pass kiye gaye values hote hai:</p>
+    
+    <pre><code>&lt;?php
+// Parameter wala function
+function greet($name) {
+    echo "Hello, $name!";
+}
+
+greet("Rahul");  // Output: Hello, Rahul!
+greet("Priya");  // Output: Hello, Priya!
+
+// Multiple parameters wala function
+function add($a, $b) {
+    echo "$a + $b = " . ($a + $b);
+}
+
+add(5, 3);  // Output: 5 + 3 = 8
+?&gt;</code></pre>
+
+    <h2>Default Parameter Values 🎯</h2>
+    <p>Bro, tum parameters ke liye default values specify kar sakte ho, jo tab use hoti hai jab koi value pass nahi ki jati:</p>
+    
+    <pre><code>&lt;?php
+// Default parameter values wala function
+function greetWithTitle($name, $title = "Mr.") {
+    echo "Hello, $title $name!";
+}
+
+greetWithTitle("Sharma");         // Output: Hello, Mr. Sharma!
+greetWithTitle("Patel", "Dr.");   // Output: Hello, Dr. Patel!
+
+// Default parameters required parameters ke baad hi define karne chahiye
+function setHeight($minHeight, $maxHeight = 100, $defaultHeight = 50) {
+    echo "Min: $minHeight, Max: $maxHeight, Default: $defaultHeight";
+}
+
+setHeight(30);  // Output: Min: 30, Max: 100, Default: 50
+setHeight(30, 80);  // Output: Min: 30, Max: 80, Default: 50
+setHeight(30, 80, 60);  // Output: Min: 30, Max: 80, Default: 60
+?&gt;</code></pre>
+
+    <h2>Return Values 🔙</h2>
+    <p>Bro, functions <code>return</code> statement ke through values return kar sakte hai. Jaise hi <code>return</code> statement execute hota hai, function turant terminate ho jata hai:</p>
+    
+    <pre><code>&lt;?php
+// Value return karne wala function
+function square($number) {
+    return $number * $number;
+}
+
+$result = square(4);
+echo "4 ka square hai $result";  // Output: 4 ka square hai 16
+
+// Multiple return statements wala function
+function getAbsoluteValue($number) {
+    if ($number >= 0) {
+        return $number;
+    } else {
+        return -$number;
+    }
+}
+
+echo getAbsoluteValue(5);   // Output: 5
+echo getAbsoluteValue(-5);  // Output: 5
+
+// Array ke through multiple values return karna
+function getMinMax($numbers) {
+    return [
+        'min' => min($numbers),
+        'max' => max($numbers)
+    ];
+}
+
+$result = getMinMax([3, 1, 7, 5]);
+echo "Min: " . $result['min'] . ", Max: " . $result['max'];  // Output: Min: 1, Max: 7
+?&gt;</code></pre>
+
+    <h2>Variable Scope 🔍</h2>
+    <p>Bro, function ke andar declare kiye gaye variables ka local scope hota hai aur sirf usi function ke andar accessible hote hai. Function ke andar global variables access karne ke liye, <code>global</code> keyword use karo:</p>
+    
+    <pre><code>&lt;?php
+// Global variable
+$message = "Hello, World!";
+
+function displayMessage() {
+    // Ye error dega kyunki $message yahan accessible nahi hai
+    // echo $message;
+    
+    // Global variable access karne ke liye, global keyword use karo
+    global $message;
+    echo $message;
+}
+
+displayMessage();  // Output: Hello, World!
+
+// Alternative tarika: $GLOBALS array use karo
+function displayMessageAlternative() {
+    echo $GLOBALS['message'];
+}
+
+displayMessageAlternative();  // Output: Hello, World!
+?&gt;</code></pre>
+
+    <h2>Static Variables 🧠</h2>
+    <p>Bro, static variables function calls ke beech mein apni value retain karte hai:</p>
+    
+    <pre><code>&lt;?php
+function counter() {
+    static $count = 0;  // Sirf ek baar initialize hota hai
+    $count++;
+    echo "Count: $count&lt;br&gt;";
+}
+
+counter();  // Output: Count: 1
+counter();  // Output: Count: 2
+counter();  // Output: Count: 3
+
+// Non-static variable ke saath compare karo
+function counterNonStatic() {
+    $count = 0;  // Har baar function call hone par initialize hota hai
+    $count++;
+    echo "Non-static count: $count&lt;br&gt;";
+}
+
+counterNonStatic();  // Output: Non-static count: 1
+counterNonStatic();  // Output: Non-static count: 1
+counterNonStatic();  // Output: Non-static count: 1
+?&gt;</code></pre>
+
+    <h2>Variable Functions 🔄</h2>
+    <p>Bro, PHP variable functions support karta hai, matlab agar variable name ke baad parentheses lagaye jate hai, to PHP us variable ke value ke naam ka function dhundhta hai aur use execute karta hai:</p>
+    
+    <pre><code>&lt;?php
+function sayHello() {
+    echo "Hello!";
+}
+
+function sayGoodbye() {
+    echo "Goodbye!";
+}
+
+$functionName = "sayHello";
+$functionName();  // Output: Hello!
+
+$functionName = "sayGoodbye";
+$functionName();  // Output: Goodbye!
+
+// Ye callbacks ke liye useful hai
+function callFunction($callback) {
+    $callback();
+}
+
+callFunction("sayHello");  // Output: Hello!
+?&gt;</code></pre>
+
+    <h2>Anonymous Functions (Closures) 🕵️</h2>
+    <p>Bro, anonymous functions, jinhe closures bhi kehte hai, bina naam specify kiye functions create karne ki permission dete hai:</p>
+    
+    <pre><code>&lt;?php
+// Variable ko assign kiya gaya anonymous function
+$greet = function($name) {
+    echo "Hello, $name!";
+};
+
+$greet("Rahul");  // Output: Hello, Rahul!
+
+// Argument ke roop mein anonymous function
+$numbers = [1, 2, 3, 4, 5];
+$squaredNumbers = array_map(function($n) {
+    return $n * $n;
+}, $numbers);
+
+print_r($squaredNumbers);  // Output: Array ( [0] => 1 [1] => 4 [2] => 9 [3] => 16 [4] => 25 )
+
+// Closures 'use' keyword ke through parent scope se variables use kar sakte hai
+$message = "Hello";
+$greet = function($name) use ($message) {
+    echo "$message, $name!";
+};
+
+$greet("Rahul");  // Output: Hello, Rahul!
+?&gt;</code></pre>
+
+    <h2>Arrow Functions (PHP 7.4+) 🏹</h2>
+    <p>Bro, arrow functions simple anonymous functions ke liye ek more concise syntax provide karte hai:</p>
+    
+    <pre><code>&lt;?php
+// Traditional anonymous function
+$numbers = [1, 2, 3, 4, 5];
+$squaredNumbers = array_map(function($n) {
+    return $n * $n;
+}, $numbers);
+
+// Equivalent arrow function
+$squaredNumbers = array_map(fn($n) => $n * $n, $numbers);
+
+print_r($squaredNumbers);  // Output: Array ( [0] => 1 [1] => 4 [2] => 9 [3] => 16 [4] => 25 )
+
+// Arrow functions automatically parent scope se variables capture karte hai
+$multiplier = 2;
+$multipliedNumbers = array_map(fn($n) => $n * $multiplier, $numbers);
+
+print_r($multipliedNumbers);  // Output: Array ( [0] => 2 [1] => 4 [2] => 6 [3] => 8 [4] => 10 )
+?&gt;</code></pre>
+
+    <h2>Type Declarations 📋</h2>
+    <p>Bro, PHP 7+ function parameters aur return values ke liye type declarations support karta hai:</p>
+    
+    <pre><code>&lt;?php
+// Parameters ke liye type declarations
+function add(int $a, int $b) {
+    return $a + $b;
+}
+
+echo add(5, 3);  // Output: 8
+// echo add("5", "3");  // PHP 5 mein work karta hai, lekin PHP 7+ mein strict typing enabled hone par error dega
+
+// Return type declarations
+function multiply(int $a, int $b): int {
+    return $a * $b;
+}
+
+echo multiply(5, 3);  // Output: 15
+
+// Nullable types (PHP 7.1+)
+function getUser(int $id): ?array {
+    // User data ya null return karo agar user na mile
+    if ($id > 0) {
+        return ['id' => $id, 'name' => 'Rahul'];
+    } else {
+        return null;
+    }
+}
+
+var_dump(getUser(1));  // Output: array(2) { ["id"]=> int(1) ["name"]=> string(5) "Rahul" }
+var_dump(getUser(-1)); // Output: NULL
+
+// Union types (PHP 8.0+)
+function process(int|float $number): int|float {
+    return $number * 2;
+}
+
+echo process(5);    // Output: 10
+echo process(2.5);  // Output: 5
+?&gt;</code></pre>
+
+    <div class="tip">
+        <p><strong>Pro Tip:</strong> Bro, strict typing enable karne ke liye, apne PHP file ke beginning mein <code>declare(strict_types=1);</code> add karo. Isse PHP type mismatches hone par errors throw karega.</p>
+    </div>
+
+    <h2>Variadic Functions 🔢</h2>
+    <p>Bro, variadic functions variable number of arguments accept kar sakte hai. <code>...</code> operator arguments ko array mein collect karne ke liye use hota hai:</p>
+    
+    <pre><code>&lt;?php
+// Variadic function
+function sum(...$numbers) {
+    return array_sum($numbers);
+}
+
+echo sum(1, 2, 3, 4, 5);  // Output: 15
+
+// Regular parameters ko variadic parameters ke saath combine karna
+function sumWithMultiplier($multiplier, ...$numbers) {
+    return $multiplier * array_sum($numbers);
+}
+
+echo sumWithMultiplier(2, 1, 2, 3, 4, 5);  // Output: 30 (2 * (1+2+3+4+5))
+
+// Arrays ko arguments mein unpack karna
+$numbers = [1, 2, 3, 4, 5];
+echo sum(...$numbers);  // Output: 15
+?&gt;</code></pre>
+
+    <h2>Recursive Functions 🔄</h2>
+    <p>Bro, recursive function wo function hota hai jo khud ko call karta hai:</p>
+    
+    <pre><code>&lt;?php
+// Factorial calculate karne ke liye recursive function
+function factorial($n) {
+    if ($n <= 1) {
+        return 1;
+    } else {
+        return $n * factorial($n - 1);
+    }
+}
+
+echo "5! = " . factorial(5);  // Output: 5! = 120 (5*4*3*2*1)
+
+// Fibonacci sequence generate karne ke liye recursive function
+function fibonacci($n) {
+    if ($n <= 1) {
+        return $n;
+    } else {
+        return fibonacci($n - 1) + fibonacci($n - 2);
+    }
+}
+
+echo "Fibonacci(10) = " . fibonacci(10);  // Output: Fibonacci(10) = 55
+?&gt;</code></pre>
+
+    <div class="tip">
+        <p><strong>Warning Bro:</strong> Recursive functions ke saath careful raho kyunki agar proper base case na ho ya bahut deep recursion ho to stack overflow errors ho sakte hai.</p>
+    </div>
+
+    <h2>Callback Functions 📞</h2>
+    <p>Bro, callback functions wo functions hote hai jo dusre functions ko arguments ke roop mein pass kiye jate hai:</p>
+    
+    <pre><code>&lt;?php
+// Callback accept karne wala function
+function processNumbers($numbers, $callback) {
+    $result = [];
+    foreach ($numbers as $number) {
+        $result[] = $callback($number);
+    }
+    return $result;
+}
+
+// Callback function define karo
+function square($n) {
+    return $n * $n;
+}
+
+$numbers = [1, 2, 3, 4, 5];
+$squaredNumbers = processNumbers($numbers, 'square');
+print_r($squaredNumbers);  // Output: Array ( [0] => 1 [1] => 4 [2] => 9 [3] => 16 [4] => 25 )
+
+// Anonymous function ko callback ke roop mein use karna
+$doubledNumbers = processNumbers($numbers, function($n) {
+    return $n * 2;
+});
+print_r($doubledNumbers);  // Output: Array ( [0] => 2 [1] => 4 [2] => 6 [3] => 8 [4] => 10 )
+
+// Built-in PHP functions jo callbacks accept karte hai
+$evenNumbers = array_filter($numbers, function($n) {
+    return $n % 2 == 0;
+});
+print_r($evenNumbers);  // Output: Array ( [1] => 2 [3] => 4 )
+?&gt;</code></pre>
+
+    <h2>Built-in Functions 🛠️</h2>
+    <p>Bro, PHP mein various purposes ke liye bahut saare built-in functions hai. Yahan kuch commonly used functions hai:</p>
+    
+    <h3>String Functions</h3>
+    <pre><code>&lt;?php
+$str = "Hello, World!";
+
+echo strlen($str);           // Output: 13 (string length)
+echo strtoupper($str);       // Output: HELLO, WORLD!
+echo strtolower($str);       // Output: hello, world!
+echo str_replace("World", "PHP", $str);  // Output: Hello, PHP!
+echo substr($str, 0, 5);     // Output: Hello (substring)
+?&gt;</code></pre>
+
+    <h3>Array Functions</h3>
+    <pre><code>&lt;?php
+$fruits = ["apple", "banana", "cherry"];
+
+echo count($fruits);         // Output: 3 (array size)
+sort($fruits);               // Array sort karo
+print_r($fruits);            // Output: Array ( [0] => apple [1] => banana [2] => cherry )
+$reversed = array_reverse($fruits);  // Array reverse karo
+print_r($reversed);          // Output: Array ( [0] => cherry [1] => banana [2] => apple )
+echo implode(", ", $fruits); // Output: apple, banana, cherry (array elements ko join karo)
+?&gt;</code></pre>
+
+    <h3>Mathematical Functions</h3>
+    <pre><code>&lt;?php
+echo abs(-5);                // Output: 5 (absolute value)
+echo round(3.7);             // Output: 4 (nearest integer tak round karo)
+echo floor(3.7);             // Output: 3 (neeche round karo)
+echo ceil(3.2);              // Output: 4 (upar round karo)
+echo rand(1, 10);            // Output: 1 aur 10 ke beech random number
+echo max(5, 10, 15);         // Output: 15 (maximum value)
+echo min(5, 10, 15);         // Output: 5 (minimum value)
+?&gt;</code></pre>
+
+    <h3>Date and Time Functions</h3>
+    <pre><code>&lt;?php
+echo time();                 // Output: Current Unix timestamp
+echo date("Y-m-d H:i:s");    // Output: Current date and time (e.g., 2025-04-14 19:30:00)
+echo date("F j, Y, g:i a");  // Output: Formatted date (e.g., April 14, 2025, 7:30 pm)
+echo strtotime("+1 week");   // Output: Abhi se 1 week baad ka Unix timestamp
+echo date("Y-m-d", strtotime("+1 month"));  // Output: Abhi se 1 month baad ki date
+?&gt;</code></pre>
+
+    <h2>Function Best Practices 💯</h2>
+    <ul>
+        <li><strong>Single Responsibility:</strong> Bro, har function ka ek hi, well-defined purpose hona chahiye.</li>
+        <li><strong>Meaningful Names:</strong> Descriptive names choose karo jo bataye ki function kya karta hai.</li>
+        <li><strong>Keep Functions Short:</strong> Functions concise aur specific task par focused hone chahiye.</li>
+        <li><strong>Use Type Declarations:</strong> Parameter aur return types specify karo taki code more robust bane.</li>
+        <li><strong>Document Your Functions:</strong> Comments ya PHPDoc blocks use karke describe karo ki function kya karta hai, uske parameters, aur return values kya hai.</li>
+        <li><strong>Return Values:</strong> Return values ke saath consistent raho. Agar function ek case mein value return karta hai, to sabhi cases mein value return karna chahiye.</li>
+        <li><strong>Error Handling:</strong> Function ke andar potential errors handle karo ya errors report karne ke liye exceptions use karo.</li>
+    </ul>
+
+    <h2>Example: Complete Function Documentation 📚</h2>
+    <pre><code>&lt;?php
+/**
+ * Rectangle ka area calculate karo.
+ *
+ * @param float $length Rectangle ki length.
+ * @param float $width Rectangle ki width.
+ * @return float Rectangle ka area.
+ * @throws InvalidArgumentException Agar length ya width negative hai.
+ */
+function calculateRectangleArea(float $length, float $width): float {
+    if ($length < 0 || $width < 0) {
+        throw new InvalidArgumentException("Length aur width positive numbers hone chahiye.");
+    }
+    return $length * $width;
+}
+
+try {
+    echo calculateRectangleArea(5, 3);  // Output: 15
+    echo calculateRectangleArea(-5, 3); // Exception throw karega
+} catch (InvalidArgumentException $e) {
+    echo "Error: " . $e->getMessage();  // Output: Error: Length aur width positive numbers hone chahiye.
+}
+?&gt;</code></pre>
+
+    <h2>Conclusion 🏁</h2>
+    <p>Bro, ab tum PHP functions ke master ban gaye ho! Functions tumhare code ko organize, reusable, aur maintainable banate hai. Inhe apne projects mein use karke apna code next level pe le jao! Next topic mein, hum Object-Oriented Programming ke baare mein seekhenge. Keep coding! 🚀</p>
+</body>
+</html>

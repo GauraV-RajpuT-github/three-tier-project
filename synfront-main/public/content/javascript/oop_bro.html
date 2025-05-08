@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #FF8C00;
+            border-bottom: 2px solid #FFA500;
+            padding-bottom: 10px;
+        }
+
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            border: 1px solid #ddd;
+        }
+
+        code {
+            font-family: Consolas, Monaco, 'Andale Mono', monospace;
+            background-color: #f5f5f5;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        .note {
+            background-color: #fff8dc;
+            border-left: 4px solid #ffeb3b;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .bro-highlight {
+            background-color: #FFE4B5;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Object-Oriented Programming in JavaScript - Bro Style! 🔥</h2>
+
+    <p>Aye bro! Aaj hum JavaScript mein <span class="bro-highlight">Object-Oriented Programming (OOP)</span> ke baare mein baat karenge. OOP matlab objects ke through programming karna - real life ki tarah! Car, Phone, Person - ye sab objects hain, aur inke properties aur methods hote hain. Cool hai na? 😎</p>
+
+    <h3>Objects in JavaScript - JavaScript Ke Objects</h3>
+    <p>Objects key-value pairs ke collections hain, jahan values properties (data) ya methods (functions) ho sakte hain - bilkul tumhare phone ki tarah, jisme features (properties) aur functions (methods) hote hain!</p>
+
+    <h4>Creating Objects - Objects Banane Ke Tarike</h4>
+    <p>JavaScript mein objects banane ke kai tarike hain:</p>
+
+    <h5>Object Literals - Seedha Object Banana</h5>
+    <pre><code>// Object literal syntax - sabse easy tarika
+const person = {
+    firstName: "Rahul",
+    lastName: "Sharma",
+    age: 25,
+    greet: function() {
+        return `Hello bro, myself ${this.firstName} ${this.lastName}`;
+    }
+};
+
+console.log(person.firstName);  // Output: "Rahul"
+console.log(person.greet());    // Output: "Hello bro, myself Rahul Sharma"</code></pre>
+
+    <h5>Constructor Functions - Factory Ki Tarah</h5>
+    <pre><code>// Constructor function - ek template ki tarah
+function Person(firstName, lastName, age) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.age = age;
+    this.greet = function() {
+        return `Hello bro, myself ${this.firstName} ${this.lastName}`;
+    };
+}
+
+const rahul = new Person("Rahul", "Sharma", 25);
+console.log(rahul.firstName);  // Output: "Rahul"
+console.log(rahul.greet());    // Output: "Hello bro, myself Rahul Sharma"</code></pre>
+
+    <h5>ES6 Classes - Modern Cool Tarika</h5>
+    <pre><code>// ES6 Class syntax - modern tarika
+class Person {
+    constructor(firstName, lastName, age) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+    }
+
+    greet() {
+        return `Hello bro, myself ${this.firstName} ${this.lastName}`;
+    }
+}
+
+const rahul = new Person("Rahul", "Sharma", 25);
+console.log(rahul.firstName);  // Output: "Rahul"
+console.log(rahul.greet());    // Output: "Hello bro, myself Rahul Sharma"</code></pre>
+
+    <div class="note">
+        <strong>Note bro:</strong> ES6 Classes dikhne mein cool lagte hain, par behind the scenes ye bhi prototype-based hi hain! JavaScript ne bas syntax ko fancy bana diya hai, taaki Java/C++ developers comfortable feel karein! 😉
+    </div>
+
+    <h3>Prototypes and Inheritance - Virasat Ki Kahani</h3>
+    <p>JavaScript mein inheritance prototype-based hota hai. Har object ka ek prototype hota hai, jisse wo properties aur methods inherit karta hai - bilkul family inheritance ki tarah!</p>
+
+    <h4>Prototype Chain - Prototype Ki Chain</h4>
+    <pre><code>// Constructor function
+function Person(firstName, lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+}
+
+// Prototype mein method add karna - memory efficient hai ye!
+Person.prototype.getFullName = function() {
+    return `${this.firstName} ${this.lastName}`;
+};
+
+const rahul = new Person("Rahul", "Sharma");
+console.log(rahul.getFullName());  // Output: "Rahul Sharma"</code></pre>
+
+    <div class="note">
+        <strong>Pro tip bro:</strong> Methods ko prototype mein add karna best practice hai, kyunki isse memory save hoti hai! Har instance ke paas apna alag method nahi hota, sab same prototype se share karte hain - ekdam desi jugaad! 💯
+    </div>
+
+    <h4>Inheritance with Prototypes - Purane Tarike Se Inheritance</h4>
+    <pre><code>// Parent constructor
+function Person(firstName, lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+}
+
+Person.prototype.greet = function() {
+    return `Hello bro, myself ${this.firstName} ${this.lastName}`;
+};
+
+// Child constructor
+function Employee(firstName, lastName, jobTitle) {
+    // Parent constructor ko call karo
+    Person.call(this, firstName, lastName);
+    this.jobTitle = jobTitle;
+}
+
+// Person ke prototype se inherit karo
+Employee.prototype = Object.create(Person.prototype);
+Employee.prototype.constructor = Employee;
+
+// Employee ke liye special method
+Employee.prototype.introduce = function() {
+    return `${this.greet()}. I work as a ${this.jobTitle}.`;
+};
+
+const rahul = new Employee("Rahul", "Sharma", "Software Developer");
+console.log(rahul.introduce());  // Output: "Hello bro, myself Rahul Sharma. I work as a Software Developer."</code></pre>
+
+    <h4>Inheritance with ES6 Classes - Modern Tarike Se Inheritance</h4>
+    <pre><code>// Parent class
+class Person {
+    constructor(firstName, lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    greet() {
+        return `Hello bro, myself ${this.firstName} ${this.lastName}`;
+    }
+}
+
+// Child class extending Person
+class Employee extends Person {
+    constructor(firstName, lastName, jobTitle) {
+        super(firstName, lastName);  // Parent constructor ko call karo
+        this.jobTitle = jobTitle;
+    }
+
+    introduce() {
+        return `${this.greet()}. I work as a ${this.jobTitle}.`;
+    }
+}
+
+const rahul = new Employee("Rahul", "Sharma", "Software Developer");
+console.log(rahul.introduce());  // Output: "Hello bro, myself Rahul Sharma. I work as a Software Developer."</code></pre>
+
+    <h3>Encapsulation - Private Data Rakhna</h3>
+    <p>Encapsulation matlab data aur methods ko bundle karna, aur kuch components ko private rakhna - bilkul apne personal diary ki tarah, jo sirf aap hi padh sakte ho!</p>
+
+    <h4>Private Properties and Methods with Closures - Closures Se Privacy</h4>
+    <pre><code>// Closures ka use karke private properties banao
+function Person(firstName, lastName) {
+    // Private properties - bahar se access nahi kar sakte
+    const _firstName = firstName;
+    const _lastName = lastName;
+
+    // Public methods jo private properties ko access kar sakte hain
+    this.getFullName = function() {
+        return `${_firstName} ${_lastName}`;
+    };
+
+    this.greet = function() {
+        return `Hello bro, myself ${this.getFullName()}`;
+    };
+}
+
+const rahul = new Person("Rahul", "Sharma");
+console.log(rahul.getFullName());  // Output: "Rahul Sharma"
+// console.log(rahul._firstName);  // Output: undefined (private property hai bro!)</code></pre>
+
+    <h4>Private Fields (ES2022) - Modern Tarike Se Privacy</h4>
+    <pre><code>// Private fields ka use (modern JavaScript)
+class Person {
+    // Private fields (# se start hote hain)
+    #firstName;
+    #lastName;
+
+    constructor(firstName, lastName) {
+        this.#firstName = firstName;
+        this.#lastName = lastName;
+    }
+
+    getFullName() {
+        return `${this.#firstName} ${this.#lastName}`;
+    }
+
+    greet() {
+        return `Hello bro, myself ${this.getFullName()}`;
+    }
+}
+
+const rahul = new Person("Rahul", "Sharma");
+console.log(rahul.getFullName());  // Output: "Rahul Sharma"
+// console.log(rahul.#firstName);  // Error: Private field hai bro, bahar se access nahi kar sakte!</code></pre>
+
+    <h3>Polymorphism - Ek Interface, Multiple Forms</h3>
+    <p>Polymorphism matlab ek hi method ko alag-alag classes mein alag-alag tarike se implement karna - jaise ki alag-alag log ek hi sawal ka alag-alag jawab dete hain!</p>
+
+    <pre><code>// Parent class
+class Animal {
+    speak() {
+        return "Animal makes a sound";
+    }
+}
+
+// Child classes overriding the speak method
+class Dog extends Animal {
+    speak() {
+        return "Dog bolta hai: Woof Woof!";
+    }
+}
+
+class Cat extends Animal {
+    speak() {
+        return "Cat bolti hai: Meow Meow!";
+    }
+}
+
+// Function that works with any Animal
+function makeAnimalSpeak(animal) {
+    console.log(animal.speak());
+}
+
+const animal = new Animal();
+const dog = new Dog();
+const cat = new Cat();
+
+makeAnimalSpeak(animal);  // Output: "Animal makes a sound"
+makeAnimalSpeak(dog);     // Output: "Dog bolta hai: Woof Woof!"
+makeAnimalSpeak(cat);     // Output: "Cat bolti hai: Meow Meow!"</code></pre>
+
+    <h3>Getters and Setters - Properties Ki Tarah Methods</h3>
+    <p>Getters aur setters se aap methods ko properties ki tarah access kar sakte hain - matlab method ko call karne ke liye parentheses () ki zaroorat nahi!</p>
+
+    <pre><code>// Using getters and setters with classes
+class Person {
+    constructor(firstName, lastName) {
+        this._firstName = firstName;
+        this._lastName = lastName;
+    }
+
+    // Getter for fullName
+    get fullName() {
+        return `${this._firstName} ${this._lastName}`;
+    }
+
+    // Setter for fullName
+    set fullName(name) {
+        const parts = name.split(' ');
+        this._firstName = parts[0];
+        this._lastName = parts[1] || '';
+    }
+}
+
+const rahul = new Person("Rahul", "Sharma");
+console.log(rahul.fullName);  // Output: "Rahul Sharma" (method ko property ki tarah call kiya!)
+
+rahul.fullName = "Rohit Verma";  // Value assign karne se setter call hota hai
+console.log(rahul.fullName);  // Output: "Rohit Verma"</code></pre>
+
+    <h3>Static Methods and Properties - Class Level Methods</h3>
+    <p>Static methods aur properties class se belong karte hain, instances se nahi - matlab inko use karne ke liye object banane ki zaroorat nahi!</p>
+
+    <pre><code>// Using static methods and properties
+class MathUtils {
+    static PI = 3.14159;
+
+    static square(x) {
+        return x * x;
+    }
+
+    static cube(x) {
+        return x * x * x;
+    }
+}
+
+console.log(MathUtils.PI);        // Output: 3.14159
+console.log(MathUtils.square(3));  // Output: 9
+console.log(MathUtils.cube(3));    // Output: 27</code></pre>
+
+    <h3>Yaad Rakhne Wali Baatein</h3>
+    <ul>
+        <li>JavaScript prototype-based hai, par ES6 classes ne syntax ko easy bana diya hai</li>
+        <li>Objects banane ke 4 tarike hain: object literals, constructor functions, classes, ya Object.create()</li>
+        <li>JavaScript mein inheritance prototype chain ke through kaam karta hai</li>
+        <li>ES6 classes ne inheritance ko clean bana diya hai <code>extends</code> keyword aur <code>super()</code> method ke saath</li>
+        <li>Private data rakhne ke liye closures ya private fields (#) use kar sakte hain</li>
+        <li>Polymorphism method overriding ke through implement hota hai</li>
+        <li>Getters aur setters se methods ko properties ki tarah use kar sakte hain</li>
+        <li>Static methods aur properties class level par hote hain, instance level par nahi</li>
+    </ul>
+
+    <p>Ab toh JavaScript OOP mein pro ban gaye ho bro! Koi confusion ho toh console.log() karke check kar lena. Happy coding! 🚀</p>
+</body>
+
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #FF8C00;
+            border-bottom: 2px solid #FFA500;
+            padding-bottom: 10px;
+        }
+
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            border: 1px solid #ddd;
+        }
+
+        code {
+            font-family: Consolas, Monaco, 'Andale Mono', monospace;
+            background-color: #f5f5f5;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        .note {
+            background-color: #fff8dc;
+            border-left: 4px solid #ffeb3b;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .bro-highlight {
+            background-color: #FFE4B5;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>JavaScript Data Types and Variables - Bro Style! 🔥</h2>
+
+    <p>Aye bro! Let's talk about JavaScript ke data types. JavaScript ek <span class="bro-highlight">dynamically typed language</span> hai, matlab aapko variable ka type declare karne ki zaroorat nahi hai. System khud hi samajh jaata hai jab code chalta hai. Mast hai na? 😎</p>
+
+    <h3>Primitive Data Types - Basic Cheezein</h3>
+    <p>JavaScript mein 7 primitive data types hain, inko samajh lo toh aadhi game jeet gaye:</p>
+
+    <table>
+        <tr>
+            <th>Type</th>
+            <th>Kya Hai?</th>
+            <th>Example</th>
+        </tr>
+        <tr>
+            <td>String</td>
+            <td>Text wala data</td>
+            <td><code>'Hello'</code>, <code>"World"</code>, <code>`Template literal`</code></td>
+        </tr>
+        <tr>
+            <td>Number</td>
+            <td>Integer ya decimal numbers</td>
+            <td><code>42</code>, <code>3.14</code>, <code>-273</code></td>
+        </tr>
+        <tr>
+            <td>BigInt</td>
+            <td>Bahut bade numbers ke liye</td>
+            <td><code>9007199254740991n</code></td>
+        </tr>
+        <tr>
+            <td>Boolean</td>
+            <td>Haan ya Na (true/false)</td>
+            <td><code>true</code>, <code>false</code></td>
+        </tr>
+        <tr>
+            <td>Undefined</td>
+            <td>Variable declare kiya par value nahi di</td>
+            <td><code>undefined</code></td>
+        </tr>
+        <tr>
+            <td>Null</td>
+            <td>Jaan bujhkar khaali chhoda hai</td>
+            <td><code>null</code></td>
+        </tr>
+        <tr>
+            <td>Symbol</td>
+            <td>Unique ID jaise value</td>
+            <td><code>Symbol('description')</code></td>
+        </tr>
+    </table>
+
+    <h3>Variables in JavaScript - Containers Bro!</h3>
+    <p>JavaScript mein variables declare karne ke 3 tarike hain, aur inme farak samajhna bahut zaroori hai:</p>
+
+    <pre><code>// var use karna (purana tarika, avoid karo)
+var name = "John";
+
+// let use karna (naya cool tarika, variables ke liye jo change hote hain)
+let age = 25;
+
+// const use karna (constants ke liye jo kabhi change nahi hote)
+const PI = 3.14159;</code></pre>
+
+    <div class="note">
+        <strong>Yaad rakhna bro:</strong> Modern JavaScript mein <code>var</code> ki jagah <code>let</code> aur <code>const</code> use karo. <code>var</code> toh purani technology hai, dinosaur ke zamane ki! 🦖
+    </div>
+
+    <h3>String Type - Text Wala Maal</h3>
+    <p>Strings 3 tarike se bana sakte ho - single quotes, double quotes, ya backticks se:</p>
+
+    <pre><code>// Single quotes
+let firstName = 'John';
+
+// Double quotes
+let lastName = "Doe";
+
+// Template literals (backticks) - isme expressions daal sakte ho
+let greeting = `Hello, ${firstName} ${lastName}!`;
+console.log(greeting);  // Output: Hello, John Doe!</code></pre>
+
+    <h3>Number Type - Digits Wala Scene</h3>
+    <p>JavaScript mein ek hi number type hai, jo integers aur floating-point dono handle karta hai:</p>
+
+    <pre><code>let integer = 42;
+let float = 3.14;
+let negative = -273;
+let exponent = 2.998e8;  // Scientific notation: 2.998 × 10^8
+
+// Special numeric values
+let infinity = Infinity;  // Anant
+let negInfinity = -Infinity;  // Negative anant
+let notANumber = NaN;  // Not a Number - jab calculation fail ho jaye</code></pre>
+
+    <h3>Boolean Type - Haan ya Na</h3>
+    <p>Boolean values sirf do ho sakti hain: <code>true</code> ya <code>false</code>. Simple!</p>
+
+    <pre><code>let isActive = true;  // Haan
+let isLoggedIn = false;  // Nahi
+
+// Boolean expressions
+let isGreater = 5 > 3;  // true, kyunki 5 bada hai 3 se
+let isEqual = 4 === 4;  // true, dono equal hain
+let isNotEqual = 3 !== 3;  // false, dono equal hain</code></pre>
+
+    <h3>Undefined aur Null - Khaali Containers</h3>
+    <p>Ye dono types khaali values ko represent karte hain, par alag tarike se:</p>
+
+    <pre><code>// Undefined: variable declare kiya par value assign nahi ki
+let undefinedVar;
+console.log(undefinedVar);  // Output: undefined
+
+// Null: jaan bujhkar khaali value di hai
+let emptyValue = null;
+console.log(emptyValue);  // Output: null</code></pre>
+
+    <h3>Type Conversion - Ek Type se Doosre Type Mein Convert Karna</h3>
+    <p>JavaScript automatic type conversion karta hai operations ke time, lekin kabhi kabhi unexpected results de sakta hai:</p>
+
+    <pre><code>// String conversion
+let value = true;
+console.log(typeof value);  // "boolean"
+
+value = String(value);      // ab value ek string "true" hai
+console.log(typeof value);  // "string"
+
+// Numeric conversion
+console.log("6" / "2");     // 3, strings ko numbers mein convert kar diya
+let str = "123";
+let num = Number(str);      // explicit conversion
+console.log(typeof num);    // "number"
+
+// Boolean conversion
+console.log(Boolean(1));    // true
+console.log(Boolean(0));    // false
+console.log(Boolean(""));   // false
+console.log(Boolean("hello")); // true</code></pre>
+
+    <h3>Types Check Karna</h3>
+    <p>Variable ka type check karne ke liye <code>typeof</code> operator use karo:</p>
+
+    <pre><code>console.log(typeof "Hello");     // "string"
+console.log(typeof 42);         // "number"
+console.log(typeof true);       // "boolean"
+console.log(typeof undefined);  // "undefined"
+console.log(typeof null);       // "object" (ye JavaScript ka ek bug hai, lekin ab fix nahi ho sakta)
+console.log(typeof {});         // "object"
+console.log(typeof []);         // "object" (arrays bhi objects hi hain JavaScript mein)
+console.log(typeof function(){}); // "function"</code></pre>
+
+    <div class="note">
+        <strong>Important baat bro:</strong> <code>typeof null</code> return karta hai <code>"object"</code>, jo ki technically galat hai, lekin ab ye JavaScript ka permanent bug ban gaya hai! 🐛
+    </div>
+
+    <h3>Yaad Rakhne Wali Baatein</h3>
+    <ul>
+        <li>JavaScript dynamically typed hai - variables ka type change ho sakta hai runtime pe</li>
+        <li><code>let</code> use karo un variables ke liye jo change honge</li>
+        <li><code>const</code> use karo un variables ke liye jo fixed rahenge</li>
+        <li><code>var</code> se door raho modern JavaScript mein</li>
+        <li>Automatic type conversion se savdhaan rahein, unexpected results aa sakte hain</li>
+        <li>Hamesha strict equality operators (<code>===</code> and <code>!==</code>) use karo taaki type conversion na ho</li>
+    </ul>
+
+    <p>Ab toh JavaScript ke data types samajh mein aa gaye honge, bro! Koi confusion ho toh console.log() karke check kar lena. Happy coding! 🚀</p>
+</body>
+
+</html>

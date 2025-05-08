@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #FF8C00;
+            border-bottom: 2px solid #FFA500;
+            padding-bottom: 10px;
+        }
+
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        li {
+            margin: 10px 0;
+            position: relative;
+        }
+
+        li:before {
+            content: "•";
+            color: #FFA500;
+            font-weight: bold;
+            position: absolute;
+            left: -15px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f5f5f5;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Data Types and Variables</h2>
+
+    <p>In Java, data types specify what kind of data a variable can hold, and variables are used to store and manipulate data.</p>
+
+    <h2>Variables in Java</h2>
+    <p>A variable is a container that holds a value. To use a variable in Java, you must:</p>
+    <ol>
+        <li>Declare the variable (specify its type and name)</li>
+        <li>Initialize the variable (assign a value)</li>
+    </ol>
+
+    <pre><code>// Declaration
+int age;
+
+// Initialization
+age = 25;
+
+// Declaration and initialization in one statement
+int height = 180;</code></pre>
+
+    <h2>Primitive Data Types</h2>
+    <p>Java has eight primitive data types that store simple values:</p>
+
+    <table>
+        <tr>
+            <th>Data Type</th>
+            <th>Size</th>
+            <th>Range</th>
+            <th>Example</th>
+        </tr>
+        <tr>
+            <td>byte</td>
+            <td>8 bits</td>
+            <td>-128 to 127</td>
+            <td><code>byte b = 100;</code></td>
+        </tr>
+        <tr>
+            <td>short</td>
+            <td>16 bits</td>
+            <td>-32,768 to 32,767</td>
+            <td><code>short s = 1000;</code></td>
+        </tr>
+        <tr>
+            <td>int</td>
+            <td>32 bits</td>
+            <td>-2^31 to 2^31-1</td>
+            <td><code>int i = 100000;</code></td>
+        </tr>
+        <tr>
+            <td>long</td>
+            <td>64 bits</td>
+            <td>-2^63 to 2^63-1</td>
+            <td><code>long l = 100000L;</code></td>
+        </tr>
+        <tr>
+            <td>float</td>
+            <td>32 bits</td>
+            <td>~±3.40282347E+38F</td>
+            <td><code>float f = 3.14f;</code></td>
+        </tr>
+        <tr>
+            <td>double</td>
+            <td>64 bits</td>
+            <td>~±1.79769313486231570E+308</td>
+            <td><code>double d = 3.14159;</code></td>
+        </tr>
+        <tr>
+            <td>char</td>
+            <td>16 bits</td>
+            <td>0 to 65,535</td>
+            <td><code>char c = 'A';</code></td>
+        </tr>
+        <tr>
+            <td>boolean</td>
+            <td>1 bit</td>
+            <td>true or false</td>
+            <td><code>boolean b = true;</code></td>
+        </tr>
+    </table>
+
+    <h2>Reference Data Types</h2>
+    <p>Reference types store references to objects. Some common reference types include:</p>
+    <ul>
+        <li>Classes (e.g., <code>String</code>, <code>Scanner</code>)</li>
+        <li>Arrays</li>
+        <li>Interfaces</li>
+        <li>Enum</li>
+    </ul>
+
+    <pre><code>// String (reference type)
+String name = "John";
+
+// Array (reference type)
+int[] numbers = {1, 2, 3, 4, 5};</code></pre>
+
+    <h2>Type Conversion</h2>
+    <p>Java supports two types of conversion between data types:</p>
+
+    <h3>Implicit Conversion (Widening)</h3>
+    <p>Automatic conversion from smaller to larger data types:</p>
+    <pre><code>byte b = 100;
+int i = b;  // Automatic conversion from byte to int</code></pre>
+
+    <h3>Explicit Conversion (Narrowing)</h3>
+    <p>Manual conversion from larger to smaller data types using casting:</p>
+    <pre><code>double d = 100.25;
+int i = (int)d;  // Explicit casting, i will be 100 (decimal part is truncated)</code></pre>
+
+    <h2>Constants</h2>
+    <p>Constants are variables whose values cannot be changed after initialization. In Java, constants are declared using the <code>final</code> keyword:</p>
+
+    <pre><code>final double PI = 3.14159;
+final int MAX_USERS = 100;</code></pre>
+
+    <h2>Variable Scope</h2>
+    <p>The scope of a variable defines where in the code the variable is accessible:</p>
+
+    <h3>Class Variables (Static Fields)</h3>
+    <pre><code>public class MyClass {
+    static int classVar = 10;  // Class variable
+}</code></pre>
+
+    <h3>Instance Variables (Non-static Fields)</h3>
+    <pre><code>public class MyClass {
+    int instanceVar = 20;  // Instance variable
+}</code></pre>
+
+    <h3>Local Variables</h3>
+    <pre><code>public void myMethod() {
+    int localVar = 30;  // Local variable
+}</code></pre>
+
+    <h3>Block Variables</h3>
+    <pre><code>public void myMethod() {
+    if (true) {
+        int blockVar = 40;  // Block variable
+    }
+    // blockVar is not accessible here
+}</code></pre>
+
+    <h2>Key points to remember:</h2>
+    <ul>
+        <li>Java is a statically-typed language, meaning variable types must be declared</li>
+        <li>Primitive types store actual values, reference types store addresses</li>
+        <li>Use the appropriate data type for your needs to optimize memory usage</li>
+        <li>Be aware of potential data loss during type conversion</li>
+        <li>Use constants (<code>final</code>) for values that should not change</li>
+        <li>Understand variable scope to avoid unexpected behavior</li>
+        <li>Java initializes class and instance variables with default values, but local variables must be explicitly initialized before use</li>
+    </ul>
+</body>
+
+</html>

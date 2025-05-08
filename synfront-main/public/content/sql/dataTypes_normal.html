@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Data Types</title>
+    <style>
+        .content-container {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 100%;
+        }
+        h1 {
+            color: #004085;
+            border-bottom: 2px solid #004085;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #004085;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #0062cc;
+        }
+        .code-block {
+            background-color: #f8f9fa;
+            border-left: 4px solid #004085;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .note {
+            background-color: #e7f3fe;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #004085;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="content-container">
+        <h1>SQL Data Types</h1>
+        
+        <p>
+            SQL databases use various data types to store different kinds of information. Understanding these data types is crucial for designing efficient database schemas and writing effective queries.
+        </p>
+
+        <h2>Numeric Data Types</h2>
+        
+        <table>
+            <tr>
+                <th>Data Type</th>
+                <th>Description</th>
+                <th>Storage Size</th>
+                <th>Range</th>
+            </tr>
+            <tr>
+                <td>INTEGER or INT</td>
+                <td>Whole numbers without decimals</td>
+                <td>4 bytes</td>
+                <td>-2,147,483,648 to 2,147,483,647</td>
+            </tr>
+            <tr>
+                <td>SMALLINT</td>
+                <td>Small range integer</td>
+                <td>2 bytes</td>
+                <td>-32,768 to 32,767</td>
+            </tr>
+            <tr>
+                <td>BIGINT</td>
+                <td>Large range integer</td>
+                <td>8 bytes</td>
+                <td>-9,223,372,036,854,775,808 to 9,223,372,036,854,775,807</td>
+            </tr>
+            <tr>
+                <td>DECIMAL(p,s) or NUMERIC(p,s)</td>
+                <td>Exact numeric with specified precision (p) and scale (s)</td>
+                <td>Variable</td>
+                <td>Depends on precision</td>
+            </tr>
+            <tr>
+                <td>FLOAT</td>
+                <td>Approximate numeric values</td>
+                <td>4 or 8 bytes</td>
+                <td>Varies by implementation</td>
+            </tr>
+            <tr>
+                <td>REAL</td>
+                <td>Single precision floating-point</td>
+                <td>4 bytes</td>
+                <td>Varies by implementation</td>
+            </tr>
+            <tr>
+                <td>DOUBLE PRECISION</td>
+                <td>Double precision floating-point</td>
+                <td>8 bytes</td>
+                <td>Varies by implementation</td>
+            </tr>
+        </table>
+
+        <h2>String Data Types</h2>
+        
+        <table>
+            <tr>
+                <th>Data Type</th>
+                <th>Description</th>
+                <th>Storage</th>
+            </tr>
+            <tr>
+                <td>CHAR(n)</td>
+                <td>Fixed-length character string</td>
+                <td>n bytes</td>
+            </tr>
+            <tr>
+                <td>VARCHAR(n)</td>
+                <td>Variable-length character string</td>
+                <td>Actual length + 1 or 2 bytes</td>
+            </tr>
+            <tr>
+                <td>TEXT</td>
+                <td>Variable unlimited length text</td>
+                <td>Actual length + overhead</td>
+            </tr>
+            <tr>
+                <td>NCHAR(n)</td>
+                <td>Fixed-length Unicode string</td>
+                <td>2×n bytes</td>
+            </tr>
+            <tr>
+                <td>NVARCHAR(n)</td>
+                <td>Variable-length Unicode string</td>
+                <td>2×actual length + overhead</td>
+            </tr>
+        </table>
+
+        <div class="note">
+            <p><strong>Note:</strong> CHAR always uses the specified length for storage, while VARCHAR only uses as much space as needed for the actual data plus a small overhead.</p>
+        </div>
+
+        <h2>Date and Time Data Types</h2>
+        
+        <table>
+            <tr>
+                <th>Data Type</th>
+                <th>Description</th>
+                <th>Format</th>
+            </tr>
+            <tr>
+                <td>DATE</td>
+                <td>Date only (no time)</td>
+                <td>YYYY-MM-DD</td>
+            </tr>
+            <tr>
+                <td>TIME</td>
+                <td>Time only (no date)</td>
+                <td>HH:MM:SS</td>
+            </tr>
+            <tr>
+                <td>DATETIME or TIMESTAMP</td>
+                <td>Date and time</td>
+                <td>YYYY-MM-DD HH:MM:SS</td>
+            </tr>
+            <tr>
+                <td>YEAR</td>
+                <td>Year value</td>
+                <td>YYYY</td>
+            </tr>
+        </table>
+
+        <h2>Boolean Data Type</h2>
+        
+        <p>
+            The BOOLEAN data type can store true/false values. In some database systems, it's implemented as:
+        </p>
+        
+        <ul>
+            <td>TRUE or 1</td>
+            <td>FALSE or 0</td>
+            <td>NULL (unknown)</td>
+        </ul>
+
+        <h2>Binary Data Types</h2>
+        
+        <table>
+            <tr>
+                <th>Data Type</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>BINARY(n)</td>
+                <td>Fixed-length binary data</td>
+            </tr>
+            <tr>
+                <td>VARBINARY(n)</td>
+                <td>Variable-length binary data</td>
+            </tr>
+            <tr>
+                <td>BLOB</td>
+                <td>Binary Large Object for storing large binary data</td>
+            </tr>
+        </table>
+
+        <h2>Special Data Types</h2>
+        
+        <table>
+            <tr>
+                <th>Data Type</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>JSON</td>
+                <td>Stores JSON (JavaScript Object Notation) data</td>
+            </tr>
+            <tr>
+                <td>XML</td>
+                <td>Stores XML data</td>
+            </tr>
+            <tr>
+                <td>ENUM</td>
+                <td>String object with a value chosen from a list of permitted values</td>
+            </tr>
+            <tr>
+                <td>UUID or GUID</td>
+                <td>Universally Unique Identifier</td>
+            </tr>
+        </table>
+
+        <h2>Using Data Types in Table Creation</h2>
+        
+        <div class="code-block">
+            <pre>
+CREATE TABLE employees (
+    employee_id INT PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    birth_date DATE,
+    hire_date DATE,
+    salary DECIMAL(10,2),
+    department VARCHAR(100),
+    is_active BOOLEAN DEFAULT TRUE,
+    profile_photo BLOB,
+    notes TEXT
+);
+            </pre>
+        </div>
+
+        <h2>Data Type Conversion</h2>
+        
+        <p>
+            Sometimes you need to convert data from one type to another. This can be done using CAST or CONVERT functions:
+        </p>
+        
+        <div class="code-block">
+            <pre>
+-- Using CAST
+SELECT CAST(123.45 AS INT);  -- Results in 123
+
+-- Using CONVERT (in SQL Server)
+SELECT CONVERT(INT, 123.45);  -- Results in 123
+            </pre>
+        </div>
+
+        <div class="note">
+            <p><strong>Best Practices:</strong></p>
+            <ul>
+                <li>Choose the smallest data type that can reliably contain all possible values</li>
+                <li>Use VARCHAR instead of CHAR when the column length varies considerably</li>
+                <li>Use INT for most integer values unless you need a larger range</li>
+                <li>Use DECIMAL for financial calculations where precision is important</li>
+                <li>Be aware of database-specific implementations of data types</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

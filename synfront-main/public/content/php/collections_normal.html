@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP Collections (Arrays, Objects)</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #4F5B93;
+        }
+        pre {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 15px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #8892BF;
+        }
+        .output {
+            background-color: #f1f1f1;
+            border-left: 4px solid #4CAF50;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+        .tip {
+            background-color: #e6f7ff;
+            border-left: 4px solid #1890ff;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>PHP Collections (Arrays, Objects)</h1>
+
+    <h2>Introduction to Collections</h2>
+    <p>Collections in PHP primarily consist of arrays and objects. These data structures allow you to store, organize, and manipulate multiple values. In this module, we'll explore how to work with arrays and objects in PHP.</p>
+
+    <h2>Arrays in PHP</h2>
+    <p>Arrays in PHP are ordered maps that associate values to keys. They're incredibly versatile and can be used as a traditional array, list, hash table, dictionary, collection, stack, queue, and more.</p>
+
+    <h3>Creating Arrays</h3>
+    <pre><code>&lt;?php
+// Creating an empty array
+$emptyArray = [];
+$alsoEmptyArray = array();
+
+// Creating an indexed array (numeric keys)
+$fruits = ["Apple", "Banana", "Cherry"];
+$alsoFruits = array("Apple", "Banana", "Cherry");
+
+// Creating an associative array (string keys)
+$person = [
+    "name" => "John",
+    "age" => 30,
+    "city" => "New York"
+];
+
+$alsoPerson = array(
+    "name" => "John",
+    "age" => 30,
+    "city" => "New York"
+);
+
+// Creating a multidimensional array
+$users = [
+    [
+        "name" => "John",
+        "age" => 30,
+        "city" => "New York"
+    ],
+    [
+        "name" => "Jane",
+        "age" => 25,
+        "city" => "Los Angeles"
+    ]
+];
+
+// Creating an array with mixed keys
+$mixed = [
+    "name" => "John",
+    "age" => 30,
+    5 => "Five",
+    "hobbies" => ["Reading", "Gaming", "Hiking"]
+];
+?&gt;</code></pre>
+
+    <h3>Accessing Array Elements</h3>
+    <pre><code>&lt;?php
+// Accessing elements in an indexed array
+$fruits = ["Apple", "Banana", "Cherry"];
+echo $fruits[0];  // Outputs: Apple
+echo $fruits[1];  // Outputs: Banana
+
+// Accessing elements in an associative array
+$person = [
+    "name" => "John",
+    "age" => 30,
+    "city" => "New York"
+];
+echo $person["name"];  // Outputs: John
+echo $person["age"];   // Outputs: 30
+
+// Accessing elements in a multidimensional array
+$users = [
+    [
+        "name" => "John",
+        "age" => 30
+    ],
+    [
+        "name" => "Jane",
+        "age" => 25
+    ]
+];
+echo $users[0]["name"];  // Outputs: John
+echo $users[1]["age"];   // Outputs: 25
+
+// Checking if a key exists
+if (isset($person["email"])) {
+    echo "Email exists";
+} else {
+    echo "Email does not exist";  // This will be output
+}
+
+// Providing a default value if a key doesn't exist
+$email = $person["email"] ?? "No email provided";
+echo $email;  // Outputs: No email provided
+?&gt;</code></pre>
+
+    <h3>Modifying Arrays</h3>
+    <pre><code>&lt;?php
+// Adding elements to an indexed array
+$fruits = ["Apple", "Banana"];
+$fruits[] = "Cherry";  // Adds "Cherry" to the end
+print_r($fruits);  // Outputs: Array ( [0] => Apple [1] => Banana [2] => Cherry )
+
+// Adding elements to an associative array
+$person = [
+    "name" => "John",
+    "age" => 30
+];
+$person["city"] = "New York";  // Adds a new key-value pair
+print_r($person);  // Outputs: Array ( [name] => John [age] => 30 [city] => New York )
+
+// Modifying elements
+$fruits[1] = "Blueberry";  // Changes "Banana" to "Blueberry"
+$person["age"] = 31;       // Changes 30 to 31
+
+// Removing elements
+unset($fruits[0]);         // Removes "Apple"
+unset($person["city"]);    // Removes the "city" key-value pair
+
+// Re-indexing an array after unset
+$fruits = array_values($fruits);  // Re-indexes the array
+print_r($fruits);  // Outputs: Array ( [0] => Blueberry [1] => Cherry )
+?&gt;</code></pre>
+
+    <h3>Array Operators</h3>
+    <pre><code>&lt;?php
+// Union operator (+)
+$array1 = ["a" => "Apple", "b" => "Banana"];
+$array2 = ["b" => "Blueberry", "c" => "Cherry"];
+$result = $array1 + $array2;
+print_r($result);  // Outputs: Array ( [a] => Apple [b] => Banana [c] => Cherry )
+// Note: The union operator preserves the keys and values from the first array
+
+// Equality operator (==)
+$array1 = [1, 2, 3];
+$array2 = [1, 2, 3];
+var_dump($array1 == $array2);  // Outputs: bool(true)
+// Checks if arrays have the same key-value pairs
+
+// Identity operator (===)
+$array1 = [1, 2, 3];
+$array2 = [1, 2, 3];
+var_dump($array1 === $array2);  // Outputs: bool(true)
+// Checks if arrays have the same key-value pairs in the same order and of the same types
+
+// Inequality operator (!=)
+var_dump($array1 != $array2);  // Outputs: bool(false)
+
+// Non-identity operator (!==)
+var_dump($array1 !== $array2);  // Outputs: bool(false)
+?&gt;</code></pre>
+
+    <h3>Looping Through Arrays</h3>
+    <pre><code>&lt;?php
+// Using foreach with indexed arrays
+$fruits = ["Apple", "Banana", "Cherry"];
+foreach ($fruits as $fruit) {
+    echo $fruit . "&lt;br&gt;";
+}
+// Outputs:
+// Apple
+// Banana
+// Cherry
+
+// Using foreach with key-value pairs
+$person = [
+    "name" => "John",
+    "age" => 30,
+    "city" => "New York"
+];
+foreach ($person as $key => $value) {
+    echo "$key: $value&lt;br&gt;";
+}
+// Outputs:
+// name: John
+// age: 30
+// city: New York
+
+// Using for loop with indexed arrays
+$fruits = ["Apple", "Banana", "Cherry"];
+for ($i = 0; $i < count($fruits); $i++) {
+    echo $fruits[$i] . "&lt;br&gt;";
+}
+// Outputs:
+// Apple
+// Banana
+// Cherry
+
+// Using while loop with array_keys
+$person = [
+    "name" => "John",
+    "age" => 30,
+    "city" => "New York"
+];
+$keys = array_keys($person);
+$i = 0;
+while ($i < count($keys)) {
+    $key = $keys[$i];
+    echo "$key: " . $person[$key] . "&lt;br&gt;";
+    $i++;
+}
+// Outputs:
+// name: John
+// age: 30
+// city: New York
+?&gt;</code></pre>
+
+    <h3>Useful Array Functions</h3>
+    <pre><code>&lt;?php
+// count() - Count the number of elements in an array
+$fruits = ["Apple", "Banana", "Cherry"];
+echo count($fruits);  // Outputs: 3
+
+// array_push() - Add one or more elements to the end of an array
+array_push($fruits, "Date", "Elderberry");
+print_r($fruits);  // Outputs: Array ( [0] => Apple [1] => Banana [2] => Cherry [3] => Date [4] => Elderberry )
+
+// array_pop() - Remove and return the last element of an array
+$lastFruit = array_pop($fruits);
+echo $lastFruit;  // Outputs: Elderberry
+print_r($fruits);  // Outputs: Array ( [0] => Apple [1] => Banana [2] => Cherry [3] => Date )
+
+// array_unshift() - Add one or more elements to the beginning of an array
+array_unshift($fruits, "Apricot");
+print_r($fruits);  // Outputs: Array ( [0] => Apricot [1] => Apple [2] => Banana [3] => Cherry [4] => Date )
+
+// array_shift() - Remove and return the first element of an array
+$firstFruit = array_shift($fruits);
+echo $firstFruit;  // Outputs: Apricot
+print_r($fruits);  // Outputs: Array ( [0] => Apple [1] => Banana [2] => Cherry [3] => Date )
+
+// array_merge() - Merge one or more arrays
+$fruits1 = ["Apple", "Banana"];
+$fruits2 = ["Cherry", "Date"];
+$allFruits = array_merge($fruits1, $fruits2);
+print_r($allFruits);  // Outputs: Array ( [0] => Apple [1] => Banana [2] => Cherry [3] => Date )
+
+// array_slice() - Extract a slice of the array
+$fruits = ["Apple", "Banana", "Cherry", "Date", "Elderberry"];
+$slice = array_slice($fruits, 1, 3);  // Start at index 1, get 3 elements
+print_r($slice);  // Outputs: Array ( [0] => Banana [1] => Cherry [2] => Date )
+
+// array_splice() - Remove a portion of the array and replace it with something else
+$fruits = ["Apple", "Banana", "Cherry", "Date", "Elderberry"];
+array_splice($fruits, 1, 2, ["Blueberry", "Blackberry"]);  // Replace 2 elements starting at index 1
+print_r($fruits);  // Outputs: Array ( [0] => Apple [1] => Blueberry [2] => Blackberry [3] => Date [4] => Elderberry )
+
+// in_array() - Check if a value exists in an array
+$fruits = ["Apple", "Banana", "Cherry"];
+var_dump(in_array("Banana", $fruits));  // Outputs: bool(true)
+var_dump(in_array("Date", $fruits));    // Outputs: bool(false)
+
+// array_key_exists() - Check if a key exists in an array
+$person = ["name" => "John", "age" => 30];
+var_dump(array_key_exists("name", $person));   // Outputs: bool(true)
+var_dump(array_key_exists("email", $person));  // Outputs: bool(false)
+
+// array_keys() - Return all the keys of an array
+$person = ["name" => "John", "age" => 30, "city" => "New York"];
+print_r(array_keys($person));  // Outputs: Array ( [0] => name [1] => age [2] => city )
+
+// array_values() - Return all the values of an array
+print_r(array_values($person));  // Outputs: Array ( [0] => John [1] => 30 [2] => New York )
+
+// array_combine() - Create an array using one array for keys and another for values
+$keys = ["name", "age", "city"];
+$values = ["John", 30, "New York"];
+$person = array_combine($keys, $values);
+print_r($person);  // Outputs: Array ( [name] => John [age] => 30 [city] => New York )
+
+// array_flip() - Exchange all keys with their associated values
+$flipped = array_flip($person);
+print_r($flipped);  // Outputs: Array ( [John] => name [30] => age [New York] => city )
+
+// array_reverse() - Return an array with elements in reverse order
+$fruits = ["Apple", "Banana", "Cherry"];
+$reversed = array_reverse($fruits);
+print_r($reversed);  // Outputs: Array ( [0] => Cherry [1] => Banana [2] => Apple )
+
+// sort() - Sort an array
+$fruits = ["Cherry", "Apple", "Banana"];
+sort($fruits);
+print_r($fruits);  // Outputs: Array ( [0] => Apple [1] => Banana [2] => Cherry )
+
+// rsort() - Sort an array in reverse order
+$fruits = ["Apple", "Banana", "Cherry"];
+rsort($fruits);
+print_r($fruits);  // Outputs: Array ( [0] => Cherry [1] => Banana [2] => Apple )
+
+// asort() - Sort an associative array by values
+$ages = ["John" => 30, "Jane" => 25, "Bob" => 40];
+asort($ages);
+print_r($ages);  // Outputs: Array ( [Jane] => 25 [John] => 30 [Bob] => 40 )
+
+// arsort() - Sort an associative array by values in reverse order
+arsort($ages);
+print_r($ages);  // Outputs: Array ( [Bob] => 40 [John] => 30 [Jane] => 25 )
+
+// ksort() - Sort an associative array by keys
+ksort($ages);
+print_r($ages);  // Outputs: Array ( [Bob] => 40 [Jane] => 25 [John] => 30 )
+
+// krsort() - Sort an associative array by keys in reverse order
+krsort($ages);
+print_r($ages);  // Outputs: Array ( [John] => 30 [Jane] => 25 [Bob] => 40 )
+
+// array_map() - Apply a callback to each element of an array
+$numbers = [1, 2, 3, 4, 5];
+$squared = array_map(function($n) {
+    return $n * $n;
+}, $numbers);
+print_r($squared);  // Outputs: Array ( [0] => 1 [1] => 4 [2] => 9 [3] => 16 [4] => 25 )
+
+// array_filter() - Filter elements of an array using a callback
+$numbers = [1, 2, 3, 4, 5, 6];
+$even = array_filter($numbers, function($n) {
+    return $n % 2 == 0;
+});
+print_r($even);  // Outputs: Array ( [1] => 2 [3] => 4 [5] => 6 )
+
+// array_reduce() - Reduce an array to a single value using a callback
+$numbers = [1, 2, 3, 4, 5];
+$sum = array_reduce($numbers, function($carry, $item) {
+    return $carry + $item;
+}, 0);
+echo $sum;  // Outputs: 15
+?&gt;</code></pre>
+
+    <h2>Objects in PHP</h2>
+    <p>Objects in PHP are instances of classes, which are blueprints for creating objects. Objects can contain properties (variables) and methods (functions).</p>
+
+    <h3>Creating and Using Objects</h3>
+    <pre><code>&lt;?php
+// Define a class
+class Person {
+    // Properties
+    public $name;
+    public $age;
+    
+    // Constructor
+    public function __construct($name, $age) {
+        $this->name = $name;
+        $this->age = $age;
+    }
+    
+    // Method
+    public function greet() {
+        return "Hello, my name is " . $this->name . " and I am " . $this->age . " years old.";
+    }
+}
+
+// Create an object (instance of the Person class)
+$person1 = new Person("John", 30);
+$person2 = new Person("Jane", 25);
+
+// Access properties
+echo $person1->name;  // Outputs: John
+echo $person2->age;   // Outputs: 25
+
+// Call methods
+echo $person1->greet();  // Outputs: Hello, my name is John and I am 30 years old.
+echo $person2->greet();  // Outputs: Hello, my name is Jane and I am 25 years old.
+?&gt;</code></pre>
+
+    <h3>Converting Between Arrays and Objects</h3>
+    <pre><code>&lt;?php
+// Convert an object to an array
+$person = new Person("John", 30);
+$personArray = (array) $person;
+print_r($personArray);  // Outputs: Array ( [name] => John [age] => 30 )
+
+// Convert an array to an object
+$data = [
+    "name" => "John",
+    "age" => 30
+];
+$dataObject = (object) $data;
+echo $dataObject->name;  // Outputs: John
+echo $dataObject->age;   // Outputs: 30
+
+// Using json_encode and json_decode for conversion
+$person = new Person("John", 30);
+$jsonString = json_encode($person);
+echo $jsonString;  // Outputs: {"name":"John","age":30}
+
+$decodedObject = json_decode($jsonString);
+echo $decodedObject->name;  // Outputs: John
+echo $decodedObject->age;   // Outputs: 30
+
+$decodedArray = json_decode($jsonString, true);
+echo $decodedArray["name"];  // Outputs: John
+echo $decodedArray["age"];   // Outputs: 30
+?&gt;</code></pre>
+
+    <h3>stdClass Object</h3>
+    <p>PHP provides a built-in empty class called <code>stdClass</code> that can be used to create simple objects:</p>
+
+    <pre><code>&lt;?php
+// Create an empty stdClass object
+$obj = new stdClass();
+
+// Add properties
+$obj->name = "John";
+$obj->age = 30;
+$obj->city = "New York";
+
+// Access properties
+echo $obj->name;  // Outputs: John
+echo $obj->age;   // Outputs: 30
+
+// Convert an array to stdClass
+$array = [
+    "name" => "Jane",
+    "age" => 25,
+    "city" => "Los Angeles"
+];
+$obj = json_decode(json_encode($array));
+echo $obj->name;  // Outputs: Jane
+echo $obj->age;   // Outputs: 25
+?&gt;</code></pre>
+
+    <h2>Iterating Over Objects</h2>
+    <p>You can use the <code>foreach</code> loop to iterate over the properties of an object:</p>
+
+    <pre><code>&lt;?php
+// Create an object
+$person = new stdClass();
+$person->name = "John";
+$person->age = 30;
+$person->city = "New York";
+
+// Iterate over the properties
+foreach ($person as $key => $value) {
+    echo "$key: $value&lt;br&gt;";
+}
+// Outputs:
+// name: John
+// age: 30
+// city: New York
+?&gt;</code></pre>
+
+    <h2>Working with Collections of Objects</h2>
+    <p>Arrays can be used to store collections of objects:</p>
+
+    <pre><code>&lt;?php
+// Define a class
+class Product {
+    public $name;
+    public $price;
+    
+    public function __construct($name, $price) {
+        $this->name = $name;
+        $this->price = $price;
+    }
+    
+    public function getInfo() {
+        return "$this->name: $$this->price";
+    }
+}
+
+// Create an array of objects
+$products = [
+    new Product("Laptop", 999.99),
+    new Product("Phone", 499.99),
+    new Product("Tablet", 299.99)
+];
+
+// Access objects in the array
+echo $products[0]->name;  // Outputs: Laptop
+echo $products[1]->price;  // Outputs: 499.99
+
+// Call methods on objects in the array
+echo $products[2]->getInfo();  // Outputs: Tablet: $299.99
+
+// Iterate over the array of objects
+foreach ($products as $product) {
+    echo $product->getInfo() . "&lt;br&gt;";
+}
+// Outputs:
+// Laptop: $999.99
+// Phone: $499.99
+// Tablet: $299.99
+
+// Filter the array of objects
+$expensiveProducts = array_filter($products, function($product) {
+    return $product->price > 400;
+});
+
+foreach ($expensiveProducts as $product) {
+    echo $product->getInfo() . "&lt;br&gt;";
+}
+// Outputs:
+// Laptop: $999.99
+// Phone: $499.99
+
+// Map the array of objects
+$productNames = array_map(function($product) {
+    return $product->name;
+}, $products);
+
+print_r($productNames);  // Outputs: Array ( [0] => Laptop [1] => Phone [2] => Tablet )
+?&gt;</code></pre>
+
+    <h2>SPL Data Structures</h2>
+    <p>PHP's Standard PHP Library (SPL) provides a set of interfaces and classes that solve common problems. It includes several data structures:</p>
+
+    <h3>SplDoublyLinkedList</h3>
+    <pre><code>&lt;?php
+// Create a doubly linked list
+$list = new SplDoublyLinkedList();
+
+// Add elements
+$list->push("Apple");
+$list->push("Banana");
+$list->push("Cherry");
+
+// Iterate over the list
+foreach ($list as $item) {
+    echo $item . "&lt;br&gt;";
+}
+// Outputs:
+// Apple
+// Banana
+// Cherry
+
+// Access elements
+echo $list[0];  // Outputs: Apple
+echo $list[1];  // Outputs: Banana
+
+// Remove elements
+$list->pop();   // Removes "Cherry"
+$list->shift();  // Removes "Apple"
+
+// Count elements
+echo count($list);  // Outputs: 1
+?&gt;</code></pre>
+
+    <h3>SplStack</h3>
+    <pre><code>&lt;?php
+// Create a stack (Last In, First Out)
+$stack = new SplStack();
+
+// Add elements
+$stack->push("Apple");
+$stack->push("Banana");
+$stack->push("Cherry");
+
+// Peek at the top element
+echo $stack->top();  // Outputs: Cherry
+
+// Remove elements
+echo $stack->pop();  // Outputs: Cherry
+echo $stack->pop();  // Outputs: Banana
+
+// Count elements
+echo count($stack);  // Outputs: 1
+?&gt;</code></pre>
+
+    <h3>SplQueue</h3>
+    <pre><code>&lt;?php
+// Create a queue (First In, First Out)
+$queue = new SplQueue();
+
+// Add elements
+$queue->enqueue("Apple");
+$queue->enqueue("Banana");
+$queue->enqueue("Cherry");
+
+// Peek at the first element
+echo $queue->bottom();  // Outputs: Apple
+
+// Remove elements
+echo $queue->dequeue();  // Outputs: Apple
+echo $queue->dequeue();  // Outputs: Banana
+
+// Count elements
+echo count($queue);  // Outputs: 1
+?&gt;</code></pre>
+
+    <h3>SplHeap, SplMinHeap, and SplMaxHeap</h3>
+    <pre><code>&lt;?php
+// Create a max heap
+$maxHeap = new SplMaxHeap();
+
+// Add elements
+$maxHeap->insert(3);
+$maxHeap->insert(1);
+$maxHeap->insert(4);
+$maxHeap->insert(2);
+
+// Extract elements (in descending order)
+echo $maxHeap->extract();  // Outputs: 4
+echo $maxHeap->extract();  // Outputs: 3
+echo $maxHeap->extract();  // Outputs: 2
+echo $maxHeap->extract();  // Outputs: 1
+
+// Create a min heap
+$minHeap = new SplMinHeap();
+
+// Add elements
+$minHeap->insert(3);
+$minHeap->insert(1);
+$minHeap->insert(4);
+$minHeap->insert(2);
+
+// Extract elements (in ascending order)
+echo $minHeap->extract();  // Outputs: 1
+echo $minHeap->extract();  // Outputs: 2
+echo $minHeap->extract();  // Outputs: 3
+echo $minHeap->extract();  // Outputs: 4
+?&gt;</code></pre>
+
+    <h3>SplFixedArray</h3>
+    <pre><code>&lt;?php
+// Create a fixed array with a size of 5
+$fixedArray = new SplFixedArray(5);
+
+// Set values
+$fixedArray[0] = "Apple";
+$fixedArray[1] = "Banana";
+$fixedArray[2] = "Cherry";
+$fixedArray[3] = "Date";
+$fixedArray[4] = "Elderberry";
+
+// Access values
+echo $fixedArray[2];  // Outputs: Cherry
+
+// Iterate over the array
+foreach ($fixedArray as $item) {
+    echo $item . "&lt;br&gt;";
+}
+// Outputs:
+// Apple
+// Banana
+// Cherry
+// Date
+// Elderberry
+
+// Resize the array
+$fixedArray->setSize(3);  // Truncates to the first 3 elements
+
+// Count elements
+echo count($fixedArray);  // Outputs: 3
+?&gt;</code></pre>
+
+    <h2>Best Practices for Working with Collections</h2>
+    <ul>
+        <li><strong>Choose the Right Collection Type:</strong> Use arrays for simple collections, objects for complex data with behavior, and SPL data structures for specific use cases.</li>
+        <li><strong>Use Consistent Keys:</strong> When working with associative arrays, use consistent keys to make your code more maintainable.</li>
+        <li><strong>Validate Input:</strong> Always validate data before adding it to a collection, especially when the data comes from user input.</li>
+        <li><strong>Use Type Hints:</strong> In PHP 7+, use type hints to ensure that your functions and methods receive the expected types of collections.</li>
+        <li><strong>Document Your Collections:</strong> Use PHPDoc comments to document the structure of your arrays and objects.</li>
+        <li><strong>Consider Performance:</strong> Different collection types have different performance characteristics. Choose the one that best fits your needs.</li>
+        <li><strong>Use Built-in Functions:</strong> PHP provides many built-in functions for working with arrays. Use them instead of writing your own.</li>
+        <li><strong>Be Careful with References:</strong> When passing collections to functions, be aware of whether you're passing by value or by reference.</li>
+    </ul>
+
+    <h2>Conclusion</h2>
+    <p>Collections in PHP, primarily arrays and objects, are powerful tools for organizing and manipulating data. Arrays offer flexibility and a wide range of built-in functions, while objects provide a way to combine data with behavior. The SPL data structures offer specialized collections for specific use cases.</p>
+    
+    <p>By understanding how to work with these collections, you can write more efficient and maintainable PHP code.</p>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .content-container {
+            font-family: 'Comic Sans MS', cursive;
+            line-height: 1.6;
+            color: #333;
+            padding: 0 30px;
+        }
+
+        .content-container h2 {
+            color: #333;
+            font-size: 28px;
+            margin: 30px 0;
+            padding-bottom: 10px;
+            border-bottom: none;
+            text-shadow: 1px 1px 2px rgba(255, 140, 0, 0.2);
+        }
+
+        .content-container pre {
+            background-color: #fff8f0;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 25px 0;
+            border: 2px solid #FFD700;
+            box-shadow: 0 2px 4px rgba(255, 140, 0, 0.1);
+            font-size: 15px;
+        }
+
+        .content-container code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #FF4500;
+        }
+
+        .content-container ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 25px 0;
+        }
+
+        .content-container li {
+            margin: 15px 0;
+            position: relative;
+            padding-left: 25px;
+            font-size: 16px;
+        }
+
+        .content-container li:before {
+            content: "🔥";
+            position: absolute;
+            left: 0;
+        }
+
+        .content-container p {
+            margin: 20px 0;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .content-container code {
+            background-color: #fff8f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content-container">
+        <h2>Java ka Basic Syntax aur Structure! 🚀</h2>
+
+        <p>Bhai, Java ka syntax aur structure samajhna bahut zaroori hai! Yeh basics clear ho gaye toh aadha game jeet gaye samjho! 😎</p>
+
+        <h2>Program ka Structure Kya Hai? 🏗️</h2>
+        <p>Ek basic Java program kuch aise dikhta hai:</p>
+
+        <pre><code>// Yeh ek simple Java program hai
+
+public class HelloWorld {
+    public static void main(String[] args) {
+        // Tera code yahan likhega
+        System.out.println("Hello, World!");
+    }
+}</code></pre>
+
+        <p>Ab isko thoda samajhte hain:</p>
+        <ul>
+            <li><code>public class HelloWorld</code>: Yeh ek class define karta hai "HelloWorld" naam ki. Class ka naam file ke naam se match hona chahiye (HelloWorld.java)! Nahi toh error aayega! 🚫</li>
+            <li><code>public static void main(String[] args)</code>: Yeh main method hai - program ka starting point! Java Virtual Machine (JVM) program ko yahan se start karta hai! 🏁</li>
+            <li><code>System.out.println("Hello, World!");</code>: Yeh line console pe text print karti hai - output dikhane ke liye! 📺</li>
+        </ul>
+
+        <h2>Comments - Apne Notes! 📝</h2>
+        <p>Comments code ko explain karne ke liye hote hain, compiler inko ignore karta hai:</p>
+
+        <pre><code>// Yeh single-line comment hai, sirf ek line
+
+/* Yeh multi-line comment hai
+   Jitna marzi likho,
+   Compiler ignore karega! */
+
+/**
+ * Yeh documentation comment hai (Javadoc)
+ * Isse code ka documentation generate hota hai
+ * Pro developers yeh use karte hain! 😎
+ */</code></pre>
+
+        <h2>Statements aur Semicolons! ⚠️</h2>
+        <p>Java mein har statement ke baad semicolon (;) lagana zaroori hai, bilkul sentence ke end mein full-stop ki tarah:</p>
+
+        <pre><code>int x = 5;  // Variable declare kiya
+System.out.println(x);  // Output kiya
+x = x + 1;  // Value update kiya</code></pre>
+
+        <h2>Code ke Blocks! 📦</h2>
+        <p>Curly braces {} se hum multiple statements ko ek group mein rakhte hain:</p>
+
+        <pre><code>if (x > 0) {
+    System.out.println("Positive hai bhai!");
+    x = 0;  // Reset kar diya
+}</code></pre>
+
+        <h2>Identifiers - Naam Kaise Rakhe? 🏷️</h2>
+        <p>Identifiers matlab classes, variables, aur methods ke naam:</p>
+        <ul>
+            <li>Letter, underscore (_), ya dollar sign ($) se start hona chahiye! 🔤</li>
+            <li>Baad ke characters letters, digits, underscores, ya dollar signs ho sakte hain! 🔢</li>
+            <li>Java ke reserved keywords use nahi kar sakte (int, class, public, etc.)! ⛔</li>
+            <li>Case-sensitive hai bhai! age, Age, aur AGE teeno alag alag hain! 🔍</li>
+        </ul>
+
+        <h2>Naming Conventions - Pro Tarika! 🎯</h2>
+        <p>Java mein naam rakhne ke kuch rules hain - follow karo toh code ekdum pro dikhega:</p>
+        <ul>
+            <li>Classes: Capital letter se start, CamelCase use karo (e.g., <code>HelloWorld</code>, <code>StudentDetails</code>)! 🐫</li>
+            <li>Methods aur variables: Small letter se start, camelCase use karo (e.g., <code>firstName</code>, <code>calculateTotal</code>)! 🐪</li>
+            <li>Constants: ALL CAPS with UNDERSCORES (e.g., <code>MAX_VALUE</code>, <code>PI</code>)! 📢</li>
+            <li>Packages: All lowercase, reverse domain style (e.g., <code>com.example.project</code>)! 📦</li>
+        </ul>
+
+        <h2>Package Declaration - Address Batana! 📍</h2>
+        <p>Packages se code organize hota hai aur naming conflicts nahi hote:</p>
+
+        <pre><code>package com.example.myproject;
+
+public class MyClass {
+    // Class content
+}</code></pre>
+
+        <h2>Import Statements - Dusre Packages Ki Cheezein Use Karna! 📥</h2>
+        <p>Import statements se dusre packages ki classes use kar sakte hain:</p>
+
+        <pre><code>import java.util.ArrayList;
+import java.util.Scanner;
+// Ya fir ek package ki saari classes import karo
+import java.util.*;</code></pre>
+
+        <h2>Yaad Rakhne Wali Baatein! 🧠</h2>
+        <ul>
+            <li>Java case-sensitive hai! 'A' aur 'a' alag alag hain! 🔤</li>
+            <li>Class ka naam aur file ka naam same hona chahiye! 📄</li>
+            <li>Har Java program mein <code>main</code> method hona zaroori hai! 🚪</li>
+            <li>Har statement ke baad semicolon (;) lagana mat bhoolna! ⚠️</li>
+            <li>Code blocks curly braces {} mein likhte hain! 📦</li>
+            <li>Naming conventions follow karo - code professional dikhega! 😎</li>
+            <li>Packages use karo code organize karne ke liye! 🗂️</li>
+            <li>Import statements package declaration ke baad aur class declaration se pehle likhte hain! 📥</li>
+        </ul>
+    </div>
+</body>
+
+</html>

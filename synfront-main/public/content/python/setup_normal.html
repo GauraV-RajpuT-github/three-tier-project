@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setting Up Python Environment</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        h1 {
+            color: #2b5b84;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #3776ab;
+            font-size: 1.8em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        h3 {
+            color: #4a8cc2;
+            font-size: 1.4em;
+            margin-top: 25px;
+        }
+        p {
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f5f5f5;
+            padding: 3px 6px;
+            border-radius: 3px;
+            font-size: 0.9em;
+            border: 1px solid #e0e0e0;
+        }
+        pre {
+            background-color: #f8f8f8;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            padding: 15px;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        pre code {
+            background-color: transparent;
+            border: none;
+            padding: 0;
+        }
+        .note {
+            background-color: #e7f3fe;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .warning {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .step {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .step-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background-color: #3776ab;
+            color: white;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        ul, ol {
+            margin-bottom: 20px;
+            padding-left: 25px;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        .download-btn {
+            display: inline-block;
+            background-color: #3776ab;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .download-btn:hover {
+            background-color: #2b5b84;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Setting Up Python Environment</h1>
+    
+    <p>Python is a versatile, high-level programming language known for its readability and simplicity. Before you can start writing Python code, you need to set up your development environment. This guide will walk you through the process of installing Python and setting up the necessary tools to begin your Python journey.</p>
+    
+    <div class="note">
+        <strong>Note:</strong> Python has two major versions - Python 2 and Python 3. Python 2 reached its end of life on January 1, 2020, so we recommend using Python 3 for all new projects.
+    </div>
+
+    <h2>Installing Python</h2>
+    
+    <h3>Windows Installation</h3>
+    
+    <div class="step">
+        <span class="step-number">1</span>
+        <strong>Download the Python installer:</strong>
+        <p>Visit the <a href="https://www.python.org/downloads/" target="_blank">official Python website</a> and download the latest version of Python for Windows.</p>
+    </div>
+    
+    <div class="step">
+        <span class="step-number">2</span>
+        <strong>Run the installer:</strong>
+        <p>Open the downloaded file and make sure to check the box that says "Add Python to PATH" before clicking "Install Now".</p>
+    </div>
+    
+    <div class="step">
+        <span class="step-number">3</span>
+        <strong>Verify the installation:</strong>
+        <p>Open Command Prompt and type the following command to verify that Python is installed correctly:</p>
+        <pre><code>python --version</code></pre>
+        <p>You should see the Python version number displayed.</p>
+    </div>
+
+    <h3>macOS Installation</h3>
+    
+    <div class="step">
+        <span class="step-number">1</span>
+        <strong>Using Homebrew (Recommended):</strong>
+        <p>If you have Homebrew installed, you can install Python by running:</p>
+        <pre><code>brew install python</code></pre>
+    </div>
+    
+    <div class="step">
+        <span class="step-number">2</span>
+        <strong>Using the official installer:</strong>
+        <p>Alternatively, you can download the macOS installer from the <a href="https://www.python.org/downloads/" target="_blank">Python website</a> and follow the installation instructions.</p>
+    </div>
+    
+    <div class="step">
+        <span class="step-number">3</span>
+        <strong>Verify the installation:</strong>
+        <p>Open Terminal and run:</p>
+        <pre><code>python3 --version</code></pre>
+    </div>
+
+    <h3>Linux Installation</h3>
+    
+    <div class="step">
+        <span class="step-number">1</span>
+        <strong>Using package manager:</strong>
+        <p>Most Linux distributions come with Python pre-installed. If not, you can install it using your distribution's package manager.</p>
+        <p>For Ubuntu/Debian:</p>
+        <pre><code>sudo apt update
+sudo apt install python3 python3-pip</code></pre>
+        <p>For Fedora:</p>
+        <pre><code>sudo dnf install python3 python3-pip</code></pre>
+    </div>
+    
+    <div class="step">
+        <span class="step-number">2</span>
+        <strong>Verify the installation:</strong>
+        <p>Open Terminal and run:</p>
+        <pre><code>python3 --version</code></pre>
+    </div>
+
+    <h2>Setting Up a Code Editor</h2>
+    
+    <p>While you can write Python code in any text editor, using a dedicated code editor or Integrated Development Environment (IDE) can significantly improve your productivity. Here are some popular options:</p>
+    
+    <h3>Visual Studio Code (Recommended for Beginners)</h3>
+    
+    <div class="step">
+        <span class="step-number">1</span>
+        <strong>Download and install VS Code:</strong>
+        <p>Visit the <a href="https://code.visualstudio.com/" target="_blank">VS Code website</a> and download the appropriate version for your operating system.</p>
+    </div>
+    
+    <div class="step">
+        <span class="step-number">2</span>
+        <strong>Install Python extension:</strong>
+        <p>Open VS Code, go to the Extensions view by clicking on the Extensions icon in the Activity Bar on the side of the window, and search for "Python". Install the Python extension by Microsoft.</p>
+    </div>
+
+    <h3>PyCharm</h3>
+    
+    <p>PyCharm is a full-featured IDE specifically designed for Python development.</p>
+    
+    <div class="step">
+        <span class="step-number">1</span>
+        <strong>Download PyCharm:</strong>
+        <p>Visit the <a href="https://www.jetbrains.com/pycharm/download/" target="_blank">JetBrains website</a> and download either the Community (free) or Professional edition.</p>
+    </div>
+    
+    <div class="step">
+        <span class="step-number">2</span>
+        <strong>Install and set up:</strong>
+        <p>Follow the installation instructions and set up a new Python project when you first open PyCharm.</p>
+    </div>
+
+    <h2>Virtual Environments</h2>
+    
+    <p>Virtual environments allow you to create isolated environments for your Python projects, which helps manage dependencies and avoid conflicts between projects.</p>
+    
+    <h3>Using venv (Built-in)</h3>
+    
+    <div class="step">
+        <span class="step-number">1</span>
+        <strong>Create a virtual environment:</strong>
+        <p>Navigate to your project directory and run:</p>
+        <pre><code># Windows
+python -m venv venv
+
+# macOS/Linux
+python3 -m venv venv</code></pre>
+    </div>
+    
+    <div class="step">
+        <span class="step-number">2</span>
+        <strong>Activate the virtual environment:</strong>
+        <p>For Windows:</p>
+        <pre><code>venv\Scripts\activate</code></pre>
+        <p>For macOS/Linux:</p>
+        <pre><code>source venv/bin/activate</code></pre>
+    </div>
+    
+    <div class="step">
+        <span class="step-number">3</span>
+        <strong>Install packages:</strong>
+        <p>With the virtual environment activated, you can install packages using pip:</p>
+        <pre><code>pip install package_name</code></pre>
+    </div>
+
+    <h3>Using Anaconda/Miniconda</h3>
+    
+    <p>Anaconda is a distribution of Python and R for scientific computing that simplifies package management and deployment.</p>
+    
+    <div class="step">
+        <span class="step-number">1</span>
+        <strong>Download and install Anaconda:</strong>
+        <p>Visit the <a href="https://www.anaconda.com/products/individual" target="_blank">Anaconda website</a> and download the appropriate version for your operating system.</p>
+    </div>
+    
+    <div class="step">
+        <span class="step-number">2</span>
+        <strong>Create a conda environment:</strong>
+        <pre><code>conda create --name myenv python=3.9</code></pre>
+    </div>
+    
+    <div class="step">
+        <span class="step-number">3</span>
+        <strong>Activate the environment:</strong>
+        <pre><code># Windows
+conda activate myenv
+
+# macOS/Linux
+conda activate myenv</code></pre>
+    </div>
+
+    <h2>Your First Python Program</h2>
+    
+    <p>Now that you have Python installed and your environment set up, let's write a simple "Hello, World!" program to verify everything is working correctly.</p>
+    
+    <div class="step">
+        <span class="step-number">1</span>
+        <strong>Create a new file:</strong>
+        <p>Open your code editor and create a new file called <code>hello.py</code>.</p>
+    </div>
+    
+    <div class="step">
+        <span class="step-number">2</span>
+        <strong>Write the code:</strong>
+        <p>Add the following line to your file:</p>
+        <pre><code>print("Hello, World!")</code></pre>
+    </div>
+    
+    <div class="step">
+        <span class="step-number">3</span>
+        <strong>Run the program:</strong>
+        <p>In your terminal or command prompt, navigate to the directory containing your file and run:</p>
+        <pre><code># Windows
+python hello.py
+
+# macOS/Linux
+python3 hello.py</code></pre>
+        <p>You should see "Hello, World!" printed in the terminal.</p>
+    </div>
+
+    <h2>Package Management with pip</h2>
+    
+    <p>pip is the package installer for Python. You can use it to install packages from the Python Package Index (PyPI) and other repositories.</p>
+    
+    <h3>Basic pip Commands</h3>
+    
+    <ul>
+        <li><strong>Install a package:</strong>
+            <pre><code>pip install package_name</code></pre>
+        </li>
+        <li><strong>Install a specific version:</strong>
+            <pre><code>pip install package_name==1.0.0</code></pre>
+        </li>
+        <li><strong>Upgrade a package:</strong>
+            <pre><code>pip install --upgrade package_name</code></pre>
+        </li>
+        <li><strong>Uninstall a package:</strong>
+            <pre><code>pip uninstall package_name</code></pre>
+        </li>
+        <li><strong>List installed packages:</strong>
+            <pre><code>pip list</code></pre>
+        </li>
+        <li><strong>Generate requirements file:</strong>
+            <pre><code>pip freeze > requirements.txt</code></pre>
+        </li>
+        <li><strong>Install from requirements file:</strong>
+            <pre><code>pip install -r requirements.txt</code></pre>
+        </li>
+    </ul>
+
+    <h2>Conclusion</h2>
+    
+    <p>Congratulations! You've successfully set up your Python development environment. You're now ready to start learning Python programming and building your own applications.</p>
+    
+    <div class="note">
+        <strong>Next Steps:</strong> Continue to the next section to learn about Python syntax and basic programming concepts.
+    </div>
+</body>
+</html>

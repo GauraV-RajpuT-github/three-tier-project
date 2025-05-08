@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP Object-Oriented Programming - Bro Mode</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #4F5B93;
+        }
+        pre {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 15px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #8892BF;
+        }
+        .output {
+            background-color: #f1f1f1;
+            border-left: 4px solid #4CAF50;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+        .tip {
+            background-color: #e6f7ff;
+            border-left: 4px solid #1890ff;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>PHP Object-Oriented Programming - Bro Mode 🚀</h1>
+
+    <h2>OOP Kya Hota Hai? 🤔</h2>
+    <p>Bro, Object-Oriented Programming (OOP) ek programming style hai jo "objects" ke concept par based hai. Objects data (properties) aur code (methods) dono contain kar sakte hai. Simple words mein, OOP tumhare code ko reusable, organized chunks mein divide karta hai jisse code maintain karna aur extend karna easy ho jata hai.</p>
+    
+    <p>PHP 5 se OOP support karta hai, aur agar tum serious PHP developer banna chahte ho, to OOP seekhna bahut zaroori hai!</p>
+
+    <h2>Classes aur Objects 📦</h2>
+    <h3>Class Define Karna</h3>
+    <p>Bro, class ek blueprint hota hai objects create karne ke liye. Ye properties (attributes) aur methods (functions) define karta hai jo objects mein honge:</p>
+    
+    <pre><code>&lt;?php
+// Class define karo
+class Car {
+    // Properties (attributes)
+    public $brand;
+    public $color;
+    public $year;
+    
+    // Methods (functions)
+    public function startEngine() {
+        return "The $this->brand start ho raha hai...";
+    }
+    
+    public function drive() {
+        return "$this->color $this->brand drive ho raha hai.";
+    }
+}
+?&gt;</code></pre>
+
+    <h3>Objects Create Karna</h3>
+    <p>Bro, objects classes ke instances hote hai. Tum <code>new</code> keyword use karke object create kar sakte ho:</p>
+    
+    <pre><code>&lt;?php
+// Object create karo (Car class ka instance)
+$myCar = new Car();
+
+// Property values set karo
+$myCar->brand = "Maruti";
+$myCar->color = "Blue";
+$myCar->year = 2022;
+
+// Methods call karo
+echo $myCar->startEngine();  // Output: The Maruti start ho raha hai...
+echo "&lt;br&gt;";
+echo $myCar->drive();  // Output: Blue Maruti drive ho raha hai.
+?&gt;</code></pre>
+
+    <h2>Constructor aur Destructor 🛠️</h2>
+    <p>Bro, constructors aur destructors special methods hai jo automatically call hote hai jab object create ya destroy hota hai.</p>
+    
+    <h3>Constructor</h3>
+    <p>Constructor method <code>__construct()</code> tab call hota hai jab object create hota hai. Ye commonly properties initialize karne ke liye use hota hai:</p>
+    
+    <pre><code>&lt;?php
+class Car {
+    public $brand;
+    public $color;
+    public $year;
+    
+    // Constructor
+    public function __construct($brand, $color, $year) {
+        $this->brand = $brand;
+        $this->color = $color;
+        $this->year = $year;
+        echo "Ek new $this->color $this->brand create ho gaya hai.&lt;br&gt;";
+    }
+    
+    public function getInfo() {
+        return "Car: $this->year $this->color $this->brand";
+    }
+}
+
+// Constructor use karke objects create karo
+$car1 = new Car("Maruti", "Blue", 2022);  // Output: Ek new Blue Maruti create ho gaya hai.
+$car2 = new Car("Honda", "Red", 2021);    // Output: Ek new Red Honda create ho gaya hai.
+
+echo $car1->getInfo();  // Output: Car: 2022 Blue Maruti
+?&gt;</code></pre>
+
+    <h3>Destructor</h3>
+    <p>Bro, destructor method <code>__destruct()</code> tab call hota hai jab object destroy hota hai (jab object ke saare references remove ho jate hai ya jab script end hota hai):</p>
+    
+    <pre><code>&lt;?php
+class Car {
+    public $brand;
+    
+    public function __construct($brand) {
+        $this->brand = $brand;
+        echo "$this->brand create ho gaya hai.&lt;br&gt;";
+    }
+    
+    public function __destruct() {
+        echo "$this->brand destroy ho gaya hai.&lt;br&gt;";
+    }
+}
+
+// Objects create aur destroy karo
+$car1 = new Car("Maruti");  // Output: Maruti create ho gaya hai.
+$car2 = new Car("Honda");   // Output: Honda create ho gaya hai.
+
+// Explicitly $car1 ko destroy karo
+unset($car1);  // Output: Maruti destroy ho gaya hai.
+
+// $car2 automatically destroy hoga jab script end hoga
+?&gt;</code></pre>
+
+    <h2>Access Modifiers 🔒</h2>
+    <p>Bro, access modifiers properties aur methods ki visibility control karte hai. PHP teen access modifiers provide karta hai:</p>
+    <ul>
+        <li><code>public</code>: Kahin se bhi accessible</li>
+        <li><code>protected</code>: Class ke andar aur uske child classes mein accessible</li>
+        <li><code>private</code>: Sirf class ke andar accessible</li>
+    </ul>
+    
+    <pre><code>&lt;?php
+class Car {
+    public $brand;          // Kahin se bhi accessible
+    protected $engine;      // Is class aur child classes mein accessible
+    private $serialNumber;  // Sirf is class mein accessible
+    
+    public function __construct($brand, $engine, $serialNumber) {
+        $this->brand = $brand;
+        $this->engine = $engine;
+        $this->serialNumber = $serialNumber;
+    }
+    
+    public function getInfo() {
+        // Yahan saari properties access kar sakte hai
+        return "Brand: $this->brand, Engine: $this->engine, S/N: $this->serialNumber";
+    }
+    
+    protected function getEngine() {
+        return $this->engine;
+    }
+    
+    private function getSerialNumber() {
+        return $this->serialNumber;
+    }
+}
+
+$car = new Car("Maruti", "V6", "ABC123");
+
+echo $car->brand;  // Works fine: Output: Maruti
+// echo $car->engine;  // Error: Cannot access protected property
+// echo $car->serialNumber;  // Error: Cannot access private property
+
+echo $car->getInfo();  // Works fine: Output: Brand: Maruti, Engine: V6, S/N: ABC123
+// echo $car->getEngine();  // Error: Cannot access protected method
+// echo $car->getSerialNumber();  // Error: Cannot access private method
+?&gt;</code></pre>
+
+    <h2>Inheritance (Virasat) 👨‍👦</h2>
+    <p>Bro, inheritance ek class ko dusre class se properties aur methods inherit karne ki permission deta hai. Child class (subclass) parent class (superclass) ke functionality ko override ya extend kar sakti hai.</p>
+    
+    <pre><code>&lt;?php
+// Parent class
+class Vehicle {
+    public $brand;
+    protected $year;
+    
+    public function __construct($brand, $year) {
+        $this->brand = $brand;
+        $this->year = $year;
+    }
+    
+    public function getInfo() {
+        return "Vehicle: $this->year $this->brand";
+    }
+    
+    public function startEngine() {
+        return "Engine start ho raha hai...";
+    }
+}
+
+// Child class Vehicle se inherit kar raha hai
+class Car extends Vehicle {
+    private $model;
+    
+    public function __construct($brand, $year, $model) {
+        // Parent constructor call karo
+        parent::__construct($brand, $year);
+        $this->model = $model;
+    }
+    
+    // Parent method ko override karo
+    public function getInfo() {
+        return "Car: $this->year $this->brand $this->model";
+    }
+    
+    // New method add karo
+    public function drive() {
+        return "$this->brand $this->model drive ho raha hai.";
+    }
+}
+
+// Car object create karo
+$car = new Car("Maruti", 2022, "Swift");
+
+echo $car->getInfo();  // Output: Car: 2022 Maruti Swift
+echo "&lt;br&gt;";
+echo $car->startEngine();  // Inherited method, Output: Engine start ho raha hai...
+echo "&lt;br&gt;";
+echo $car->drive();  // New method, Output: Maruti Swift drive ho raha hai.
+?&gt;</code></pre>
+
+    <h2>Abstract Classes aur Methods 🧩</h2>
+    <p>Bro, abstract classes directly instantiate nahi ho sakte aur unmein abstract methods (bina implementation ke methods) ho sakte hai. Jo classes abstract class extend karti hai, unhe uske saare abstract methods implement karne hote hai.</p>
+    
+    <pre><code>&lt;?php
+// Abstract class
+abstract class Vehicle {
+    protected $brand;
+    
+    public function __construct($brand) {
+        $this->brand = $brand;
+    }
+    
+    // Regular method with implementation
+    public function getBrand() {
+        return $this->brand;
+    }
+    
+    // Abstract method (no implementation)
+    abstract public function startEngine();
+    
+    // Another abstract method
+    abstract public function getInfo();
+}
+
+// Concrete class implementing the abstract class
+class Car extends Vehicle {
+    private $model;
+    
+    public function __construct($brand, $model) {
+        parent::__construct($brand);
+        $this->model = $model;
+    }
+    
+    // Abstract methods ko implement karo
+    public function startEngine() {
+        return "$this->brand $this->model ka engine start ho raha hai...";
+    }
+    
+    public function getInfo() {
+        return "Car: $this->brand $this->model";
+    }
+}
+
+// $vehicle = new Vehicle("Generic");  // Error: Cannot instantiate abstract class
+
+$car = new Car("Maruti", "Swift");
+echo $car->getBrand();  // Inherited method, Output: Maruti
+echo "&lt;br&gt;";
+echo $car->startEngine();  // Implemented method, Output: Maruti Swift ka engine start ho raha hai...
+echo "&lt;br&gt;";
+echo $car->getInfo();  // Implemented method, Output: Car: Maruti Swift
+?&gt;</code></pre>
+
+    <h2>Interfaces 📋</h2>
+    <p>Bro, interfaces classes ke liye ek contract define karte hai bina kisi method ko implement kiye. Jo class interface implement karti hai, use uske saare methods implement karne hote hai.</p>
+    
+    <pre><code>&lt;?php
+// Interface define karo
+interface Vehicle {
+    public function startEngine();
+    public function stopEngine();
+    public function drive();
+}
+
+// Another interface
+interface Chargeable {
+    public function charge();
+}
+
+// Class implementing a single interface
+class Car implements Vehicle {
+    private $brand;
+    
+    public function __construct($brand) {
+        $this->brand = $brand;
+    }
+    
+    public function startEngine() {
+        return "$this->brand ka engine start ho raha hai...";
+    }
+    
+    public function stopEngine() {
+        return "$this->brand ka engine stop ho raha hai...";
+    }
+    
+    public function drive() {
+        return "$this->brand drive ho raha hai.";
+    }
+}
+
+// Class implementing multiple interfaces
+class ElectricCar implements Vehicle, Chargeable {
+    private $brand;
+    
+    public function __construct($brand) {
+        $this->brand = $brand;
+    }
+    
+    public function startEngine() {
+        return "$this->brand ka electric motor power up ho raha hai...";
+    }
+    
+    public function stopEngine() {
+        return "$this->brand ka electric motor power down ho raha hai...";
+    }
+    
+    public function drive() {
+        return "$this->brand silently drive ho raha hai.";
+    }
+    
+    public function charge() {
+        return "$this->brand charge ho raha hai...";
+    }
+}
+
+$car = new Car("Maruti");
+echo $car->startEngine();  // Output: Maruti ka engine start ho raha hai...
+echo "&lt;br&gt;";
+
+$electricCar = new ElectricCar("Tata Nexon EV");
+echo $electricCar->startEngine();  // Output: Tata Nexon EV ka electric motor power up ho raha hai...
+echo "&lt;br&gt;";
+echo $electricCar->charge();  // Output: Tata Nexon EV charge ho raha hai...
+?&gt;</code></pre>
+
+    <h2>Traits 🧬</h2>
+    <p>Bro, traits code reuse ke liye ek mechanism provide karte hai single inheritance languages like PHP mein. Trait class jaisa hota hai, lekin ye sirf functionality ko group karne ke liye intended hota hai.</p>
+    
+    <pre><code>&lt;?php
+// Trait define karo
+trait Logger {
+    public function log($message) {
+        echo "Logging: $message&lt;br&gt;";
+    }
+}
+
+// Another trait
+trait Timestamp {
+    public function getTimestamp() {
+        return date('Y-m-d H:i:s');
+    }
+}
+
+// Class using traits
+class User {
+    use Logger, Timestamp;
+    
+    private $name;
+    
+    public function __construct($name) {
+        $this->name = $name;
+        $this->log("User $name " . $this->getTimestamp() . " pe create hua");
+    }
+    
+    public function getName() {
+        return $this->name;
+    }
+}
+
+$user = new User("Rahul");  // Output: Logging: User Rahul 2023-04-14 15:30:45 pe create hua
+echo $user->getName();  // Output: Rahul
+?&gt;</code></pre>
+
+    <h2>Static Properties aur Methods 🔒</h2>
+    <p>Bro, static properties aur methods class ke hote hai, na ki class ke kisi specific instance ke. Inhe class ka object create kiye bina access kiya ja sakta hai.</p>
+    
+    <pre><code>&lt;?php
+class MathHelper {
+    // Static property
+    public static $pi = 3.14159;
+    
+    // Static method
+    public static function square($number) {
+        return $number * $number;
+    }
+    
+    // Static method using static property
+    public static function getCircleArea($radius) {
+        return self::$pi * self::square($radius);
+    }
+}
+
+// Static property access karo
+echo MathHelper::$pi;  // Output: 3.14159
+echo "&lt;br&gt;";
+
+// Static methods call karo
+echo MathHelper::square(4);  // Output: 16
+echo "&lt;br&gt;";
+echo MathHelper::getCircleArea(5);  // Output: 78.53975
+?&gt;</code></pre>
+
+    <h2>Method Chaining 🔗</h2>
+    <p>Bro, method chaining tumhe ek single statement mein multiple methods call karne ki permission deta hai har method se <code>$this</code> return karke:</p>
+    
+    <pre><code>&lt;?php
+class Car {
+    private $brand;
+    private $color;
+    private $year;
+    
+    public function setBrand($brand) {
+        $this->brand = $brand;
+        return $this;  // Method chaining ke liye $this return karo
+    }
+    
+    public function setColor($color) {
+        $this->color = $color;
+        return $this;  // Method chaining ke liye $this return karo
+    }
+    
+    public function setYear($year) {
+        $this->year = $year;
+        return $this;  // Method chaining ke liye $this return karo
+    }
+    
+    public function getInfo() {
+        return "Car: $this->year $this->color $this->brand";
+    }
+}
+
+// Method chaining use karo
+$car = new Car();
+echo $car->setBrand("Maruti")
+         ->setColor("Blue")
+         ->setYear(2022)
+         ->getInfo();  // Output: Car: 2022 Blue Maruti
+?&gt;</code></pre>
+
+    <h2>Magic Methods ✨</h2>
+    <p>Bro, PHP kuch "magic methods" provide karta hai jo classes mein special functionality rakhte hai. Ye methods double underscore (__) se start hote hai. Humne pehle hi __construct() aur __destruct() dekhe hai. Yahan kuch aur commonly used magic methods hai:</p>
+    
+    <pre><code>&lt;?php
+class Person {
+    private $data = [];
+    
+    // Called when setting inaccessible or non-existent properties
+    public function __set($name, $value) {
+        $this->data[$name] = $value;
+    }
+    
+    // Called when getting inaccessible or non-existent properties
+    public function __get($name) {
+        if (array_key_exists($name, $this->data)) {
+            return $this->data[$name];
+        }
+        return null;
+    }
+    
+    // Called when isset() is used on inaccessible or non-existent properties
+    public function __isset($name) {
+        return isset($this->data[$name]);
+    }
+    
+    // Called when unset() is used on inaccessible or non-existent properties
+    public function __unset($name) {
+        unset($this->data[$name]);
+    }
+    
+    // Called when the object is treated as a string
+    public function __toString() {
+        return "Person: " . json_encode($this->data);
+    }
+    
+    // Called when the object is serialized
+    public function __sleep() {
+        return ['data'];  // Return the properties to be serialized
+    }
+    
+    // Called when the object is unserialized
+    public function __wakeup() {
+        // Initialization after unserialization
+    }
+    
+    // Called when invoking the object as a function
+    public function __invoke($arg) {
+        return "Invoked with argument: $arg";
+    }
+}
+
+$person = new Person();
+
+// __set and __get
+$person->name = "Rahul";  // Calls __set
+$person->age = 30;       // Calls __set
+echo $person->name;      // Calls __get, Output: Rahul
+echo "&lt;br&gt;";
+
+// __isset and __unset
+echo isset($person->name) ? "Name set hai" : "Name set nahi hai";  // Calls __isset, Output: Name set hai
+echo "&lt;br&gt;";
+unset($person->name);  // Calls __unset
+echo isset($person->name) ? "Name set hai" : "Name set nahi hai";  // Calls __isset, Output: Name set nahi hai
+echo "&lt;br&gt;";
+
+// __toString
+echo $person;  // Calls __toString, Output: Person: {"age":30}
+echo "&lt;br&gt;";
+
+// __invoke
+echo $person("Hello");  // Calls __invoke, Output: Invoked with argument: Hello
+?&gt;</code></pre>
+
+    <h2>Namespaces 📂</h2>
+    <p>Bro, namespaces code organize karne aur naming conflicts avoid karne mein help karte hai. Ye especially large projects ya third-party libraries use karte time useful hote hai.</p>
+    
+    <pre><code>&lt;?php
+// File: Vehicle.php
+namespace Vehicles;
+
+class Car {
+    public function drive() {
+        return "Car drive ho raha hai.";
+    }
+}
+
+// File: Animal.php
+namespace Animals;
+
+class Cat {
+    public function meow() {
+        return "Meow!";
+    }
+}
+
+// File: main.php
+require_once 'Vehicle.php';
+require_once 'Animal.php';
+
+// Fully qualified class names use karo
+$car = new Vehicles\Car();
+$cat = new Animals\Cat();
+
+echo $car->drive();  // Output: Car drive ho raha hai.
+echo "&lt;br&gt;";
+echo $cat->meow();   // Output: Meow!
+
+// Ya 'use' statement use karo
+use Vehicles\Car;
+use Animals\Cat as Animal;  // With alias
+
+$car2 = new Car();
+$cat2 = new Animal();
+
+echo $car2->drive();  // Output: Car drive ho raha hai.
+echo "&lt;br&gt;";
+echo $cat2->meow();   // Output: Meow!
+?&gt;</code></pre>
+
+    <h2>Autoloading Classes 🔄</h2>
+    <p>Bro, require ya include ke saath manually class files include karne ke bajay, tum autoloading use kar sakte ho automatically class files load karne ke liye jab unki zaroorat ho.</p>
+    
+    <pre><code>&lt;?php
+// Simple autoloader
+spl_autoload_register(function ($className) {
+    $file = str_replace('\\', '/', $className) . '.php';
+    if (file_exists($file)) {
+        require_once $file;
+    }
+});
+
+// Ab tum classes use kar sakte ho bina explicitly unke files require kiye
+$car = new Vehicles\Car();  // Automatically loads Vehicles/Car.php
+echo $car->drive();
+?&gt;</code></pre>
+
+    <h2>Type Hinting 📝</h2>
+    <p>Bro, type hinting tumhe function parameter ya return value ke expected data type specify karne ki permission deta hai. Ye errors ko early catch karne mein help karta hai aur tumhara code more robust banata hai.</p>
+    
+    <pre><code>&lt;?php
+class Car {
+    private $brand;
+    
+    public function __construct(string $brand) {
+        $this->brand = $brand;
+    }
+    
+    public function getBrand(): string {
+        return $this->brand;
+    }
+}
+
+class Driver {
+    private $name;
+    
+    public function __construct(string $name) {
+        $this->name = $name;
+    }
+    
+    public function drive(Car $car): string {
+        return "$this->name ek " . $car->getBrand() . " drive kar raha hai";
+    }
+}
+
+$car = new Car("Maruti");
+$driver = new Driver("Rahul");
+
+echo $driver->drive($car);  // Output: Rahul ek Maruti drive kar raha hai
+// echo $driver->drive("Maruti");  // Error: Argument 1 must be an instance of Car
+?&gt;</code></pre>
+
+    <h2>Final Keyword 🔒</h2>
+    <p>Bro, <code>final</code> keyword ek class ko inherit hone se ya ek method ko override hone se rokta hai.</p>
+    
+    <pre><code>&lt;?php
+// Final class cannot be inherited
+final class FinalClass {
+    public function someMethod() {
+        return "Ye ek final class mein method hai.";
+    }
+}
+
+// This would cause an error
+// class ChildClass extends FinalClass { }
+
+class RegularClass {
+    // Final method cannot be overridden
+    final public function finalMethod() {
+        return "Ye ek final method hai.";
+    }
+    
+    public function regularMethod() {
+        return "Ye ek regular method hai.";
+    }
+}
+
+class ChildClass extends RegularClass {
+    // This would cause an error
+    // public function finalMethod() { }
+    
+    // This is fine
+    public function regularMethod() {
+        return "Ye ek overridden method hai.";
+    }
+}
+
+$regular = new RegularClass();
+echo $regular->finalMethod();  // Output: Ye ek final method hai.
+echo "&lt;br&gt;";
+
+$child = new ChildClass();
+echo $child->finalMethod();    // Output: Ye ek final method hai.
+echo "&lt;br&gt;";
+echo $child->regularMethod();  // Output: Ye ek overridden method hai.
+?&gt;</code></pre>
+
+    <h2>Design Patterns 🏗️</h2>
+    <p>Bro, design patterns software design mein common problems ke liye reusable solutions hai. Yahan Singleton pattern ka example hai, jo ensure karta hai ki ek class ka sirf ek hi instance ho:</p>
+    
+    <pre><code>&lt;?php
+class Database {
+    // Private static instance
+    private static $instance = null;
+    
+    // Private constructor to prevent direct instantiation
+    private function __construct() {
+        echo "Database connection establish ho gaya.&lt;br&gt;";
+    }
+    
+    // Private clone method to prevent cloning
+    private function __clone() { }
+    
+    // Private wakeup method to prevent unserialization
+    private function __wakeup() { }
+    
+    // Public static method to get the instance
+    public static function getInstance() {
+        if (self::$instance === null) {
+            self::$instance = new self();
+        }
+        return self::$instance;
+    }
+    
+    public function query($sql) {
+        return "Query execute ho rahi hai: $sql";
+    }
+}
+
+// Singleton instance get karo
+$db1 = Database::getInstance();  // Output: Database connection establish ho gaya.
+echo $db1->query("SELECT * FROM users");  // Output: Query execute ho rahi hai: SELECT * FROM users
+echo "&lt;br&gt;";
+
+// Instance dobara get karo (no new connection is established)
+$db2 = Database::getInstance();
+echo $db2->query("SELECT * FROM products");  // Output: Query execute ho rahi hai: SELECT * FROM products
+echo "&lt;br&gt;";
+
+// Both variables reference the same instance
+var_dump($db1 === $db2);  // Output: bool(true)
+?&gt;</code></pre>
+
+    <h2>Best Practices 💯</h2>
+    <ul>
+        <li><strong>Single Responsibility Principle:</strong> Bro, ek class ka sirf ek hi reason hona chahiye change hone ke liye.</li>
+        <li><strong>Open/Closed Principle:</strong> Classes extension ke liye open honi chahiye lekin modification ke liye closed.</li>
+        <li><strong>Liskov Substitution Principle:</strong> Superclass ke objects ko subclass ke objects se replace kiya ja sakna chahiye bina program ki correctness affect kiye.</li>
+        <li><strong>Interface Segregation Principle:</strong> Bahut saare client-specific interfaces ek general-purpose interface se better hai.</li>
+        <li><strong>Dependency Inversion Principle:</strong> Abstractions par depend karo, na ki concretions par.</li>
+        <li><strong>Meaningful Names Use Karo:</strong> Classes, methods, aur properties ke liye descriptive names choose karo.</li>
+        <li><strong>Classes Ko Focused Rakho:</strong> Har class ka ek single, well-defined purpose hona chahiye.</li>
+        <li><strong>Composition Ko Inheritance Se Prefer Karo:</strong> Jab appropriate ho, composition (has-a relationship) ko inheritance (is-a relationship) ke bajay use karo.</li>
+        <li><strong>Type Hinting Use Karo:</strong> Parameter aur return types specify karo taki tumhara code more robust bane.</li>
+        <li><strong>Code Document Karo:</strong> PHPDoc comments use karke apne classes, methods, aur properties ko document karo.</li>
+    </ul>
+
+    <h2>Conclusion 🏁</h2>
+    <p>Bro, ab tum PHP OOP ke master ban gaye ho! In concepts ko use karke tum powerful, maintainable, aur scalable applications bana sakte ho. OOP tumhe better code organization, reusability, aur extensibility provide karta hai. Next topic mein, hum file handling aur exception handling ke baare mein seekhenge. Keep coding! 🚀</p>
+</body>
+</html>

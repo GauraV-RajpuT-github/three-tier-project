@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Data Types and Variables</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #2b5b84;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #3776ab;
+            font-size: 1.8em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        h3 {
+            color: #4a8cc2;
+            font-size: 1.4em;
+            margin-top: 25px;
+        }
+        p {
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f5f5f5;
+            padding: 3px 6px;
+            border-radius: 3px;
+            font-size: 0.9em;
+            border: 1px solid #e0e0e0;
+        }
+        pre {
+            background-color: #f8f8f8;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            padding: 15px;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        pre code {
+            background-color: transparent;
+            border: none;
+            padding: 0;
+            display: block;
+            line-height: 1.5;
+        }
+        .note {
+            background-color: #e7f3fe;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .warning {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .example {
+            background-color: #f1f8e9;
+            border-left: 4px solid #8bc34a;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .output {
+            background-color: #f0f0f0;
+            border-left: 4px solid #9e9e9e;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>Python Data Types and Variables</h1>
+    
+    <p>Python is a dynamically typed language, which means you don't need to declare the type of a variable when you create it. The interpreter automatically determines the data type based on the value assigned to the variable. This section covers the various data types available in Python and how to work with variables.</p>
+
+    <h2>Variables in Python</h2>
+    
+    <p>In Python, a variable is a named location in memory that stores a value. Unlike some other programming languages, Python variables don't need explicit declaration to reserve memory space. The declaration happens automatically when you assign a value to a variable.</p>
+    
+    <h3>Variable Naming Rules</h3>
+    <ul>
+        <li>Variable names can contain letters, numbers, and underscores (_)</li>
+        <li>Variable names must start with a letter or an underscore</li>
+        <li>Variable names cannot start with a number</li>
+        <li>Variable names are case-sensitive (age, Age, and AGE are three different variables)</li>
+        <li>Variable names cannot be Python keywords (like <code>if</code>, <code>for</code>, <code>class</code>, etc.)</li>
+    </ul>
+    
+    <div class="example">
+        <h4>Example: Valid and Invalid Variable Names</h4>
+        <pre><code># Valid variable names
+name = "John"
+age = 25
+_id = 12345
+user_name = "john_doe"
+userName = "john_doe"
+NAME = "JOHN"
+name2 = "John Doe"
+
+# Invalid variable names
+2name = "John"  # Cannot start with a number
+user-name = "john_doe"  # Hyphens are not allowed
+class = "Python"  # 'class' is a Python keyword</code></pre>
+    </div>
+    
+    <h3>Variable Assignment</h3>
+    <p>In Python, you can assign values to variables using the equals sign (=).</p>
+    
+    <div class="example">
+        <h4>Example: Variable Assignment</h4>
+        <pre><code># Single assignment
+x = 10
+name = "Alice"
+
+# Multiple assignment
+a, b, c = 1, 2, 3
+
+# Assigning the same value to multiple variables
+x = y = z = 0</code></pre>
+    </div>
+    
+    <h3>Dynamic Typing</h3>
+    <p>Python is dynamically typed, which means a variable can change its type during program execution.</p>
+    
+    <div class="example">
+        <h4>Example: Dynamic Typing</h4>
+        <pre><code>x = 10  # x is an integer
+print(x, type(x))
+
+x = "Hello"  # x is now a string
+print(x, type(x))
+
+x = [1, 2, 3]  # x is now a list
+print(x, type(x))</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            10 &lt;class 'int'&gt;<br>
+            Hello &lt;class 'str'&gt;<br>
+            [1, 2, 3] &lt;class 'list'&gt;
+        </div>
+    </div>
+    
+    <div class="note">
+        <strong>Note:</strong> While dynamic typing offers flexibility, it's generally a good practice to maintain consistent types for variables throughout your code for better readability and fewer potential bugs.
+    </div>
+
+    <h2>Basic Data Types in Python</h2>
+    
+    <p>Python has several built-in data types that can be categorized as follows:</p>
+    
+    <h3>1. Numeric Types</h3>
+    
+    <h4>Integers (int)</h4>
+    <p>Integers are whole numbers without a fractional part. In Python 3, there is no limit to how long an integer can be.</p>
+    
+    <div class="example">
+        <h4>Example: Integers</h4>
+        <pre><code>a = 10
+b = -5
+c = 0
+big_number = 1234567890123456789012345678901234567890
+
+print(a, type(a))
+print(big_number)</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            10 &lt;class 'int'&gt;<br>
+            1234567890123456789012345678901234567890
+        </div>
+    </div>
+    
+    <h4>Floating-Point Numbers (float)</h4>
+    <p>Floating-point numbers are numbers with a decimal point or in scientific notation.</p>
+    
+    <div class="example">
+        <h4>Example: Floating-Point Numbers</h4>
+        <pre><code>a = 10.5
+b = -0.25
+c = 1.0
+d = 1.5e2  # Scientific notation for 1.5 * 10^2 = 150.0
+e = 1.5e-2  # Scientific notation for 1.5 * 10^-2 = 0.015
+
+print(a, type(a))
+print(d, e)</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            10.5 &lt;class 'float'&gt;<br>
+            150.0 0.015
+        </div>
+    </div>
+    
+    <div class="note">
+        <strong>Note:</strong> Floating-point arithmetic can sometimes lead to unexpected results due to the way computers represent decimal numbers in binary. For example, <code>0.1 + 0.2</code> might not be exactly equal to <code>0.3</code>.
+    </div>
+    
+    <h4>Complex Numbers (complex)</h4>
+    <p>Complex numbers have a real and an imaginary part, written as <code>a + bj</code>, where <code>a</code> is the real part and <code>b</code> is the imaginary part.</p>
+    
+    <div class="example">
+        <h4>Example: Complex Numbers</h4>
+        <pre><code>a = 2 + 3j
+b = complex(2, 3)  # Another way to create a complex number
+c = 1j
+
+print(a, type(a))
+print(a.real, a.imag)  # Access real and imaginary parts
+print(a + b)  # Complex arithmetic</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            (2+3j) &lt;class 'complex'&gt;<br>
+            2.0 3.0<br>
+            (4+6j)
+        </div>
+    </div>
+    
+    <h3>2. Boolean Type (bool)</h3>
+    <p>Boolean values represent truth values: <code>True</code> or <code>False</code>. They are often used in conditional statements and loops.</p>
+    
+    <div class="example">
+        <h4>Example: Boolean Values</h4>
+        <pre><code>a = True
+b = False
+c = (5 > 3)  # Evaluates to True
+d = (5 == 6)  # Evaluates to False
+
+print(a, type(a))
+print(c, d)
+print(a and b)  # Logical AND
+print(a or b)   # Logical OR
+print(not a)    # Logical NOT</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            True &lt;class 'bool'&gt;<br>
+            True False<br>
+            False<br>
+            True<br>
+            False
+        </div>
+    </div>
+    
+    <h3>3. Text Type (str)</h3>
+    <p>Strings are sequences of characters enclosed in quotes (single, double, or triple quotes).</p>
+    
+    <div class="example">
+        <h4>Example: Strings</h4>
+        <pre><code># String creation
+a = 'Hello'
+b = "World"
+c = '''This is a
+multi-line string'''
+d = """Another
+multi-line string"""
+
+print(a, type(a))
+print(a + " " + b)  # String concatenation
+print(a * 3)  # String repetition
+print(len(a))  # String length
+print(a[0])  # Accessing a character (zero-indexed)
+print(a[1:4])  # Slicing (characters from index 1 to 3)
+print(a.upper())  # String method</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            Hello &lt;class 'str'&gt;<br>
+            Hello World<br>
+            HelloHelloHello<br>
+            5<br>
+            H<br>
+            ell<br>
+            HELLO
+        </div>
+    </div>
+    
+    <div class="note">
+        <strong>Note:</strong> Strings in Python are immutable, which means you cannot change individual characters in a string after it's created. Instead, you create a new string with the desired changes.
+    </div>
+    
+    <h3>4. None Type (NoneType)</h3>
+    <p><code>None</code> is a special constant in Python that represents the absence of a value or a null value. It is an object of its own datatype, the <code>NoneType</code>.</p>
+    
+    <div class="example">
+        <h4>Example: None Value</h4>
+        <pre><code>a = None
+print(a, type(a))
+
+def func():
+    pass  # Function with no return statement returns None
+
+result = func()
+print(result is None)  # Check if a value is None</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            None &lt;class 'NoneType'&gt;<br>
+            True
+        </div>
+    </div>
+
+    <h2>Collection Data Types in Python</h2>
+    
+    <p>Python has several built-in collection data types that can store multiple values:</p>
+    
+    <h3>1. Lists</h3>
+    <p>Lists are ordered, mutable collections of items that can be of different types. They are defined using square brackets <code>[]</code>.</p>
+    
+    <div class="example">
+        <h4>Example: Lists</h4>
+        <pre><code># List creation
+fruits = ["apple", "banana", "cherry"]
+mixed = [1, "hello", 3.14, True]
+empty_list = []
+nested_list = [1, [2, 3], 4]
+
+print(fruits, type(fruits))
+print(len(fruits))  # List length
+print(fruits[0])  # Accessing an element (zero-indexed)
+print(fruits[-1])  # Accessing the last element
+print(fruits[1:3])  # Slicing
+
+# Lists are mutable
+fruits[0] = "orange"
+print(fruits)
+
+# List methods
+fruits.append("mango")  # Add an item to the end
+print(fruits)
+
+fruits.insert(1, "grape")  # Insert an item at a specific position
+print(fruits)
+
+fruits.remove("cherry")  # Remove a specific item
+print(fruits)
+
+popped = fruits.pop()  # Remove and return the last item
+print(popped, fruits)
+
+fruits.sort()  # Sort the list in-place
+print(fruits)
+
+fruits.reverse()  # Reverse the list in-place
+print(fruits)</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            ['apple', 'banana', 'cherry'] &lt;class 'list'&gt;<br>
+            3<br>
+            apple<br>
+            cherry<br>
+            ['banana', 'cherry']<br>
+            ['orange', 'banana', 'cherry']<br>
+            ['orange', 'banana', 'cherry', 'mango']<br>
+            ['orange', 'grape', 'banana', 'cherry', 'mango']<br>
+            ['orange', 'grape', 'banana', 'mango']<br>
+            mango ['orange', 'grape', 'banana']<br>
+            ['banana', 'grape', 'orange']<br>
+            ['orange', 'grape', 'banana']
+        </div>
+    </div>
+    
+    <h3>2. Tuples</h3>
+    <p>Tuples are ordered, immutable collections of items that can be of different types. They are defined using parentheses <code>()</code>.</p>
+    
+    <div class="example">
+        <h4>Example: Tuples</h4>
+        <pre><code># Tuple creation
+coordinates = (10, 20)
+person = ("John", 30, "New York")
+single_item_tuple = (1,)  # Note the comma
+empty_tuple = ()
+nested_tuple = (1, (2, 3), 4)
+
+print(coordinates, type(coordinates))
+print(len(person))  # Tuple length
+print(person[0])  # Accessing an element
+print(person[-1])  # Accessing the last element
+print(person[1:3])  # Slicing
+
+# Tuples are immutable
+# person[0] = "Jane"  # This would raise an error
+
+# Tuple methods
+print(person.count(30))  # Count occurrences of a value
+print(person.index("John"))  # Find the index of a value
+
+# Tuple unpacking
+name, age, city = person
+print(name, age, city)</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            (10, 20) &lt;class 'tuple'&gt;<br>
+            3<br>
+            John<br>
+            New York<br>
+            (30, 'New York')<br>
+            1<br>
+            0<br>
+            John 30 New York
+        </div>
+    </div>
+    
+    <div class="note">
+        <strong>Note:</strong> Tuples are often used for values that shouldn't change, such as coordinates, database records, or function return values with multiple items.
+    </div>
+    
+    <h3>3. Sets</h3>
+    <p>Sets are unordered collections of unique items. They are defined using curly braces <code>{}</code> or the <code>set()</code> constructor.</p>
+    
+    <div class="example">
+        <h4>Example: Sets</h4>
+        <pre><code># Set creation
+fruits = {"apple", "banana", "cherry"}
+duplicates = {"apple", "banana", "apple", "cherry"}  # Duplicates are automatically removed
+empty_set = set()  # Note: {} creates an empty dictionary, not an empty set
+
+print(fruits, type(fruits))
+print(duplicates)  # No duplicates
+print(len(fruits))  # Set length
+
+# Set operations
+fruits.add("orange")  # Add an item
+print(fruits)
+
+fruits.remove("banana")  # Remove an item (raises an error if not found)
+print(fruits)
+
+fruits.discard("mango")  # Remove an item if present (no error if not found)
+print(fruits)
+
+# Set operations
+a = {1, 2, 3, 4}
+b = {3, 4, 5, 6}
+
+print(a.union(b))  # Items in a OR b
+print(a.intersection(b))  # Items in both a AND b
+print(a.difference(b))  # Items in a but not in b
+print(a.symmetric_difference(b))  # Items in a OR b but not in both</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            {'apple', 'banana', 'cherry'} &lt;class 'set'&gt;<br>
+            {'apple', 'banana', 'cherry'}<br>
+            3<br>
+            {'apple', 'cherry', 'orange'}<br>
+            {'apple', 'cherry', 'orange'}<br>
+            {'apple', 'cherry', 'orange'}<br>
+            {1, 2, 3, 4, 5, 6}<br>
+            {3, 4}<br>
+            {1, 2}<br>
+            {1, 2, 5, 6}
+        </div>
+    </div>
+    
+    <div class="note">
+        <strong>Note:</strong> Sets are useful for removing duplicates from a collection and for membership testing (checking if an item is in the set), which is faster than checking if an item is in a list.
+    </div>
+    
+    <h3>4. Dictionaries</h3>
+    <p>Dictionaries are unordered collections of key-value pairs. They are defined using curly braces <code>{}</code> with key-value pairs separated by colons.</p>
+    
+    <div class="example">
+        <h4>Example: Dictionaries</h4>
+        <pre><code># Dictionary creation
+person = {"name": "John", "age": 30, "city": "New York"}
+grades = {"math": 90, "science": 85, "history": 95}
+empty_dict = {}
+nested_dict = {"person": {"name": "Alice", "age": 25}, "scores": [85, 90, 95]}
+
+print(person, type(person))
+print(len(person))  # Dictionary length
+print(person["name"])  # Accessing a value by key
+# print(person["gender"])  # This would raise a KeyError
+
+# Safer way to access values
+print(person.get("gender"))  # Returns None if key doesn't exist
+print(person.get("gender", "Not specified"))  # Returns default value if key doesn't exist
+
+# Dictionaries are mutable
+person["email"] = "john@example.com"  # Add a new key-value pair
+print(person)
+
+person["age"] = 31  # Modify an existing value
+print(person)
+
+# Dictionary methods
+keys = person.keys()  # Get all keys
+values = person.values()  # Get all values
+items = person.items()  # Get all key-value pairs as tuples
+print(keys)
+print(values)
+print(items)
+
+# Iterating through a dictionary
+for key in person:
+    print(key, person[key])
+
+# Alternative way to iterate
+for key, value in person.items():
+    print(key, value)</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            {'name': 'John', 'age': 30, 'city': 'New York'} &lt;class 'dict'&gt;<br>
+            3<br>
+            John<br>
+            None<br>
+            Not specified<br>
+            {'name': 'John', 'age': 30, 'city': 'New York', 'email': 'john@example.com'}<br>
+            {'name': 'John', 'age': 31, 'city': 'New York', 'email': 'john@example.com'}<br>
+            dict_keys(['name', 'age', 'city', 'email'])<br>
+            dict_values(['John', 31, 'New York', 'john@example.com'])<br>
+            dict_items([('name', 'John'), ('age', 31), ('city', 'New York'), ('email', 'john@example.com')])<br>
+            name John<br>
+            age 31<br>
+            city New York<br>
+            email john@example.com<br>
+            name John<br>
+            age 31<br>
+            city New York<br>
+            email john@example.com
+        </div>
+    </div>
+    
+    <div class="note">
+        <strong>Note:</strong> Dictionary keys must be immutable (strings, numbers, tuples of immutable objects), while values can be of any type.
+    </div>
+
+    <h2>Type Conversion</h2>
+    
+    <p>Python provides built-in functions for converting between different data types:</p>
+    
+    <div class="example">
+        <h4>Example: Type Conversion</h4>
+        <pre><code># Converting to int
+print(int(3.14))  # Float to int (truncates, doesn't round)
+print(int("10"))  # String to int
+print(int(True))  # Bool to int (True becomes 1)
+print(int(False))  # Bool to int (False becomes 0)
+
+# Converting to float
+print(float(5))  # Int to float
+print(float("3.14"))  # String to float
+print(float(True))  # Bool to float
+
+# Converting to string
+print(str(42))  # Int to string
+print(str(3.14))  # Float to string
+print(str(True))  # Bool to string
+
+# Converting to bool
+print(bool(1))  # Non-zero numbers are True
+print(bool(0))  # Zero is False
+print(bool("hello"))  # Non-empty strings are True
+print(bool(""))  # Empty string is False
+print(bool([1, 2, 3]))  # Non-empty collections are True
+print(bool([]))  # Empty collections are False
+
+# Converting to list, tuple, set
+print(list("hello"))  # String to list
+print(list((1, 2, 3)))  # Tuple to list
+print(tuple([1, 2, 3]))  # List to tuple
+print(set([1, 2, 2, 3, 3, 3]))  # List to set (removes duplicates)</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            3<br>
+            10<br>
+            1<br>
+            0<br>
+            5.0<br>
+            3.14<br>
+            1.0<br>
+            '42'<br>
+            '3.14'<br>
+            'True'<br>
+            True<br>
+            False<br>
+            True<br>
+            False<br>
+            True<br>
+            False<br>
+            ['h', 'e', 'l', 'l', 'o']<br>
+            [1, 2, 3]<br>
+            (1, 2, 3)<br>
+            {1, 2, 3}
+        </div>
+    </div>
+
+    <h2>Checking Types</h2>
+    
+    <p>Python provides several ways to check the type of a variable:</p>
+    
+    <div class="example">
+        <h4>Example: Checking Types</h4>
+        <pre><code>x = 10
+y = "hello"
+z = [1, 2, 3]
+
+# Using type() function
+print(type(x))
+print(type(y))
+print(type(z))
+
+# Using isinstance() function
+print(isinstance(x, int))  # Is x an integer?
+print(isinstance(y, str))  # Is y a string?
+print(isinstance(z, list))  # Is z a list?
+print(isinstance(x, (int, float)))  # Is x either an int or a float?</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            &lt;class 'int'&gt;<br>
+            &lt;class 'str'&gt;<br>
+            &lt;class 'list'&gt;<br>
+            True<br>
+            True<br>
+            True<br>
+            True
+        </div>
+    </div>
+
+    <h2>Memory Management and Variables</h2>
+    
+    <p>In Python, variables are references to objects in memory. Understanding how Python manages memory can help you write more efficient code.</p>
+    
+    <h3>Object Identity</h3>
+    <p>Every object in Python has an identity, which can be thought of as its address in memory. The <code>id()</code> function returns an object's identity.</p>
+    
+    <div class="example">
+        <h4>Example: Object Identity</h4>
+        <pre><code>a = 10
+b = 10
+c = a
+d = 10.0
+
+print(id(a))  # Memory address of a
+print(id(b))  # Memory address of b (might be the same as a due to integer caching)
+print(id(c))  # Memory address of c (same as a since c references the same object)
+print(id(d))  # Memory address of d (different from a since it's a different type)
+
+print(a is b)  # Check if a and b reference the same object
+print(a is c)  # Check if a and c reference the same object
+print(a is d)  # Check if a and d reference the same object
+print(a == d)  # Check if a and d have the same value</code></pre>
+    </div>
+    
+    <h3>Mutable vs. Immutable Objects</h3>
+    <p>In Python, some objects are mutable (can be changed after creation), while others are immutable (cannot be changed after creation).</p>
+    <ul>
+        <li><strong>Immutable types:</strong> int, float, complex, bool, str, tuple, frozenset</li>
+        <li><strong>Mutable types:</strong> list, dict, set</li>
+    </ul>
+    
+    <div class="example">
+        <h4>Example: Mutable vs. Immutable Objects</h4>
+        <pre><code># Immutable objects
+a = "hello"
+print(id(a))
+a = a + " world"  # Creates a new string object
+print(id(a))  # Different ID
+
+# Mutable objects
+b = [1, 2, 3]
+print(id(b))
+b.append(4)  # Modifies the existing list object
+print(id(b))  # Same ID</code></pre>
+    </div>
+    
+    <div class="note">
+        <strong>Note:</strong> Understanding the difference between mutable and immutable objects is important when passing arguments to functions, as it affects whether changes to the arguments inside the function affect the original objects.
+    </div>
+
+    <h2>Conclusion</h2>
+    
+    <p>Python's data types and variables provide a flexible and powerful foundation for building programs. By understanding the different data types available and how variables work in Python, you can write more effective and efficient code.</p>
+    
+    <div class="note">
+        <strong>Next Steps:</strong> Now that you understand Python's data types and variables, you can move on to learning about control flow structures like conditionals and loops.
+    </div>
+</body>
+</html>

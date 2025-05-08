@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #FF8C00;
+            border-bottom: 2px solid #FFA500;
+            padding-bottom: 10px;
+        }
+
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        li {
+            margin: 10px 0;
+            position: relative;
+        }
+
+        li:before {
+            content: "•";
+            color: #FFA500;
+            font-weight: bold;
+            position: absolute;
+            left: -15px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Functions</h2>
+
+    <p>Functions are blocks of code designed to perform specific tasks. They help organize code, promote reusability, and make programs more maintainable.</p>
+
+    <h2>Function Declaration and Definition</h2>
+    <p>A function has a declaration (prototype) and a definition:</p>
+
+    <pre><code>// Function declaration (prototype)
+returnType functionName(parameterType1 parameter1, parameterType2 parameter2);
+
+// Function definition
+returnType functionName(parameterType1 parameter1, parameterType2 parameter2) {
+    // Function body
+    // Code to perform the task
+    return value; // Return a value of returnType
+}</code></pre>
+
+    <p>Example of a simple function:</p>
+    <pre><code>// Function to add two integers
+int add(int a, int b) {
+    return a + b;
+}
+
+// Function usage
+int result = add(5, 3); // result = 8</code></pre>
+
+    <h2>Function Parameters</h2>
+    <p>Functions can take parameters, which are values passed to the function:</p>
+
+    <h3>Pass by Value</h3>
+    <pre><code>void modifyValue(int x) {
+    x = x * 2; // Modifies the local copy, not the original
+}
+
+int main() {
+    int num = 10;
+    modifyValue(num); // num is still 10 after the function call
+    return 0;
+}</code></pre>
+
+    <h3>Pass by Reference</h3>
+    <pre><code>void modifyValue(int &x) {
+    x = x * 2; // Modifies the original value
+}
+
+int main() {
+    int num = 10;
+    modifyValue(num); // num becomes 20 after the function call
+    return 0;
+}</code></pre>
+
+    <h2>Return Values</h2>
+    <p>Functions can return values using the return statement:</p>
+
+    <pre><code>int getSquare(int x) {
+    return x * x;
+}
+
+double calculateAverage(int a, int b, int c) {
+    return (a + b + c) / 3.0;
+}</code></pre>
+
+    <h2>Void Functions</h2>
+    <p>Functions that don't return a value use the void return type:</p>
+
+    <pre><code>void printMessage(string message) {
+    cout << message << endl;
+    // No return statement needed
+}</code></pre>
+
+    <h2>Default Parameters</h2>
+    <p>Functions can have default parameter values:</p>
+
+    <pre><code>void setVolume(int level = 50) {
+    cout << "Volume set to: " << level << endl;
+}
+
+int main() {
+    setVolume();     // Uses default value: "Volume set to: 50"
+    setVolume(75);   // Uses provided value: "Volume set to: 75"
+    return 0;
+}</code></pre>
+
+    <h2>Function Overloading</h2>
+    <p>C++ allows multiple functions with the same name but different parameters:</p>
+
+    <pre><code>int add(int a, int b) {
+    return a + b;
+}
+
+double add(double a, double b) {
+    return a + b;
+}
+
+int main() {
+    int sum1 = add(5, 3);         // Calls the int version
+    double sum2 = add(3.5, 2.7);  // Calls the double version
+    return 0;
+}</code></pre>
+
+    <h2>Inline Functions</h2>
+    <p>Inline functions can improve performance for small, frequently used functions:</p>
+
+    <pre><code>inline int getMax(int a, int b) {
+    return (a > b) ? a : b;
+}</code></pre>
+
+    <h2>Recursive Functions</h2>
+    <p>Functions that call themselves:</p>
+
+    <pre><code>int factorial(int n) {
+    if (n <= 1) {
+        return 1;
+    } else {
+        return n * factorial(n - 1);
+    }
+}
+
+int main() {
+    int result = factorial(5); // 5! = 5 * 4 * 3 * 2 * 1 = 120
+    return 0;
+}</code></pre>
+
+    <h2>Function Pointers</h2>
+    <p>Variables that store the address of functions:</p>
+
+    <pre><code>int add(int a, int b) {
+    return a + b;
+}
+
+int subtract(int a, int b) {
+    return a - b;
+}
+
+int main() {
+    // Declare a function pointer
+    int (*operation)(int, int);
+    
+    // Assign function address to pointer
+    operation = add;
+    cout << operation(5, 3) << endl; // Output: 8
+    
+    // Change function
+    operation = subtract;
+    cout << operation(5, 3) << endl; // Output: 2
+    
+    return 0;
+}</code></pre>
+
+    <h2>Key points to remember:</h2>
+    <ul>
+        <li>Functions should have a clear, single purpose</li>
+        <li>Use meaningful function and parameter names</li>
+        <li>Keep functions relatively short and focused</li>
+        <li>Consider using pass by reference for large objects to improve performance</li>
+        <li>Function declarations (prototypes) should be placed in header files</li>
+        <li>Function definitions should be placed in source files</li>
+    </ul>
+</body>
+
+</html>

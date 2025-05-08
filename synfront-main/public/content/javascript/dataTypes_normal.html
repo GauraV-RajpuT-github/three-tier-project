@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #FF8C00;
+            border-bottom: 2px solid #FFA500;
+            padding-bottom: 10px;
+        }
+
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            border: 1px solid #ddd;
+        }
+
+        code {
+            font-family: Consolas, Monaco, 'Andale Mono', monospace;
+            background-color: #f5f5f5;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        .note {
+            background-color: #fff8dc;
+            border-left: 4px solid #ffeb3b;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>JavaScript Data Types and Variables</h2>
+
+    <p>JavaScript is a dynamically typed language, which means you don't need to declare the type of a variable when you create it. The type is determined automatically when the program runs.</p>
+
+    <h3>Primitive Data Types</h3>
+    <p>JavaScript has seven primitive data types:</p>
+
+    <table>
+        <tr>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Example</th>
+        </tr>
+        <tr>
+            <td>String</td>
+            <td>Textual data</td>
+            <td><code>'Hello'</code>, <code>"World"</code>, <code>`Template literal`</code></td>
+        </tr>
+        <tr>
+            <td>Number</td>
+            <td>Integer or floating-point numbers</td>
+            <td><code>42</code>, <code>3.14</code>, <code>-273</code></td>
+        </tr>
+        <tr>
+            <td>BigInt</td>
+            <td>Integers with arbitrary precision</td>
+            <td><code>9007199254740991n</code></td>
+        </tr>
+        <tr>
+            <td>Boolean</td>
+            <td>Logical entity (true/false)</td>
+            <td><code>true</code>, <code>false</code></td>
+        </tr>
+        <tr>
+            <td>Undefined</td>
+            <td>Variable declared but not assigned</td>
+            <td><code>undefined</code></td>
+        </tr>
+        <tr>
+            <td>Null</td>
+            <td>Intentional absence of any value</td>
+            <td><code>null</code></td>
+        </tr>
+        <tr>
+            <td>Symbol</td>
+            <td>Unique and immutable value</td>
+            <td><code>Symbol('description')</code></td>
+        </tr>
+    </table>
+
+    <h3>Variables in JavaScript</h3>
+    <p>There are three ways to declare variables in JavaScript:</p>
+
+    <pre><code>// Using var (function-scoped, older way)
+var name = "John";
+
+// Using let (block-scoped, recommended for variables that change)
+let age = 25;
+
+// Using const (block-scoped, for constants that don't change)
+const PI = 3.14159;</code></pre>
+
+    <div class="note">
+        <strong>Note:</strong> Modern JavaScript code typically uses <code>let</code> and <code>const</code> instead of <code>var</code>.
+    </div>
+
+    <h3>String Type</h3>
+    <p>Strings in JavaScript can be created using single quotes, double quotes, or backticks (template literals):</p>
+
+    <pre><code>// Single quotes
+let firstName = 'John';
+
+// Double quotes
+let lastName = "Doe";
+
+// Template literals (backticks) - allow embedded expressions
+let greeting = `Hello, ${firstName} ${lastName}!`;
+console.log(greeting);  // Output: Hello, John Doe!</code></pre>
+
+    <h3>Number Type</h3>
+    <p>JavaScript has only one number type, which represents both integers and floating-point numbers:</p>
+
+    <pre><code>let integer = 42;
+let float = 3.14;
+let negative = -273;
+let exponent = 2.998e8;  // Scientific notation: 2.998 × 10^8
+
+// Special numeric values
+let infinity = Infinity;
+let negInfinity = -Infinity;
+let notANumber = NaN;  // Result of undefined mathematical operations</code></pre>
+
+    <h3>Boolean Type</h3>
+    <p>Boolean values represent logical entities and can have only two values: <code>true</code> or <code>false</code>.</p>
+
+    <pre><code>let isActive = true;
+let isLoggedIn = false;
+
+// Boolean expressions
+let isGreater = 5 > 3;  // true
+let isEqual = 4 === 4;  // true
+let isNotEqual = 3 !== 3;  // false</code></pre>
+
+    <h3>Undefined and Null</h3>
+    <p>These two types represent the absence of a value, but in different ways:</p>
+
+    <pre><code>// Undefined: variable declared but not assigned a value
+let undefinedVar;
+console.log(undefinedVar);  // Output: undefined
+
+// Null: intentional absence of any object value
+let emptyValue = null;
+console.log(emptyValue);  // Output: null</code></pre>
+
+    <h3>Type Conversion</h3>
+    <p>JavaScript often performs automatic type conversion (coercion) when operations involve different types:</p>
+
+    <pre><code>// String conversion
+let value = true;
+console.log(typeof value);  // "boolean"
+
+value = String(value);      // now value is a string "true"
+console.log(typeof value);  // "string"
+
+// Numeric conversion
+console.log("6" / "2");     // 3, strings are converted to numbers
+let str = "123";
+let num = Number(str);      // explicit conversion
+console.log(typeof num);    // "number"
+
+// Boolean conversion
+console.log(Boolean(1));    // true
+console.log(Boolean(0));    // false
+console.log(Boolean(""));   // false
+console.log(Boolean("hello")); // true</code></pre>
+
+    <h3>Checking Types</h3>
+    <p>You can check the type of a variable using the <code>typeof</code> operator:</p>
+
+    <pre><code>console.log(typeof "Hello");     // "string"
+console.log(typeof 42);         // "number"
+console.log(typeof true);       // "boolean"
+console.log(typeof undefined);  // "undefined"
+console.log(typeof null);       // "object" (this is a known JavaScript quirk)
+console.log(typeof {});         // "object"
+console.log(typeof []);         // "object" (arrays are objects in JavaScript)
+console.log(typeof function(){}); // "function"</code></pre>
+
+    <div class="note">
+        <strong>Important:</strong> <code>typeof null</code> returns <code>"object"</code>, which is considered a bug in JavaScript, but it's maintained for compatibility reasons.
+    </div>
+
+    <h3>Key Points to Remember</h3>
+    <ul>
+        <li>JavaScript is dynamically typed - variables can change types</li>
+        <li>Use <code>let</code> for variables that will change</li>
+        <li>Use <code>const</code> for variables that won't change</li>
+        <li>Avoid using <code>var</code> in modern JavaScript code</li>
+        <li>Be careful with automatic type conversion in operations</li>
+        <li>Always use strict equality operators (<code>===</code> and <code>!==</code>) to avoid unexpected type conversions</li>
+    </ul>
+</body>
+
+</html>

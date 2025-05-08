@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP File I/O Operations</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #4F5B93;
+        }
+        pre {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 15px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #8892BF;
+        }
+        .output {
+            background-color: #f1f1f1;
+            border-left: 4px solid #4CAF50;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+        .tip {
+            background-color: #e6f7ff;
+            border-left: 4px solid #1890ff;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+        .warning {
+            background-color: #fff2e8;
+            border-left: 4px solid #fa541c;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>PHP File I/O Operations</h1>
+
+    <h2>Introduction to File Handling</h2>
+    <p>File handling is an important part of any web application. PHP has several functions for creating, reading, uploading, and manipulating files. This module covers the essential file input/output operations in PHP.</p>
+
+    <div class="tip">
+        <p><strong>Note:</strong> File operations require appropriate permissions on the server. Make sure your PHP script has the necessary permissions to read from or write to the specified directories.</p>
+    </div>
+
+    <h2>Opening and Closing Files</h2>
+    <p>PHP provides the <code>fopen()</code> function to open files and <code>fclose()</code> to close them:</p>
+    
+    <pre><code>&lt;?php
+// Open a file for reading
+$file = fopen("example.txt", "r");
+
+// Process the file...
+
+// Close the file
+fclose($file);
+?&gt;</code></pre>
+
+    <p>The second parameter of <code>fopen()</code> specifies the mode in which to open the file:</p>
+    <ul>
+        <li><code>"r"</code> - Read only. Starts at the beginning of the file.</li>
+        <li><code>"r+"</code> - Read/write. Starts at the beginning of the file.</li>
+        <li><code>"w"</code> - Write only. Opens and truncates the file; creates a new file if it doesn't exist.</li>
+        <li><code>"w+"</code> - Read/write. Opens and truncates the file; creates a new file if it doesn't exist.</li>
+        <li><code>"a"</code> - Write only. Opens and writes to the end of the file; creates a new file if it doesn't exist.</li>
+        <li><code>"a+"</code> - Read/write. Preserves the file content by writing to the end of the file; creates a new file if it doesn't exist.</li>
+        <li><code>"x"</code> - Write only. Creates a new file; returns FALSE and an error if the file already exists.</li>
+        <li><code>"x+"</code> - Read/write. Creates a new file; returns FALSE and an error if the file already exists.</li>
+    </ul>
+
+    <div class="warning">
+        <p><strong>Important:</strong> Always check if <code>fopen()</code> was successful before performing operations on the file handle. Also, always close files with <code>fclose()</code> when you're done with them to free up system resources.</p>
+    </div>
+
+    <h2>Reading Files</h2>
+    <p>PHP offers several ways to read file contents:</p>
+
+    <h3>Reading the Entire File</h3>
+    <pre><code>&lt;?php
+// Read the entire file into a string
+$content = file_get_contents("example.txt");
+echo $content;
+
+// Read the entire file into an array (each line becomes an array element)
+$lines = file("example.txt");
+foreach ($lines as $lineNumber => $line) {
+    echo "Line #" . ($lineNumber + 1) . ": " . $line . "&lt;br&gt;";
+}
+?&gt;</code></pre>
+
+    <h3>Reading Files Line by Line</h3>
+    <pre><code>&lt;?php
+$file = fopen("example.txt", "r");
+
+// Check if file was opened successfully
+if ($file) {
+    // Read line by line until end-of-file
+    while (!feof($file)) {
+        $line = fgets($file);
+        echo $line . "&lt;br&gt;";
+    }
+    fclose($file);
+}
+?&gt;</code></pre>
+
+    <h3>Reading a Specific Number of Characters</h3>
+    <pre><code>&lt;?php
+$file = fopen("example.txt", "r");
+
+if ($file) {
+    // Read 10 characters
+    $chunk = fread($file, 10);
+    echo $chunk;
+    fclose($file);
+}
+?&gt;</code></pre>
+
+    <h3>Reading a Single Character</h3>
+    <pre><code>&lt;?php
+$file = fopen("example.txt", "r");
+
+if ($file) {
+    // Read a single character
+    $char = fgetc($file);
+    echo $char;
+    fclose($file);
+}
+?&gt;</code></pre>
+
+    <h2>Writing to Files</h2>
+    <p>PHP provides several functions to write data to files:</p>
+
+    <h3>Writing a String to a File</h3>
+    <pre><code>&lt;?php
+// Write a string to a file (creates the file if it doesn't exist, overwrites if it does)
+file_put_contents("output.txt", "Hello, World!");
+
+// Append to a file
+file_put_contents("output.txt", "More content", FILE_APPEND);
+?&gt;</code></pre>
+
+    <h3>Writing with fwrite()</h3>
+    <pre><code>&lt;?php
+$file = fopen("output.txt", "w");
+
+if ($file) {
+    fwrite($file, "Hello, World!");
+    fclose($file);
+}
+?&gt;</code></pre>
+
+    <h3>Appending to a File</h3>
+    <pre><code>&lt;?php
+$file = fopen("output.txt", "a");
+
+if ($file) {
+    fwrite($file, "Appended content\n");
+    fclose($file);
+}
+?&gt;</code></pre>
+
+    <h2>File System Functions</h2>
+    <p>PHP provides various functions to work with the file system:</p>
+
+    <h3>Checking if a File Exists</h3>
+    <pre><code>&lt;?php
+if (file_exists("example.txt")) {
+    echo "The file exists";
+} else {
+    echo "The file does not exist";
+}
+?&gt;</code></pre>
+
+    <h3>Getting File Information</h3>
+    <pre><code>&lt;?php
+// Get file size in bytes
+$size = filesize("example.txt");
+echo "File size: $size bytes&lt;br&gt;";
+
+// Get file type
+$type = filetype("example.txt");
+echo "File type: $type&lt;br&gt;";
+
+// Get last access time
+$lastAccess = fileatime("example.txt");
+echo "Last accessed: " . date("Y-m-d H:i:s", $lastAccess) . "&lt;br&gt;";
+
+// Get last modification time
+$lastModified = filemtime("example.txt");
+echo "Last modified: " . date("Y-m-d H:i:s", $lastModified) . "&lt;br&gt;";
+
+// Check if it's a file or directory
+if (is_file("example.txt")) {
+    echo "This is a file&lt;br&gt;";
+}
+
+if (is_dir("example_directory")) {
+    echo "This is a directory&lt;br&gt;";
+}
+
+// Check if file is readable, writable, or executable
+if (is_readable("example.txt")) {
+    echo "File is readable&lt;br&gt;";
+}
+
+if (is_writable("example.txt")) {
+    echo "File is writable&lt;br&gt;";
+}
+
+if (is_executable("example.txt")) {
+    echo "File is executable&lt;br&gt;";
+}
+?&gt;</code></pre>
+
+    <h3>Creating and Removing Directories</h3>
+    <pre><code>&lt;?php
+// Create a directory
+if (!file_exists("new_directory")) {
+    mkdir("new_directory");
+    echo "Directory created";
+}
+
+// Create nested directories
+if (!file_exists("parent/child/grandchild")) {
+    mkdir("parent/child/grandchild", 0777, true);
+    echo "Nested directories created";
+}
+
+// Remove a directory
+if (file_exists("old_directory") && is_dir("old_directory")) {
+    rmdir("old_directory");
+    echo "Directory removed";
+}
+?&gt;</code></pre>
+
+    <h3>Copying, Renaming, and Deleting Files</h3>
+    <pre><code>&lt;?php
+// Copy a file
+if (file_exists("source.txt")) {
+    copy("source.txt", "destination.txt");
+    echo "File copied";
+}
+
+// Rename or move a file
+if (file_exists("old_name.txt")) {
+    rename("old_name.txt", "new_name.txt");
+    echo "File renamed";
+}
+
+// Delete a file
+if (file_exists("to_delete.txt")) {
+    unlink("to_delete.txt");
+    echo "File deleted";
+}
+?&gt;</code></pre>
+
+    <h2>Working with CSV Files</h2>
+    <p>CSV (Comma-Separated Values) files are commonly used for storing tabular data. PHP provides functions to read and write CSV files:</p>
+
+    <h3>Reading CSV Files</h3>
+    <pre><code>&lt;?php
+$file = fopen("data.csv", "r");
+
+if ($file) {
+    // Read each line as a CSV record
+    while (($data = fgetcsv($file, 1000, ",")) !== FALSE) {
+        echo "Name: " . $data[0] . ", Email: " . $data[1] . ", Age: " . $data[2] . "&lt;br&gt;";
+    }
+    fclose($file);
+}
+?&gt;</code></pre>
+
+    <h3>Writing CSV Files</h3>
+    <pre><code>&lt;?php
+$file = fopen("users.csv", "w");
+
+if ($file) {
+    // Write CSV header
+    fputcsv($file, ["Name", "Email", "Age"]);
+    
+    // Write data rows
+    fputcsv($file, ["John Doe", "john@example.com", 30]);
+    fputcsv($file, ["Jane Smith", "jane@example.com", 25]);
+    fputcsv($file, ["Bob Johnson", "bob@example.com", 35]);
+    
+    fclose($file);
+    echo "CSV file created successfully";
+}
+?&gt;</code></pre>
+
+    <h2>File Uploading</h2>
+    <p>PHP makes it easy to handle file uploads from HTML forms:</p>
+
+    <h3>HTML Form for File Upload</h3>
+    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;File Upload Form&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;form action="upload.php" method="post" enctype="multipart/form-data"&gt;
+        Select file to upload:
+        &lt;input type="file" name="fileToUpload" id="fileToUpload"&gt;
+        &lt;input type="submit" value="Upload File" name="submit"&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+    <h3>PHP Script to Handle File Upload</h3>
+    <pre><code>&lt;?php
+// upload.php
+
+// Check if the form was submitted
+if (isset($_POST["submit"])) {
+    // Define the target directory and file path
+    $targetDir = "uploads/";
+    $targetFile = $targetDir . basename($_FILES["fileToUpload"]["name"]);
+    $uploadOk = 1;
+    $fileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+    
+    // Create the uploads directory if it doesn't exist
+    if (!file_exists($targetDir)) {
+        mkdir($targetDir, 0777, true);
+    }
+    
+    // Check if file already exists
+    if (file_exists($targetFile)) {
+        echo "Sorry, file already exists.&lt;br&gt;";
+        $uploadOk = 0;
+    }
+    
+    // Check file size (limit to 2MB)
+    if ($_FILES["fileToUpload"]["size"] > 2000000) {
+        echo "Sorry, your file is too large.&lt;br&gt;";
+        $uploadOk = 0;
+    }
+    
+    // Allow only certain file formats
+    $allowedTypes = ["jpg", "jpeg", "png", "gif", "pdf", "doc", "docx"];
+    if (!in_array($fileType, $allowedTypes)) {
+        echo "Sorry, only JPG, JPEG, PNG, GIF, PDF, DOC, and DOCX files are allowed.&lt;br&gt;";
+        $uploadOk = 0;
+    }
+    
+    // Check if $uploadOk is set to 0 by an error
+    if ($uploadOk == 0) {
+        echo "Sorry, your file was not uploaded.";
+    } else {
+        // Try to upload the file
+        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $targetFile)) {
+            echo "The file " . htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " has been uploaded.";
+        } else {
+            echo "Sorry, there was an error uploading your file.";
+        }
+    }
+}
+?&gt;</code></pre>
+
+    <div class="tip">
+        <p><strong>Security Tip:</strong> Always validate and sanitize file uploads. Check file types, sizes, and use proper permissions to prevent security vulnerabilities.</p>
+    </div>
+
+    <h2>Working with JSON Files</h2>
+    <p>JSON (JavaScript Object Notation) is a lightweight data-interchange format. PHP provides functions to encode and decode JSON data:</p>
+
+    <h3>Reading and Writing JSON Files</h3>
+    <pre><code>&lt;?php
+// Create an array
+$data = [
+    "name" => "John Doe",
+    "email" => "john@example.com",
+    "age" => 30,
+    "skills" => ["PHP", "JavaScript", "HTML", "CSS"]
+];
+
+// Convert array to JSON string
+$jsonString = json_encode($data, JSON_PRETTY_PRINT);
+
+// Write JSON to a file
+file_put_contents("data.json", $jsonString);
+echo "JSON file created successfully&lt;br&gt;";
+
+// Read JSON from a file
+$jsonContent = file_get_contents("data.json");
+
+// Convert JSON string to PHP array
+$decodedData = json_decode($jsonContent, true);
+
+// Access the data
+echo "Name: " . $decodedData["name"] . "&lt;br&gt;";
+echo "Email: " . $decodedData["email"] . "&lt;br&gt;";
+echo "Age: " . $decodedData["age"] . "&lt;br&gt;";
+echo "Skills: " . implode(", ", $decodedData["skills"]);
+?&gt;</code></pre>
+
+    <h2>File Locking</h2>
+    <p>When multiple scripts try to write to the same file simultaneously, you might encounter race conditions. File locking helps prevent these issues:</p>
+
+    <pre><code>&lt;?php
+$file = fopen("counter.txt", "r+");
+
+if ($file) {
+    // Acquire an exclusive lock
+    if (flock($file, LOCK_EX)) {
+        // Read the current value
+        $count = (int)fread($file, filesize("counter.txt"));
+        
+        // Increment the counter
+        $count++;
+        
+        // Move the file pointer to the beginning
+        rewind($file);
+        
+        // Write the new value
+        fwrite($file, $count);
+        
+        // Release the lock
+        flock($file, LOCK_UN);
+        
+        echo "Counter updated to: $count";
+    } else {
+        echo "Couldn't get the lock!";
+    }
+    
+    fclose($file);
+}
+?&gt;</code></pre>
+
+    <p>The <code>flock()</code> function accepts the following lock types:</p>
+    <ul>
+        <li><code>LOCK_SH</code> - Shared lock (reader)</li>
+        <li><code>LOCK_EX</code> - Exclusive lock (writer)</li>
+        <li><code>LOCK_UN</code> - Release lock</li>
+        <li><code>LOCK_NB</code> - Non-blocking operation (can be combined with LOCK_SH or LOCK_EX using the bitwise OR operator |)</li>
+    </ul>
+
+    <h2>Working with Temporary Files</h2>
+    <p>PHP provides functions to create and work with temporary files:</p>
+
+    <pre><code>&lt;?php
+// Create a temporary file
+$tempFile = tmpfile();
+
+// Write to the temporary file
+fwrite($tempFile, "This is temporary data");
+
+// Get the file path
+$metaData = stream_get_meta_data($tempFile);
+$tempFilePath = $metaData["uri"];
+
+echo "Temporary file created at: $tempFilePath&lt;br&gt;";
+
+// Read from the temporary file
+rewind($tempFile);
+echo "Content: " . fread($tempFile, 1024) . "&lt;br&gt;";
+
+// The temporary file is automatically deleted when the script ends or when fclose() is called
+fclose($tempFile);
+echo "Temporary file closed and deleted";
+?&gt;</code></pre>
+
+    <h2>Error Handling in File Operations</h2>
+    <p>It's important to handle errors properly when working with files:</p>
+
+    <pre><code>&lt;?php
+// Using try-catch blocks
+try {
+    $content = file_get_contents("non_existent_file.txt");
+    echo $content;
+} catch (Exception $e) {
+    echo "Error: " . $e->getMessage();
+}
+
+// Using error control operator (@)
+$content = @file_get_contents("non_existent_file.txt");
+if ($content === false) {
+    echo "Error: Could not read the file";
+}
+
+// Checking function return values
+$file = fopen("non_existent_file.txt", "r");
+if ($file === false) {
+    echo "Error: Could not open the file";
+} else {
+    // Process the file
+    fclose($file);
+}
+?&gt;</code></pre>
+
+    <div class="warning">
+        <p><strong>Warning:</strong> The error control operator (@) suppresses error messages but doesn't prevent the error from occurring. Use it sparingly and always check the return value of the function.</p>
+    </div>
+
+    <h2>Working with File Paths</h2>
+    <p>PHP provides functions to work with file paths:</p>
+
+    <pre><code>&lt;?php
+// Get the filename from a path
+$path = "/var/www/html/example.txt";
+$filename = basename($path);
+echo "Filename: $filename&lt;br&gt;";  // Outputs: example.txt
+
+// Get the directory name from a path
+$dirname = dirname($path);
+echo "Directory: $dirname&lt;br&gt;";  // Outputs: /var/www/html
+
+// Get the file extension
+$extension = pathinfo($path, PATHINFO_EXTENSION);
+echo "Extension: $extension&lt;br&gt;";  // Outputs: txt
+
+// Get the filename without extension
+$filenameWithoutExt = pathinfo($path, PATHINFO_FILENAME);
+echo "Filename without extension: $filenameWithoutExt&lt;br&gt;";  // Outputs: example
+
+// Combine paths
+$directory = "/var/www/html";
+$file = "example.txt";
+$fullPath = $directory . "/" . $file;
+echo "Full path: $fullPath&lt;br&gt;";  // Outputs: /var/www/html/example.txt
+
+// A better way to combine paths
+$fullPath = rtrim($directory, "/") . "/" . ltrim($file, "/");
+echo "Full path: $fullPath&lt;br&gt;";  // Outputs: /var/www/html/example.txt
+?&gt;</code></pre>
+
+    <h2>Best Practices for File Handling</h2>
+    <ol>
+        <li><strong>Always check if file operations are successful</strong> before proceeding.</li>
+        <li><strong>Close file handles</strong> when you're done with them to free up system resources.</li>
+        <li><strong>Use proper error handling</strong> to catch and handle file operation errors.</li>
+        <li><strong>Validate and sanitize file uploads</strong> to prevent security vulnerabilities.</li>
+        <li><strong>Use file locking</strong> when multiple scripts might access the same file simultaneously.</li>
+        <li><strong>Be careful with file permissions</strong> to ensure your scripts can read from and write to the necessary files and directories.</li>
+        <li><strong>Use absolute paths</strong> when possible to avoid path resolution issues.</li>
+        <li><strong>Backup important files</strong> before modifying them.</li>
+        <li><strong>Limit file sizes</strong> for uploads to prevent server overload.</li>
+        <li><strong>Use appropriate file formats</strong> for different types of data (e.g., CSV for tabular data, JSON for structured data).</li>
+    </ol>
+
+    <h2>Practical Example: Simple Log System</h2>
+    <p>Here's a practical example of a simple logging system that writes log messages to a file:</p>
+
+    <pre><code>&lt;?php
+class Logger {
+    private $logFile;
+    
+    public function __construct($logFile = "app.log") {
+        $this->logFile = $logFile;
+    }
+    
+    public function log($message, $level = "INFO") {
+        $timestamp = date("Y-m-d H:i:s");
+        $logMessage = "[$timestamp] [$level] $message" . PHP_EOL;
+        
+        $file = fopen($this->logFile, "a");
+        
+        if ($file) {
+            // Acquire an exclusive lock
+            if (flock($file, LOCK_EX)) {
+                fwrite($file, $logMessage);
+                flock($file, LOCK_UN);
+            }
+            
+            fclose($file);
+            return true;
+        }
+        
+        return false;
+    }
+    
+    public function info($message) {
+        return $this->log($message, "INFO");
+    }
+    
+    public function warning($message) {
+        return $this->log($message, "WARNING");
+    }
+    
+    public function error($message) {
+        return $this->log($message, "ERROR");
+    }
+    
+    public function getLogContents() {
+        if (file_exists($this->logFile)) {
+            return file_get_contents($this->logFile);
+        }
+        
+        return "";
+    }
+    
+    public function clearLog() {
+        return file_put_contents($this->logFile, "");
+    }
+}
+
+// Usage example
+$logger = new Logger("application.log");
+
+$logger->info("Application started");
+$logger->warning("Low memory warning");
+$logger->error("Database connection failed");
+
+echo "&lt;pre&gt;" . $logger->getLogContents() . "&lt;/pre&gt;";
+?&gt;</code></pre>
+
+    <h2>Conclusion</h2>
+    <p>File handling is a crucial aspect of PHP programming. With the functions and techniques covered in this module, you can effectively read from and write to files, manage directories, handle file uploads, and work with various file formats like CSV and JSON.</p>
+    
+    <p>Remember to always implement proper error handling and security measures when working with files to ensure your applications are robust and secure.</p>
+</body>
+</html>

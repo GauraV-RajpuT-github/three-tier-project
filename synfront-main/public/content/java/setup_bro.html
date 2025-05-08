@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .content-container {
+            font-family: 'Comic Sans MS', cursive;
+            line-height: 1.6;
+            color: #333;
+            padding: 0 30px;
+        }
+
+        .content-container h2 {
+            color: #333;
+            font-size: 28px;
+            margin: 30px 0;
+            padding-bottom: 10px;
+            border-bottom: none;
+            text-shadow: 1px 1px 2px rgba(255, 140, 0, 0.2);
+        }
+
+        .content-container pre {
+            background-color: #fff8f0;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 25px 0;
+            border: 2px solid #FFD700;
+            box-shadow: 0 2px 4px rgba(255, 140, 0, 0.1);
+            font-size: 15px;
+        }
+
+        .content-container code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #FF4500;
+        }
+
+        .content-container ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 25px 0;
+        }
+
+        .content-container li {
+            margin: 15px 0;
+            position: relative;
+            padding-left: 25px;
+            font-size: 16px;
+        }
+
+        .content-container li:before {
+            content: "🔥";
+            position: absolute;
+            left: 0;
+        }
+
+        .content-container p {
+            margin: 20px 0;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .content-container code {
+            background-color: #fff8f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 15px;
+        }
+
+        .content-container ol {
+            list-style-type: none;
+            counter-reset: my-counter;
+            padding-left: 0;
+        }
+
+        .content-container ol li {
+            counter-increment: my-counter;
+            position: relative;
+            padding-left: 35px;
+            margin: 15px 0;
+        }
+
+        .content-container ol li::before {
+            content: counter(my-counter);
+            background-color: #FF8C00;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 50%;
+            padding: 3px 8px;
+            position: absolute;
+            left: 0;
+        }
+
+        .content-container a {
+            color: #FF8C00;
+            text-decoration: none;
+            border-bottom: 2px dotted #FF8C00;
+            transition: all 0.3s ease;
+        }
+
+        .content-container a:hover {
+            color: #FF4500;
+            border-bottom: 2px solid #FF4500;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content-container">
+        <h2>Java Setup Karo Bhai! 🚀</h2>
+
+        <p>Bhai, Java programming shuru karne ke liye pehle apna setup ready karna padega! Yeh do cheezein bilkul zaroori hain: 👇</p>
+
+        <ul>
+            <li><b>Java Development Kit (JDK)</b>: Yeh Java ka main package hai bhai! Isme compiler, runtime environment, aur saare important tools hote hain - ekdum complete toolbox! 🧰</li>
+            <li><b>IDE (Integrated Development Environment)</b>: Coding karne ke liye ek mast software, jisme code likhna, debug karna, aur run karna ekdum easy ho jata hai! 💻</li>
+        </ul>
+
+        <h2>JDK Install Kaise Karein? 🤔</h2>
+        <p>Bas in steps ko follow karo, 5 minute mein ho jayega setup:</p>
+
+        <ol>
+            <li><a href="https://www.oracle.com/java/technologies/javase-downloads.html" target="_blank">Oracle JDK download page</a> pe jao ya fir <a href="https://adoptopenjdk.net/" target="_blank">AdoptOpenJDK</a> se free version download karo</li>
+            <li>Apne system ke hisaab se latest JDK download karo (Windows/Mac/Linux) - size thoda bada hoga par tension mat lo! 📥</li>
+            <li>Installer ko run karo aur Next-Next karke install kar do! 🖱️</li>
+            <li>JAVA_HOME environment variable set karo - thoda technical hai par important hai! 🔧</li>
+            <li>JDK ke bin folder ko PATH variable mein add karo - taaki system ko pata rahe Java kahan hai! 🗺️</li>
+        </ol>
+
+        <h2>Installation Check Karo! ✅</h2>
+        <p>Check karne ke liye, Command Prompt ya Terminal kholo aur yeh commands type karo:</p>
+
+        <pre><code>java -version
+javac -version</code></pre>
+
+        <p>Agar dono commands Java version dikha dein, toh samajh lo setup ho gaya hai! Nahi toh kuch gadbad hai, dubara try karo! 🕵️‍♂️</p>
+
+        <h2>Konsa IDE Choose Karein? 🎮</h2>
+        <p>Bhai, market mein bahut saare IDEs hain, par yeh wale sabse popular hain:</p>
+
+        <ul>
+            <li><b>IntelliJ IDEA</b>: Sabse powerful IDE hai, Community Edition free hai! Ekdum baap of all IDEs! 👑</li>
+            <li><b>Eclipse</b>: Purana player hai market ka, free hai aur bahut saare plugins support karta hai! 🌑</li>
+            <li><b>NetBeans</b>: Simple aur clean interface, beginners ke liye perfect! 🎯</li>
+            <li><b>Visual Studio Code</b>: Light weight editor hai par Java extensions ke saath mast kaam karta hai! 🪶</li>
+        </ul>
+
+        <h2>Pehla Java Program Likho! 👶</h2>
+        <p>Ab setup ho gaya hai toh chalo pehla program likhte hain - Hello World! Classic hai bhai!</p>
+
+        <pre><code>public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}</code></pre>
+
+        <p>Is code ko <code>HelloWorld.java</code> naam ki file mein save karo. Phir compile aur run karne ke liye:</p>
+
+        <pre><code>// Compile karo
+javac HelloWorld.java
+
+// Run karo
+java HelloWorld</code></pre>
+
+        <p>Output dikhega: <code>Hello, World!</code> - Congratulations bhai, tu Java programmer ban gaya! 🎉</p>
+
+        <h2>Hello World Program Samjho! 🧠</h2>
+        <ul>
+            <li><code>public class HelloWorld</code>: Yeh ek class define karta hai "HelloWorld" naam ki. Java mein har program kam se kam ek class mein hona chahiye, aur filename aur class ka naam same hona chahiye!</li>
+            <li><code>public static void main(String[] args)</code>: Yeh main method hai - har Java program ka starting point! Program yahan se execute hona start hota hai!</li>
+            <li><code>System.out.println("Hello, World!");</code>: Yeh line console pe "Hello, World!" print karti hai - output dikhane ke liye!</li>
+        </ul>
+
+        <h2>Yaad Rakhne Wali Baatein! 📝</h2>
+        <ul>
+            <li>Java case-sensitive hai bhai! <code>HelloWorld</code> aur <code>helloworld</code> bilkul alag cheezein hain! 🔤</li>
+            <li>Har Java program mein <code>main</code> method hona zaroori hai - entry point hai program ka! 🚪</li>
+            <li>Java files ka extension <code>.java</code> hota hai - ye mat bhoolna! 📄</li>
+            <li>Compile hone ke baad <code>.class</code> extension wali file ban jati hai - bytecode! 🔄</li>
+            <li>Class ka naam aur file ka naam same hona chahiye - <code>HelloWorld.java</code> mein <code>HelloWorld</code> class honi chahiye! 🔍</li>
+        </ul>
+    </div>
+</body>
+
+</html>

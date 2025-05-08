@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP Setup and Environment - Bro Mode</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #4F5B93;
+        }
+        pre {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 15px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #8892BF;
+        }
+        .output {
+            background-color: #f1f1f1;
+            border-left: 4px solid #4CAF50;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+        .tip {
+            background-color: #e6f7ff;
+            border-left: 4px solid #1890ff;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Setting Up Your PHP Environment - Bro Mode 😎</h1>
+
+    <h2>PHP Kya Hai? 🤔</h2>
+    <p>Bro, PHP ek mast server-side scripting language hai jo mainly web development ke liye use hota hai. Iska full form "PHP: Hypertext Preprocessor" hai (haan bro, recursive acronym hai, cool na?). PHP code server pe run hota hai, HTML generate karta hai, aur fir wo client ko bhej deta hai.</p>
+
+    <h2>Konsa Software Chahiye? 🛠️</h2>
+    <p>PHP development start karne ke liye, ye sab chahiye hoga:</p>
+    
+    <h3>1. Web Server</h3>
+    <p>Bro, PHP kisi bhi web server ke saath kaam kar sakta hai, lekin Apache aur Nginx sabse popular hai. Development ke liye, ye packages use kar sakte ho:</p>
+    <ul>
+        <li><strong>XAMPP</strong>: Ekdum free package jisme Apache, MySQL, PHP, aur Perl sab kuch included hai</li>
+        <li><strong>WAMP</strong>: Windows users ke liye special package</li>
+        <li><strong>MAMP</strong>: Mac users ke liye special package</li>
+    </ul>
+
+    <h3>2. PHP Interpreter</h3>
+    <p>Bro, PHP interpreter upar wale packages mein already included hai. Agar alag se install karna hai, to <a href="https://www.php.net/downloads.php" target="_blank">official PHP website</a> se download kar sakte ho.</p>
+
+    <h3>3. Database</h3>
+    <p>Most PHP applications database use karti hai. MySQL ya MariaDB common choices hai aur XAMPP, WAMP, aur MAMP mein already included hai.</p>
+
+    <h3>4. Code Editor</h3>
+    <p>Bro, ek achha code editor development experience ko next level pe le jayega. Ye popular options hai:</p>
+    <ul>
+        <li><strong>Visual Studio Code</strong> with PHP extensions (free hai aur mast hai)</li>
+        <li><strong>PhpStorm</strong> (paid hai but ekdum powerful)</li>
+        <li><strong>Sublime Text</strong> (fast aur lightweight)</li>
+        <li><strong>Atom</strong> (customizable)</li>
+    </ul>
+
+    <h2>XAMPP Kaise Install Kare? (Beginners ke liye Best) 💪</h2>
+    <ol>
+        <li>XAMPP download karo <a href="https://www.apachefriends.org/index.html" target="_blank">https://www.apachefriends.org</a> se</li>
+        <li>Installer run karo aur instructions follow karo</li>
+        <li>Components select karo (Apache, MySQL, PHP, aur phpMyAdmin recommended hai)</li>
+        <li>Installation directory choose karo (default theek hai)</li>
+        <li>Installation complete karo</li>
+        <li>XAMPP Control Panel start karo aur Apache aur MySQL services ko start karo</li>
+    </ol>
+
+    <div class="tip">
+        <p><strong>Pro Tip:</strong> Bro, Windows pe XAMPP Control Panel ko administrator ke tarah run karna padega, warna permission issues aa sakte hai.</p>
+    </div>
+
+    <h2>Installation Verify Kaise Kare? 🔍</h2>
+    <p>PHP sahi se install hua hai ya nahi, check karne ke liye:</p>
+    <ol>
+        <li>Ek file banao <code>info.php</code> naam se apne web server ke document root mein (jaise <code>C:\xampp\htdocs\</code> for XAMPP on Windows)</li>
+        <li>Is code ko file mein add karo:</li>
+    </ol>
+
+    <pre><code>&lt;?php
+phpinfo();
+?&gt;</code></pre>
+
+    <ol start="3">
+        <li>Web browser open karo aur <code>http://localhost/info.php</code> pe jao</li>
+    </ol>
+
+    <p>Agar sab theek hai, to tumhe ek page dikhega jisme tumhare PHP installation ki detailed information hogi.</p>
+
+    <h2>First PHP Script Kaise Banaye? 🚀</h2>
+    <p>Chalo ek simple "Hello, World!" script banate hai:</p>
+    <ol>
+        <li>Ek file banao <code>hello.php</code> naam se apne web server ke document root mein</li>
+        <li>Is code ko add karo:</li>
+    </ol>
+
+    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Mera First PHP Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;
+        &lt;?php
+        echo "Hello, World! Kya scene hai?";
+        ?&gt;
+    &lt;/h1&gt;
+    &lt;p&gt;Abhi ka time hai: &lt;?php echo date("Y-m-d H:i:s"); ?&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+    <ol start="3">
+        <li>Web browser open karo aur <code>http://localhost/hello.php</code> pe jao</li>
+    </ol>
+
+    <div class="output">
+        <p><strong>Output:</strong></p>
+        <h1>Hello, World! Kya scene hai?</h1>
+        <p>Abhi ka time hai: 2025-04-14 18:57:00</p>
+    </div>
+
+    <h2>PHP Syntax Basics 📝</h2>
+    <p>Bro, PHP code <code>&lt;?php</code> aur <code>?&gt;</code> tags ke beech mein likha jata hai. Ye tags PHP interpreter ko batate hai ki kahan se PHP code start hota hai aur kahan pe end.</p>
+
+    <pre><code>&lt;?php
+// Ye PHP comment hai
+echo "Ye PHP code hai";  // Ye text output karega
+// PHP statements semicolon se end hote hai
+?&gt;</code></pre>
+
+    <h2>PHP Configuration ⚙️</h2>
+    <p>PHP configuration <code>php.ini</code> file mein store hoti hai. Common settings jo tune karna chahoge:</p>
+    <ul>
+        <li><code>display_errors</code>: Development ke time "On" rakho taaki error messages dikh sake</li>
+        <li><code>error_reporting</code>: Control karta hai ki kaun se errors report honge</li>
+        <li><code>max_execution_time</code>: Maximum time jitna ek script run kar sakta hai</li>
+        <li><code>memory_limit</code>: Maximum memory jo ek script use kar sakta hai</li>
+        <li><code>upload_max_filesize</code>: Maximum file upload size</li>
+    </ul>
+
+    <div class="tip">
+        <p><strong>Pro Tip:</strong> Bro, development ke time error reporting enable karna helpful hota hai:</p>
+        <pre><code>&lt;?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+?&gt;</code></pre>
+    </div>
+
+    <h2>IDEs - Integrated Development Environments 💻</h2>
+    <p>Bro, simple text editor se bhi PHP development ho sakta hai, lekin ek achha IDE productivity ko next level pe le jayega. IDEs ke features:</p>
+    <ul>
+        <li>Syntax highlighting - code colorful dikhta hai</li>
+        <li>Code completion - code automatically complete hota hai</li>
+        <li>Error checking - errors pehle hi highlight ho jate hai</li>
+        <li>Debugging tools - code ko step by step debug kar sakte ho</li>
+        <li>Version control integration - Git jaise tools ke saath integration</li>
+    </ul>
+
+    <p><strong>PhpStorm</strong> ek popular commercial IDE hai specifically PHP development ke liye. <strong>Visual Studio Code</strong> with PHP extensions ek free alternative hai jo almost same features provide karta hai.</p>
+
+    <h2>Next Steps 👣</h2>
+    <p>Bro, ab tumhara PHP environment set up ho gaya hai, ab tum PHP programming seekhna start kar sakte ho. Next topics explore karne ke liye:</p>
+    <ul>
+        <li>PHP syntax aur basic constructs</li>
+        <li>Variables aur data types</li>
+        <li>Control structures (if statements, loops)</li>
+        <li>Functions</li>
+        <li>Forms aur user input ke saath kaam karna</li>
+        <li>Database connectivity</li>
+    </ul>
+
+    <h2>Conclusion 🏁</h2>
+    <p>Bro, PHP ek powerful language hai jo web development ko easy banati hai. Ab tumhara environment set up ho gaya hai, to coding shuru karo aur mast websites banao! 🚀</p>
+</body>
+</html>

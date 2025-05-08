@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #FF8C00;
+            border-bottom: 2px solid #FFA500;
+            padding-bottom: 10px;
+        }
+
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            border: 1px solid #ddd;
+        }
+
+        code {
+            font-family: Consolas, Monaco, 'Andale Mono', monospace;
+            background-color: #f5f5f5;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        .note {
+            background-color: #fff8dc;
+            border-left: 4px solid #ffeb3b;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Object-Oriented Programming in JavaScript</h2>
+
+    <p>JavaScript is a multi-paradigm language that supports object-oriented programming (OOP). While JavaScript's approach to OOP differs from class-based languages like Java or C++, it provides powerful mechanisms for creating and working with objects.</p>
+
+    <h3>Objects in JavaScript</h3>
+    <p>Objects are collections of key-value pairs, where values can be properties (data) or methods (functions).</p>
+
+    <h4>Creating Objects</h4>
+    <p>There are several ways to create objects in JavaScript:</p>
+
+    <h5>Object Literals</h5>
+    <pre><code>// Object literal syntax
+const person = {
+    firstName: "John",
+    lastName: "Doe",
+    age: 30,
+    greet: function() {
+        return `Hello, my name is ${this.firstName} ${this.lastName}`;
+    }
+};
+
+console.log(person.firstName);  // Output: "John"
+console.log(person.greet());    // Output: "Hello, my name is John Doe"</code></pre>
+
+    <h5>Constructor Functions</h5>
+    <pre><code>// Constructor function
+function Person(firstName, lastName, age) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.age = age;
+    this.greet = function() {
+        return `Hello, my name is ${this.firstName} ${this.lastName}`;
+    };
+}
+
+const john = new Person("John", "Doe", 30);
+console.log(john.firstName);  // Output: "John"
+console.log(john.greet());    // Output: "Hello, my name is John Doe"</code></pre>
+
+    <h5>ES6 Classes</h5>
+    <pre><code>// ES6 Class syntax
+class Person {
+    constructor(firstName, lastName, age) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+    }
+
+    greet() {
+        return `Hello, my name is ${this.firstName} ${this.lastName}`;
+    }
+}
+
+const john = new Person("John", "Doe", 30);
+console.log(john.firstName);  // Output: "John"
+console.log(john.greet());    // Output: "Hello, my name is John Doe"</code></pre>
+
+    <h5>Object.create()</h5>
+    <pre><code>// Object.create() method
+const personProto = {
+    greet: function() {
+        return `Hello, my name is ${this.firstName} ${this.lastName}`;
+    }
+};
+
+const john = Object.create(personProto);
+john.firstName = "John";
+john.lastName = "Doe";
+john.age = 30;
+
+console.log(john.firstName);  // Output: "John"
+console.log(john.greet());    // Output: "Hello, my name is John Doe"</code></pre>
+
+    <h3>Prototypes and Inheritance</h3>
+    <p>JavaScript uses a prototype-based inheritance model. Every object has a prototype, which is another object that it inherits properties and methods from.</p>
+
+    <h4>Prototype Chain</h4>
+    <pre><code>// Constructor function
+function Person(firstName, lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+}
+
+// Adding a method to the prototype
+Person.prototype.getFullName = function() {
+    return `${this.firstName} ${this.lastName}`;
+};
+
+const john = new Person("John", "Doe");
+console.log(john.getFullName());  // Output: "John Doe"</code></pre>
+
+    <div class="note">
+        <strong>Note:</strong> Adding methods to the prototype is more memory-efficient than defining them in the constructor function, as all instances share the same method instead of each having its own copy.
+    </div>
+
+    <h4>Inheritance with Prototypes</h4>
+    <pre><code>// Parent constructor
+function Person(firstName, lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+}
+
+Person.prototype.greet = function() {
+    return `Hello, my name is ${this.firstName} ${this.lastName}`;
+};
+
+// Child constructor
+function Employee(firstName, lastName, jobTitle) {
+    // Call the parent constructor
+    Person.call(this, firstName, lastName);
+    this.jobTitle = jobTitle;
+}
+
+// Inherit from Person's prototype
+Employee.prototype = Object.create(Person.prototype);
+Employee.prototype.constructor = Employee;
+
+// Add a method specific to Employee
+Employee.prototype.introduce = function() {
+    return `${this.greet()}. I work as a ${this.jobTitle}.`;
+};
+
+const john = new Employee("John", "Doe", "Developer");
+console.log(john.introduce());  // Output: "Hello, my name is John Doe. I work as a Developer."</code></pre>
+
+    <h4>Inheritance with ES6 Classes</h4>
+    <pre><code>// Parent class
+class Person {
+    constructor(firstName, lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    greet() {
+        return `Hello, my name is ${this.firstName} ${this.lastName}`;
+    }
+}
+
+// Child class extending Person
+class Employee extends Person {
+    constructor(firstName, lastName, jobTitle) {
+        super(firstName, lastName);  // Call parent constructor
+        this.jobTitle = jobTitle;
+    }
+
+    introduce() {
+        return `${this.greet()}. I work as a ${this.jobTitle}.`;
+    }
+}
+
+const john = new Employee("John", "Doe", "Developer");
+console.log(john.introduce());  // Output: "Hello, my name is John Doe. I work as a Developer."</code></pre>
+
+    <h3>Encapsulation</h3>
+    <p>Encapsulation is the bundling of data and methods that operate on that data, and restricting access to some of the object's components.</p>
+
+    <h4>Private Properties and Methods with Closures</h4>
+    <pre><code>// Using closures for private properties
+function Person(firstName, lastName) {
+    // Private properties
+    const _firstName = firstName;
+    const _lastName = lastName;
+
+    // Public methods that can access private properties
+    this.getFullName = function() {
+        return `${_firstName} ${_lastName}`;
+    };
+
+    this.greet = function() {
+        return `Hello, my name is ${this.getFullName()}`;
+    };
+}
+
+const john = new Person("John", "Doe");
+console.log(john.getFullName());  // Output: "John Doe"
+// console.log(john._firstName);  // Output: undefined (private property)</code></pre>
+
+    <h4>Private Fields (ES2022)</h4>
+    <pre><code>// Using private fields (modern JavaScript)
+class Person {
+    // Private fields (prefixed with #)
+    #firstName;
+    #lastName;
+
+    constructor(firstName, lastName) {
+        this.#firstName = firstName;
+        this.#lastName = lastName;
+    }
+
+    getFullName() {
+        return `${this.#firstName} ${this.#lastName}`;
+    }
+
+    greet() {
+        return `Hello, my name is ${this.getFullName()}`;
+    }
+}
+
+const john = new Person("John", "Doe");
+console.log(john.getFullName());  // Output: "John Doe"
+// console.log(john.#firstName);  // Syntax Error: Private field</code></pre>
+
+    <h3>Polymorphism</h3>
+    <p>Polymorphism allows objects of different types to be treated as objects of a common type. In JavaScript, this is achieved through method overriding.</p>
+
+    <pre><code>// Parent class
+class Animal {
+    speak() {
+        return "Animal makes a sound";
+    }
+}
+
+// Child classes overriding the speak method
+class Dog extends Animal {
+    speak() {
+        return "Dog barks";
+    }
+}
+
+class Cat extends Animal {
+    speak() {
+        return "Cat meows";
+    }
+}
+
+// Function that works with any Animal
+function makeAnimalSpeak(animal) {
+    console.log(animal.speak());
+}
+
+const animal = new Animal();
+const dog = new Dog();
+const cat = new Cat();
+
+makeAnimalSpeak(animal);  // Output: "Animal makes a sound"
+makeAnimalSpeak(dog);     // Output: "Dog barks"
+makeAnimalSpeak(cat);     // Output: "Cat meows"</code></pre>
+
+    <h3>Getters and Setters</h3>
+    <p>Getters and setters allow you to define methods that are accessed like properties, providing more control over property access.</p>
+
+    <pre><code>// Using getters and setters with classes
+class Person {
+    constructor(firstName, lastName) {
+        this._firstName = firstName;
+        this._lastName = lastName;
+    }
+
+    // Getter for fullName
+    get fullName() {
+        return `${this._firstName} ${this._lastName}`;
+    }
+
+    // Setter for fullName
+    set fullName(name) {
+        const parts = name.split(' ');
+        this._firstName = parts[0];
+        this._lastName = parts[1] || '';
+    }
+}
+
+const john = new Person("John", "Doe");
+console.log(john.fullName);  // Output: "John Doe" (using getter)
+
+john.fullName = "Jane Smith";  // Using setter
+console.log(john.fullName);  // Output: "Jane Smith"</code></pre>
+
+    <h3>Static Methods and Properties</h3>
+    <p>Static methods and properties belong to the class itself, not to instances of the class.</p>
+
+    <pre><code>// Using static methods and properties
+class MathUtils {
+    static PI = 3.14159;
+
+    static square(x) {
+        return x * x;
+    }
+
+    static cube(x) {
+        return x * x * x;
+    }
+}
+
+console.log(MathUtils.PI);        // Output: 3.14159
+console.log(MathUtils.square(3));  // Output: 9
+console.log(MathUtils.cube(3));    // Output: 27</code></pre>
+
+    <h3>Key Points to Remember</h3>
+    <ul>
+        <li>JavaScript is prototype-based, but ES6 classes provide a more familiar syntax for OOP</li>
+        <li>Objects can be created using object literals, constructor functions, classes, or Object.create()</li>
+        <li>Inheritance in JavaScript works through the prototype chain</li>
+        <li>ES6 classes make inheritance cleaner with the extends keyword and super() method</li>
+        <li>Encapsulation can be achieved through closures or private fields (in modern JavaScript)</li>
+        <li>Polymorphism is implemented through method overriding</li>
+        <li>Getters and setters provide controlled access to object properties</li>
+        <li>Static methods and properties belong to the class, not to instances</li>
+    </ul>
+</body>
+
+</html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .content-container {
+            font-family: 'Comic Sans MS', cursive;
+            line-height: 1.6;
+            color: #333;
+            padding: 0 30px;
+        }
+
+        .content-container h2 {
+            color: #333;
+            font-size: 28px;
+            margin: 30px 0;
+            padding-bottom: 10px;
+            border-bottom: none;
+            text-shadow: 1px 1px 2px rgba(255, 140, 0, 0.2);
+        }
+
+        .content-container h3 {
+            color: #FF8C00;
+            font-size: 22px;
+            margin: 25px 0;
+        }
+
+        .content-container pre {
+            background-color: #fff8f0;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 25px 0;
+            border: 2px solid #FFD700;
+            box-shadow: 0 2px 4px rgba(255, 140, 0, 0.1);
+            font-size: 15px;
+        }
+
+        .content-container code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #FF4500;
+        }
+
+        .content-container ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 25px 0;
+        }
+
+        .content-container li {
+            margin: 15px 0;
+            position: relative;
+            padding-left: 25px;
+            font-size: 16px;
+        }
+
+        .content-container li:before {
+            content: "🔥";
+            position: absolute;
+            left: 0;
+        }
+
+        .content-container p {
+            margin: 20px 0;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .content-container code {
+            background-color: #fff8f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content-container">
+        <h2>Methods in Java - Reusable Kamaal ke Blocks! 🧩</h2>
+
+        <p>Bhai, Java mein methods (jinhe dusre languages mein functions bhi kehte hain) code ke reusable blocks hote hain! Ek baar likho, hazaar baar use karo - ekdum value for money! 💯</p>
+
+        <h2>Method Declaration - Method Banane ka Tarika! 📝</h2>
+        <p>Java mein method declare karne ka formula hai:</p>
+
+        <pre><code>access_modifier return_type method_name(parameter_list) {
+    // Method body
+    // Yahan code likhenge
+    return value; // Optional, sirf tab zaroori hai jab return type void nahi hai
+}</code></pre>
+
+        <p>Ab isko thoda detail mein samajhte hain:</p>
+        <ul>
+            <li><strong>Access Modifier:</strong> Kaun access kar sakta hai method ko (public, private, protected, default) - security level samjho! 🔒</li>
+            <li><strong>Return Type:</strong> Method kya value return karega (int, String, etc.) ya kuch nahi (void) 📦</li>
+            <li><strong>Method Name:</strong> Method ka naam - unique hona chahiye! 🏷️</li>
+            <li><strong>Parameter List:</strong> Method ke inputs - khaali bhi ho sakta hai! 📥</li>
+            <li><strong>Method Body:</strong> Actual code jo kaam karega - method ka dil! ❤️</li>
+            <li><strong>Return Statement:</strong> Value return karta hai caller ko (sirf tab zaroori jab return type void nahi hai) 📤</li>
+        </ul>
+
+        <h2>Method ke Examples - Kuch Practical Udaharan! 🎯</h2>
+
+        <h3>Bina Parameters aur Bina Return Value ka Method 🙅‍♂️</h3>
+        <pre><code>public void greet() {
+    System.out.println("Hello, Bhai!");  // Bas print kar dega, kuch return nahi karega
+}</code></pre>
+
+        <h3>Parameters ke Saath par Bina Return Value ka Method 📥</h3>
+        <pre><code>public void greetPerson(String name) {
+    System.out.println("Hello, " + name + " bhai!");  // Name ke saath greet karega
+}</code></pre>
+
+        <h3>Parameters aur Return Value Dono ke Saath Method 🔄</h3>
+        <pre><code>public int add(int a, int b) {
+    return a + b;  // Do numbers add karke result return karega
+}</code></pre>
+
+        <h2>Methods ko Call Karna - Use Kaise Karein? 📞</h2>
+        <p>Methods ko use karne ke liye unhe call karna padta hai:</p>
+
+        <pre><code>public class MethodExample {
+    public static void main(String[] args) {
+        // Class ka object banao
+        MethodExample example = new MethodExample();
+        
+        // Methods ko call karo
+        example.greet();  // Output: Hello, Bhai!
+        example.greetPerson("Rahul");  // Output: Hello, Rahul bhai!
+        
+        int sum = example.add(5, 3);  // 5 + 3 calculate karega
+        System.out.println("Sum: " + sum);  // Output: Sum: 8
+    }
+    
+    public void greet() {
+        System.out.println("Hello, Bhai!");
+    }
+    
+    public void greetPerson(String name) {
+        System.out.println("Hello, " + name + " bhai!");
+    }
+    
+    public int add(int a, int b) {
+        return a + b;
+    }
+}</code></pre>
+
+        <h2>Static Methods - Class ke Methods! 🏢</h2>
+        <p>Static methods class ke hote hain, object ke nahi! Object banaye bina direct call kar sakte hain - ekdum shortcut! 🚀</p>
+
+        <pre><code>public class MathUtils {
+    public static int add(int a, int b) {
+        return a + b;  // Static method hai
+    }
+    
+    public static void main(String[] args) {
+        // Object banaye bina direct call kar sakte hain
+        int sum = MathUtils.add(5, 3);  // Class name se direct call
+        System.out.println("Sum: " + sum);  // Output: Sum: 8
+    }
+}</code></pre>
+
+        <h2>Method Overloading - Ek Naam, Multiple Versions! 🔄</h2>
+        <p>Method overloading se same naam ke multiple methods bana sakte hain, bas parameters alag hone chahiye:</p>
+
+        <pre><code>public class Calculator {
+    // Do integers ke liye add method
+    public int add(int a, int b) {
+        return a + b;
+    }
+    
+    // Teen integers ke liye add method - overloaded!
+    public int add(int a, int b, int c) {
+        return a + b + c;
+    }
+    
+    // Double numbers ke liye add method - ye bhi overloaded!
+    public double add(double a, double b) {
+        return a + b;
+    }
+    
+    public static void main(String[] args) {
+        Calculator calc = new Calculator();
+        
+        System.out.println(calc.add(5, 3));         // Pehla method call hoga: 8
+        System.out.println(calc.add(5, 3, 2));      // Dusra method call hoga: 10
+        System.out.println(calc.add(5.5, 3.5));     // Teesra method call hoga: 9.0
+    }
+}</code></pre>
+
+        <h2>Method Parameters - Input Kaise Pass Hota Hai? 📨</h2>
+
+        <h3>Primitive Types Pass Karna 🔢</h3>
+        <p>Jab primitive types (int, float, etc.) pass karte hain, toh value ka copy pass hota hai (pass-by-value):</p>
+
+        <pre><code>public void modifyValue(int x) {
+    x = x + 10;  // Local copy modify hoga, original nahi
+}
+
+public static void main(String[] args) {
+    int num = 5;
+    modifyValue(num);
+    System.out.println(num);  // Still prints 5, change nahi hua!
+}</code></pre>
+
+        <h3>Reference Types Pass Karna 📦</h3>
+        <p>Jab objects pass karte hain, toh reference ka copy pass hota hai, jisse actual object modify ho sakta hai:</p>
+
+        <pre><code>public void modifyArray(int[] arr) {
+    arr[0] = 100;  // Actual array modify hoga
+}
+
+public static void main(String[] args) {
+    int[] numbers = {1, 2, 3};
+    modifyArray(numbers);
+    System.out.println(numbers[0]);  // Prints 100, change ho gaya!
+}</code></pre>
+
+        <h2>Variable Arguments (Varargs) - Jitne Chahe Utne Arguments! 🎪</h2>
+        <p>Java mein varargs se variable number of arguments accept kar sakte hain - party mein jitne log aaye, sab welcome! 🎉</p>
+
+        <pre><code>public int sum(int... numbers) {  // ... se varargs declare hota hai
+    int total = 0;
+    for (int num : numbers) {
+        total += num;
+    }
+    return total;
+}
+
+public static void main(String[] args) {
+    Calculator calc = new Calculator();
+    
+    System.out.println(calc.sum(1, 2));          // 3
+    System.out.println(calc.sum(1, 2, 3));       // 6
+    System.out.println(calc.sum(1, 2, 3, 4));    // 10
+    System.out.println(calc.sum());              // 0 (koi argument nahi diya)
+}</code></pre>
+
+        <h2>Recursion - Method Khud Ko Call Kare! 🔄</h2>
+        <p>Recursion mein method khud ko call karta hai - Inception movie jaisa scene! 🎬</p>
+
+        <pre><code>public int factorial(int n) {
+    // Base case - rukne ki condition
+    if (n == 0 || n == 1) {
+        return 1;
+    }
+    // Recursive case - khud ko hi call kiya!
+    return n * factorial(n - 1);
+}
+
+public static void main(String[] args) {
+    Calculator calc = new Calculator();
+    System.out.println(calc.factorial(5));  // 5! = 5 * 4 * 3 * 2 * 1 = 120
+}</code></pre>
+
+        <h2>Yaad Rakhne Wali Baatein! 🧠</h2>
+        <ul>
+            <li>Methods se code organize hota hai aur reusable banta hai - DRY principle (Don't Repeat Yourself)! 🔄</li>
+            <li>Method ke naam verb hone chahiye aur camelCase mein (pehla letter chota, baaki words ke first letter capital) 📝</li>
+            <li>Access modifiers se method ki visibility control hoti hai - public sabke liye, private sirf apne class ke liye! 🔒</li>
+            <li>Static methods class ke hote hain, object banaye bina call kar sakte hain - Math.random() jaisa! ⚡</li>
+            <li>Method overloading se same naam ke multiple methods bana sakte hain, bas parameters different hone chahiye! 🔄</li>
+            <li>Java primitive types ko value se pass karta hai, reference types ko reference se! 📦</li>
+            <li>Varargs (...) se variable number of arguments accept kar sakte hain - flexible! 🤸‍♂️</li>
+            <li>Recursion powerful hai par dhyan se use karo, warna stack overflow ho sakta hai! ⚠️</li>
+            <li>Har Java application mein <code>main</code> method hona zaroori hai - entry point hai program ka! 🚪</li>
+        </ul>
+    </div>
+</body>
+
+</html>

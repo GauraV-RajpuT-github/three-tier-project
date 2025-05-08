@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Modules and Packages</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        pre {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 15px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #e83e8c;
+        }
+        .output {
+            background-color: #f1f1f1;
+            border-left: 4px solid #4CAF50;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+        .tip {
+            background-color: #e6f7ff;
+            border-left: 4px solid #1890ff;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+        .file-structure {
+            font-family: monospace;
+            white-space: pre;
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Python Modules and Packages</h1>
+
+    <h2>Introduction to Modules</h2>
+    <p>A module in Python is simply a file containing Python code. It can define functions, classes, and variables that you can use in other Python programs.</p>
+    
+    <h3>Why Use Modules?</h3>
+    <ul>
+        <li>Code organization and reusability</li>
+        <li>Namespace management</li>
+        <li>Implementation hiding</li>
+        <li>Sharing code across multiple projects</li>
+    </ul>
+
+    <h2>Importing Modules</h2>
+    <p>Python provides several ways to import modules:</p>
+    
+    <pre><code># Import the entire module
+import math
+
+# Use the module
+radius = 5
+area = math.pi * radius**2
+print(f"Circle area: {area}")
+
+# Import specific items from a module
+from math import pi, sqrt
+
+area = pi * radius**2
+print(f"Circle area: {area}")
+print(f"Square root of 16: {sqrt(16)}")
+
+# Import with an alias
+import math as m
+
+print(f"Pi: {m.pi}")
+
+# Import all items from a module (not recommended)
+from math import *
+
+print(f"Pi: {pi}")</code></pre>
+    
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Circle area: 78.53981633974483<br>
+        Circle area: 78.53981633974483<br>
+        Square root of 16: 4.0<br>
+        Pi: 3.141592653589793<br>
+        Pi: 3.141592653589793</p>
+    </div>
+
+    <div class="tip">
+        <p><strong>Best Practice:</strong> Avoid using <code>from module import *</code> as it can lead to namespace pollution and make it unclear where functions are coming from.</p>
+    </div>
+
+    <h2>Creating Your Own Modules</h2>
+    <p>Creating a module is as simple as creating a Python file with functions, classes, or variables:</p>
+    
+    <pre><code># File: mymath.py
+def add(a, b):
+    return a + b
+
+def subtract(a, b):
+    return a - b
+
+PI = 3.14159
+
+# In another file
+import mymath
+
+print(mymath.add(5, 3))
+print(mymath.subtract(10, 4))
+print(mymath.PI)</code></pre>
+    
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        8<br>
+        6<br>
+        3.14159</p>
+    </div>
+
+    <h2>Module Search Path</h2>
+    <p>Python looks for modules in the following locations:</p>
+    <ol>
+        <li>The directory containing the input script</li>
+        <li>The directories in the PYTHONPATH environment variable</li>
+        <li>The installation-dependent default directories</li>
+    </ol>
+    
+    <p>You can view the search path using:</p>
+    <pre><code>import sys
+print(sys.path)</code></pre>
+
+    <h2>The <code>if __name__ == "__main__"</code> Idiom</h2>
+    <p>This idiom allows you to write code that can be both imported as a module and run as a script:</p>
+    
+    <pre><code># File: mymath.py
+def add(a, b):
+    return a + b
+
+def subtract(a, b):
+    return a - b
+
+PI = 3.14159
+
+# This code only runs when the file is executed directly
+if __name__ == "__main__":
+    print("Testing mymath module")
+    print(f"5 + 3 = {add(5, 3)}")
+    print(f"10 - 4 = {subtract(10, 4)}")
+    print(f"PI = {PI}")</code></pre>
+    
+    <div class="output">
+        <p><strong>Output (when run as a script):</strong><br>
+        Testing mymath module<br>
+        5 + 3 = 8<br>
+        10 - 4 = 6<br>
+        PI = 3.14159</p>
+    </div>
+
+    <h2>Introduction to Packages</h2>
+    <p>A package is a directory of Python modules containing an additional <code>__init__.py</code> file. Packages allow you to organize related modules into a hierarchy.</p>
+    
+    <div class="file-structure">
+mypackage/
+├── __init__.py
+├── module1.py
+├── module2.py
+└── subpackage/
+    ├── __init__.py
+    └── module3.py
+    </div>
+
+    <h3>The <code>__init__.py</code> File</h3>
+    <p>The <code>__init__.py</code> file can be empty, but it's required to make Python treat the directory as a package. It can also be used to initialize the package or set up the <code>__all__</code> variable.</p>
+
+    <h2>Importing from Packages</h2>
+    <pre><code># Import a module from a package
+import mypackage.module1
+
+# Import a specific function from a module in a package
+from mypackage.module1 import some_function
+
+# Import a module from a subpackage
+import mypackage.subpackage.module3
+
+# Import with an alias
+import mypackage.module2 as m2</code></pre>
+
+    <h2>Creating a Package</h2>
+    <p>Let's create a simple package structure:</p>
+    
+    <pre><code># File: mypackage/__init__.py
+print("Initializing mypackage")
+
+# File: mypackage/calculations.py
+def add(a, b):
+    return a + b
+
+def multiply(a, b):
+    return a * b
+
+# File: mypackage/conversions.py
+def celsius_to_fahrenheit(celsius):
+    return (celsius * 9/5) + 32
+
+def fahrenheit_to_celsius(fahrenheit):
+    return (fahrenheit - 32) * 5/9
+
+# Usage in another file
+from mypackage import calculations, conversions
+
+print(calculations.add(5, 3))
+print(calculations.multiply(4, 2))
+print(conversions.celsius_to_fahrenheit(25))</code></pre>
+    
+    <div class="output">
+        <p><strong>Output:</strong><br>
+        Initializing mypackage<br>
+        8<br>
+        8<br>
+        77.0</p>
+    </div>
+
+    <h2>Controlling Package Exports with <code>__all__</code></h2>
+    <p>The <code>__all__</code> variable in a module or package's <code>__init__.py</code> file defines what is exported when <code>from package import *</code> is used:</p>
+    
+    <pre><code># File: mypackage/__init__.py
+__all__ = ['calculations']  # Only export the calculations module
+
+# File: mypackage/calculations.py
+__all__ = ['add']  # Only export the add function
+
+def add(a, b):
+    return a + b
+
+def multiply(a, b):  # This won't be imported with *
+    return a * b</code></pre>
+
+    <h2>Standard Library Modules</h2>
+    <p>Python comes with a rich standard library. Here are some commonly used modules:</p>
+    
+    <ul>
+        <li><code>math</code>: Mathematical functions</li>
+        <li><code>random</code>: Random number generation</li>
+        <li><code>datetime</code>: Date and time handling</li>
+        <li><code>os</code>: Operating system interface</li>
+        <li><code>sys</code>: System-specific parameters and functions</li>
+        <li><code>json</code>: JSON encoding and decoding</li>
+        <li><code>re</code>: Regular expressions</li>
+        <li><code>collections</code>: Specialized container datatypes</li>
+    </ul>
+    
+    <h3>Examples:</h3>
+    <pre><code># Math module
+import math
+print(math.sqrt(16))
+
+# Random module
+import random
+print(random.randint(1, 10))
+
+# Datetime module
+import datetime
+print(datetime.datetime.now())
+
+# OS module
+import os
+print(os.getcwd())
+
+# JSON module
+import json
+data = {'name': 'John', 'age': 30}
+json_string = json.dumps(data)
+print(json_string)
+print(json.loads(json_string))</code></pre>
+
+    <h2>Third-Party Packages</h2>
+    <p>Python's ecosystem includes thousands of third-party packages. You can install them using pip:</p>
+    
+    <pre><code># Install a package
+pip install requests
+
+# Use the package
+import requests
+response = requests.get('https://api.github.com')
+print(response.status_code)
+print(response.json())</code></pre>
+
+    <h2>Virtual Environments</h2>
+    <p>Virtual environments allow you to create isolated environments for different projects:</p>
+    
+    <pre><code># Create a virtual environment
+python -m venv myenv
+
+# Activate the virtual environment
+# On Windows:
+myenv\Scripts\activate
+# On Unix or MacOS:
+source myenv/bin/activate
+
+# Install packages in the virtual environment
+pip install requests
+
+# Deactivate when done
+deactivate</code></pre>
+
+    <div class="tip">
+        <p><strong>Best Practice:</strong> Always use virtual environments for your projects to avoid dependency conflicts between different projects.</p>
+    </div>
+</body>
+</html>

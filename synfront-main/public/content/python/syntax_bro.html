@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Basic Syntax and Structure - Bro Mode</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #2b5b84;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #3776ab;
+            font-size: 1.8em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        h3 {
+            color: #4a8cc2;
+            font-size: 1.4em;
+            margin-top: 25px;
+        }
+        p {
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f5f5f5;
+            padding: 3px 6px;
+            border-radius: 3px;
+            font-size: 0.9em;
+            border: 1px solid #e0e0e0;
+        }
+        pre {
+            background-color: #f8f8f8;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            padding: 15px;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        pre code {
+            background-color: transparent;
+            border: none;
+            padding: 0;
+            display: block;
+            line-height: 1.5;
+        }
+        .note {
+            background-color: #e7f3fe;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .warning {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .example {
+            background-color: #f1f8e9;
+            border-left: 4px solid #8bc34a;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .bro-tip {
+            background-color: #ffecb3;
+            border-left: 4px solid #ffa000;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+            font-style: italic;
+        }
+        .emoji {
+            font-size: 1.2em;
+            margin-right: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .output {
+            background-color: #f0f0f0;
+            border-left: 4px solid #9e9e9e;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>Python Syntax Samajhna 🐍</h1>
+    
+    <p>Bhai, Python ki sabse badi baat hai iski clean aur readable syntax! Doosri programming languages ki tarah complicated nahi hai. Agar tum Python ke basic syntax aur structure ko samajh loge, toh coding ekdum makkhan ho jayegi! Chalo shuru karte hain.</p>
+
+    <h2>Python Syntax Ki Basics 🚀</h2>
+
+    <h3>Indentation (Spacing) 👉</h3>
+    <p>Bhai, Python mein curly braces <code>{}</code> ka chakkar nahi hai! Yahan code blocks ko define karne ke liye indentation (yaani spaces) use hoti hai. Har line ke shuruat mein kitne spaces hain, wahi decide karta hai ki code kis block mein hai.</p>
+    
+    <div class="example">
+        <h4>Example: Indentation in Python</h4>
+        <pre><code># Sahi indentation
+if True:
+    print("Yeh sahi indentation hai")
+    if True:
+        print("Ek aur level ka indentation")
+
+# Galat indentation - error aayega
+if True:
+print("Yeh IndentationError dega")</code></pre>
+    </div>
+    
+    <div class="bro-tip">
+        <span class="emoji">💡</span> <strong>Bro Tip:</strong> Python mein standard 4 spaces ka indentation use karte hain. Tab use karna ya spaces aur tabs ko mix karna bilkul avoid karo, warna code mein jhol ho jayega!
+    </div>
+
+    <h3>Comments Likhna 💬</h3>
+    <p>Comments likhne ke liye hash symbol <code>#</code> use karte hain. Jo bhi iske baad likha hota hai, woh line ke end tak comment ban jata hai. Comments se code samajhna aasan ho jata hai.</p>
+    
+    <div class="example">
+        <h4>Example: Comments in Python</h4>
+        <pre><code># Yeh ek single-line comment hai
+
+print("Hello, Bhai!")  # Yeh inline comment hai
+
+# Multi-line comments ke liye multiple single-line comments use karo
+# Aise
+# Aur aise
+
+"""
+Yeh multi-line string hai jo aksar docstring ke taur par use hota hai
+functions, classes, aur modules ko document karne ke liye.
+Technically yeh comment nahi hai, par kaam same karta hai.
+"""</code></pre>
+    </div>
+
+    <h3>Variables Banana 📦</h3>
+    <p>Python mein variables banane ke liye koi declaration nahi chahiye. Bas value assign karo aur ho gaya!</p>
+    
+    <div class="example">
+        <h4>Example: Variable Assignment</h4>
+        <pre><code># Variable assignment
+naam = "Rahul"
+umar = 25
+student_hai = True
+
+# Multiple assignment - ek saath kai variables
+x, y, z = 10, 20, 30
+
+# Ek hi value ko multiple variables mein assign karna
+a = b = c = 0</code></pre>
+    </div>
+    
+    <div class="bro-tip">
+        <span class="emoji">🔥</span> <strong>Bro Tip:</strong> Python mein variable names case-sensitive hote hain, yaani <code>naam</code> aur <code>Naam</code> alag-alag variables hain!
+    </div>
+
+    <h3>Statements aur Lines 📝</h3>
+    <p>Python mein har line ek statement hoti hai. Simple!</p>
+    
+    <div class="example">
+        <h4>Example: Statements in Python</h4>
+        <pre><code># Har line ek statement hai
+print("Hello")
+naam = "Rahul"
+umar = 25
+
+# Lambi statements ko backslash se multiple lines mein break kar sakte ho
+total = 1 + 2 + 3 + 4 + 5 + \
+        6 + 7 + 8 + 9 + 10
+
+# Brackets ke andar statements ko bina backslash ke multiple lines mein likh sakte ho
+colors = [
+    "lal",
+    "hara",
+    "neela"
+]</code></pre>
+    </div>
+
+    <h3>Semicolons Ka Chakkar 🤔</h3>
+    <p>Bhai, C, Java ya JavaScript ki tarah Python mein statements ke end mein semicolons <code>;</code> lagane ki zaroorat nahi hai! Lekin agar ek line mein multiple statements likhna ho toh semicolons use kar sakte ho.</p>
+    
+    <div class="example">
+        <h4>Example: Semicolons in Python</h4>
+        <pre><code># Semicolons ki zaroorat nahi
+print("Hello")
+naam = "Rahul"
+
+# Ek line mein multiple statements (par yeh style avoid karo)
+print("Hello"); naam = "Rahul"; print(naam)</code></pre>
+    </div>
+    
+    <div class="bro-tip">
+        <span class="emoji">👉</span> <strong>Bro Tip:</strong> Semicolons use kar sakte ho, par Python mein ek line mein ek hi statement likhna best practice hai. Code clean aur readable rahega!
+    </div>
+
+    <h2>Basic Program Structure 🏗️</h2>
+
+    <h3>Python Scripts Kaise Likhte Hain 📜</h3>
+    <p>Python script ek file hoti hai jisme Python code likha hota hai. Python files ka extension <code>.py</code> hota hai.</p>
+    
+    <div class="example">
+        <h4>Example: Simple Python Script (hello.py)</h4>
+        <pre><code># Yeh ek simple Python script hai
+
+# Module import karna
+import math
+
+# Variable define karna
+radius = 5
+
+# Circle ka area calculate karna
+area = math.pi * radius ** 2
+
+# Result print karna
+print(f"Radius {radius} wale circle ka area {area:.2f} hai")</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            Radius 5 wale circle ka area 78.54 hai
+        </div>
+    </div>
+    
+    <div class="bro-tip">
+        <span class="emoji">💪</span> <strong>Bro Tip:</strong> Python mein f-strings (f"...") use karke variables ko strings ke andar easily add kar sakte ho. Yeh Python 3.6+ mein available hai aur bahut powerful feature hai!
+    </div>
+
+    <h3>Python Modules Kya Hote Hain 📚</h3>
+    <p>Module ek Python file hoti hai jisme functions, classes aur variables define kiye hote hain. Doosre files mein import karke use kar sakte hain.</p>
+    
+    <div class="example">
+        <h4>Example: Module Banana aur Use Karna</h4>
+        <p>Pehle, <code>mymodule.py</code> naam ki file banao:</p>
+        <pre><code># mymodule.py
+def greet(name):
+    """Greeting message return karta hai"""
+    return f"Hello, {name}!"
+
+def add(a, b):
+    """Do numbers ka sum return karta hai"""
+    return a + b
+
+PI = 3.14159</code></pre>
+        
+        <p>Phir, iss module ko doosri script mein use karo:</p>
+        <pre><code># main.py
+import mymodule
+
+# Module ke functions use karo
+message = mymodule.greet("Rahul")
+print(message)
+
+result = mymodule.add(5, 3)
+print(f"5 + 3 = {result}")
+
+# Module ke variable access karo
+print(f"PI ki value: {mymodule.PI}")</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            Hello, Rahul!<br>
+            5 + 3 = 8<br>
+            PI ki value: 3.14159
+        </div>
+    </div>
+
+    <h3>Python Packages Kya Hote Hain 📦</h3>
+    <p>Package ek directory hota hai jisme multiple module files aur ek special <code>__init__.py</code> file hoti hai. Yeh directory ko package ke taur par treat karne ke liye hota hai.</p>
+    
+    <div class="example">
+        <h4>Example: Package Structure</h4>
+        <pre><code>mypackage/
+    __init__.py
+    module1.py
+    module2.py
+    subpackage/
+        __init__.py
+        module3.py</code></pre>
+        
+        <p>Package se modules import karne ka tarika:</p>
+        <pre><code># Package se specific module import karna
+from mypackage import module1
+
+# Package ke module se specific function import karna
+from mypackage.module2 import some_function
+
+# Subpackage se module import karna
+from mypackage.subpackage import module3</code></pre>
+    </div>
+    
+    <div class="bro-tip">
+        <span class="emoji">🧠</span> <strong>Bro Tip:</strong> Python 3.3+ mein <code>__init__.py</code> file mandatory nahi hai, lekin compatibility ke liye rakhna accha hai. Jab bhi koi bada project banao, package structure use karo - code organize rahega!
+    </div>
+
+    <h2>Code Blocks aur Control Structures 🧩</h2>
+
+    <h3>If Statements 🔄</h3>
+    <p>If statements se condition check karke code execute kar sakte hain.</p>
+    
+    <div class="example">
+        <h4>Example: If Statements</h4>
+        <pre><code>umar = 18
+
+if umar < 13:
+    print("Baccha hai tu abhi")
+elif umar < 18:
+    print("Teenager hai")
+else:
+    print("Adult ho gaya hai bhai")</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            Adult ho gaya hai bhai
+        </div>
+    </div>
+    
+    <div class="bro-tip">
+        <span class="emoji">👀</span> <strong>Bro Tip:</strong> Python mein <code>else if</code> nahi, <code>elif</code> use karte hain! Yaad rakhna, bahut common mistake hai yeh.
+    </div>
+
+    <h3>Loops Kaise Chalate Hain 🔄</h3>
+    <p>Python mein do main types ke loops hote hain: <code>for</code> loops aur <code>while</code> loops.</p>
+    
+    <div class="example">
+        <h4>Example: For Loop</h4>
+        <pre><code># List par iterate karna
+fruits = ["apple", "banana", "cherry"]
+for fruit in fruits:
+    print(fruit)
+
+# Numbers ke range par iterate karna
+for i in range(5):
+    print(i)</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            apple<br>
+            banana<br>
+            cherry<br>
+            0<br>
+            1<br>
+            2<br>
+            3<br>
+            4
+        </div>
+    </div>
+    
+    <div class="example">
+        <h4>Example: While Loop</h4>
+        <pre><code>count = 0
+while count < 5:
+    print(count)
+    count += 1  # Increment karna mat bhoolna, warna infinite loop ho jayega!</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            0<br>
+            1<br>
+            2<br>
+            3<br>
+            4
+        </div>
+    </div>
+    
+    <div class="bro-tip">
+        <span class="emoji">⚠️</span> <strong>Bro Tip:</strong> While loop mein counter update karna kabhi mat bhoolna, warna program hang ho jayega! Infinite loop se bachne ke liye condition update hona zaroori hai.
+    </div>
+
+    <h3>Functions Kaise Banate Hain 🛠️</h3>
+    <p>Functions <code>def</code> keyword se define karte hain, uske baad function name aur parameters likhte hain.</p>
+    
+    <div class="example">
+        <h4>Example: Function Definition and Call</h4>
+        <pre><code>def greet(name):
+    """Yeh function parameter mein diye gaye naam ko greet karta hai"""
+    return f"Hello, {name}! Kaise ho?"
+
+# Function call karna
+message = greet("Rahul")
+print(message)</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            Hello, Rahul! Kaise ho?
+        </div>
+    </div>
+    
+    <div class="bro-tip">
+        <span class="emoji">🔥</span> <strong>Bro Tip:</strong> Python mein functions ke liye docstrings (triple quotes wale comments) likhna best practice hai. Isse doosre developers ko function ka purpose samajhne mein help milti hai.
+    </div>
+
+    <h3>Classes Kaise Banate Hain 🏗️</h3>
+    <p>Classes <code>class</code> keyword se define karte hain. Yeh data aur functionality ko ek saath bundle karne ka tarika hai.</p>
+    
+    <div class="example">
+        <h4>Example: Class Definition and Usage</h4>
+        <pre><code>class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+    
+    def introduce(self):
+        return f"Namaste! Mera naam {self.name} hai aur main {self.age} saal ka hoon."
+
+# Class ka instance create karna
+person = Person("Rahul", 25)
+
+# Instance ke method ko call karna
+message = person.introduce()
+print(message)</code></pre>
+        
+        <div class="output">
+            <strong>Output:</strong><br>
+            Namaste! Mera naam Rahul hai aur main 25 saal ka hoon.
+        </div>
+    </div>
+    
+    <div class="bro-tip">
+        <span class="emoji">🧐</span> <strong>Bro Tip:</strong> <code>__init__</code> method class ka constructor hota hai jo object create hote waqt automatically call hota hai. <code>self</code> parameter hamesha first parameter hota hai aur current instance ko refer karta hai.
+    </div>
+
+    <h2>Python Style Guide (PEP 8) 📏</h2>
+    <p>PEP 8 Python code ke liye style guide hai. Isse follow karne se code readable aur consistent rehta hai.</p>
+    
+    <h3>PEP 8 Ke Main Rules</h3>
+    <ul>
+        <li>Har indentation level ke liye 4 spaces use karo</li>
+        <li>Lines ko 79 characters tak limit rakho</li>
+        <li>Functions, classes aur code ke bade blocks ko blank lines se separate karo</li>
+        <li>Operators ke around aur commas ke baad spaces use karo</li>
+        <li>Classes ke names CamelCase mein likho (jaise <code>MyClass</code>)</li>
+        <li>Functions aur variables ke names lowercase with underscores mein likho (jaise <code>my_function</code>, <code>my_variable</code>)</li>
+        <li>Constants ke names UPPERCASE with underscores mein likho (jaise <code>MY_CONSTANT</code>)</li>
+    </ul>
+    
+    <div class="example">
+        <h4>Example: PEP 8 Compliant Code</h4>
+        <pre><code>import os
+import sys
+
+# Constants
+MAX_VALUE = 100
+DEFAULT_NAME = "User"
+
+class MyClass:
+    """Yeh PEP 8 guidelines follow karne wali sample class hai."""
+    
+    def __init__(self, name=DEFAULT_NAME):
+        self.name = name
+    
+    def say_hello(self):
+        """Greeting message print karta hai."""
+        print(f"Hello, {self.name}!")
+
+
+def calculate_average(numbers):
+    """Numbers ki list ka average calculate karta hai."""
+    if not numbers:
+        return 0
+    
+    total = sum(numbers)
+    average = total / len(numbers)
+    
+    return average
+
+
+if __name__ == "__main__":
+    # MyClass ka instance create karo
+    my_instance = MyClass("Rahul")
+    my_instance.say_hello()
+    
+    # Kuch numbers ka average calculate karke print karo
+    values = [10, 20, 30, 40, 50]
+    avg = calculate_average(values)
+    print(f"Average hai: {avg}")</code></pre>
+    </div>
+    
+    <div class="bro-tip">
+        <span class="emoji">💯</span> <strong>Bro Tip:</strong> <code>if __name__ == "__main__":</code> block ka use karo jab code ko both as a script and as a module use karna ho. Isse code import karne par automatically execute nahi hoga, sirf direct run karne par hi execute hoga.
+    </div>
+
+    <h2>Conclusion 🏁</h2>
+    <p>Bhai, ab tumne Python ke basic syntax aur structure ko samajh liya hai! Python ki clean aur readable syntax hi ise beginners aur experienced programmers ke liye itna popular banati hai.</p>
+    
+    <div class="note">
+        <strong>Next Steps:</strong> Ab jab tumne Python syntax samajh li hai, toh next step hai Python ke data types aur variables ke bare mein seekhna. Get ready for some serious coding! 🚀
+    </div>
+    
+    <div class="bro-tip">
+        <span class="emoji">🔥</span> <strong>Final Bro Tip:</strong> Syntax yaad rakhne ka best tarika hai practice karna! Concepts ko samajhne ke baad khud se code likho, errors face karo, aur unhe solve karo. Yahi real learning hai!
+    </div>
+</body>
+</html>

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP Basic Syntax and Structure</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #4F5B93;
+        }
+        pre {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 15px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #8892BF;
+        }
+        .output {
+            background-color: #f1f1f1;
+            border-left: 4px solid #4CAF50;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+        .tip {
+            background-color: #e6f7ff;
+            border-left: 4px solid #1890ff;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>PHP Basic Syntax and Structure</h1>
+
+    <h2>PHP Tags</h2>
+    <p>PHP code is enclosed within special start and end processing instructions (tags) that allow you to jump into and out of "PHP mode":</p>
+    
+    <pre><code>&lt;?php
+// PHP code goes here
+?&gt;</code></pre>
+
+    <p>There are also shorthand tags, but they're not recommended as they may not be supported in all server configurations:</p>
+    
+    <pre><code>&lt;?
+// Shorthand tag (not recommended)
+?&gt;</code></pre>
+
+    <h2>Embedding PHP in HTML</h2>
+    <p>One of PHP's strengths is its ability to be embedded directly in HTML:</p>
+    
+    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;PHP Example&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Welcome to my website&lt;/h1&gt;
+    
+    &lt;?php
+    $currentTime = date("H:i:s");
+    echo "&lt;p&gt;The current time is: $currentTime&lt;/p&gt;";
+    ?&gt;
+    
+    &lt;p&gt;This is regular HTML again.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+    <h2>Comments</h2>
+    <p>PHP supports several comment styles:</p>
+    
+    <pre><code>// This is a single-line comment
+
+# This is also a single-line comment (shell-style)
+
+/*
+This is a multi-line comment
+that spans multiple lines
+*/
+
+/**
+ * This is a documentation comment
+ * often used for documenting functions and classes
+ */</code></pre>
+
+    <h2>Statements and Semicolons</h2>
+    <p>PHP requires semicolons at the end of each statement:</p>
+    
+    <pre><code>&lt;?php
+echo "Hello";
+echo "World";
+?&gt;</code></pre>
+
+    <p>Multiple statements can be placed on the same line if each one ends with a semicolon:</p>
+    
+    <pre><code>&lt;?php
+echo "Hello"; echo "World";
+?&gt;</code></pre>
+
+    <h2>Case Sensitivity</h2>
+    <p>In PHP, variable names are case-sensitive, but function names and class names are not:</p>
+    
+    <pre><code>&lt;?php
+$name = "John";  // Variable names are case-sensitive
+$Name = "Jane";  // This is a different variable
+
+echo $name;  // Outputs "John"
+echo $Name;  // Outputs "Jane"
+
+// Function names are NOT case-sensitive
+ECHO "Hello";  // Works the same as echo
+Echo "World";  // Also works
+?&gt;</code></pre>
+
+    <h2>Whitespace</h2>
+    <p>PHP generally ignores whitespace (spaces, tabs, newlines) between statements:</p>
+    
+    <pre><code>&lt;?php
+echo
+    "Hello"
+        .
+    "World";  // Outputs "HelloWorld"
+?&gt;</code></pre>
+
+    <h2>Echo and Print</h2>
+    <p>PHP provides two basic ways to output data: <code>echo</code> and <code>print</code>:</p>
+    
+    <pre><code>&lt;?php
+// echo can take multiple parameters
+echo "Hello", " ", "World";  // Outputs "Hello World"
+
+// print can only take one parameter and returns a value
+print "Hello World";  // Outputs "Hello World" and returns 1
+?&gt;</code></pre>
+
+    <h2>Variables</h2>
+    <p>Variables in PHP start with a dollar sign ($) followed by the variable name:</p>
+    
+    <pre><code>&lt;?php
+$name = "John";
+$age = 30;
+$isStudent = true;
+
+echo "Name: $name, Age: $age";  // Outputs "Name: John, Age: 30"
+?&gt;</code></pre>
+
+    <p>Variable names must start with a letter or underscore, followed by any number of letters, numbers, or underscores:</p>
+    
+    <pre><code>&lt;?php
+$name = "John";      // Valid
+$_name = "John";     // Valid
+$name1 = "John";     // Valid
+$1name = "John";     // Invalid (starts with a number)
+$name-1 = "John";    // Invalid (contains a hyphen)
+?&gt;</code></pre>
+
+    <h2>String Concatenation</h2>
+    <p>PHP uses the dot (.) operator to concatenate strings:</p>
+    
+    <pre><code>&lt;?php
+$firstName = "John";
+$lastName = "Doe";
+$fullName = $firstName . " " . $lastName;
+
+echo $fullName;  // Outputs "John Doe"
+
+// You can also use the .= operator to append to a string
+$greeting = "Hello";
+$greeting .= " World";
+echo $greeting;  // Outputs "Hello World"
+?&gt;</code></pre>
+
+    <h2>String Interpolation</h2>
+    <p>PHP allows variables to be directly included in double-quoted strings, but not in single-quoted strings:</p>
+    
+    <pre><code>&lt;?php
+$name = "John";
+
+// Double quotes allow variable interpolation
+echo "Hello, $name";  // Outputs "Hello, John"
+
+// Single quotes do not
+echo 'Hello, $name';  // Outputs "Hello, $name"
+
+// For complex expressions, use curly braces
+$fruits = ["apple", "banana", "orange"];
+echo "I like {$fruits[1]}";  // Outputs "I like banana"
+?&gt;</code></pre>
+
+    <h2>Constants</h2>
+    <p>Constants are identifiers for simple values that cannot be changed during script execution:</p>
+    
+    <pre><code>&lt;?php
+// Define a constant
+define("PI", 3.14159);
+
+// Use the constant
+echo "The value of PI is " . PI;  // Outputs "The value of PI is 3.14159"
+
+// Constants are global and can be used anywhere in the script
+function calculateCircleArea($radius) {
+    return PI * $radius * $radius;
+}
+
+echo calculateCircleArea(5);  // Outputs approximately 78.54
+
+// Another way to define constants (PHP 5.3+)
+const DATABASE_NAME = "my_database";
+echo DATABASE_NAME;  // Outputs "my_database"
+?&gt;</code></pre>
+
+    <h2>PHP in HTML Forms</h2>
+    <p>PHP is commonly used to process HTML forms:</p>
+    
+    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;PHP Form Example&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;?php
+    // Check if the form has been submitted
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Retrieve form data
+        $name = $_POST["name"];
+        $email = $_POST["email"];
+        
+        // Display the submitted data
+        echo "&lt;h2&gt;Form Submission Results:&lt;/h2&gt;";
+        echo "&lt;p&gt;Name: $name&lt;/p&gt;";
+        echo "&lt;p&gt;Email: $email&lt;/p&gt;";
+    }
+    ?&gt;
+    
+    &lt;h2&gt;Contact Form&lt;/h2&gt;
+    &lt;form method="post" action="&lt;?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?&gt;"&gt;
+        &lt;label for="name"&gt;Name:&lt;/label&gt;
+        &lt;input type="text" id="name" name="name" required&gt;&lt;br&gt;&lt;br&gt;
+        
+        &lt;label for="email"&gt;Email:&lt;/label&gt;
+        &lt;input type="email" id="email" name="email" required&gt;&lt;br&gt;&lt;br&gt;
+        
+        &lt;input type="submit" value="Submit"&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+    <div class="tip">
+        <p><strong>Security Tip:</strong> Always validate and sanitize user input to prevent security vulnerabilities like SQL injection and cross-site scripting (XSS).</p>
+    </div>
+
+    <h2>Including Files</h2>
+    <p>PHP provides several ways to include external files in your scripts:</p>
+    
+    <pre><code>&lt;?php
+// include: Includes and evaluates the specified file
+// (produces a warning if the file is not found)
+include "header.php";
+
+// require: Same as include, but produces a fatal error if the file is not found
+require "config.php";
+
+// include_once: Includes the file only if it hasn't been included before
+include_once "functions.php";
+
+// require_once: Same as include_once, but produces a fatal error if the file is not found
+require_once "database.php";
+?&gt;</code></pre>
+
+    <h2>PHP and JavaScript</h2>
+    <p>PHP (server-side) and JavaScript (client-side) can work together:</p>
+    
+    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;PHP and JavaScript&lt;/title&gt;
+    &lt;script&gt;
+    function showMessage() {
+        alert("Hello from JavaScript!");
+    }
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;?php
+    $message = "Hello from PHP!";
+    echo "&lt;h2&gt;$message&lt;/h2&gt;";
+    
+    // PHP can generate JavaScript code
+    $jsVariable = "This was generated by PHP";
+    echo "&lt;script&gt;";
+    echo "alert('$jsVariable');";
+    echo "&lt;/script&gt;";
+    ?&gt;
+    
+    &lt;button onclick="showMessage()"&gt;Click Me&lt;/button&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+    <h2>Best Practices</h2>
+    <ul>
+        <li>Always use the standard <code>&lt;?php ?&gt;</code> tags for maximum compatibility</li>
+        <li>End each statement with a semicolon</li>
+        <li>Use meaningful variable names that describe their purpose</li>
+        <li>Follow a consistent coding style (indentation, spacing, etc.)</li>
+        <li>Comment your code to explain complex logic</li>
+        <li>Separate PHP logic from HTML presentation when possible</li>
+        <li>Validate and sanitize all user inputs</li>
+        <li>Use error reporting during development, but disable it in production</li>
+    </ul>
+</body>
+</html>

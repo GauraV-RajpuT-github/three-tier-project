@@ -1,0 +1,14 @@
+# MONGODB
+
+kubectl create namespace three-tier
+kubectl get deployment -n three-tier   # to check deployment in three tier
+kubectl apply-f deployment.yaml
+kubectl apply-f secrets.yaml
+kubectl get pods -n three-tier # see mongodb is running
+kubectl apply -f service.yaml 
+kubectl get svc -n three-tier
+#now internally mongodb is ready to communicate
+#IF WE DO NOT WRITE TYPE SO IT TAKES CLUSTER IP
+NODEPORT LOADBALANCER CLUSTERIP EXTERNALIP(NONE BECAUSE WE DONT WANT TO CONNEVT WITH EXTERNALLY)   
+
+#BACKEND

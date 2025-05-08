@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Data Types - Bro Mode</title>
+    <style>
+        .content-container {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 100%;
+        }
+        h1 {
+            color: #004085;
+            border-bottom: 2px solid #004085;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #004085;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #0062cc;
+        }
+        .code-block {
+            background-color: #f8f9fa;
+            border-left: 4px solid #004085;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .note {
+            background-color: #e7f3fe;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .bro-tip {
+            background-color: #ffe0b2;
+            border-left: 4px solid #ff9800;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #004085;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="content-container">
+        <h1>SQL Data Types - The Building Blocks of Your Database</h1>
+        
+        <p>
+            Yo, what's up database warriors! 🔥 Today we're diving into SQL data types - the LEGO blocks of your database. Get this right, and your database will be solid as a rock. Mess it up, and you'll be debugging weird issues for days. Let's get it! 💪
+        </p>
+
+        <h2>Numeric Data Types - For All Your Counting Needs</h2>
+        
+        <div class="bro-tip">
+            <p><strong>Bro Tip:</strong> Always pick the smallest data type that fits your needs. Your database will thank you later with faster performance!</p>
+        </div>
+        
+        <table>
+            <tr>
+                <th>Data Type</th>
+                <th>What It's For</th>
+                <th>Size</th>
+                <th>Range</th>
+            </tr>
+            <tr>
+                <td>INTEGER or INT</td>
+                <td>Your go-to for whole numbers</td>
+                <td>4 bytes</td>
+                <td>About -2.1 billion to 2.1 billion</td>
+            </tr>
+            <tr>
+                <td>SMALLINT</td>
+                <td>When you're tight on space</td>
+                <td>2 bytes</td>
+                <td>-32K to 32K</td>
+            </tr>
+            <tr>
+                <td>BIGINT</td>
+                <td>For those MASSIVE numbers</td>
+                <td>8 bytes</td>
+                <td>Ridiculously large (9 quintillion-ish)</td>
+            </tr>
+            <tr>
+                <td>DECIMAL(p,s)</td>
+                <td>Money stuff - needs to be EXACT</td>
+                <td>Variable</td>
+                <td>Depends on precision</td>
+            </tr>
+            <tr>
+                <td>FLOAT</td>
+                <td>Scientific calculations where precision isn't critical</td>
+                <td>4 or 8 bytes</td>
+                <td>Huge range but inexact</td>
+            </tr>
+        </table>
+
+        <p>
+            Listen up! NEVER use FLOAT for money calculations unless you want to accidentally give away free stuff or overcharge your customers! 💸 Always use DECIMAL for cash.
+        </p>
+
+        <h2>String Data Types - Text Me, Bro!</h2>
+        
+        <table>
+            <tr>
+                <th>Data Type</th>
+                <th>What It's For</th>
+                <th>The Lowdown</th>
+            </tr>
+            <tr>
+                <td>CHAR(n)</td>
+                <td>Fixed-length text</td>
+                <td>Always takes up n bytes even if empty. Use for stuff that's always the same length (like state codes: CA, NY)</td>
+            </tr>
+            <tr>
+                <td>VARCHAR(n)</td>
+                <td>Variable-length text</td>
+                <td>The MVP of string types - only uses what it needs. Perfect for names, addresses, etc.</td>
+            </tr>
+            <tr>
+                <td>TEXT</td>
+                <td>For your essays and novels</td>
+                <td>When you need to store someone's life story or a massive JSON blob</td>
+            </tr>
+        </table>
+
+        <div class="bro-tip">
+            <p><strong>Bro Tip:</strong> VARCHAR is your best friend 99% of the time. Only use TEXT when you're dealing with paragraphs of content.</p>
+        </div>
+
+        <h2>Date and Time - Keeping Track of When Stuff Happens</h2>
+        
+        <table>
+            <tr>
+                <th>Data Type</th>
+                <th>What It's For</th>
+                <th>Example</th>
+            </tr>
+            <tr>
+                <td>DATE</td>
+                <td>Just the date, no time</td>
+                <td>2023-04-20</td>
+            </tr>
+            <tr>
+                <td>TIME</td>
+                <td>Just the time, no date</td>
+                <td>13:37:00</td>
+            </tr>
+            <tr>
+                <td>DATETIME/TIMESTAMP</td>
+                <td>The whole package - date and time</td>
+                <td>2023-04-20 13:37:00</td>
+            </tr>
+        </table>
+
+        <p>
+            Working with dates in SQL is like trying to text while driving - complicated and potentially disastrous. Always use the right functions to manipulate them!
+        </p>
+
+        <h2>Boolean - True or False, No Cap</h2>
+        
+        <p>
+            The BOOLEAN data type is for yes/no, true/false situations:
+        </p>
+        
+        <ul>
+            <li>TRUE (1) - "Yeah, bro!"</li>
+            <li>FALSE (0) - "Nah, I'm good"</li>
+            <li>NULL - "Umm, I don't know yet"</li>
+        </ul>
+
+        <p>
+            Perfect for columns like: is_admin, has_paid, is_verified, likes_pineapple_on_pizza
+        </p>
+
+        <h2>Binary Data Types - For the Heavy Stuff</h2>
+        
+        <table>
+            <tr>
+                <th>Data Type</th>
+                <th>What It's For</th>
+            </tr>
+            <tr>
+                <td>BINARY/VARBINARY</td>
+                <td>Raw binary data</td>
+            </tr>
+            <tr>
+                <td>BLOB</td>
+                <td>Binary Large Object - for storing files, images, etc.</td>
+            </tr>
+        </table>
+
+        <div class="bro-tip">
+            <p><strong>Bro Tip:</strong> Storing files directly in your database? That's a rookie move! Better to store them on a file system or cloud storage and just keep the path in your database. Your database performance will thank you!</p>
+        </div>
+
+        <h2>Special Data Types - The Cool Kids</h2>
+        
+        <table>
+            <tr>
+                <th>Data Type</th>
+                <th>What It's For</th>
+            </tr>
+            <tr>
+                <td>JSON</td>
+                <td>Storing JSON data you can query - super flexible!</td>
+            </tr>
+            <tr>
+                <td>ENUM</td>
+                <td>When you have a fixed list of options (like T-shirt sizes: S, M, L, XL)</td>
+            </tr>
+            <tr>
+                <td>UUID</td>
+                <td>Generating unique IDs that won't collide even across different servers</td>
+            </tr>
+        </table>
+
+        <h2>Putting It All Together - Creating a Table Like a Boss</h2>
+        
+        <div class="code-block">
+            <pre>
+CREATE TABLE gamers (
+    gamer_id INT PRIMARY KEY,                  -- Simple numeric ID
+    username VARCHAR(50) NOT NULL,             -- Usernames vary in length
+    email VARCHAR(100) UNIQUE NOT NULL,        -- Emails need to be unique
+    password_hash CHAR(60) NOT NULL,           -- BCrypt hashes are always 60 chars
+    bio TEXT,                                  -- Life stories can be long
+    birth_date DATE,                           -- Just need the date, not time
+    signup_date TIMESTAMP DEFAULT NOW(),       -- When they joined
+    last_login TIMESTAMP,                      -- Track activity
+    subscription_tier ENUM('free', 'pro', 'elite'),  -- Limited options
+    account_balance DECIMAL(10,2) DEFAULT 0.00,  -- Money needs precision!
+    is_verified BOOLEAN DEFAULT FALSE,         -- True/false flag
+    profile_pic VARBINARY(MAX)                 -- Their awesome avatar
+);
+            </pre>
+        </div>
+
+        <h2>Type Conversion - Transforming Data Like a Shapeshifter</h2>
+        
+        <p>
+            Sometimes you gotta convert data from one type to another. It's like putting on a different outfit for a different occasion:
+        </p>
+        
+        <div class="code-block">
+            <pre>
+-- "Trust me bro, this string is actually a number"
+SELECT CAST('123' AS INT);  -- Turns '123' into 123
+
+-- "I only care about the whole number part"
+SELECT CAST(123.45 AS INT);  -- Results in 123
+            </pre>
+        </div>
+
+        <div class="bro-tip">
+            <p><strong>Bro Wisdom:</strong></p>
+            <ul>
+                <li>Don't be that guy who uses VARCHAR(255) for everything just because it's the default in some tools</li>
+                <li>Never store dates as strings unless you enjoy debugging nightmares</li>
+                <li>Use DECIMAL for money, or you'll be off by fractions of cents (Office Space style)</li>
+                <li>When in doubt, check your database's specific documentation - every database has its own quirks</li>
+            </ul>
+        </div>
+        
+        <p>
+            That's it for data types, bro! Master these, and you're well on your way to database domination. Next up, we'll be crushing those SQL queries! 🚀
+        </p>
+    </div>
+</body>
+</html>

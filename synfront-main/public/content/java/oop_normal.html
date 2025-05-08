@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #FF8C00;
+            border-bottom: 2px solid #FFA500;
+            padding-bottom: 10px;
+        }
+
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        li {
+            margin: 10px 0;
+            position: relative;
+        }
+
+        li:before {
+            content: "•";
+            color: #FFA500;
+            font-weight: bold;
+            position: absolute;
+            left: -15px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Object-Oriented Programming in Java</h2>
+
+    <p>Object-Oriented Programming (OOP) is a programming paradigm based on the concept of "objects," which can contain data and code. Java is a fully object-oriented programming language that implements the following OOP concepts:</p>
+
+    <h2>Classes and Objects</h2>
+
+    <h3>Classes</h3>
+    <p>A class is a blueprint or template for creating objects. It defines the properties (attributes) and behaviors (methods) that objects of that class will have:</p>
+
+    <pre><code>public class Car {
+    // Attributes (instance variables)
+    private String brand;
+    private String model;
+    private int year;
+    
+    // Constructor
+    public Car(String brand, String model, int year) {
+        this.brand = brand;
+        this.model = model;
+        this.year = year;
+    }
+    
+    // Methods
+    public void start() {
+        System.out.println("The " + brand + " " + model + " is starting.");
+    }
+    
+    public void drive() {
+        System.out.println("The " + brand + " " + model + " is driving.");
+    }
+}</code></pre>
+
+    <h3>Objects</h3>
+    <p>An object is an instance of a class. You can create multiple objects from the same class, each with its own state:</p>
+
+    <pre><code>public class Main {
+    public static void main(String[] args) {
+        // Create objects of the Car class
+        Car car1 = new Car("Toyota", "Corolla", 2020);
+        Car car2 = new Car("Honda", "Civic", 2019);
+        
+        // Call methods on objects
+        car1.start();  // Output: The Toyota Corolla is starting.
+        car1.drive();  // Output: The Toyota Corolla is driving.
+        
+        car2.start();  // Output: The Honda Civic is starting.
+        car2.drive();  // Output: The Honda Civic is driving.
+    }
+}</code></pre>
+
+    <h2>Encapsulation</h2>
+    <p>Encapsulation is the practice of hiding the internal state of an object and requiring all interaction to be performed through an object's methods. This is achieved using access modifiers (private, protected, public):</p>
+
+    <pre><code>public class Person {
+    // Private attributes (encapsulated)
+    private String name;
+    private int age;
+    
+    // Constructor
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+    
+    // Getter methods
+    public String getName() {
+        return name;
+    }
+    
+    public int getAge() {
+        return age;
+    }
+    
+    // Setter methods
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    public void setAge(int age) {
+        if (age > 0) {  // Validation
+            this.age = age;
+        }
+    }
+}</code></pre>
+
+    <p>Using the Person class:</p>
+
+    <pre><code>public class Main {
+    public static void main(String[] args) {
+        Person person = new Person("John", 30);
+        
+        // Access attributes through methods
+        System.out.println(person.getName());  // Output: John
+        System.out.println(person.getAge());   // Output: 30
+        
+        // Modify attributes through methods
+        person.setName("Jane");
+        person.setAge(25);
+        
+        System.out.println(person.getName());  // Output: Jane
+        System.out.println(person.getAge());   // Output: 25
+        
+        // This would cause validation to fail, age remains 25
+        person.setAge(-5);
+        System.out.println(person.getAge());   // Output: 25
+    }
+}</code></pre>
+
+    <h2>Inheritance</h2>
+    <p>Inheritance allows a class to inherit attributes and methods from another class. The class that inherits is called a subclass (or derived class), and the class being inherited from is called a superclass (or base class):</p>
+
+    <pre><code>// Superclass
+public class Vehicle {
+    protected String brand;
+    protected String model;
+    
+    public Vehicle(String brand, String model) {
+        this.brand = brand;
+        this.model = model;
+    }
+    
+    public void start() {
+        System.out.println("The vehicle is starting.");
+    }
+    
+    public void stop() {
+        System.out.println("The vehicle is stopping.");
+    }
+}
+
+// Subclass
+public class Car extends Vehicle {
+    private int numDoors;
+    
+    public Car(String brand, String model, int numDoors) {
+        super(brand, model);  // Call superclass constructor
+        this.numDoors = numDoors;
+    }
+    
+    // Override the start method
+    @Override
+    public void start() {
+        System.out.println("The " + brand + " " + model + " car is starting.");
+    }
+    
+    // New method specific to Car
+    public void honk() {
+        System.out.println("Beep beep!");
+    }
+}</code></pre>
+
+    <p>Using inheritance:</p>
+
+    <pre><code>public class Main {
+    public static void main(String[] args) {
+        Car car = new Car("Toyota", "Corolla", 4);
+        
+        car.start();  // Calls the overridden method in Car
+        car.stop();   // Calls the inherited method from Vehicle
+        car.honk();   // Calls the method specific to Car
+    }
+}</code></pre>
+
+    <h2>Polymorphism</h2>
+    <p>Polymorphism allows objects of different classes to be treated as objects of a common superclass. It can be achieved through method overriding and interfaces:</p>
+
+    <h3>Method Overriding</h3>
+    <pre><code>// Superclass
+public class Animal {
+    public void makeSound() {
+        System.out.println("The animal makes a sound");
+    }
+}
+
+// Subclasses
+public class Dog extends Animal {
+    @Override
+    public void makeSound() {
+        System.out.println("The dog barks");
+    }
+}
+
+public class Cat extends Animal {
+    @Override
+    public void makeSound() {
+        System.out.println("The cat meows");
+    }
+}</code></pre>
+
+    <p>Using polymorphism:</p>
+
+    <pre><code>public class Main {
+    public static void main(String[] args) {
+        // Create an array of Animal objects
+        Animal[] animals = new Animal[3];
+        animals[0] = new Animal();
+        animals[1] = new Dog();
+        animals[2] = new Cat();
+        
+        // Polymorphic behavior
+        for (Animal animal : animals) {
+            animal.makeSound();
+        }
+        
+        // Output:
+        // The animal makes a sound
+        // The dog barks
+        // The cat meows
+    }
+}</code></pre>
+
+    <h3>Interfaces</h3>
+    <p>Interfaces define a contract that implementing classes must follow. They enable polymorphism across unrelated classes:</p>
+
+    <pre><code>// Interface
+public interface Drawable {
+    void draw();
+}
+
+// Implementing classes
+public class Circle implements Drawable {
+    @Override
+    public void draw() {
+        System.out.println("Drawing a circle");
+    }
+}
+
+public class Rectangle implements Drawable {
+    @Override
+    public void draw() {
+        System.out.println("Drawing a rectangle");
+    }
+}</code></pre>
+
+    <p>Using interfaces for polymorphism:</p>
+
+    <pre><code>public class Main {
+    public static void main(String[] args) {
+        Drawable[] shapes = new Drawable[2];
+        shapes[0] = new Circle();
+        shapes[1] = new Rectangle();
+        
+        for (Drawable shape : shapes) {
+            shape.draw();
+        }
+        
+        // Output:
+        // Drawing a circle
+        // Drawing a rectangle
+    }
+}</code></pre>
+
+    <h2>Abstraction</h2>
+    <p>Abstraction is the concept of hiding complex implementation details and showing only the necessary features of an object. It can be achieved using abstract classes and interfaces:</p>
+
+    <h3>Abstract Classes</h3>
+    <pre><code>// Abstract class
+public abstract class Shape {
+    // Abstract method (no implementation)
+    public abstract double calculateArea();
+    
+    // Concrete method (with implementation)
+    public void display() {
+        System.out.println("This is a shape with area: " + calculateArea());
+    }
+}
+
+// Concrete subclasses
+public class Circle extends Shape {
+    private double radius;
+    
+    public Circle(double radius) {
+        this.radius = radius;
+    }
+    
+    @Override
+    public double calculateArea() {
+        return Math.PI * radius * radius;
+    }
+}
+
+public class Rectangle extends Shape {
+    private double length;
+    private double width;
+    
+    public Rectangle(double length, double width) {
+        this.length = length;
+        this.width = width;
+    }
+    
+    @Override
+    public double calculateArea() {
+        return length * width;
+    }
+}</code></pre>
+
+    <p>Using abstract classes:</p>
+
+    <pre><code>public class Main {
+    public static void main(String[] args) {
+        // Shape shape = new Shape();  // Error: Cannot instantiate abstract class
+        
+        Shape circle = new Circle(5);
+        Shape rectangle = new Rectangle(4, 6);
+        
+        circle.display();     // Output: This is a shape with area: 78.53981633974483
+        rectangle.display();  // Output: This is a shape with area: 24.0
+    }
+}</code></pre>
+
+    <h2>Key points to remember:</h2>
+    <ul>
+        <li>Java is a fully object-oriented programming language</li>
+        <li>Classes are blueprints for objects, and objects are instances of classes</li>
+        <li>Encapsulation hides internal state and provides controlled access through methods</li>
+        <li>Inheritance allows a class to inherit attributes and methods from another class</li>
+        <li>Polymorphism enables objects of different classes to be treated as objects of a common superclass</li>
+        <li>Abstraction hides complex implementation details and shows only necessary features</li>
+        <li>Abstract classes can have both abstract methods (without implementation) and concrete methods (with implementation)</li>
+        <li>Interfaces define a contract that implementing classes must follow</li>
+        <li>Java supports multiple inheritance through interfaces but not through classes</li>
+    </ul>
+</body>
+
+</html>
